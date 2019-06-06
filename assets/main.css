@@ -50,7 +50,7 @@ pre > code { border: 0; padding-right: 0; padding-left: 0; }
 @media screen and (max-width: 800px) { .wrapper { max-width: -webkit-calc(800px - (30px)); max-width: calc(800px - (30px)); padding-right: 15px; padding-left: 15px; } }
 
 /** Clearfix */
-.wrapper:after, .footer-col-wrapper:after { content: ""; display: table; clear: both; }
+.wrapper:after { content: ""; display: table; clear: both; }
 
 /** Icons */
 .svg-icon { width: 16px; height: 16px; display: inline-block; fill: #828282; padding-right: 5px; vertical-align: text-top; }
@@ -64,17 +64,27 @@ table th, table td { padding: 10px 15px; }
 table th { background-color: #f0f0f0; border: 1px solid #dedede; border-bottom-color: #c9c9c9; }
 table td { border: 1px solid #e8e8e8; }
 
-/** Site header */
-.site-header { border-top: 5px solid #424242; border-bottom: 1px solid #e8e8e8; min-height: 55.95px; background: #424242; position: relative; }
+/** Profile wrapper */
+#professional-profile { color: #FDFDFD; background: #0d4e79; border-top: 3px solid #ededed; }
+#professional-profile #github-profile-image { margin-top: 15px; margin-left: 10px; border: 2px solid #FDFDFD; border-radius: 10px; }
+#professional-profile #professional-profile-biography { margin: 15px 15px 0 0; }
+#professional-profile #professional-profile-biography .who-am-i-title { line-height: 16px; }
+#professional-profile .professional-profile-social-links { padding-top: 7px; }
+#professional-profile .professional-profile-social-links ul { margin: 0 0 10px 0; }
+#professional-profile .professional-profile-social-links ul > li { display: inline; list-style: none; padding-left: 10px; }
+#professional-profile .professional-profile-social-links a, #professional-profile .professional-profile-social-links a:visited, #professional-profile .professional-profile-social-links a:hover { text-decoration: none; color: #FDFDFD; font-size: 13.6px; }
+#professional-profile .professional-profile-social-links .svg-icon { fill: #FDFDFD; }
 
-.site-title { font-size: 26px; font-weight: 300; line-height: 54px; letter-spacing: -1px; margin-bottom: 0; float: left; text-decoration: none !important; }
-.site-title, .site-title:visited { color: #CCC; }
+/** Site header */
+.site-header { border-top: 5px solid #424242; min-height: 55.95px; background: #424242; position: relative; }
+
+.site-title { font-size: 26px; font-weight: 300; line-height: 54px; letter-spacing: -1px; margin-bottom: 0; float: left; text-decoration: none !important; color: white !important; }
 .site-title :hover { text-decoration: none; }
 
-.site-nav { float: right; line-height: 54px; }
+.site-nav { grid-area: header; grid-template-rows: auto; float: right; line-height: 54px; }
 .site-nav .nav-trigger { display: none; }
 .site-nav .menu-icon { display: none; }
-.site-nav .page-link { color: #CCC; line-height: 1.5; }
+.site-nav .page-link { line-height: 1.5; }
 .site-nav .page-link:not(:last-child) { margin-right: 20px; }
 @media screen and (max-width: 600px) { .site-nav { position: absolute; top: 9px; right: 15px; background-color: #fdfdfd; border: 1px solid #e8e8e8; border-radius: 5px; text-align: right; }
   .site-nav label[for="nav-trigger"] { display: block; float: right; width: 36px; height: 36px; z-index: 2; cursor: pointer; }
@@ -85,45 +95,27 @@ table td { border: 1px solid #e8e8e8; }
   .site-nav .page-link { display: block; padding: 5px 10px; margin-left: 20px; }
   .site-nav .page-link:not(:last-child) { margin-right: 0; } }
 
-/** Site footer */
-.site-footer { border-top: 1px solid #e8e8e8; padding: 30px 0; }
-
-.footer-heading { font-size: 18px; margin-bottom: 15px; }
-
-.contact-list, .social-media-list { list-style: none; margin-left: 0; }
-
-.footer-col-wrapper { font-size: 15px; color: #828282; margin-left: -15px; }
-
-.footer-col { float: left; margin-bottom: 15px; padding-left: 15px; }
-
-.footer-col-1 { width: -webkit-calc(35% - (30px / 2)); width: calc(35% - (30px / 2)); }
-
-.footer-col-2 { width: -webkit-calc(20% - (30px / 2)); width: calc(20% - (30px / 2)); }
-
-.footer-col-3 { width: -webkit-calc(45% - (30px / 2)); width: calc(45% - (30px / 2)); }
-
-@media screen and (max-width: 800px) { .footer-col-1, .footer-col-2 { width: -webkit-calc(50% - (30px / 2)); width: calc(50% - (30px / 2)); }
-  .footer-col-3 { width: -webkit-calc(100% - (30px / 2)); width: calc(100% - (30px / 2)); } }
-@media screen and (max-width: 600px) { .footer-col { float: none; width: -webkit-calc(100% - (30px / 2)); width: calc(100% - (30px / 2)); } }
 /** Page content */
 .page-content { padding: 30px 0; flex: 1; }
 
 .page-heading { font-size: 32px; }
+
+.post { margin: 10px 15px 0 10px; }
 
 .post-list-heading { font-size: 28px; }
 
 .post-list { margin-left: 0; list-style: none; }
 .post-list > li { margin-bottom: 30px; }
 
-.post-meta { font-size: 14px; color: #828282; }
+.post-meta { font-size: 14px; color: #828282; margin-bottom: 0; }
 
-.post-link { display: block; font-size: 24px; }
+.post-header, .post-link, .post-link:hover, .post-link:visited { display: block; line-height: 16px; color: #e4a725; text-decoration: none; border-bottom: 1px dotted #e4a725; font-size: 24px; }
 
 /** Posts */
 .post-header { margin-bottom: 30px; }
 
 .post-title { font-size: 42px; letter-spacing: -1px; line-height: 1; }
-@media screen and (max-width: 800px) { .post-title { font-size: 36px; } }
+@media screen and (max-width: 800px) { .post-title { font-size: 36px; line-height: relative-font-size(2.25); margin: 0; } }
 
 .post-content { margin-bottom: 30px; }
 .post-content h2 { font-size: 32px; }
@@ -133,6 +125,14 @@ table td { border: 1px solid #e8e8e8; }
 .post-content h4 { font-size: 20px; }
 @media screen and (max-width: 800px) { .post-content h4 { font-size: 18px; } }
 
+.homepage-container { margin: 0 10px 0 10px; }
+
+.grid-container { display: grid; grid-auto-rows: max-content; }
+
+@media screen and (max-width: 600px) { #professional-profile { display: grid; grid-auto-rows: max-content; grid-column-gap: 15px; grid-template-areas: "profile-picture biography" "social-links social-links"; }
+  #professional-profile #professional-profile-biography { grid-area: biography; }
+  #professional-profile #github-profile-image { grid-area: profile-picture; }
+  #professional-profile .professional-profile-social-links { grid-area: social-links; } }
 /** Syntax highlighting styles */
 .highlight { background: #fff; }
 .highlighter-rouge .highlight { background: #eef; }
