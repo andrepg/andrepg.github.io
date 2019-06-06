@@ -46,7 +46,7 @@ pre { padding: 8px 12px; overflow-x: auto; }
 pre > code { border: 0; padding-right: 0; padding-left: 0; }
 
 /** Wrapper */
-.wrapper { max-width: -webkit-calc(800px - (30px * 2)); max-width: calc(800px - (30px * 2)); margin-right: auto; margin-left: auto; padding-right: 30px; padding-left: 30px; }
+.wrapper { margin-right: auto; margin-left: auto; padding-right: 30px; padding-left: 10px; }
 @media screen and (max-width: 800px) { .wrapper { max-width: -webkit-calc(800px - (30px)); max-width: calc(800px - (30px)); padding-right: 15px; padding-left: 15px; } }
 
 /** Clearfix */
@@ -68,12 +68,12 @@ table td { border: 1px solid #e8e8e8; }
 #professional-profile { color: #FDFDFD; background: #0d4e79; border-top: 3px solid #ededed; }
 #professional-profile #github-profile-image { margin-top: 15px; margin-left: 10px; border: 2px solid #FDFDFD; border-radius: 10px; }
 #professional-profile #professional-profile-biography { margin: 15px 15px 0 10px; }
-#professional-profile #professional-profile-biography .who-am-i-title { line-height: 16px; }
+#professional-profile #professional-profile-biography .who-am-i-title { line-height: 16px; padding-bottom: 5px; margin-bottom: 10px; border-bottom: 1px dotted #FDFDFD; }
 @media screen and (max-width: 600px) { #professional-profile #professional-profile-biography { margin: 15px 15px 0 0; }
   #professional-profile #professional-profile-biography .who-am-i-title { line-height: 16px; } }
 #professional-profile .professional-profile-social-links { padding-top: 7px; }
 #professional-profile .professional-profile-social-links ul { margin: 0 0 10px 0; }
-#professional-profile .professional-profile-social-links ul > li { display: inline; list-style: none; padding-left: 10px; }
+#professional-profile .professional-profile-social-links ul > li { display: inline-block; list-style: none; padding-left: 10px; }
 #professional-profile .professional-profile-social-links a, #professional-profile .professional-profile-social-links a:visited, #professional-profile .professional-profile-social-links a:hover { text-decoration: none; color: #FDFDFD; font-size: 13.6px; }
 #professional-profile .professional-profile-social-links .svg-icon { fill: #FDFDFD; }
 
@@ -86,7 +86,7 @@ table td { border: 1px solid #e8e8e8; }
 .site-nav { grid-area: header; grid-template-rows: auto; float: right; line-height: 54px; }
 .site-nav .nav-trigger { display: none; }
 .site-nav .menu-icon { display: none; }
-.site-nav .page-link { line-height: 1.5; }
+.site-nav .page-link { line-height: 1.5; color: #FDFDFD; }
 .site-nav .page-link:not(:last-child) { margin-right: 20px; }
 @media screen and (max-width: 600px) { .site-nav { position: absolute; top: 9px; right: 15px; background-color: #fdfdfd; border: 1px solid #e8e8e8; border-radius: 5px; text-align: right; }
   .site-nav label[for="nav-trigger"] { display: block; float: right; width: 36px; height: 36px; z-index: 2; cursor: pointer; }
@@ -94,7 +94,7 @@ table td { border: 1px solid #e8e8e8; }
   .site-nav .menu-icon > svg { fill: #424242; }
   .site-nav input ~ .trigger { clear: both; display: none; }
   .site-nav input:checked ~ .trigger { display: block; padding-bottom: 5px; }
-  .site-nav .page-link { display: block; padding: 5px 10px; margin-left: 20px; }
+  .site-nav .page-link { display: block; padding: 5px 10px; color: #111; margin-left: 20px; }
   .site-nav .page-link:not(:last-child) { margin-right: 0; } }
 
 /** Page content */
@@ -134,7 +134,7 @@ table td { border: 1px solid #e8e8e8; }
 .grid-container .site-header { grid-area: site-header; }
 .grid-container .post, .grid-container .homepage-container { grid-area: post-content; }
 
-@media screen and (max-width: 600px) { .grid-container { grid-template-areas: 'site-header site-header' 'profile-content profile-content' 'post-content post-content'; }
+@media screen and (max-width: 600px) { .grid-container { grid-auto-rows: min-content min-content auto; grid-template-areas: 'site-header site-header' 'profile-content profile-content' 'post-content post-content'; }
   #professional-profile { display: grid; grid-auto-rows: max-content; grid-column-gap: 15px; grid-template-areas: "profile-picture biography" "social-links social-links"; }
   #professional-profile #professional-profile-biography { grid-area: biography; }
   #professional-profile #github-profile-image { grid-area: profile-picture; }
