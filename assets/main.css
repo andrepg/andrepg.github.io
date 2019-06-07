@@ -1,8 +1,9 @@
+@import url("https://fonts.googleapis.com/css?family=Bree+Serif|Muli:400,600&display=swap");
 /** Reset some basic elements */
 body, h1, h2, h3, h4, h5, h6, p, blockquote, pre, hr, dl, dd, ol, ul, figure { margin: 0; padding: 0; }
 
 /** Basic styling */
-body { font: 400 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; color: #111; background-color: #fdfdfd; -webkit-text-size-adjust: 100%; -webkit-font-feature-settings: "kern" 1; -moz-font-feature-settings: "kern" 1; -o-font-feature-settings: "kern" 1; font-feature-settings: "kern" 1; font-kerning: normal; display: flex; min-height: 100vh; flex-direction: column; }
+body { font: 400 16px/1.5 Muli, "Bree Serif"; color: #111; background-color: #fdfdfd; -webkit-text-size-adjust: 100%; -webkit-font-feature-settings: "kern" 1; -moz-font-feature-settings: "kern" 1; -o-font-feature-settings: "kern" 1; font-feature-settings: "kern" 1; font-kerning: normal; display: flex; min-height: 100vh; flex-direction: column; }
 
 /** Set `margin-bottom` to maintain vertical rhythm */
 h1, h2, h3, h4, h5, h6, p, blockquote, pre, ul, ol, dl, figure, .highlight { margin-bottom: 15px; }
@@ -67,20 +68,23 @@ table td { border: 1px solid #e8e8e8; }
 /** Profile wrapper */
 #professional-profile { color: #FDFDFD; background: #0d4e79; border-top: 3px solid #ededed; }
 #professional-profile #github-profile-image { margin-top: 15px; margin-left: 10px; border: 2px solid #FDFDFD; border-radius: 10px; }
-#professional-profile #professional-profile-biography { margin: 15px 15px 0 10px; }
-#professional-profile #professional-profile-biography .who-am-i-title { line-height: 16px; padding-bottom: 5px; margin-bottom: 10px; border-bottom: 1px dotted #FDFDFD; }
-@media screen and (max-width: 600px) { #professional-profile #professional-profile-biography { margin: 15px 15px 0 0; }
-  #professional-profile #professional-profile-biography .who-am-i-title { line-height: 16px; } }
+#professional-profile #who-i-am-box { margin: 15px 15px 0 10px; }
+#professional-profile #who-i-am-box .who-am-i-title { line-height: 16px; padding-bottom: 5px; margin-bottom: 10px; border-bottom: 1px dotted #FDFDFD; font-family: "Bree Serif"; }
+#professional-profile .who-am-i-contact-email { font-size: 13.6px; }
+#professional-profile .who-am-i-contact-email a { color: #FDFDFD; text-decoration: underline; }
+@media screen and (max-width: 600px) { #professional-profile #who-i-am-box { margin: 15px 15px 0 0; }
+  #professional-profile #who-i-am-box .who-am-i-title { line-height: 16px; } }
 #professional-profile .professional-profile-social-links { padding-top: 7px; }
 #professional-profile .professional-profile-social-links ul { margin: 0 0 10px 0; }
 #professional-profile .professional-profile-social-links ul > li { display: inline-block; list-style: none; padding-left: 10px; }
+#professional-profile .professional-profile-social-links ul > li span { text-decoration: none; }
 #professional-profile .professional-profile-social-links a, #professional-profile .professional-profile-social-links a:visited, #professional-profile .professional-profile-social-links a:hover { text-decoration: none; color: #FDFDFD; font-size: 13.6px; }
 #professional-profile .professional-profile-social-links .svg-icon { fill: #FDFDFD; }
 
 /** Site header */
 .site-header { border-top: 5px solid #424242; min-height: 55.95px; background: #424242; position: relative; }
 
-.site-title { font-size: 26px; font-weight: 300; line-height: 54px; letter-spacing: -1px; margin-bottom: 0; float: left; text-decoration: none !important; color: white !important; }
+.site-title { font-size: 26px; font-family: "Bree Serif"; line-height: 54px; letter-spacing: 1px; margin-bottom: 0; float: left; text-decoration: none !important; color: white !important; }
 .site-title :hover { text-decoration: none; }
 
 .site-nav { grid-area: header; grid-template-rows: auto; float: right; line-height: 54px; }
@@ -104,20 +108,20 @@ table td { border: 1px solid #e8e8e8; }
 
 .post { margin: 10px 15px 0 10px; }
 
-.post-list-heading { font-size: 28px; }
+.post-list-heading { font-size: 28px; font-family: "Bree Serif"; }
 
 .post-list { margin-left: 0; list-style: none; }
 .post-list > li { margin-bottom: 30px; }
 
-.post-meta { font-size: 14px; color: #828282; margin-bottom: 0; }
+.post-meta { font-size: 14px; color: #e4a725; font-family: "Bree Serif"; margin-bottom: 0; }
 
-.post-header, .post-link, .post-link:hover, .post-link:visited { display: block; line-height: 16px; color: #e4a725; text-decoration: none; border-bottom: 1px dotted #e4a725; font-size: 24px; }
+.post-header, .post-link, .post-link:hover, .post-link:visited { font-family: "Bree Serif"; display: block; line-height: 16px; color: #e4a725; text-decoration: none; border-bottom: 1px dotted #e4a725; font-size: 24px; }
 
 /** Posts */
 .post-header { margin-bottom: 30px; }
 
-.post-title { font-size: 42px; letter-spacing: -1px; line-height: 1; }
-@media screen and (max-width: 800px) { .post-title { font-size: 36px; line-height: relative-font-size(2.25); margin: 0; } }
+.post-title { font-size: 32px; letter-spacing: -1px; line-height: 1; font-family: "Bree Serif"; }
+@media screen and (max-width: 800px) { .post-title { font-size: 26px; line-height: relative-font-size(1.625); margin: 0; } }
 
 .post-content { margin-bottom: 30px; }
 .post-content h2 { font-size: 32px; }
@@ -136,7 +140,7 @@ table td { border: 1px solid #e8e8e8; }
 
 @media screen and (max-width: 600px) { .grid-container { grid-auto-rows: min-content min-content auto; grid-template-areas: 'site-header site-header' 'profile-content profile-content' 'post-content post-content'; }
   #professional-profile { display: grid; grid-auto-rows: max-content; grid-column-gap: 15px; grid-template-areas: "profile-picture biography" "social-links social-links"; }
-  #professional-profile #professional-profile-biography { grid-area: biography; }
+  #professional-profile #who-i-am-box { grid-area: biography; }
   #professional-profile #github-profile-image { grid-area: profile-picture; }
   #professional-profile .professional-profile-social-links { grid-area: social-links; } }
 /** Syntax highlighting styles */
