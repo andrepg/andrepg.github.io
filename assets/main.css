@@ -28,11 +28,13 @@ li > ul, li > ol { margin-bottom: 0; }
 h1, h2, h3, h4, h5, h6 { font-weight: 400; }
 
 /** Links */
-a { color: #2a7ae2; text-decoration: none; }
+a { color: #0d4e79; font-weight: bold; text-decoration: none; }
 a:visited { color: #1756a9; }
-a:hover { color: #111; text-decoration: underline; }
+a:hover { color: #111; text-decoration: none; }
 .social-media-list a:hover { text-decoration: none; }
 .social-media-list a:hover .username { text-decoration: underline; }
+
+.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6 { text-decoration: none; border-bottom: 1.1px dotted black; }
 
 /** Blockquotes */
 blockquote { color: #828282; border-left: 4px solid #e8e8e8; padding-left: 15px; font-size: 18px; letter-spacing: -1px; font-style: italic; }
@@ -115,7 +117,7 @@ table td { border: 1px solid #e8e8e8; }
 
 .post-meta { font-size: 14px; color: #e4a725; font-family: "Bree Serif"; margin-bottom: 0; }
 
-.post-header, .post-link, .post-link:hover, .post-link:visited { font-family: "Bree Serif"; display: block; line-height: 16px; color: #e4a725; text-decoration: none; border-bottom: 1px dotted #e4a725; font-size: 24px; }
+.post-header, .post-link, .post-link:hover, .post-link:visited { font-family: "Bree Serif"; display: block; line-height: 1em; color: #e4a725; text-decoration: none; border-bottom: 1px dotted #e4a725; font-size: 24px; }
 
 /** Posts */
 .post-header { margin-bottom: 30px; }

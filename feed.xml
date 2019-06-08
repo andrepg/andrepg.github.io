@@ -1,4 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://192.168.15.13:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://192.168.15.13:4000/" rel="alternate" type="text/html" /><updated>2019-06-07T19:52:32-03:00</updated><id>http://192.168.15.13:4000/feed.xml</id><title type="html">André Paul Grandsire</title><subtitle>I'm a passionate developer. This site was build to provide a simple business card and a simple blog application</subtitle><entry><title type="html">Hello World! - My first post</title><link href="http://192.168.15.13:4000/texts/2019/06/01/hello-world.html" rel="alternate" type="text/html" title="Hello World! - My first post" /><published>2019-06-01T23:15:16-03:00</published><updated>2019-06-01T23:15:16-03:00</updated><id>http://192.168.15.13:4000/texts/2019/06/01/hello-world</id><content type="html" xml:base="http://192.168.15.13:4000/texts/2019/06/01/hello-world.html">This is my first blog post. I'm trying to build a simple Business Card. Try Jekyll could be easier than WordPress for our purpose.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://andrepg.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://andrepg.github.io/" rel="alternate" type="text/html" /><updated>2019-06-07T21:20:28-03:00</updated><id>https://andrepg.github.io/feed.xml</id><title type="html">André Paul Grandsire</title><subtitle>I'm a passionate developer. This site was build to provide a simple business card and a simple blog application</subtitle><entry><title type="html">Perceptions about Jekyll during my development</title><link href="https://andrepg.github.io/texts/2019/06/07/perceptions-about-jekyll.html" rel="alternate" type="text/html" title="Perceptions about Jekyll during my development" /><published>2019-06-07T20:00:00-03:00</published><updated>2019-06-07T20:00:00-03:00</updated><id>https://andrepg.github.io/texts/2019/06/07/perceptions-about-jekyll</id><content type="html" xml:base="https://andrepg.github.io/texts/2019/06/07/perceptions-about-jekyll.html">This is my second post in this blog. Here I'll try to share some perceptions about [Jekyll](jekyll_homepage). I've developing in Jekyll since decided to wrote a **Business Card** and a simple blog to share some ideas and thougths.
+
+#### So, you asked me: &quot;What's Jekyll?&quot;
+
+Let me resume: Jekyll it's a static website generator based in [Markdown](markdown_homepage) and Ruby to build a simple website. This is the default engine used in [GitHub Pages](github_pages).
+
+You can use CSS and HTML to build a template, some JS where you want and build some static files to upload into a GitHub Pages enabled repository. As you can use CSS, some modifications are simple: you can change fonts with [Google Fonts](google_fonts), for example. 
+
+&gt; This website it's using Muli and Bree Serif at the time of this post
+
+The social links used in the blue bar it's based on HTML/CSS and variables from `_config.yml` file of Jekyll application. You can read [Jekyll Documentation](jekyll_docs) to learn more about.
+
+#### And &quot;How to write posts?&quot;
+
+The process about writing posts it's very simple. Jekyll provide a folder called `_posts` to keep your source files, based on **Markdown** - this files contains text and formatting of your posts.
+
+The post file has a pattern for name: it's based on the title and date time, as `YYYY-MM-DD-my-post-title.md`. The file used to generate this post was named as `2019-06-07-perceptions-about-jekyll.md`. That last part will be used as URL of the post.
+
+![Files used to produce posts](/../assets/images/posts/2019-06-07-post-names.png)
+
+All formatting of post are based on Markdown. **Bold** used with `**bold text**`, *Italic* with `*italic text*` and titles with `#`. I can even make a small list of links at end of file to make easier link maintenance.
+
+![List of links at end of Markdown file](/assets/images/posts/2019-06-07-link-list.png)
+
+[jekyll_homepage]:https://jekyllrb.com
+[jekyll_docs]:https://jekyllrb.com/docs
+[github_pages]:https://pages.github.com/
+[markdown_homepage]:https://daringfireball.net/projects/markdown/
+[google_fonts]:https://fonts.google.com/</content><author><name>André Paul Grandsire</name></author><category term="texts" /><summary type="html">This is my second post in this blog. Here I’ll try to share some perceptions about Jekyll. I’ve developing in Jekyll since decided to wrote a Business Card and a simple blog to share some ideas and thougths.</summary></entry><entry><title type="html">Hello World! - My first post</title><link href="https://andrepg.github.io/texts/2019/06/01/hello-world.html" rel="alternate" type="text/html" title="Hello World! - My first post" /><published>2019-06-01T23:15:16-03:00</published><updated>2019-06-01T23:15:16-03:00</updated><id>https://andrepg.github.io/texts/2019/06/01/hello-world</id><content type="html" xml:base="https://andrepg.github.io/texts/2019/06/01/hello-world.html">This is my first blog post. I'm trying to build a simple Business Card. Try Jekyll could be easier than WordPress for our purpose.
 
 So, with this simple post, as many developers, we build a `Hello World` post.
 
