@@ -115,9 +115,9 @@ table td { border: 1px solid #e8e8e8; }
 .post-list { margin-left: 0; list-style: none; }
 .post-list > li { margin-bottom: 30px; }
 
-.post-meta { font-size: 14px; color: #e4a725; font-family: "Bree Serif"; margin-bottom: 0; }
+.post-meta { font-size: 14px; color: #4065cc; font-family: "Bree Serif"; margin-bottom: 0; }
 
-.post-header, .post-link, .post-link:hover, .post-link:visited { font-family: "Bree Serif"; display: block; line-height: 1em; color: #e4a725; text-decoration: none; border-bottom: 1px dotted #e4a725; font-size: 24px; }
+.post-header, .post-link, .post-link:hover, .post-link:visited { font-family: "Bree Serif"; display: block; line-height: 1em; color: #4065cc; text-decoration: none; border-bottom: 1px dotted #4065cc; font-size: 24px; }
 
 /** Posts */
 .post-header { margin-bottom: 30px; }
