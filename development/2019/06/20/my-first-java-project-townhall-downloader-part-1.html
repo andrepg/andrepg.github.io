@@ -7,17 +7,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/assets/main.css">
   <title>André Paul Grandsire</title><!-- Begin Jekyll SEO tag v2.5.0 -->
-<title>About me | André Paul Grandsire</title>
+<title>My first Java project: a Downloader and PDF converter - #1 | André Paul Grandsire</title>
 <meta name="generator" content="Jekyll v3.8.5" />
-<meta property="og:title" content="About me" />
+<meta property="og:title" content="My first Java project: a Downloader and PDF converter - #1" />
+<meta name="author" content="André Paul Grandsire" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="I’m a passionate developer. This site was build to provide a simple business card and a simple blog application" />
-<meta property="og:description" content="I’m a passionate developer. This site was build to provide a simple business card and a simple blog application" />
-<link rel="canonical" href="https://andrepg.github.io/about/" />
-<meta property="og:url" content="https://andrepg.github.io/about/" />
+<meta name="description" content="Simple briefing about this app" />
+<meta property="og:description" content="Simple briefing about this app" />
+<link rel="canonical" href="https://andrepg.github.io/development/2019/06/20/my-first-java-project-townhall-downloader-part-1.html" />
+<meta property="og:url" content="https://andrepg.github.io/development/2019/06/20/my-first-java-project-townhall-downloader-part-1.html" />
 <meta property="og:site_name" content="André Paul Grandsire" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-06-20T23:18:00-03:00" />
 <script type="application/ld+json">
-{"name":"André Paul Grandsire","description":"I’m a passionate developer. This site was build to provide a simple business card and a simple blog application","@type":"WebSite","url":"https://andrepg.github.io/about/","headline":"About me","@context":"http://schema.org"}</script>
+{"description":"Simple briefing about this app","author":{"@type":"Person","name":"André Paul Grandsire"},"@type":"BlogPosting","url":"https://andrepg.github.io/development/2019/06/20/my-first-java-project-townhall-downloader-part-1.html","headline":"My first Java project: a Downloader and PDF converter - #1","dateModified":"2019-06-20T23:18:00-03:00","datePublished":"2019-06-20T23:18:00-03:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://andrepg.github.io/development/2019/06/20/my-first-java-project-townhall-downloader-part-1.html"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link type="application/atom+xml" rel="alternate" href="https://andrepg.github.io/feed.xml" title="André Paul Grandsire" /></head>
 
@@ -66,36 +69,31 @@
       </svg> <span class="username">andrepg</span></a></li><li><a href="/feed.xml"><svg class="svg-icon">
         <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
       </svg> <span>Feed RSS</span></a></li></ul></section>
-</section><article class="post">
+</section><article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title">About me</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2019-06-20T23:18:00-03:00" itemprop="datePublished">2019-06-20
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">André Paul Grandsire</span></span><h1 class="post-title p-name" itemprop="name headline">My first Java project: a Downloader and PDF converter - #1</h1>
+    </p>
   </header>
 
-  <div class="post-content">
-    <h4 id="so-who-the-hell-are-andré-paul-grandsire">So, “Who the hell are André Paul Grandsire?”</h4>
+  <div class="post-content e-content" itemprop="articleBody">
+    <h3 id="simple-briefing-about-this-app">Simple briefing about this app</h3>
 
-<p>Hi, I’m André Paul Grandsire. Born in 1992 in a city called Goiânia, in Brazil.</p>
+<p>We provide some Invoices to our customers. These documents has to be saved into a folder in a PDF format. As our number of documents increase, the work needed increases. When I’m writing this post, we generate almost 100 documents.</p>
 
-<p>I work with tech since 2007, starting as Techinal Support - providing network and server maintenance, as user and email management.</p>
+<p>So, It’s a job of search, view and print each document with a PDF printer. A hundred times.</p>
 
-<p>So, as the years passed, had opportunity to work with <strong>Management of Tech Support Team</strong>, <strong>Issue Management</strong>, <strong>Documentation</strong> and, mainly, <strong>Development</strong>. I’ve already wrote scripts or learned something in a few languages: <code class="highlighter-rouge">Python</code>, <code class="highlighter-rouge">Bash Script</code>, <code class="highlighter-rouge">Delphi</code>, <code class="highlighter-rouge">PHP</code>, <code class="highlighter-rouge">Windows Command Prompt</code>, a little about <code class="highlighter-rouge">Java</code> and <code class="highlighter-rouge">C/C#</code>.</p>
+<p>Then I tought: <em>Why not develop a tool to do this job?</em> So, I started to search documentation and how to do this program. I’ve discovered some proprietary tools from TownHall and could make these app work.</p>
 
-<p>My <a href="https://github.com/andrepg">GitHub</a> page has many scripts that I wrote when needed. Every time we saw a problem that could be resolved with a tool or need automation, the team try to use a script and, when I wrote then, take care of make it Open Source.</p>
+<h3 id="its-based-on-a-html-render-tool-and-pdf-generator">It’s based on a HTML render tool and PDF generator</h3>
 
-<p>As we have many profiles in this technology life, it’s a good thing have a place to point your profiles and interested people. So, using GitHub Pages I’m providing a <strong>Business Card</strong> and a simple Jekyll blog to share some ideas and centralize all my information on internet.</p>
+<p>I’ve discovered a XML file with the entire information about all documents generated in a month. The TownHall provides this file into a reserved section, to authorized only. With this file, I was able to read the number and verification code of document. This allow me to esarch a specific URL and get the HTML representation.</p>
 
-<p> </p>
+<p>It’s simple: we get a real URL, make a request, render with a hidden HTML renderer and save it into a PDF file with some thirdy party library.</p>
 
-<hr />
-<p>This theme was built based on Minima Jekyll theme, a default theme.
-All from ground. You can find information about source code of
-<a href="https://github.com/jekyll/minima">jekyll/minima at GitHub</a> and about
-<a href="https://github.com/jekyll/jekyll">jekyll/jekyll at GitHub</a>.</p>
-
-
-  </div>
-
+  </div><a class="u-url" href="/development/2019/06/20/my-first-java-project-townhall-downloader-part-1.html" hidden></a>
 </article>
 
 </body></html>
