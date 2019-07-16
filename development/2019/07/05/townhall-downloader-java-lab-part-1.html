@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/assets/main.css">
+  <title>André Paul Grandsire</title><!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>TownHall downloader - My first Java experience #1 | André Paul Grandsire</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="TownHall downloader - My first Java experience #1" />
+<meta name="author" content="André Paul Grandsire" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="For all readers: in this article I’ll only present ideas and similars. there’s no technology envolved yet. This post will be documented later at TownHall Downloader repository First of all: Why Well, the company where I worked has some documents to register and send to customer. Some type of invoices. These invoices are registered in a Town Hall’s software and, then, have legal value. The problem appears when we tried to save these invoices in PDF files. It’s almost a hundred of files to query and print in PDF. The planned app should help in this task. The Town Hall system provide a XML file structured with Invoice, Customer, Company and Products informations. Also, there’s a URL to fetch and retrieve a HTML representation of Invoice. These URL are based in Invoice Number and Invoice Verification Code. Both inside XML file. And that’s the key to our app! With this URL, Java can fetch the HTML representation, convert to some PDF language and save into a path provided by user (with some pattern to month/year running). Our link should be something like http://www2.goiania.go.gov.br/sistemas/snfse/asp/snfse00200w0.asp?inscricao=PARAM1&amp;nota=PARAM2&amp;verificador=PARAM3 The application is based on some simple settings: the Town Hall subscription number of company, the path to XML file and path to save PDF generated files. All of them stored into a single XML settings file. How the app will work There is some simple steps to run and operate our application: The app will read Settings.xml file. If this file does not exists, a simple windows should appear asking for config User will, then, select where the downloaded Invoices will be saved After select target path, user should provide XML source file (downloaded by Town Hall software) The software will fetch URL and generate PDF file for each Invoice in XML source file A counter and some messages are shown to user. Informations about process and his end. Our objects For now, we start with four simple objects: Settings, Invoices, Downloader and XmlReader. How I planned this app The goal is to make our app simple. A few objects and only necessary methods/properties. There is bellow: Settings object Settings properties xml_source_file: XML Source File output_path: Output to PDF files municipal_subscription: Municipal subscription code Settings methods readSettings(String file_path): search for Settings.xml passed as argument and read it for now, user should not be disturbed with this. We’ll check on running path if there’s a Settings.xml file This method will feed all properties. So, there’s no other setters for this object’s properties saveSettings(String[] settings): when user run this app for first time, a window should ask configuration and this method will save a Settings.xml file into running path. receives file path and an array with key/value structure to feed our properties the array should be something like this: [ &#39;xml_source_file&#39;: &#39;some_parameter_value&#39;, &#39;output_path&#39;: &#39;some_parameter_value2&#39;, &#39;municipal_subscription&#39;: &#39;some_parameter_value3&#39; ] getMunicipalSubscription: returns a String with provided Municipal Subscription getOutputPath: returns a full path to save generated PDF files of Invoices getXmlSouceFile: returns a full path to XML source file provided by Town Hall XmlReader object XmlReader methods getArrayFromInvoiceXml(String xml_path): get an Array with representation of invoices to feed another array of Invoices returning the following array [ &quot;invoice_number&quot;: &quot;some_key_value&quot;, &quot;invoice_verification_code&quot;: &quot;some_key_value&quot;, &quot;invoice_customer_name&quot;: &quot;some_key_value&quot;, &quot;invoice_cnpj&quot;: &quot;some_key_value&quot; ] getArrayFromSettingsXml(String xml_path): read XML settings file and return an array to feed a simple Settings object used by Settings.readSettings() [ &quot;xml_source_file&quot;: &quot;&quot;, &quot;output_path&quot;: &quot;&quot;, &quot;municipal_subscription&quot;: &quot;&quot; ] saveSettingsXmlFile(String file_path, String[] settings): save settings file into running path to read later, receiving a simple array (as above) as parameter for function used by Settings.saveSettings() Invoices object Invoice properties invoice_number: Number of Invoice registered @ Town Hall invoice_verification_code: Verification Code of Invoice, to authenticity. invoice_customer_cnpj: CNPJ of customer to generated output filename invoice_customer_name: Name of customer to generate output filename invoice_download_url: URL to fetch Invoice, passed to Downloader object Invoice methods Here I’ll pass through some problems when defining methods. Maybe we’ll add some methods later. setInvoiceNumber(String number) setInvoiceVerificationCode(String verification_code) setInvoiceCustomerCnpj(String cnpj): set invoice_customer_cnpj to generate filename later setInvoiceCustomerName(String name): set invoice_customer_name to generate filename later getInvoiceFileName: get filename to save Invoice into output path getDownloadUrl(String municipal_subscription): based on invoice number, invoice verification code and settings.municipal_subscription, we’ll provide an URL to fetch by HTML renderer and generate PDF file. Downloader object Downloader methods downloadInvoice(String url, String output_file): download file and save it as PDF on output_file This method will return true if file was successfuly saved or false if not. For now, we’ll document only this method. Later, with development, we’ll add more methods to make our codebase readable. The downloadInvoice() method it’s like an alias to a few other private methods not presented now. From the author By now, I’ve already presented A LOT of this application. Already count 2 hours of pure writing experience. But, to not fight with my brain, I’ll end this post here. In next post I can discuss about how we’ll develop the interface to some basic windows and present some mockups. The part 2 it’s coming soon!" />
+<meta property="og:description" content="For all readers: in this article I’ll only present ideas and similars. there’s no technology envolved yet. This post will be documented later at TownHall Downloader repository First of all: Why Well, the company where I worked has some documents to register and send to customer. Some type of invoices. These invoices are registered in a Town Hall’s software and, then, have legal value. The problem appears when we tried to save these invoices in PDF files. It’s almost a hundred of files to query and print in PDF. The planned app should help in this task. The Town Hall system provide a XML file structured with Invoice, Customer, Company and Products informations. Also, there’s a URL to fetch and retrieve a HTML representation of Invoice. These URL are based in Invoice Number and Invoice Verification Code. Both inside XML file. And that’s the key to our app! With this URL, Java can fetch the HTML representation, convert to some PDF language and save into a path provided by user (with some pattern to month/year running). Our link should be something like http://www2.goiania.go.gov.br/sistemas/snfse/asp/snfse00200w0.asp?inscricao=PARAM1&amp;nota=PARAM2&amp;verificador=PARAM3 The application is based on some simple settings: the Town Hall subscription number of company, the path to XML file and path to save PDF generated files. All of them stored into a single XML settings file. How the app will work There is some simple steps to run and operate our application: The app will read Settings.xml file. If this file does not exists, a simple windows should appear asking for config User will, then, select where the downloaded Invoices will be saved After select target path, user should provide XML source file (downloaded by Town Hall software) The software will fetch URL and generate PDF file for each Invoice in XML source file A counter and some messages are shown to user. Informations about process and his end. Our objects For now, we start with four simple objects: Settings, Invoices, Downloader and XmlReader. How I planned this app The goal is to make our app simple. A few objects and only necessary methods/properties. There is bellow: Settings object Settings properties xml_source_file: XML Source File output_path: Output to PDF files municipal_subscription: Municipal subscription code Settings methods readSettings(String file_path): search for Settings.xml passed as argument and read it for now, user should not be disturbed with this. We’ll check on running path if there’s a Settings.xml file This method will feed all properties. So, there’s no other setters for this object’s properties saveSettings(String[] settings): when user run this app for first time, a window should ask configuration and this method will save a Settings.xml file into running path. receives file path and an array with key/value structure to feed our properties the array should be something like this: [ &#39;xml_source_file&#39;: &#39;some_parameter_value&#39;, &#39;output_path&#39;: &#39;some_parameter_value2&#39;, &#39;municipal_subscription&#39;: &#39;some_parameter_value3&#39; ] getMunicipalSubscription: returns a String with provided Municipal Subscription getOutputPath: returns a full path to save generated PDF files of Invoices getXmlSouceFile: returns a full path to XML source file provided by Town Hall XmlReader object XmlReader methods getArrayFromInvoiceXml(String xml_path): get an Array with representation of invoices to feed another array of Invoices returning the following array [ &quot;invoice_number&quot;: &quot;some_key_value&quot;, &quot;invoice_verification_code&quot;: &quot;some_key_value&quot;, &quot;invoice_customer_name&quot;: &quot;some_key_value&quot;, &quot;invoice_cnpj&quot;: &quot;some_key_value&quot; ] getArrayFromSettingsXml(String xml_path): read XML settings file and return an array to feed a simple Settings object used by Settings.readSettings() [ &quot;xml_source_file&quot;: &quot;&quot;, &quot;output_path&quot;: &quot;&quot;, &quot;municipal_subscription&quot;: &quot;&quot; ] saveSettingsXmlFile(String file_path, String[] settings): save settings file into running path to read later, receiving a simple array (as above) as parameter for function used by Settings.saveSettings() Invoices object Invoice properties invoice_number: Number of Invoice registered @ Town Hall invoice_verification_code: Verification Code of Invoice, to authenticity. invoice_customer_cnpj: CNPJ of customer to generated output filename invoice_customer_name: Name of customer to generate output filename invoice_download_url: URL to fetch Invoice, passed to Downloader object Invoice methods Here I’ll pass through some problems when defining methods. Maybe we’ll add some methods later. setInvoiceNumber(String number) setInvoiceVerificationCode(String verification_code) setInvoiceCustomerCnpj(String cnpj): set invoice_customer_cnpj to generate filename later setInvoiceCustomerName(String name): set invoice_customer_name to generate filename later getInvoiceFileName: get filename to save Invoice into output path getDownloadUrl(String municipal_subscription): based on invoice number, invoice verification code and settings.municipal_subscription, we’ll provide an URL to fetch by HTML renderer and generate PDF file. Downloader object Downloader methods downloadInvoice(String url, String output_file): download file and save it as PDF on output_file This method will return true if file was successfuly saved or false if not. For now, we’ll document only this method. Later, with development, we’ll add more methods to make our codebase readable. The downloadInvoice() method it’s like an alias to a few other private methods not presented now. From the author By now, I’ve already presented A LOT of this application. Already count 2 hours of pure writing experience. But, to not fight with my brain, I’ll end this post here. In next post I can discuss about how we’ll develop the interface to some basic windows and present some mockups. The part 2 it’s coming soon!" />
+<link rel="canonical" href="http://localhost:4000/development/2019/07/05/townhall-downloader-java-lab-part-1.html" />
+<meta property="og:url" content="http://localhost:4000/development/2019/07/05/townhall-downloader-java-lab-part-1.html" />
+<meta property="og:site_name" content="André Paul Grandsire" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-07-05T00:00:00-03:00" />
+<script type="application/ld+json">
+{"description":"For all readers: in this article I’ll only present ideas and similars. there’s no technology envolved yet. This post will be documented later at TownHall Downloader repository First of all: Why Well, the company where I worked has some documents to register and send to customer. Some type of invoices. These invoices are registered in a Town Hall’s software and, then, have legal value. The problem appears when we tried to save these invoices in PDF files. It’s almost a hundred of files to query and print in PDF. The planned app should help in this task. The Town Hall system provide a XML file structured with Invoice, Customer, Company and Products informations. Also, there’s a URL to fetch and retrieve a HTML representation of Invoice. These URL are based in Invoice Number and Invoice Verification Code. Both inside XML file. And that’s the key to our app! With this URL, Java can fetch the HTML representation, convert to some PDF language and save into a path provided by user (with some pattern to month/year running). Our link should be something like http://www2.goiania.go.gov.br/sistemas/snfse/asp/snfse00200w0.asp?inscricao=PARAM1&amp;nota=PARAM2&amp;verificador=PARAM3 The application is based on some simple settings: the Town Hall subscription number of company, the path to XML file and path to save PDF generated files. All of them stored into a single XML settings file. How the app will work There is some simple steps to run and operate our application: The app will read Settings.xml file. If this file does not exists, a simple windows should appear asking for config User will, then, select where the downloaded Invoices will be saved After select target path, user should provide XML source file (downloaded by Town Hall software) The software will fetch URL and generate PDF file for each Invoice in XML source file A counter and some messages are shown to user. Informations about process and his end. Our objects For now, we start with four simple objects: Settings, Invoices, Downloader and XmlReader. How I planned this app The goal is to make our app simple. A few objects and only necessary methods/properties. There is bellow: Settings object Settings properties xml_source_file: XML Source File output_path: Output to PDF files municipal_subscription: Municipal subscription code Settings methods readSettings(String file_path): search for Settings.xml passed as argument and read it for now, user should not be disturbed with this. We’ll check on running path if there’s a Settings.xml file This method will feed all properties. So, there’s no other setters for this object’s properties saveSettings(String[] settings): when user run this app for first time, a window should ask configuration and this method will save a Settings.xml file into running path. receives file path and an array with key/value structure to feed our properties the array should be something like this: [ &#39;xml_source_file&#39;: &#39;some_parameter_value&#39;, &#39;output_path&#39;: &#39;some_parameter_value2&#39;, &#39;municipal_subscription&#39;: &#39;some_parameter_value3&#39; ] getMunicipalSubscription: returns a String with provided Municipal Subscription getOutputPath: returns a full path to save generated PDF files of Invoices getXmlSouceFile: returns a full path to XML source file provided by Town Hall XmlReader object XmlReader methods getArrayFromInvoiceXml(String xml_path): get an Array with representation of invoices to feed another array of Invoices returning the following array [ &quot;invoice_number&quot;: &quot;some_key_value&quot;, &quot;invoice_verification_code&quot;: &quot;some_key_value&quot;, &quot;invoice_customer_name&quot;: &quot;some_key_value&quot;, &quot;invoice_cnpj&quot;: &quot;some_key_value&quot; ] getArrayFromSettingsXml(String xml_path): read XML settings file and return an array to feed a simple Settings object used by Settings.readSettings() [ &quot;xml_source_file&quot;: &quot;&quot;, &quot;output_path&quot;: &quot;&quot;, &quot;municipal_subscription&quot;: &quot;&quot; ] saveSettingsXmlFile(String file_path, String[] settings): save settings file into running path to read later, receiving a simple array (as above) as parameter for function used by Settings.saveSettings() Invoices object Invoice properties invoice_number: Number of Invoice registered @ Town Hall invoice_verification_code: Verification Code of Invoice, to authenticity. invoice_customer_cnpj: CNPJ of customer to generated output filename invoice_customer_name: Name of customer to generate output filename invoice_download_url: URL to fetch Invoice, passed to Downloader object Invoice methods Here I’ll pass through some problems when defining methods. Maybe we’ll add some methods later. setInvoiceNumber(String number) setInvoiceVerificationCode(String verification_code) setInvoiceCustomerCnpj(String cnpj): set invoice_customer_cnpj to generate filename later setInvoiceCustomerName(String name): set invoice_customer_name to generate filename later getInvoiceFileName: get filename to save Invoice into output path getDownloadUrl(String municipal_subscription): based on invoice number, invoice verification code and settings.municipal_subscription, we’ll provide an URL to fetch by HTML renderer and generate PDF file. Downloader object Downloader methods downloadInvoice(String url, String output_file): download file and save it as PDF on output_file This method will return true if file was successfuly saved or false if not. For now, we’ll document only this method. Later, with development, we’ll add more methods to make our codebase readable. The downloadInvoice() method it’s like an alias to a few other private methods not presented now. From the author By now, I’ve already presented A LOT of this application. Already count 2 hours of pure writing experience. But, to not fight with my brain, I’ll end this post here. In next post I can discuss about how we’ll develop the interface to some basic windows and present some mockups. The part 2 it’s coming soon!","@type":"BlogPosting","headline":"TownHall downloader - My first Java experience #1","dateModified":"2019-07-05T00:00:00-03:00","datePublished":"2019-07-05T00:00:00-03:00","url":"http://localhost:4000/development/2019/07/05/townhall-downloader-java-lab-part-1.html","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/development/2019/07/05/townhall-downloader-java-lab-part-1.html"},"author":{"@type":"Person","name":"André Paul Grandsire"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="André Paul Grandsire" /></head>
+
+
+<body class="grid-container"><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">André Paul Grandsire</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+        <a class="page-link" href="/">Home</a><a class="page-link" href="/about/">About me</a><a class="page-link" href="/portfolio/">Portfolio</a></div>
+      </nav></div>
+</header>
+<section id="professional-profile">
+    <img id="github-profile-image" src="https://github.com/andrepg.png"
+    alt="André Paul Grandsire | apl.grandsire@gmail.com"
+    title="André Paul Grandsire | apl.grandsire@gmail.com"
+        width="64" height="64" />
+
+    <section id="who-i-am-box">
+        <h3 class="who-am-i-title">Who am I?</h3>
+        <p class="who-am-i-description">I'm a passionate developer. This site was build to provide a simple business card and a simple blog application</p>
+        <p class="who-am-i-contact-email">
+            Contact me: <a href="mailto:apl.grandsire@gmail.com">apl.grandsire@gmail.com</a>
+        </p>
+    </section>
+    
+    <section class="professional-profile-social-links"><ul class="social-media-list"><li><a href="https://github.com/andrepg"
+      target="_blank" rel="noopener"><svg class="svg-icon">
+        <use xlink:href="/assets/minima-social-icons.svg#github"></use>
+      </svg> <span class="username">andrepg</span></a></li><li><a
+      href="https://instagram.com/anndrepaul" target="_blank" rel="noopener"><svg
+        class="svg-icon">
+        <use xlink:href="/assets/minima-social-icons.svg#instagram"></use>
+      </svg> <span class="username">anndrepaul</span></a></li><li><a
+      href="https://www.linkedin.com/in/andrepg" target="_blank" rel="noopener"><svg
+        class="svg-icon">
+        <use xlink:href="/assets/minima-social-icons.svg#linkedin"></use>
+      </svg> <span class="username">andrepg</span></a></li><li><a href="/feed.xml"><svg class="svg-icon">
+        <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+      </svg> <span>Feed RSS</span></a></li></ul></section>
+</section><article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <p class="post-meta">
+      <time class="dt-published" datetime="2019-07-05T00:00:00-03:00" itemprop="datePublished">2019-07-05
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">André Paul Grandsire</span></span><h1 class="post-title p-name" itemprop="name headline">TownHall downloader - My first Java experience #1</h1>
+    </p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <blockquote>
+  <p>For all readers: in this article I’ll only present ideas and similars. there’s no technology envolved yet.
+This post will be documented later at <a href="https://github.com/andrepg/TownHall-Downloader">TownHall Downloader</a> repository</p>
+</blockquote>
+
+<h2 id="first-of-all-why">First of all: Why</h2>
+
+<p>Well, the company where I worked has some documents to register and send to customer. Some type of invoices.</p>
+
+<p>These invoices are registered in a <a href="https://www.goiania.go.gov.br">Town Hall</a>’s software and, then, have legal value. The problem appears when we tried to save these invoices in PDF files. It’s almost a hundred of files to query and print in PDF.</p>
+
+<p>The planned app should help in this task. The Town Hall system provide a XML file structured with Invoice, Customer, Company and Products informations. Also, there’s a URL to fetch and retrieve a HTML representation of Invoice.</p>
+
+<p>These URL are based in Invoice Number and Invoice Verification Code. Both inside XML file. And that’s the key to our app!</p>
+
+<p>With this URL, Java can fetch the HTML representation, convert to some PDF language and save into a path provided by user (with some pattern to month/year running). Our link should be something like <em>http://www2.goiania.go.gov.br/sistemas/snfse/asp/snfse00200w0.asp?inscricao=PARAM1&amp;nota=PARAM2&amp;verificador=PARAM3</em></p>
+
+<p>The application is based on some simple settings: the Town Hall subscription number of company, the path to XML file and path to save PDF generated files. All of them stored into a single XML settings file.</p>
+
+<h2 id="how-the-app-will-work">How the app will work</h2>
+
+<p>There is some simple steps to run and operate our application:</p>
+
+<ol>
+  <li>The app will read Settings.xml file. If this file does not exists, a simple windows should appear asking for config</li>
+  <li>User will, then, select where the downloaded Invoices will be saved</li>
+  <li>After select target path, user should provide XML source file (downloaded by Town Hall software)</li>
+  <li>The software will fetch URL and generate PDF file for each Invoice in XML source file</li>
+  <li>A counter and some messages are shown to user. Informations about process and his end.</li>
+</ol>
+
+<h2 id="our-objects">Our objects</h2>
+
+<p>For now, we start with four simple objects: <em>Settings</em>, <em>Invoices</em>, <em>Downloader</em> and <em>XmlReader</em>.</p>
+
+<h3 id="how-i-planned-this-app">How I planned this app</h3>
+
+<p>The goal is to make our app simple. A few objects and only necessary methods/properties. There is bellow:</p>
+
+<h4 id="settings-object">Settings object</h4>
+
+<h5 id="settings-properties">Settings properties</h5>
+
+<ul>
+  <li><code class="highlighter-rouge">xml_source_file</code>: XML Source File</li>
+  <li><code class="highlighter-rouge">output_path</code>: Output to PDF files</li>
+  <li><code class="highlighter-rouge">municipal_subscription</code>: Municipal subscription code</li>
+</ul>
+
+<h5 id="settings-methods">Settings methods</h5>
+
+<ul>
+  <li><code class="highlighter-rouge">readSettings(String file_path)</code>: search for <em>Settings.xml</em> passed as argument and read it
+    <ul>
+      <li><em>for now, user should not be disturbed with this. We’ll check on running path if there’s a Settings.xml file</em></li>
+      <li><em>This method will feed all properties. So, there’s no other setters for this object’s properties</em></li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">saveSettings(String[] settings)</code>: when user run this app for first time, a window should ask configuration and this method will save a <em>Settings.xml</em> file into running path.
+    <ul>
+      <li><em>receives file path and an array with key/value structure to feed our properties</em></li>
+      <li>
+        <p><em>the array should be something like this:</em></p>
+
+        <pre><code class="language-Java">[
+    'xml_source_file': 'some_parameter_value',
+    'output_path': 'some_parameter_value2',
+    'municipal_subscription': 'some_parameter_value3'
+]
+</code></pre>
+      </li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">getMunicipalSubscription</code>: returns a String with provided Municipal Subscription</li>
+  <li><code class="highlighter-rouge">getOutputPath</code>: returns a full path to save generated PDF files of Invoices</li>
+  <li><code class="highlighter-rouge">getXmlSouceFile</code>: returns a full path to XML source file provided by Town Hall</li>
+</ul>
+
+<h4 id="xmlreader-object">XmlReader object</h4>
+
+<h5 id="xmlreader-methods">XmlReader methods</h5>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">getArrayFromInvoiceXml(String xml_path)</code>: get an Array with representation of invoices to feed another array of Invoices returning the following array</p>
+
+    <pre><code class="language-Java">  [
+      "invoice_number": "some_key_value",
+      "invoice_verification_code": "some_key_value",
+      "invoice_customer_name": "some_key_value",
+      "invoice_cnpj": "some_key_value"
+  ]
+</code></pre>
+  </li>
+  <li><code class="highlighter-rouge">getArrayFromSettingsXml(String xml_path)</code>: read XML settings file and return an array to feed a simple Settings object
+    <ul>
+      <li>
+        <p>used by <code class="highlighter-rouge">Settings.readSettings()</code></p>
+
+        <pre><code class="language-Java">    [
+        "xml_source_file": "",
+        "output_path": "",
+        "municipal_subscription": ""
+    ]
+</code></pre>
+      </li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">saveSettingsXmlFile(String file_path, String[] settings)</code>: save settings file into running path to read later, receiving a simple array (<em>as above</em>) as parameter for function
+    <ul>
+      <li>used by <code class="highlighter-rouge">Settings.saveSettings()</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="invoices-object">Invoices object</h4>
+
+<h5 id="invoice-properties">Invoice properties</h5>
+
+<ul>
+  <li><code class="highlighter-rouge">invoice_number</code>: Number of Invoice registered @ Town Hall</li>
+  <li><code class="highlighter-rouge">invoice_verification_code</code>: Verification Code of Invoice, to authenticity.</li>
+  <li><code class="highlighter-rouge">invoice_customer_cnpj</code>: CNPJ of customer to generated output filename</li>
+  <li><code class="highlighter-rouge">invoice_customer_name</code>: Name of customer to generate output filename</li>
+  <li><code class="highlighter-rouge">invoice_download_url</code>: URL to fetch Invoice, passed to <strong>Downloader</strong> object</li>
+</ul>
+
+<h5 id="invoice-methods">Invoice methods</h5>
+
+<blockquote>
+  <p>Here I’ll pass through some problems when defining methods. Maybe we’ll add some methods later.</p>
+</blockquote>
+
+<ul>
+  <li><code class="highlighter-rouge">setInvoiceNumber(String number)</code></li>
+  <li><code class="highlighter-rouge">setInvoiceVerificationCode(String verification_code)</code></li>
+  <li><code class="highlighter-rouge">setInvoiceCustomerCnpj(String cnpj)</code>: set <code class="highlighter-rouge">invoice_customer_cnpj</code> to generate filename later</li>
+  <li><code class="highlighter-rouge">setInvoiceCustomerName(String name)</code>: set <code class="highlighter-rouge">invoice_customer_name</code> to generate filename later</li>
+  <li><code class="highlighter-rouge">getInvoiceFileName</code>: get filename to save Invoice into output path</li>
+  <li><code class="highlighter-rouge">getDownloadUrl(String municipal_subscription)</code>: based on <strong>invoice number</strong>, <strong>invoice verification code</strong> and <strong>settings.municipal_subscription</strong>, we’ll provide an URL to fetch by HTML renderer and generate PDF file.</li>
+</ul>
+
+<h4 id="downloader-object">Downloader object</h4>
+
+<h5 id="downloader-methods">Downloader methods</h5>
+
+<ul>
+  <li><code class="highlighter-rouge">downloadInvoice(String url, String output_file)</code>: download file and save it as PDF on <em>output_file</em>
+    <ul>
+      <li>This method will return <code class="highlighter-rouge">true</code> if file was successfuly saved or <code class="highlighter-rouge">false</code> if not.</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p>For now, we’ll document only this method. Later, with development, we’ll add more methods to make our codebase readable. The <code class="highlighter-rouge">downloadInvoice()</code> method it’s like an alias to a few other private methods not presented now.</p>
+</blockquote>
+
+<h4 id="from-the-author">From the author</h4>
+
+<p>By now, I’ve already presented A LOT of this application. Already count 2 hours of pure writing experience. But, to not fight with my brain, I’ll end this post here.</p>
+
+<p>In next post I can discuss about how we’ll develop the interface to some basic windows and present some mockups. The part 2 it’s coming soon!</p>
+
+
+  </div><a class="u-url" href="/development/2019/07/05/townhall-downloader-java-lab-part-1.html" hidden></a>
+</article>
+
+</body></html>
