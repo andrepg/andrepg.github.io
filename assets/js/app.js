@@ -1,3 +1,0 @@
-$ = window.jQuery;
-
-$(document).ready(() => {});
