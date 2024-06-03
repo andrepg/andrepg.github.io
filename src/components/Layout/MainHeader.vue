@@ -1,10 +1,10 @@
 <template>
-  <header class="flex relative w-full justify-center py-2 px-4 bg-purple-700 shadow-lg text-white">
+  <!-- <header class="flex relative w-full justify-center py-2 px-4 bg-purple-700 shadow-lg text-white">
     <nav class="flex w-full relative justify-center gap-2">
       <RouterLink class="nav-item" to="/">Home</RouterLink>
       <RouterLink class="nav-item" to="/about">About</RouterLink>
     </nav>
-  </header>
+  </header> -->
 </template>
 <script>
 export default {

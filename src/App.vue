@@ -6,7 +6,7 @@ import Footer from "@/components/Layout/Footer.vue";
 
 <template>
   <MainHeader/>
-  <main class="py-3 flex">
+  <main class="flex flex-col flex-1">
     <RouterView />
   </main>
   <Footer />

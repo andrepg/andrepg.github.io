@@ -1,27 +1,32 @@
 const HomepageLinks = [
   {
-    label: 'Startap',
-    icon: 'mdi:robot-excited',
-    target: 'https://startap.dev.br'
+    label: 'Threads',
+    icon: 'hugeicons:threads',
+    target: 'https://threads.net/anndrepaul'
+  },
+  {
+    label: 'Blog',
+    icon: 'hugeicons:note',
+    target: '/blog'
   },
   {
     label: 'Twitch',
-    icon: 'mdi:twitch',
+    icon: 'hugeicons:twitch',
     target: 'https://twitch.tv/anndrepaul'
   },
   {
-    label: 'Instagram',
-    icon: 'mdi:instagram',
-    target: 'https://instagram.com/anndrepaul'
-  },
-  {
     label: 'GitHub',
-    icon: 'mdi:github',
+    icon: 'hugeicons:github',
     target: 'https://github.com/anndrepg'
   },
   {
+    label: 'Instagram',
+    icon: 'hugeicons:instagram',
+    target: 'https://instagram.com/anndrepaul'
+  },
+  {
     label: 'LinkedIn',
-    icon: 'mdi:linkedin',
+    icon: 'hugeicons:linkedin-01',
     target: 'https://linkedin.com/in/andrepg'
   },
 ]
