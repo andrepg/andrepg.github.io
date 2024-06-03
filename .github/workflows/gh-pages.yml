@@ -35,3 +35,5 @@ jobs:
         uses: actions/configure-pages@v5
       - name: Vite Github Pages Deployer
         uses: skywarth/vite-github-pages-deployer@v1.4.0
+        with:
+          public_base_path: '/'
