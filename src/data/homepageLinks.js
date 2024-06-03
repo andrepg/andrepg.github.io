@@ -4,11 +4,11 @@ const HomepageLinks = [
     icon: 'hugeicons:threads',
     target: 'https://threads.net/anndrepaul'
   },
-  {
-    label: 'Blog',
-    icon: 'hugeicons:note',
-    target: '/blog'
-  },
+  // {
+  //   label: 'Blog',
+  //   icon: 'hugeicons:note',
+  //   target: '/blog'
+  // },
   {
     label: 'Twitch',
     icon: 'hugeicons:twitch',
@@ -24,11 +24,11 @@ const HomepageLinks = [
     icon: 'hugeicons:instagram',
     target: 'https://instagram.com/anndrepaul'
   },
-  {
-    label: 'LinkedIn',
-    icon: 'hugeicons:linkedin-01',
-    target: 'https://linkedin.com/in/andrepg'
-  },
+  // {
+  //   label: 'LinkedIn',
+  //   icon: 'hugeicons:linkedin-01',
+  //   target: 'https://linkedin.com/in/andrepg'
+  // },
 ]
 
 export default HomepageLinks
