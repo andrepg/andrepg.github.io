@@ -13,12 +13,12 @@ import HomepageLinks from '@/data/homepageLinks.js'
     >
       <img
         class="rounded-full align-center mx-auto mb-4 shadow-md h-36 lg:rounded-none
-        lg:mb-0 lg:flex-0"
+        lg:mb-0 lg:flex-0 lg:h-auto lg:w-52 lg:shadow-lg"
         src="https://github.com/andrepg.png"
         alt="My personal profile photo"
       />
 
-      <div class="flex flex-col lg:py-4 lg:px-3 lg:gap-2">
+      <div class="flex flex-col lg:py-4 lg:px-10 lg:gap-2 lg:justify-center">
         <h1 class="text-2xl lg:text-3xl font-bold">👋 Olá, eu sou André Paul</h1>
         <small class="text-lg leading-none lg:text-lg lg:leading-tight"
           >Posso te ajudar com aplicativos, websites, consultorias e processos.</small
