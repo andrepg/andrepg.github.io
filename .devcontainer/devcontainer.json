@@ -30,7 +30,12 @@
 				"formulahendry.auto-close-tag",
 				"aaron-bond.better-comments",
 				"VisualStudioExptTeam.vscodeintellicode",
-				"Postman.postman-for-vscode"
+				"Postman.postman-for-vscode",
+				"GitHub.vscode-github-actions",
+				"Vue.volar",
+				"donebd.vscode-keypromoter",
+				"ypresto.vscode-intelli-refactor",
+				"GitHub.vscode-pull-request-github"
 			]
 		}
 	}
