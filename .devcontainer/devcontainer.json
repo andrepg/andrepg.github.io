@@ -9,8 +9,6 @@
 	"postCreateCommand": "npm install --prefer-offline",
 	"features": {
 		"ghcr.io/cirolosapio/devcontainers-features/alpine-git:0": {},
-		"ghcr.io/cirolosapio/devcontainers-features/alpine-ohmyzsh:0": {},
-		"ghcr.io/devcontainers-contrib/features/vue-cli:2": {}		
 	},
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 	"customizations": {
