@@ -17,7 +17,7 @@ const HomepageLinks = [
   {
     label: 'GitHub',
     icon: 'hugeicons:github',
-    target: 'https://github.com/anndrepg'
+    target: 'https://github.com/andrepg'
   },
   {
     label: 'Instagram',
