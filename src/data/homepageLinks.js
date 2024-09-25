@@ -24,11 +24,16 @@ const HomepageLinks = [
     icon: 'hugeicons:instagram',
     target: 'https://instagram.com/anndrepaul'
   },
-  // {
-  //   label: 'LinkedIn',
-  //   icon: 'hugeicons:linkedin-01',
-  //   target: 'https://linkedin.com/in/andrepg'
-  // },
+  {
+    label: 'LinkedIn',
+    icon: 'hugeicons:linkedin-01',
+    target: 'https://linkedin.com/in/andrepg'
+  },
+  {
+    label: 'Fale comigo',
+    icon: 'hugeicons:mail-01',
+    target: 'mailto:contato@startap.dev.br'
+  },
 ]
 
 export default HomepageLinks
