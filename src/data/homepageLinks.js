@@ -1,4 +1,4 @@
-const HomepageLinks = [
+export const HomepageLinks = [
   {
     label: 'Threads',
     icon: 'hugeicons:threads',
@@ -33,7 +33,18 @@ const HomepageLinks = [
     label: 'Fale comigo',
     icon: 'hugeicons:mail-01',
     target: 'mailto:contato@startap.dev.br'
+  }
+]
+
+export const HomepageProjects = [
+  {
+    label: 'SuperCow',
+    target: 'https://andrepg.github.io/supercow'
   },
+  {
+    label: 'HTTP Codes',
+    target: 'https://andrepg.github.io/http-codes/'
+  }
 ]
 
 export default HomepageLinks
