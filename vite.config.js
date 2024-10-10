@@ -17,7 +17,7 @@ export default defineConfig({
 
     prismjsPlugin({
       css: true,
-      theme: 'default',
+      theme: 'tomorrow',
       languages: [
         'docker',
         'dockerfile',

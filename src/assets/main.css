@@ -8,6 +8,10 @@
 }
 
 #article-body {
+  @apply px-5 lg:px-0;
+
+  @apply flex flex-col max-w-screen-lg mx-auto;
+
   h1 {
     @apply text-3xl leading-loose;
   }
@@ -25,12 +29,12 @@
   }
 
   p {
-    @apply mb-2 indent-5;
+    @apply mb-2;
   }
 
 
   ul {
-    @apply my-5 px-5 list-disc flex flex-col gap-2 text-sm;
+    @apply my-5 list-disc flex flex-col gap-2 text-sm;
   }
 
   blockquote {
