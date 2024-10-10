@@ -5,7 +5,6 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { Mode, plugin as markdown } from 'vite-plugin-markdown'
 import prismjsPlugin from 'vite-plugin-prismjs'
-// import prismjsPlugin from 'vite-plugin-prismjs';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -18,7 +17,7 @@ export default defineConfig({
 
     prismjsPlugin({
       css: true,
-      theme: 'tomorrow',
+      theme: 'default',
       languages: [
         'docker',
         'dockerfile',
