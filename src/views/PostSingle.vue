@@ -17,7 +17,7 @@
       <ul>{{ content.attributes.categories }}</ul>
     </SectionWithHeader>
 
-    <section id="article-body" class="w-full text-base line-numbers" v-html="content.html"></section>
+    <section id="article-body" class="w-full text-base line-numbers dark:text-gray-300" v-html="content.html"></section>
   </article>
 </template>
 

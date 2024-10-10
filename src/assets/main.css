@@ -40,6 +40,7 @@
     @apply z-0
       bg-gradient-to-l from-gray-50 to-gray-100 
       py-5 ps-3 pe-5 w-full relative my-5 
+      rounded overflow-clip
       dark:to-gray-700 dark:from-gray-900;
   }
 }
@@ -51,9 +52,28 @@
 #article-body {
   @apply px-5 lg:px-0;
 
-  @apply flex flex-col max-w-screen-lg mx-auto;
+  @apply flex flex-col max-w-screen-lg mx-auto leading-relaxed;
 
   h1, h2, h3, h4 {
-    @apply mb-3 border-b-4 dark:border-b-2 border-gray-200 
+    @apply mb-3 pb-3 border-b-4 dark:border-b-2 border-gray-200 font-serif;
+  }
+
+  a::before {
+    content: "🔗";
+
+    @apply text-sm pe-1;
+  }
+
+  a {
+    @apply font-semibold underline-offset-4 text-gray-900 dark:text-white;
+  }
+
+  p code::before {
+    content: "💠";
+    @apply text-xs pe-1;
+  }
+
+  p code {
+    @apply font-bold py-0.5 px-2 rounded bg-gray-700 text-gray-300;
   }
 }
