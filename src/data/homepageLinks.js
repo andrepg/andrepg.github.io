@@ -44,6 +44,14 @@ export const HomepageProjects = [
   {
     label: 'HTTP Codes',
     target: 'https://andrepg.github.io/http-codes/'
+  },
+  {
+    label: 'Diciotech',
+    target: 'https://github.com/levxyca/diciotech/'
+  },
+  {
+    label: 'GitHub Actions',
+    target: 'https://github.com/andrepg/github-actions'
   }
 ]
 
