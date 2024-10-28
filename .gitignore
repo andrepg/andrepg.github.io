@@ -30,3 +30,5 @@ coverage
 *.tsbuildinfo
 yarn.lock
 package-lock.json
+
+public/sitemap.xml

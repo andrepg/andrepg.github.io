@@ -9,13 +9,17 @@
     "preview": "vite preview --host",
     "test:unit": "vitest",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "prebuild": "npm run build-sitemap",
+    "build-sitemap": "node src/sitemap.js"
   },
   "dependencies": {
+    "front-matter": "^4.0.2",
     "prismjs": "^1.29.0",
     "vite-plugin-prismjs": "^0.0.11",
     "vue": "^3.4.15",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.2.5",
+    "xml": "^1.0.1"
   },
   "devDependencies": {
     "@heroicons/vue": "^2.1.1",
