@@ -24,8 +24,8 @@
 <script setup>
 import { nextTick, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
-
 import Prism from 'prismjs'
+
 import BadgeElement from '@/components/BadgeElement.vue';
 import SectionWithHeader from '@/components/Layout/SectionWithHeader.vue';
 
