@@ -31,4 +31,4 @@ coverage
 yarn.lock
 package-lock.json
 
-public/sitemap.xml
+public/sitemap.*

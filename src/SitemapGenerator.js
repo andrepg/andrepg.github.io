@@ -17,7 +17,7 @@ export class SitemapGenerator {
     return {
       url: [
         { loc: this.host + page.path },
-        { lastmod: page.modificado || page.publicado || Date.now() },
+        { lastmod: page.published_at || Date.now() },
         { changefreq: 'monthly' },
         { priority: 0.5 }
       ]

@@ -10,11 +10,12 @@ const __dirname = path.dirname(__filename)
 
 const __blogRoot = `${__dirname}/../blog/`
 const __sitemap = `${__dirname}/../public/sitemap.xml`
+const __sitemapJson = `${__dirname}/../public/sitemap.json`
 
 let sitemap = []
 
 function isArticle(path) {
-  return lstatSync(__blogRoot + path).isFile()
+  return lstatSync(__blogRoot + path).isFile() && !path.toString().includes('.json')
 }
 
 function getArticlesList() {
@@ -37,7 +38,7 @@ function readArticleProperties(item) {
     ...FrontMatter(content).attributes
   })
 
-  report(`\tFile processed ->> ${item}`)
+  report(`\tFile processed -> ${item}`)
 }
 
 function main() {
@@ -47,11 +48,14 @@ function main() {
   report(`\t${references.length} articles found.\nCollecting front-matter properties.`)
   references.forEach(readArticleProperties)
 
-  report('Generating sitemap file')
+  report("Generating JSON sitemap")
+  writeFileSync(__sitemapJson, JSON.stringify(sitemap), { encoding: 'utf-8' })
+
+  report('Generating XML sitemap')
   sitemap = generateSitemap(sitemap)
   writeFileSync(__sitemap, sitemap, { encoding: 'utf-8' })
 
-  report(`Sitemap file generated at ${__sitemap}`)
+  report(`Sitemap file generated at ${__sitemap} and ${__sitemapJson}`)
 }
 
 console.time('sitemap-build')
