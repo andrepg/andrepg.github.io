@@ -21,13 +21,12 @@ const router = createRouter({
     {
       name: 'Posts - Index',
       path: '/blog',
-      component: () => import('@/views/PostIndex.vue'),      
+      component: () => import('@/views/PostIndex.vue')
     },
 
     {
       name: 'Posts - Single',
-      path: '/blog/archives/:year/:article',
-      alias: '/blog/a/:year/:article',
+      path: '/blog/:year/:article',
       component: () => import('@/views/PostSingle.vue')
     }
   ]
