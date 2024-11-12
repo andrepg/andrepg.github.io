@@ -34,7 +34,7 @@ function readArticleProperties(item) {
   const content = readFileSync(__blogRoot + item, 'utf8').toString()
 
   sitemap.push({
-    path: item,
+    path: item.replace('.md', ''),
     ...FrontMatter(content).attributes
   })
 
