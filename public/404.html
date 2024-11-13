@@ -44,7 +44,7 @@
       document.head.append(refresh)
     }
 
-    document.getElementById('main').classList.toggle('invisible')
+    setTimeout(() => document.getElementById('main').classList.toggle('invisible'), 500)
   </script>
 
   <style>
@@ -92,6 +92,12 @@
           }
           to {
               box-shadow: inset -3px 0 0 transparent;
+          }
+      }
+
+      @media (prefers-color-scheme: dark) {
+          body {
+            background: rgb(17 24 39)
           }
       }
   </style>
