@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8">
+
+  <script>
+    /**
+     * Current requested resource
+     * @type {string}
+     */
+    const resource = location.href
+
+    /**
+     * We will redirect only if the page belongs to blog namespace
+     */
+    if (resource.includes('blog')) {
+      sessionStorage.redirect = resource
+    } else {
+      document.getElementById('meta-refresh').remove()
+    }
+  </script>
+
+  <meta id="meta-refresh" content="0/URL='/'" http-equiv="refresh">
+</head>
+
+
+<body>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</body>
+
+
+</html>
