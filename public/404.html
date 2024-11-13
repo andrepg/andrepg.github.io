@@ -25,6 +25,8 @@
 
       document.head.append(refresh)
     }
+
+    document.getElementById('main').classList.toggle('invisible')
   </script>
 
   <style>
@@ -47,6 +49,11 @@
           width: 100%;
           height: 100vh;
           text-align: center;
+          transition: all 0.2s;
+      }
+
+      .invisible {
+          opacity: 100%;
       }
 
       .fof {
@@ -74,7 +81,7 @@
 
 
 <body>
-<div id="main">
+<div id="main" class="invisible">
   <div class="fof">
     <h1>Error 404</h1>
     <p>Parece que essa página foi perdida.</p>
