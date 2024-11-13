@@ -18,12 +18,14 @@
      */
     if (resource.includes('blog')) {
       sessionStorage.redirect = resource
-    } else {
-      document.getElementById('meta-refresh').remove()
+
+      refresh = new HTMLMetaElement();
+      refresh.content = "0;URL='/'";
+      refresh.httpEquiv = 'refresh';
+
+      document.head.append(refresh);
     }
   </script>
-
-  <meta id="meta-refresh" content="0;URL='/'" http-equiv="refresh">
 </head>
 
 
