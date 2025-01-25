@@ -4,11 +4,6 @@ export const HomepageLinks = [
     icon: 'hugeicons:threads',
     target: 'https://threads.net/anndrepaul'
   },
-  // {
-  //   label: 'Blog',
-  //   icon: 'hugeicons:note',
-  //   target: '/blog'
-  // },
   {
     label: 'Twitch',
     icon: 'hugeicons:twitch',
@@ -54,5 +49,16 @@ export const HomepageProjects = [
     target: 'https://github.com/andrepg/github-actions'
   }
 ]
+
+export const AffiliateLinks = [
+  {
+    label: 'Aiven SQL',
+    target: 'https://console.aiven.io/signup?referral_code=v720abolk33bvgw8xs0j'
+  },
+  {
+    label: 'Uptime Robot',
+    target: 'https://uptimerobot.com/?red=andrpa'
+  }
+];
 
 export default HomepageLinks
