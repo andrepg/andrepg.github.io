@@ -41,8 +41,8 @@ export const HomepageProjects = [
     target: 'https://andrepg.github.io/http-codes/'
   },
   {
-    label: 'Diciotech',
-    target: 'https://github.com/levxyca/diciotech/'
+    label: '.dotfiles',
+    target: 'https://github.com/andrepg/dotfiles/'
   },
   {
     label: 'GitHub Actions',
