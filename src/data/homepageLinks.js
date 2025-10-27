@@ -52,8 +52,8 @@ export const HomepageProjects = [
 
 export const AffiliateLinks = [
   {
-    label: 'Aiven SQL',
-    target: 'https://console.aiven.io/signup?referral_code=v720abolk33bvgw8xs0j'
+    label: 'Next DNS',
+    target: 'https://nextdns.io/?from=rs7kez46'
   },
   {
     label: 'Uptime Robot',
