@@ -1,33 +1,21 @@
 export const HomepageLinks = [
   {
-    label: 'Threads',
-    icon: 'hugeicons:threads',
-    target: 'https://threads.net/anndrepaul'
-  },
-  {
     label: 'Twitch',
     icon: 'hugeicons:twitch',
-    target: 'https://twitch.tv/anndrepaul'
+    target: 'https://twitch.tv/anndrepaul',
+    blank: '_blank'
   },
   {
     label: 'GitHub',
     icon: 'hugeicons:github',
-    target: 'https://github.com/andrepg'
+    target: 'https://github.com/andrepg',
+    blank: '_blank'
   },
   {
-    label: 'Instagram',
-    icon: 'hugeicons:instagram',
-    target: 'https://instagram.com/anndrepaul'
-  },
-  {
-    label: 'LinkedIn',
-    icon: 'hugeicons:linkedin-01',
-    target: 'https://linkedin.com/in/andrepg'
-  },
-  {
-    label: 'Fale comigo',
-    icon: 'hugeicons:mail-01',
-    target: 'mailto:contato@startap.dev.br'
+    label: 'Blog',
+    icon: 'hugeicons:quill-write-02',
+    target: 'https://andrepg.github.io/blog',
+    blank: ''
   }
 ]
 
