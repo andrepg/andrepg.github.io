@@ -1,0 +1,30 @@
+export const HomepageMenu = [
+  {
+    name: 'Homepage',
+    menu: true,
+    path: '/',
+    icon: 'hugeicons:home-01',
+    component: () => import('@/views/HomeView.vue')
+  },
+  {
+    name: 'Curriculum',
+    menu: true,
+    icon: 'hugeicons:profile-02',
+    path: '/curriculo',
+    component: () => import('@/views/AboutView.vue')
+  },
+  {
+    name: 'Blog',
+    menu: true,
+    icon: 'hugeicons:quill-write-02',
+    path: '/blog',
+    component: () => import('@/views/PostIndex.vue')
+  },
+
+  {
+    menu: false,
+    name: 'Posts - Single',
+    path: '/blog/:year/:article',
+    component: () => import('@/views/PostSingle.vue')
+  }
+];
