@@ -24,6 +24,8 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">
 
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
   <script>
     /**
      * Current requested resource
@@ -42,9 +44,11 @@
       refresh.httpEquiv = 'refresh'
 
       document.head.append(refresh)
+
+      window.location.replace('/')
     }
 
-    setTimeout(() => document.getElementById('main').classList.toggle('invisible'), 500)
+    setTimeout(() => document.getElementById('main').classList.toggle('invisible'), 100)
   </script>
 
   <style>
@@ -60,14 +64,6 @@
           font-family: 'Lato', sans-serif;
           color: #888;
           margin: 0;
-      }
-
-      #main {
-          display: table;
-          width: 100%;
-          height: 100vh;
-          text-align: center;
-          transition: all 0.2s;
       }
 
       .invisible {
@@ -104,14 +100,19 @@
 </head>
 
 
-<body>
-<div id="main" class="invisible">
-  <div class="fof">
-    <h1>Error 404</h1>
-    <p>Parece que essa página foi perdida.</p>
+<body class="flex flex-col min-h-screen dark:bg-gray-900 dark:text-gray-200">
+  <div class="flex flex-col h-full justify-between min-h-screen">
+    <div id="main" class="invisible w-full h-svh -mt-24 flex flex-col items-center justify-center">
+      <div class="fof">
+        <h1>Error 404</h1>
+        <p>Parece que essa página foi perdida.</p>
+      </div>
+    </div>
+  
+    <footer class="flex flex-col text-xs py-5 px-3 text-white w-full justify-center bg-purple-900 shadow-inner z-10 mt-4">
+      <span>Made with 🤍 and VueJS</span>
+      <span>Hosted by 🤖 GitHub Pages</span>
+    </footer>
   </div>
-</div>
 </body>
-
-
 </html>
