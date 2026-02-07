@@ -8,9 +8,9 @@ import { SitemapGenerator } from './SitemapGenerator.js'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-const __blogRoot = `${__dirname}/../blog/`
-const __sitemap = `${__dirname}/../public/sitemap.xml`
-const __sitemapJson = `${__dirname}/../public/sitemap.json`
+const __blogRoot = `${__dirname}/../../blog/`
+const __sitemap = `${__dirname}/../../public/sitemap.xml`
+const __sitemapJson = `${__dirname}/../../public/sitemap.json`
 
 let sitemap = []
 
