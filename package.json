@@ -11,7 +11,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
     "prebuild": "npm run build-sitemap",
-    "build-sitemap": "node src/sitemap.js"
+    "build-sitemap": "node src/sitemap/sitemap.js"
   },
   "dependencies": {
     "front-matter": "^4.0.2",
@@ -30,6 +30,7 @@
     "@vitejs/plugin-vue-jsx": "^4.0.0",
     "@vue/eslint-config-prettier": "^9.0.0",
     "autoprefixer": "^10.4.17",
+    "daisyui": "^5.5.18",
     "eslint": "^9.0.0",
     "eslint-plugin-vue": "^9.17.0",
     "postcss": "^8.4.35",
