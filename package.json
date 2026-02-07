@@ -14,6 +14,7 @@
     "build-sitemap": "node src/sitemap/sitemap.js"
   },
   "dependencies": {
+    "@sglara/cn": "^1.0.0",
     "front-matter": "^4.0.2",
     "prismjs": "^1.30.0",
     "vite-plugin-prismjs": "^0.0.11",
