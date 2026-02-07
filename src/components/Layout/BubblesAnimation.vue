@@ -22,7 +22,7 @@
 
 #bubbles li {
   animation: 20s bubblesUp 0s linear infinite;
-  @apply absolute list-none flex w-5 h-5 bg-purple-500 bottom-[-400px] !rounded-full overflow-clip;
+  @apply absolute list-none flex w-5 h-5 bg-purple-500 bottom-[-400px] rounded-full! overflow-clip;
 }
 
 #bubbles li:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
