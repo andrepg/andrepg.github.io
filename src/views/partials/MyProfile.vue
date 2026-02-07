@@ -5,7 +5,7 @@ import { Icon } from "@iconify/vue";
 
 <template>
     <section class="bg-gray-800/85 p-4 rounded-lg w-fit lg:max-w-1/4">
-        <div class="flex flex-row gap-5 py-4 items-center shadow-lg">
+        <div class="flex flex-row gap-5 py-4 items-center">
             <img src="https://github.com/andrepg.png"
                 alt="A NFT of a programmer with a cup of coffee in hands and sitting, looking at the camera"
                 class="rounded-xl shadow-gray-900 self-center shadow-lg outline outline-1 outline-gray-700 size-28">
@@ -22,8 +22,7 @@ import { Icon } from "@iconify/vue";
                     :href="link.target"
                     :target="link.blank"
                     :title="link.label"
-                    rel="noopener noreferrer"
-                    class="text-gray-200 hover:text-gray-400 transition-colors duration-200">
+                    rel="noopener noreferrer">
                         <Icon class="text-xl" :icon="link.icon" />
                     </a>
                 </div>
