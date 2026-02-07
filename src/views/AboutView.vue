@@ -3,8 +3,11 @@ import SectionWithHeader from '@/components/Layout/SectionWithHeader.vue';
 import ProjectsListFeature from '@/views/partials/ProjectsListFeature.vue';
 import { Projects } from '@/data/Projects';
 import { Icon } from '@iconify/vue';
+import { Tecnologias } from '@/data/Tecnologias';
+import TechnologiesListFeature from '@/views/partials/TechnologiesListFeature.vue';
 
 const projects = Projects;
+const tecnologias = Tecnologias;
 </script>
 
 <template>
@@ -19,23 +22,8 @@ const projects = Projects;
     </h1>
   </SectionWithHeader>
 
-  <div class="px-4">
-    
-    <div class="w-full flex flex-col items-start justify-center gap-3">
-      <h2 class="text-xl font-semibold flex items-center gap-2 mb-0" id="projetos">
-        <Icon icon="hugeicons:computer-video-call" />
-        Projetos
-      </h2>
-
-      <p class="opacity-70 font-normal font-md w-full leading-snug flex-1 md:max-w-[70ch]">
-        A list mais extensa de projetos pode ser encontrada no meu <a href="https://github.com/andrepg" target="_blank" rel="noopener noreferrer" class="link link-primary">GitHub</a>.
-        Aqui listo aqueles que considero mais ativos ou relevantes para meu portefólio.
-      </p>
-
-      <ProjectsListFeature :projects="projects" />
-    </div>
-
-
+  <div class="flex flex-col gap-10 px-4 w-full max-w-5/6 mx-auto">
+    <TechnologiesListFeature :items="tecnologias" />
+    <ProjectsListFeature :projects="projects" />
   </div>
-
 </template>

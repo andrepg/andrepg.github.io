@@ -27,34 +27,64 @@ const formatDate = (date) => new Date(Date.parse(date)).toLocaleDateString('pt-B
 
 <template>
   <div class="timeline-start">
-    <span class="text-sm leading-none text-neutral-500">{{ formatDate(post.published_at) }}</span>
+    <span class="badge badge-soft badge-sm">
+      {{ formatDate(post.published_at) }}
+    </span>
   </div>
 
-  <div class="timeline-middle">
-    <CalendarIcon class="h-5 w-5" />
+  <div class="timeline-middle p-2 rounded-full bg-primary/20">
+    <CalendarIcon class="size-5 text-primary" />
   </div>
 
-  <div class="timeline-end timeline-box w-full">
-    <a :href="getBlogUrl(post.path)" class="group/post-single-feature">
-      <div class="flex flex-col gap-0">
-        <!-- mb-1 flex flex-row flex-wrap gap-2 leading-tight text-gray-700 dark:text-gray-400 mt-0
-        items-center justify-start transition duration-500 -->
-        <h3 class="
-          flex flex-row gap-2 items-center justify-start my-0">
-          <span class="
-            group-hover/post-single-feature:text-primary
-            transition-all duration-500">
+  <div :class="[
+    'timeline-end',
+    'timeline-box',
+    'card',
+    'w-full',
+    'bg-primary/5'
+  ]">
+    <a :href="getBlogUrl(post.path)" class="card-body group/post-single-feature relative overflow-clip">
+      <NewspaperIcon :class="[
+        'absolute',
+        'top-0',
+        'right-0',
+        'transition',
+        'duration-500',
+        'size-24',
+        'z-0',
+        'opacity-0',
+        'translate-x-full',
+        'group-hover/post-single-feature:translate-x-0',
+        'group-hover/post-single-feature:opacity-5',
+      ]" />
+
+      <div class="flex flex-col gap-1 relative z-10">
+        <h3 :class="[
+          'card-title',
+          'flex',
+          'flex-row',
+          'gap-2',
+          'items-center',
+          'justify-start',
+          'my-0',
+          'leading-tight'
+        ]">
+          <span :class="[
+            'group-hover/post-single-feature:text-primary',
+            'transition-all',
+            'duration-500',
+          ]">
             {{ post.title }}
           </span>
-
-          <NewspaperIcon class="transition duration-500 size-5
-          opacity-0 scale-0 -translate-x-10
-          group-hover/post-single-feature:scale-100
-          group-hover/post-single-feature:opacity-100
-          group-hover/post-single-feature:translate-x-0" />
         </h3>
 
-        <p class="text-sm text-gray-600 dark:text-gray-400 transition duration-500">{{ post.excerpt }}</p>
+        <p :class="[
+          'text-sm',
+          'opacity-70',
+          'transition',
+          'duration-500',
+          'md:max-w-3xl'
+        ]">{{ post.excerpt }}</p>
       </div>
     </a>
   </div>

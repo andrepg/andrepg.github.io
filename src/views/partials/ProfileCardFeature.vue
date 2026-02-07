@@ -6,7 +6,7 @@ import { Icon } from "@iconify/vue";
 <template>
     <div class="card bg-base-300/85">
         <div class="card-body p-6">
-            <div class="flex flex-row gap-5 items-center">
+            <div class="flex flex-col items-start md:flex-row gap-5 md:items-center">
                 <div class="avatar">
                     <div class="size-24 rounded-xl ring-2 ring-neutral-content">
                         <img src="https://github.com/andrepg.png"

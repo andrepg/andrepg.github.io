@@ -8,7 +8,7 @@ import Navbar from './views/partials/NavbarFeature.vue';
   <Navbar />
 
   <Suspense>
-    <main class="flex flex-col flex-1">
+    <main class="flex flex-col flex-1 xl:max-w-screen-2xl mx-auto">
       <RouterView />
     </main>
   </Suspense>

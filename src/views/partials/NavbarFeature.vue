@@ -36,7 +36,10 @@ onMounted(() => {
 </script>
 
 <template>
-    <nav :class="cn('navbar fixed top-0',
+    <nav :class="[
+        'navbar',
+        'fixed',
+        'top-0',
         'z-50',
         'py-2',
         'px-4',
@@ -44,15 +47,24 @@ onMounted(() => {
         'transition-all',
         'ease-in-out',
         'delay-500',
-        opaqueNavbar && 'bg-primary',
-        !opaqueNavbar && 'bg-transparent')">
+        'bg-primary/90',
+        'dark:bg-neutral-900/90',
+        !opaqueNavbar && 'bg-transparent dark:bg-transparent',
+    ]">
 
         <div class="flex-none">
             <div class="drawer">
                 <input id="my-drawer" type="checkbox" class="drawer-toggle" />
                 <div class="drawer-content">
-                    <label for="my-drawer" class="duration-1000 ease drawer-button btn btn-primary btn-square"
-                        :class="opaqueNavbar ? 'btn-soft' : 'btn-primary'">
+                    <label for="my-drawer" :class="[
+                        'duration-1000 ease',
+                        'drawer-button',
+                        'btn',
+                        'btn-primary',
+                        'btn-square',
+                        'not-dark:btn-soft',
+                        'dark:btn-primary',
+                    ]">
                         <Icon icon="mdi:hamburger" class="dark:text-neutral-content size-5" />
                     </label>
                 </div>
@@ -79,7 +91,7 @@ onMounted(() => {
         </div>
 
         <div class="flex-1 px-4">
-            <h1 :class="cn(
+            <h1 :class="[
                 'w-1/2',
                 'm-0',
                 'text-xl',
@@ -89,21 +101,21 @@ onMounted(() => {
                 'delay-200',
                 'ease-in-out',
                 opaqueNavbar ? 'text-primary-content' : 'text-primary',
+                opaqueNavbar ? 'dark:text-neutral-content' : 'dark:text-primary-content',
                 opaqueNavbar ? 'translate-x-0' : 'translate-x-[90%]'
-            )">{{ title }}</h1>
+            ]">{{ title }}</h1>
         </div>
 
         <div class="flex-none">
-            <button title="Voltar ao topo" @click="scrollToTop"
-                :class="cn(
-                    'btn',
-                    'btn-secondary',
-                    'btn-soft',
-                    'btn-square',
-                    'duration-1000 ease transition-all',
-                    'delay-250',
-                    opaqueNavbar ? 'opacity-100' : 'opacity-0'
-                )">
+            <button title="Voltar ao topo" @click="scrollToTop" :class="[
+                'btn',
+                'btn-secondary',
+                'btn-soft',
+                'btn-square',
+                'duration-1000 ease transition-all',
+                'delay-250',
+                opaqueNavbar ? 'opacity-100' : 'opacity-0'
+            ]">
                 <Icon icon="mdi:arrow-up" class="dark:text-neutral-content text-primary size-5" />
             </button>
         </div>
