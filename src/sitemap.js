@@ -30,7 +30,7 @@ function report(message) {
   console.log(message)
 }
 
-function readArticleProperties(item) {
+function addArticleToSitemap(item) {
   const content = readFileSync(__blogRoot + item, 'utf8').toString()
 
   sitemap.push({
@@ -43,10 +43,10 @@ function readArticleProperties(item) {
 
 function main() {
   report(`Building blog sitemap for ${__blogRoot}`)
-  let references = getArticlesList()
+  let articleList = getArticlesList()
 
-  report(`\t${references.length} articles found.\nCollecting front-matter properties.`)
-  references.forEach(readArticleProperties)
+  report(`\t${articleList.length} articles found.\nCollecting front-matter properties.`)
+  articleList.forEach(addArticleToSitemap)
 
   report("Generating JSON sitemap")
   writeFileSync(__sitemapJson, JSON.stringify(sitemap), { encoding: 'utf-8' })
