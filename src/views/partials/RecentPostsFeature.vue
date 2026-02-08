@@ -1,6 +1,6 @@
 <script setup>
 import { nextTick, onMounted, ref } from "vue";
-import PostTimelineFeature from "./PostTimelineFeature.vue";
+import PostTimelineFeature from "../../components/PostTimelineFeature.vue";
 import { Icon } from "@iconify/vue";
 
 const posts = ref([])
@@ -25,15 +25,14 @@ onMounted(() => {
         Postagens Recentes
       </h2>
 
-      <div class="list gap-8">
-        <PostTimelineFeature :showLabels="false" v-if="posts.length" :posts="posts" />
+      <div class="gap-8">
+        <PostTimelineFeature v-if="posts.length" :posts="posts" />
 
         <a href="/blog" :class="[
           'btn',
           'btn-sm',
-          'btn-soft',
-          'w-fit',
-          'mx-auto',
+          'btn-block',
+          'btn-outline',
           'hover:btn-primary',
         ]">
           Ver postagens mais antigas

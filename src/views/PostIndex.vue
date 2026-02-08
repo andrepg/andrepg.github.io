@@ -2,7 +2,7 @@
 import SectionWithHeader from '@/components/Layout/SectionWithHeader.vue'
 import { nextTick, onMounted, ref } from 'vue'
 import ListContainer from '@/components/Layout/ListContainer.vue'
-import PostTimelineFeature from './partials/PostTimelineFeature.vue'
+import PostTimelineFeature from '../components/PostTimelineFeature.vue'
 
 const isLoading = ref(true)
 
@@ -38,7 +38,7 @@ onMounted(() => {
   </ListContainer>
 
   <!-- <ListContainer v-else> -->
-  <div v-else class="py-4 px-4 w-5/6 mx-auto">
-    <PostTimelineFeature :showLabels="true" v-if="posts.length" :posts="posts" />
-  </div>
+  <ul v-else class="py-4 px-2 md:px-4 lg:w-5/6 mx-auto list">
+    <PostTimelineFeature :posts="posts" />
+  </ul>
 </template>

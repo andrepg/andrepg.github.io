@@ -14,7 +14,13 @@ export default defineConfig({
     vue(),
     vueJsx(),
     markdown({
-      mode: [Mode.HTML, Mode.TOC, Mode.VUE]
+      mode: [Mode.HTML, Mode.TOC, Mode.VUE],
+      markdownIt: {
+        typographer: true,
+        linkify: true,
+        html: true,
+        xhtmlOut: true,
+      },
     }),
 
     prismjsPlugin({

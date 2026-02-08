@@ -8,9 +8,11 @@ import Navbar from './views/partials/NavbarFeature.vue';
   <Navbar />
 
   <Suspense>
-    <main class="flex flex-col flex-1 xl:max-w-screen-2xl mx-auto">
-      <RouterView />
+    <main class="flex flex-col w-full h-screen justify-between">
+      <div class="flex flex-col w-full self-start">
+        <RouterView />
+      </div>
+      <Footer />
     </main>
   </Suspense>
-  <Footer />
 </template>

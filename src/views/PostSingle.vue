@@ -3,16 +3,26 @@ import { nextTick, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import Prism from 'prismjs'
 
-import BadgeElement from '@/components/BadgeElement.vue';
 import SectionWithHeader from '@/components/Layout/SectionWithHeader.vue';
 
 import '@/assets/blog.css';
 import { transformContent } from '@/config/MarkdownTransformers';
+import BadgeElement from '@/components/BadgeElement.vue';
 
 const { year, article } = useRoute().params;
 
-const content = ref({
-  attributes: {},
+const postMetadata = ref({
+  path: '',
+  title: '',
+  excerpt: '',
+  published_at: '',
+  category: [],
+  tags: [],
+});
+
+const displayPost = ref(false);
+
+const postContent = ref({
   html: '',
 });
 
@@ -21,10 +31,16 @@ onMounted(async () => {
 
   const post = await import(`@blog/${year}/${article}.md`);
 
-  content.value = {
-    ...post,
+  postMetadata.value = {
+    ...post.attributes,
+    category: post.attributes.category[0] ?? '',
+  };
+
+  postContent.value = {
     html: transformContent(post.html),
   };
+
+  displayPost.value = true;
 
   nextTick(() => {
     Prism.highlightAll()
@@ -35,50 +51,64 @@ onMounted(async () => {
 <style scoped src="@/assets/blog.css" />
 
 <template>
-  <article class="flex flex-col gap-10 lg:max-w-10/12 mx-auto" v-if="content">
-    <SectionWithHeader class="pb-0! w-full">
-      <h1 class="flex flex-col">
-        {{ content.attributes.title }}
-
-        <small :class="[
-          'leading-tight',
-          'max-w-9/12',
-          'font-light'
-        ]">
-          {{ content.attributes.excerpt }}
-        </small>
-      </h1>
-
-    </SectionWithHeader>
-
-    <div class="alert alert-primary alert-soft w-full gap-1" v-if="content.attributes.serie">
-      Este post faz parte da série
-      <span class="font-semibold">{{ content.attributes.serie }}</span>
-
-      <a :class="[
-        'link',
-        'no-underline',
-        'text-sm',
-        'font-light'
-      ]" :href="`/blog/series/${content.attributes.serie}`">Ver todos os posts da série</a>
+  <div class="w-full pt-16 pb-10 px-4 md:px-10">
+    <div :class="[
+      'mx-auto',
+      'py-12',
+      'flex',
+      'flex-col',
+      'items-center',
+      'gap-2',
+      'justify-center',
+    ]">
+      <span class="loading loading-dots"></span>
+      <p>Carregando conteúdo...</p>
     </div>
 
-    <section id="article-body" :class="[
+    <section :class="[
+      'card',
+      'bg-primary/50',
+      'transition-all',
+      'duration-300',
+      'ease-in-out',
+      'delay-100',
+      postMetadata.title ? 'opacity-100' : 'opacity-0',
+    ]">
+      <div class="card-body">
+        <div class="breadcrumbs">
+          <ul>
+            <li><a href="/blog">Blog</a></li>
+            <li v-if="postMetadata.category"><a href="#">{{ postMetadata.category }}</a></li>
+          </ul>
+        </div>
+
+        <h1 class="leading-none">{{ postMetadata.title }}</h1>
+
+        <hr class="opacity-20 my-1 text-base-content" />
+
+        <small :class="[
+          'text-base',
+          'leading-tight',
+          'md:max-w-9/12',
+          'font-light'
+        ]">
+          {{ postMetadata.excerpt }}
+        </small>
+
+        <ul class="join join-horizontal flex-wrap gap-1 items-center my-2">
+          <li v-for="tag in postMetadata.tags" :key="tag">
+            <BadgeElement class="badge-sm badge-soft shadow-lg">
+              {{ tag }}
+            </BadgeElement>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <article id="article-body" :class="[
       'text-base',
       'line-numbers',
-    ]" v-html="content.html"></section>
-
-    <ul v-if="content.attributes.tags" class="menu menu-horizontal flex-wrap gap-2">
-      <li class="menu-title">Tags:</li>
-
-      <li v-for="tag in content.attributes.tags" :key="tag" :class="[
-        'items-center',
-        'self-center',
-      ]">
-        <BadgeElement class="badge-soft">
-          {{ tag }}
-        </BadgeElement>
-      </li>
-    </ul>
-  </article>
+      'break-all!',
+    ]" v-html="postContent.html"></article>
+  </div>
 </template>

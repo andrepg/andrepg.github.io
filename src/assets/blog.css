@@ -1,66 +1,115 @@
 @import 'tailwindcss';
-
 @plugin "daisyui";
 
-@layer base {
-    h1 {
-        @apply text-3xl
-    }
 
-    h2 {
-        @apply text-2xl
-    }
+h1 {
+    @apply text-3xl
+}
 
-    h3 {
-        @apply text-xl
-    }
+h2 {
+    @apply text-2xl
+}
 
-    h4 {
-        @apply text-lg
-    }
+h3 {
+    @apply text-xl
+}
+
+h4 {
+    @apply text-lg
 }
 
 #article-body {
+    @apply flex flex-col;
+
+    h1 {
+        @apply border-b border-base-content/50;
+    }
+
     h1,
     h2,
-    h3,
-    h4 {
-        @apply mb-3 pb-1 border-b border-neutral-200/50 font-serif;
+    h3 {
+        @apply font-serif tracking-wide;
     }
 
-    pre {
-        @apply rounded-xl;
+    /**
+        * Apply default article's paragraph style
+        */
+    p {
+        @apply my-5 indent-5;
+        word-break: normal;
     }
 
-    a {
-        @apply link no-underline link-accent font-light;
+    /* When a paragraph contains only a link, remove the indent */
+    p:has(a:first-child) {
+        @apply indent-0;
     }
 
-    ol, ul {
-        @apply my-3 ps-4;
+    /**
+        * Lists and list items styles
+        * Numbering, disc, fonts, etc.
+        */
+    ul,
+    ol {
+        word-break: normal;
+        @apply list list-inside leading-tight gap-2 card card-border px-7 py-8 bg-neutral/40;
 
-        & > li {
-            @apply font-light text-sm mb-2;
+        &:is(ul) {
+            @apply list-disc;
+        }
+
+        &:is(ol) {
+            @apply list-decimal;
         }
     }
 
-    ul {
-        @apply list-disc list-inside;
-    }
+    /**
+        * Code styles
+        */
+    .code-toolbar {
+        @apply text-xs md:text-base lg:text-lg my-8 shadow-lg;
 
-    ol {
-        @apply list-decimal list-inside;
-
-        & > li::marker {
-            @apply font-bold text-sm me-2;
+        pre {
+            @apply rounded-xl py-3;
         }
     }
 
     p code,
     li code,
-    blockquote code
-    {
-        @apply badge badge-sm badge-soft;
-        /* @apply font-bold py-0.5 px-2 rounded bg-gray-700 text-gray-300; */
+    blockquote code {
+        @apply indent-0 px-2 py-0.5 badge badge-neutral font-light text-sm;
+    }
+
+    /**
+        * Links styles
+        */
+    a,
+    li a,
+    p a {
+        @apply transition-all duration-250 ease-out;
+        @apply link text-sm underline underline-offset-6 leading-none;
+        @apply hover:text-accent;
+
+        &::after {
+            content: "↗";
+            @apply mx-1 opacity-70;
+        }
+    }
+
+    a,
+    li a,
+    p a {
+        word-break: break-all !important;
+    }
+
+    /**
+        * Blockquote styles
+        */
+    blockquote {
+        @apply card card-body card-border bg-primary/10 pt-2 pb-6 font-light text-lg leading-tight;
+
+        &::before {
+            content: '💬';
+            @apply absolute right-2 bottom-2 z-0 text-5xl scale-120 opacity-10 -rotate-y-180;
+        }
     }
 }
