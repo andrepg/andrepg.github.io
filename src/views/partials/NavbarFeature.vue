@@ -1,5 +1,5 @@
 <script setup>
-import { cn } from "@sglara/cn";
+import { name, version } from "@/../package.json";
 
 import { Icon } from '@iconify/vue';
 import { HomepageMenu } from '@/data/HomepageMenu';
@@ -85,6 +85,8 @@ onMounted(() => {
                                 </a>
                             </li>
                         </ul>
+
+                        <p class="text-center text-xs opacity-50">versão {{ version }}</p>
                     </section>
                 </div>
             </div>
