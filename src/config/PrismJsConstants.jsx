@@ -20,6 +20,10 @@ export const PrismJsLanguages = [
   'bash',
   'sh',
   'shell'
-]
+];
 
-export const PrismJsPlugins = ['show-language', 'line-numbers', 'match-braces']
+export const PrismJsPlugins = [
+  'show-language',
+  'line-numbers',
+  'match-braces'
+];

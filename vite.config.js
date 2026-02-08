@@ -6,7 +6,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import { Mode, plugin as markdown } from 'vite-plugin-markdown'
 import prismjsPlugin from 'vite-plugin-prismjs'
 
-import { PrismJsLanguages, PrismJsPlugins } from './src/data/settings'
+import { PrismJsLanguages, PrismJsPlugins } from './src/config/PrismJsConstants'
 
 // https://vitejs.dev/config/
 export default defineConfig({
