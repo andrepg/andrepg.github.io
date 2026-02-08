@@ -2,8 +2,6 @@
 import SectionWithHeader from '@/components/Layout/SectionWithHeader.vue'
 import { nextTick, onMounted, ref } from 'vue'
 import ListContainer from '@/components/Layout/ListContainer.vue'
-import PostSingleFeature from '@/components/PostSingleFeature.vue'
-import { Icon } from '@iconify/vue'
 import PostTimelineFeature from './partials/PostTimelineFeature.vue'
 
 const isLoading = ref(true)
