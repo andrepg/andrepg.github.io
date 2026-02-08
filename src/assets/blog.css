@@ -19,16 +19,15 @@ h4 {
 }
 
 #article-body {
-    @apply flex flex-col;
+    @apply flex flex-col max-w-11/12 lg:max-w-8/12 mx-auto;
 
     h1 {
-        @apply border-b border-base-content/50;
     }
 
     h1,
     h2,
     h3 {
-        @apply font-serif tracking-wide;
+        @apply font-serif tracking-wide mt-7 mb-3;
     }
 
     /**
@@ -66,7 +65,7 @@ h4 {
         * Code styles
         */
     .code-toolbar {
-        @apply text-xs md:text-base lg:text-lg my-8 shadow-lg;
+        @apply text-xs tracking-wide;
 
         pre {
             @apply rounded-xl py-3;

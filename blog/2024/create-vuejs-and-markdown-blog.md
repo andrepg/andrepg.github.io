@@ -108,7 +108,6 @@ E para renderizar os botões, utilizamos o seguinte código na [HomeView.vue](ht
 
 Com isto conseguimos a estrutura de gerar botões e adicionar quantos necessários, sem a que seja preciso modificar o código a cada novo link. Estas modificações são feitas no arquivo `homepageLinks.js`.
 
----
 # 📝 A estrutura de blog,
 
 Uma vez com extensões instaladas, configurações feitas e uma página inicial capaz de ler um conteúdo básico, partimos para a estrutura do blog e outras criações para possibilitar isto.
@@ -117,7 +116,7 @@ No início comentei que parecia trabalho demais instalar o VitePress. Isso porqu
 
 Copiando estruturas básicas de outros sistemas de blog, a decisão foi feita em prol de uma pasta `blogs`, contendo os artigos agrupados por ano. Assim, seria possível organizar melhor o repositório (já que a frequência de postagens não é, assim, tão grande). A estrutura de pastas ficaria:
 
-```
+```text
 blogs
 |
  \_[ 2024 ]
@@ -181,7 +180,7 @@ Note duas funções diferentes: a `fetchPosts` e a `processPosts`. Isso porque `
 
 Ao final, o valor de `sitemap` atribuído a `posts.value` conterá o mapa completo do site, conforme gerado pela automatização. Este arquivo é público aqui no site, e qualquer um pode [consultá-lo aqui](https://github.com/andrepg/andrepg.github.io/blob/main/src/sitemap.js). Na renderização, qualquer layout é possível, baseando uma iteração sobre cada post obtido.
 
-Assim, uma listagem de artigos é possível com poucas linhas de código e um componente extra recebendo informações da postagem, como o [`PostListElement`](https://github.com/andrepg/andrepg.github.io/blob/main/src/components/PostListElement.vue) e sua aplicação no [índice de artigos](https://github.com/andrepg/andrepg.github.io/blob/db998354a4bcd5cc123bd10aaf9c954494f1db97/src/views/PostIndex.vue#L44-L48).
+Assim, uma listagem de artigos é possível com poucas linhas de código e um componente extra recebendo informações da postagem, como o [`PostSingleFeature`](https://github.com/andrepg/andrepg.github.io/blob/main/src/components/PostSingleFeature.vue) e sua aplicação no [índice de artigos](https://github.com/andrepg/andrepg.github.io/blob/db998354a4bcd5cc123bd10aaf9c954494f1db97/src/views/PostIndex.vue#L44-L48).
 
 ## Post Single
 🌐 https://github.com/andrepg/andrepg.github.io/blob/main/src/views/PostSingle.vue
@@ -275,10 +274,10 @@ Elas estão listadas abaixo, e serão atualizadas à medida que forem concluída
 
 Ainda falta para chegar onde quero. Melhorias para implementar e correções a serem feitas. Minha lista e este artigos serão atualizados com o tempo. Estes problemas serão rastreados através do painel de *issues* do repositório também.
 
-- [ ] O rodapé não aparece na página `404`, tirando-a do padrão do website
-- [ ] O redirecionamento `404 meta-refresh` para qualquer outra página causa uma piscadela durante o carregamento (em parte pelo rodapé não existente e a falta de um *loading*)
-- [ ] Uma transição entre as páginas seria bem-vinda
-- [ ] Um carregamento antecipado da imagem de perfil pode acelerar a página
-- [ ] Busca com Algolia ou outro mecanismo Javascript local 
-- [ ] Postagens mais recentes na página inicial do site
-- [ ] Adaptar os cartões da página inicial para modo escuro
+1. [x] O rodapé não aparece na página `404`, tirando-a do padrão do website
+2. [ ] O redirecionamento `404 meta-refresh` para qualquer outra página causa uma piscadela durante o carregamento m parte pelo rodapé não existente e a falta de um *loading*)
+3. [ ] Uma transição entre as páginas seria bem-vinda
+4. [ ] Um carregamento antecipado da imagem de perfil pode acelerar a página
+5. [ ] Busca com Algolia ou outro mecanismo Javascript local 
+6. [ ] Postagens mais recentes na página inicial do site
+7. [ ] Adaptar os cartões da página inicial para modo escuro
