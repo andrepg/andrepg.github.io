@@ -1,0 +1,66 @@
+@import 'tailwindcss';
+
+@plugin "daisyui";
+
+@layer base {
+    h1 {
+        @apply text-3xl
+    }
+
+    h2 {
+        @apply text-2xl
+    }
+
+    h3 {
+        @apply text-xl
+    }
+
+    h4 {
+        @apply text-lg
+    }
+}
+
+#article-body {
+    h1,
+    h2,
+    h3,
+    h4 {
+        @apply mb-3 pb-1 border-b border-neutral-200/50 font-serif;
+    }
+
+    pre {
+        @apply rounded-xl;
+    }
+
+    a {
+        @apply link no-underline link-accent font-light;
+    }
+
+    ol, ul {
+        @apply my-3 ps-4;
+
+        & > li {
+            @apply font-light text-sm mb-2;
+        }
+    }
+
+    ul {
+        @apply list-disc list-inside;
+    }
+
+    ol {
+        @apply list-decimal list-inside;
+
+        & > li::marker {
+            @apply font-bold text-sm me-2;
+        }
+    }
+
+    p code,
+    li code,
+    blockquote code
+    {
+        @apply badge badge-sm badge-soft;
+        /* @apply font-bold py-0.5 px-2 rounded bg-gray-700 text-gray-300; */
+    }
+}
