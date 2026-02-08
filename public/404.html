@@ -36,7 +36,7 @@
     /**
      * We will redirect only if the page belongs to blog namespace
      */
-    if (HomepageMenu.find(menu => menu.path === resource)) {
+    if (HomepageMenu.find(menu => resource.includes(menu.path))) {
       sessionStorage.redirect = resource
 
       refresh = document.createElement('meta')
