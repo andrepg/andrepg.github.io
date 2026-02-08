@@ -2,7 +2,6 @@
 import SectionWithHeader from '@/components/Layout/SectionWithHeader.vue';
 import ProjectsListFeature from '@/views/partials/ProjectsListFeature.vue';
 import { Projects } from '@/data/Projects';
-import { Icon } from '@iconify/vue';
 import { Tecnologias } from '@/data/Tecnologias';
 import TechnologiesListFeature from '@/views/partials/TechnologiesListFeature.vue';
 
