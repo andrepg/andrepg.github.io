@@ -12,7 +12,7 @@
     "lint:fix": "eslint -c eslint.config.js --fix",
     "format": "prettier --write src/",
     "prebuild": "npm run build-sitemap",
-    "build-sitemap": "node src/sitemap/sitemap.js"
+    "build-sitemap": "tsx src/sitemap/sitemap.ts"
   },
   "dependencies": {
     "front-matter": "^4.0.2",
@@ -23,10 +23,10 @@
     "xml": "^1.0.1"
   },
   "devDependencies": {
-    "typescript-eslint": "^8.54.0",
     "@iconify/vue": "^5.0.0",
     "@tailwindcss/postcss": "^4.1.18",
     "@types/prismjs": "^1.26.5",
+    "@types/xml": "^1.0.11",
     "@vitejs/plugin-vue": "^6.0.4",
     "@vitejs/plugin-vue-jsx": "^5.1.4",
     "daisyui": "^5.5.18",
@@ -36,7 +36,9 @@
     "postcss": "^8.5.6",
     "prettier": "^3.8.1",
     "tailwindcss": "^4.1.18",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3",
+    "typescript-eslint": "^8.54.0",
     "vite": "^7.3.1",
     "vite-plugin-markdown": "^2.2.0",
     "vue-eslint-parser": "^10.2.0"
