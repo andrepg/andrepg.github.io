@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview --host",
     "test:unit": "vitest",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "lint": "eslint",
     "format": "prettier --write src/",
     "prebuild": "npm run build-sitemap",
     "build-sitemap": "node src/sitemap/sitemap.js"
@@ -16,6 +16,7 @@
   "dependencies": {
     "front-matter": "^4.0.2",
     "prismjs": "^1.30.0",
+    "typescript-eslint": "^8.54.0",
     "vite-plugin-prismjs": "^0.0.11",
     "vue": "^3.5.27",
     "vue-router": "^5.0.2",
@@ -23,19 +24,20 @@
   },
   "devDependencies": {
     "@iconify/vue": "^5.0.0",
-    "@rushstack/eslint-patch": "^1.15.0",
     "@tailwindcss/postcss": "^4.1.18",
     "@types/prismjs": "^1.26.5",
     "@vitejs/plugin-vue": "^6.0.4",
     "@vitejs/plugin-vue-jsx": "^5.1.4",
-    "@vue/eslint-config-prettier": "^10.2.0",
     "daisyui": "^5.5.18",
-    "eslint": "^10.0.0",
+    "eslint": "^9.17.0",
+    "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-vue": "^10.7.0",
     "postcss": "^8.5.6",
     "prettier": "^3.8.1",
     "tailwindcss": "^4.1.18",
+    "typescript": "^5.9.3",
     "vite": "^7.3.1",
-    "vite-plugin-markdown": "^2.2.0"
+    "vite-plugin-markdown": "^2.2.0",
+    "vue-eslint-parser": "^10.2.0"
   }
 }
