@@ -18,11 +18,12 @@ export default tseslint.config(
 
   ...pluginVue.configs['flat/recommended'],
 
-  /** 
+  /**
    * The TypeScript lint settings
    */
   {
-    files: ['**/*.ts', '**/*.tsx'],
+    basePath: 'src',
+    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
     extends: [
       ...tseslint.configs.recommendedTypeChecked,
       ...tseslint.configs.stylisticTypeChecked,
