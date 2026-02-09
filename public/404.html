@@ -36,11 +36,11 @@
     /**
      * We will redirect only if the page belongs to blog namespace
      */
-    console.log(resource)
+    console.table({ date: new Date().toISOString(), resource })
 
-    if (resource.includes('/blog') || resource.includes('/curriculo')) {
+    if (resource.includes('blog') || resource.includes('curriculo')) {
       console.log("Redirecting user to App")
-      sessionStorage.redirect = resource
+      sessionStorage.setItem('redirect',resource)
 
       refresh = document.createElement('meta')
 

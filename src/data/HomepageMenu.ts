@@ -26,5 +26,15 @@ export const HomepageMenu = [
     name: 'Posts - Single',
     path: '/blog/:year/:article',
     component: () => import('@/views/PostSingle.vue')
+  },
+  {
+    menu: false,
+    name: 'Catch All',
+    path: '/:catchAll(.*)',
+    component: () => {
+      console.log('Redirecting to 404');
+      sessionStorage.removeItem('redirect');
+      window.location.replace('/404.html');
+    }
   }
 ];
