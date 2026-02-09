@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview --host",
     "test:unit": "vitest",
-    "lint": "eslint",
+    "lint": "eslint -c eslint.config.js",
+    "lint:fix": "eslint -c eslint.config.js --fix",
     "format": "prettier --write src/",
     "prebuild": "npm run build-sitemap",
     "build-sitemap": "node src/sitemap/sitemap.js"
@@ -16,13 +17,13 @@
   "dependencies": {
     "front-matter": "^4.0.2",
     "prismjs": "^1.30.0",
-    "typescript-eslint": "^8.54.0",
     "vite-plugin-prismjs": "^0.0.11",
     "vue": "^3.5.27",
     "vue-router": "^5.0.2",
     "xml": "^1.0.1"
   },
   "devDependencies": {
+    "typescript-eslint": "^8.54.0",
     "@iconify/vue": "^5.0.0",
     "@tailwindcss/postcss": "^4.1.18",
     "@types/prismjs": "^1.26.5",
