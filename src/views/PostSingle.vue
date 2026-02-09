@@ -144,9 +144,16 @@ onMounted(() => {
             'bg-base-100/50',
           ]">
             <input type="radio" name="my-accordion-3" />
-            <div class="collapse-title font-semibold">{{ post.title }}</div>
-            <div class="collapse-content indent-3 font-light">
-              <p>{{ post.excerpt }}</p>
+            <div class="collapse-title font-semibold text-pretty">{{ post.title }}</div>
+            <div class="collapse-content font-light">
+              <p class="mb-4 ms-2">{{ post.excerpt }}</p>
+
+              <div class="flex justify-start">
+                <a :href="`/blog/${post.path}`" class="btn btn-xs btn-ghost gap-2 group">
+                  Ler mais
+                  <Icon icon="hugeicons:arrow-right-01" class="transition-transform group-hover:translate-x-1" />
+                </a>
+              </div>
             </div>
           </div>
         </div>

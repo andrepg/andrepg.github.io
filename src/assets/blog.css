@@ -1,40 +1,28 @@
-@import 'tailwindcss';
-@plugin "daisyui";
+@import './base-styles.css';
 
-
-h1 {
-    @apply text-3xl
-}
-
-h2 {
-    @apply text-2xl
-}
-
-h3 {
-    @apply text-xl
-}
-
-h4 {
-    @apply text-lg
-}
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
 
 #article-body {
     @apply flex flex-col max-w-11/12 lg:max-w-8/12 mx-auto;
-
-    h1 {
-    }
+    font-family: 'Lora', serif;
+    font-size: 1.15rem;
+    line-height: 1.25;
+    letter-spacing: 0.012em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 
     h1,
     h2,
     h3 {
-        @apply font-serif tracking-wide mt-7 mb-3;
+        @apply font-serif tracking-wide mt-10 mb-4;
     }
 
     /**
         * Apply default article's paragraph style
         */
     p {
-        @apply my-3 indent-5;
+        @apply my-4 indent-8;
         word-break: normal;
     }
 
