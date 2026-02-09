@@ -2,7 +2,7 @@
 import { name, version } from "@/../package.json";
 
 import { Icon } from '@iconify/vue';
-import { HomepageMenu } from '@/data/HomepageMenu';
+import { HomepageMenu } from '@/data/NavigationMenu';
 import { onMounted, ref } from 'vue';
 
 const opaqueNavbar = ref(false);

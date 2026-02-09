@@ -4,19 +4,19 @@ import { nextTick, onMounted, ref } from 'vue'
 import ListContainer from '@/components/Layout/ListContainer.vue'
 import PostTimelineFeature from '../components/PostTimelineFeature.vue'
 
+import { SitemapBridge } from '@/router/sitemap'
+
 const isLoading = ref(true)
-
 const posts = ref([])
+const sitemapBridge = SitemapBridge.getInstance()
 
-const fetchPosts = () => fetch('/sitemap.json')
-  .then(response => processPosts(response))
-
-const processPosts = (response: Response) => response.json()
-  .then(sitemap => posts.value = sitemap)
-  .then(() => isLoading.value = false)
+const fetchPosts = async () => {
+  await sitemapBridge.load()
+  posts.value = sitemapBridge.all()
+  isLoading.value = false
+}
 
 onMounted(() => {
-  console.log('Fetching user posts')
   nextTick(() => fetchPosts())
 })
 </script>

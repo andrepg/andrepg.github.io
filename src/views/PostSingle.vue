@@ -8,8 +8,11 @@ import Prism from 'prismjs'
 import { transformContent } from '@/config/MarkdownTransformers';
 import BadgeElement from '@/components/BadgeElement.vue';
 import { Icon } from '@iconify/vue';
+import { SitemapBridge } from '@/router/sitemap';
 
 const { year, article } = useRoute().params;
+
+const sitemapBridge = SitemapBridge.getInstance();
 
 const postMetadata = ref({
   path: '',
@@ -39,19 +42,10 @@ const loadArticle = async () => {
   nextTick(() => setTimeout(() => Prism.highlightAll(), 750))
 }
 
-const loadSeries = async () => fetch('/sitemap.json').then(res => res.json())
-  .then(sitemap => {
-    console.log(sitemap)
-
-    const series = sitemap.filter(
-      post => post.serie === postMetadata.value.serie
-    );
-
-    postRelatedSeries.value = series.sort(
-      (a, b) => a.serie_part - b.serie_part
-    );
-  })
-  .catch(err => console.error(err))
+const loadSeries = async () => {
+  await sitemapBridge.load();
+  postRelatedSeries.value = sitemapBridge.bySeries(postMetadata.value.serie);
+}
 
 
 onMounted(() => {
