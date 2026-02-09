@@ -18,14 +18,19 @@ export const HomepageMenu = [
     menu: true,
     icon: 'hugeicons:quill-write-02',
     path: '/blog',
-    component: () => import('@/views/PostIndex.vue')
+    component: () => import('@/views/PostListView.vue')
   },
-
+  {
+    menu: false,
+    name: 'Posts - Series',
+    path: '/blog/series/:series',
+    component: () => import('@/views/PostListView.vue')
+  },
   {
     menu: false,
     name: 'Posts - Single',
     path: '/blog/:year/:article',
-    component: () => import('@/views/PostSingle.vue')
+    component: () => import('@/views/PostSingleView.vue')
   },
   {
     menu: false,

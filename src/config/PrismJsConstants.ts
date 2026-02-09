@@ -1,4 +1,4 @@
-export const PrismJsLanguages = [
+export const PrismJsLanguages: string[] = [
   'docker',
   'dockerfile',
   'gitignore',
@@ -22,7 +22,7 @@ export const PrismJsLanguages = [
   'shell'
 ];
 
-export const PrismJsPlugins = [
+export const PrismJsPlugins: string[] = [
   'show-language',
   'line-numbers',
   'match-braces'

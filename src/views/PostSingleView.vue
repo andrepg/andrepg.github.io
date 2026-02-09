@@ -1,7 +1,6 @@
 <script setup>
 import "@/assets/blog.css";
-
-import { nextTick, onBeforeMount, onMounted, ref, watch } from 'vue';
+import { computed, nextTick, onBeforeMount, onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import Prism from 'prismjs'
 
@@ -9,11 +8,11 @@ import { transformContent } from '@/config/MarkdownTransformers';
 import BadgeElement from '@/components/BadgeElement.vue';
 import { Icon } from '@iconify/vue';
 import { SitemapBridge } from '@/router/sitemap';
+import { slugify } from '@/utils/slugify';
 
 const { year, article } = useRoute().params;
 
 const sitemapBridge = SitemapBridge.getInstance();
-
 const postMetadata = ref({
   path: '',
   title: '',
@@ -28,6 +27,11 @@ const displayPost = ref(false);
 const postContent = ref(null);
 
 const postRelatedSeries = ref([]);
+
+const seriesUrl = computed(() => {
+  if (!postMetadata.value.serie) return '';
+  return `/blog/series/${slugify(postMetadata.value.serie)}`;
+})
 
 const loadArticle = async () => {
   const post = await import(`@blog/${year}/${article}.md`);
@@ -121,10 +125,10 @@ onMounted(() => {
           'join-vertical gap-0',
         ]">
         <div class="flex flex-col py-5 px-4 bg-base-100/30 join-item gap-2">
-          <span class="text-sm font-semibold tracking-wide uppercase flex items-center gap-2">
+          <a :href="seriesUrl" class="text-sm font-semibold tracking-wide uppercase flex items-center gap-2 link link-hover hover:text-accent">
             <Icon icon="hugeicons:book-open-02" class="inline-block text-xl" />
             {{ postMetadata.serie }}
-          </span>
+          </a>
 
           <p class="text-sm font-light">
             Este post faz parte de uma série de posts chamada <strong>{{ postMetadata.serie }}</strong>. Aqui está a lista de todos os posts da série:

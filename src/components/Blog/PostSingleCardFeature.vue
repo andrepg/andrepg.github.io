@@ -1,5 +1,4 @@
 <script setup>
-import CalendarIcon from '@/assets/CalendarIcon.vue'
 import { Icon } from '@iconify/vue'
 
 defineProps({

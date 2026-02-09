@@ -1,5 +1,5 @@
 <script setup>
-import { name, version } from "@/../package.json";
+import { version } from "@/../package.json";
 
 import { Icon } from '@iconify/vue';
 import { HomepageMenu } from '@/data/NavigationMenu';

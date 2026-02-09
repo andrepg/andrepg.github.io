@@ -1,7 +1,7 @@
 <script setup>
 import { RouterView } from 'vue-router'
 import Footer from "@/components/Layout/Footer.vue";
-import Navbar from './views/partials/NavbarFeature.vue';
+import Navbar from '@/components/NavbarFeature.vue';
 </script>
 
 <template>

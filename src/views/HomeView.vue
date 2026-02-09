@@ -1,8 +1,8 @@
 <script setup>
 import BubblesAnimation from '@/components/Layout/BubblesAnimation.vue'
-import MyProfile from './partials/ProfileCardFeature.vue';
-import RecentPostsFeature from './partials/RecentPostsFeature.vue';
-import RecomendationsFeature from './partials/RecomendationsFeature.vue';
+import MyProfile from '@/components/ProfileCardFeature.vue';
+import RecentPostsFeature from '@/components/Blog/RecentPostsFeature.vue';
+import RecomendationsFeature from '@/components/RecomendationsFeature.vue';
 </script>
 
 <template>

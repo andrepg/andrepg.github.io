@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Projects } from '@/data/Projects';
-import { Icon } from '@iconify/vue';
 import ProjectsListFeature from './ProjectsListFeature.vue'
 
 const projects = Projects.filter(project => project.recommended);

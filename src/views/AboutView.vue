@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import SectionWithHeader from '@/components/Layout/SectionWithHeader.vue';
-import ProjectsListFeature from '@/views/partials/ProjectsListFeature.vue';
+import ProjectsListFeature from '@/components/ProjectsListFeature.vue';
 import { Projects } from '@/data/Projects';
 import { Tecnologias } from '@/data/Tecnologias';
-import TechnologiesListFeature from '@/views/partials/TechnologiesListFeature.vue';
+import TechnologiesListFeature from '@/components/TechnologiesListFeature.vue';
 
 const projects = Projects;
 const tecnologias = Tecnologias;

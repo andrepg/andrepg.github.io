@@ -1,4 +1,4 @@
-const slugify = (text: string) => text.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w-]+/g, '')
+import { slugify } from '@/utils/slugify';
 
 const parseCheckboxes = (content: string) => {
     if (!content.includes('[x]') && !content.includes('[ ]')) {

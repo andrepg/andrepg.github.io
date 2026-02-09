@@ -1,6 +1,6 @@
 <script setup>
 import { nextTick, onMounted, ref } from "vue";
-import PostTimelineFeature from "../../components/PostTimelineFeature.vue";
+import PostTimelineFeature from "./PostTimelineFeature.vue";
 import { Icon } from "@iconify/vue";
 
 import { SitemapBridge } from "@/router/sitemap";
