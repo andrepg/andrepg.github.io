@@ -34,7 +34,7 @@ h4 {
         * Apply default article's paragraph style
         */
     p {
-        @apply my-5 indent-5;
+        @apply my-3 indent-5;
         word-break: normal;
     }
 

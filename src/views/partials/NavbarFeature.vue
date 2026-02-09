@@ -65,7 +65,7 @@ onMounted(() => {
                         'not-dark:btn-soft',
                         'dark:btn-primary',
                     ]">
-                        <Icon icon="mdi:hamburger" class="dark:text-neutral-content size-5" />
+                        <Icon icon="mdi:hamburger" class="size-5" />
                     </label>
                 </div>
 
@@ -102,8 +102,7 @@ onMounted(() => {
                 'duration-300',
                 'delay-200',
                 'ease-in-out',
-                opaqueNavbar ? 'text-primary-content' : 'text-primary',
-                opaqueNavbar ? 'dark:text-neutral-content' : 'dark:text-primary-content',
+                opaqueNavbar ? 'text-neutral-content' : 'text-primary',
                 opaqueNavbar ? 'translate-x-0' : 'translate-x-[90%]'
             ]">{{ title }}</h1>
         </div>

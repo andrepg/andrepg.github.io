@@ -41,12 +41,12 @@ const getPostYear = (date) => new Date(Date.parse(date)).toLocaleDateString('pt-
     'group/post-single',
     'transition-all duration-0 ease',
     'md:flex-row',
-    'md:gap-2',
+    'md:gap-4',
     'md:justify-center',
     'md:rounded-lg',
     'md:shadow-lg',
     'md:bg-primary/5',
-    'md:hover:bg-primary/20',
+    'md:hover:text-primary',
     'lg:gap-6',
   ]">
     <!-- Metadata square -->
@@ -116,6 +116,8 @@ const getPostYear = (date) => new Date(Date.parse(date)).toLocaleDateString('pt-
       'md:my-3',
       'lg:self-center',
     ]">
+      <small v-if="post.serie" class="text-xs font-semibold tracking-wide uppercase">{{ post.serie }}</small>
+
       <h3 class="leading-none my-0">{{ post.title }}</h3>
       <p class="leading-tight">{{ post.excerpt }}</p>
     </div>
