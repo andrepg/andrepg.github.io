@@ -2,8 +2,10 @@
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8">
+
   <title>André Paul Grandsire</title>
 
   <meta name="google-site-verification" content="9ohRRNaoFMcCz6ru0CCyRYJku-JQVrjAZ_x4PxbIGA8" />
@@ -16,14 +18,101 @@
   <meta name="twitter:card" content="summary" />
 
   <link rel="canonical" href="https://andrepg.github.io/" />
-  <script type="module" src="src/main.js"></script>
 
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <script>
+    /**
+     * Current requested resource
+     * @type {string}
+     */
+    const resource = location.href
+
+    /**
+     * We will redirect only if the page belongs to blog namespace
+     */
+    if (HomepageMenu.find(menu => resource.includes(menu.path))) {
+      sessionStorage.redirect = resource
+
+      refresh = document.createElement('meta')
+      refresh.content = '0;URL=\'/\''
+      refresh.httpEquiv = 'refresh'
+
+      document.head.append(refresh)
+
+      window.location.replace('/')
+    }
+
+    setTimeout(() => document.getElementById('main').classList.toggle('invisible'), 100)
+  </script>
+
+  <style>
+      * {
+          transition: all 0.6s;
+      }
+
+      html {
+          height: 100%;
+      }
+
+      body {
+          font-family: 'Lato', sans-serif;
+          color: #888;
+          margin: 0;
+      }
+
+      .invisible {
+          opacity: 0;
+      }
+
+      .fof {
+          display: table-cell;
+          vertical-align: middle;
+      }
+
+      .fof h1 {
+          font-size: 50px;
+          display: inline-block;
+          padding-right: 12px;
+          animation: type .5s alternate infinite;
+      }
+
+      @keyframes type {
+          from {
+              box-shadow: inset -3px 0 0 #888;
+          }
+          to {
+              box-shadow: inset -3px 0 0 transparent;
+          }
+      }
+
+      @media (prefers-color-scheme: dark) {
+          body {
+            background: rgb(17 24 39)
+          }
+      }
+  </style>
 </head>
-<body class="min-h-screen">
-  <div id="app" class="flex flex-col min-h-screen"></div>
+
+
+<body class="flex flex-col min-h-screen dark:bg-gray-900 dark:text-gray-200">
+  <div class="flex flex-col h-full justify-between min-h-screen">
+    <div id="main" class="invisible w-full flex-1 flex flex-col items-center justify-center">
+      <div class="fof">
+        <h1>Error 404</h1>
+        <p>Parece que essa página foi perdida.</p>
+      </div>
+    </div>
+  
+    <footer class="flex flex-col text-xs py-5 px-3 text-white w-full justify-center bg-purple-900 shadow-inner z-10 mt-4">
+      <span>Made with 🤍 and VueJS</span>
+      <span>Hosted by 🤖 GitHub Pages</span>
+    </footer>
+  </div>
 </body>
 </html>

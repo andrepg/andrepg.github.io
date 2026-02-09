@@ -24,6 +24,15 @@
   <link rel="manifest" href="/site.webmanifest">
 </head>
 <body class="min-h-screen">
+  <script>
+    const redirect= sessionStorage.redirect;
+    delete sessionStorage.redirect;
+
+    if (redirect && redirect !== location.href) {
+      history.replaceState(null, null, redirect);
+    }
+  </script>
+
   <div id="app" class="flex flex-col min-h-screen"></div>
 </body>
 </html>
