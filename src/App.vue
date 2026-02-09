@@ -1,6 +1,6 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import Footer from "@/components/Layout/Footer.vue";
+import FooterFeature from "@/components/Layout/FooterFeature.vue";
 import Navbar from '@/components/NavbarFeature.vue';
 </script>
 
@@ -12,7 +12,7 @@ import Navbar from '@/components/NavbarFeature.vue';
       <div class="flex flex-col w-full self-start">
         <RouterView />
       </div>
-      <Footer />
+      <FooterFeature />
     </main>
   </Suspense>
 </template>

@@ -5,4 +5,5 @@ export interface Post {
   category: string[];
   tags: string[];
   published_at: string;
+  serie?: string;
 }

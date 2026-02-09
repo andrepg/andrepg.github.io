@@ -1,5 +1,10 @@
 import { slugify } from '@/utils/slugify';
 
+/**
+ * 
+ * @param content string 
+ * @returns string
+ */
 const parseCheckboxes = (content: string) => {
     if (!content.includes('[x]') && !content.includes('[ ]')) {
         return content;
@@ -17,19 +22,24 @@ const parseCheckboxes = (content: string) => {
         .replace(/\[ \]/g, checkbox.replace('checked', ''));
 }
 
+/**
+ * 
+ * @param content string 
+ * @returns string
+ */
 const parseAnchors = (content: string) => {
     if (!content.includes('[[#')) {
         return content;
     }
 
-    return content.replace(/\[\[#([^\]]+)\]\]/g, (_, name) => {
+    return content.replace(/\[\[#([^\]]+)\]\]/g, (_match: string, name: string) => {
         const slug = slugify(name);
         return `<a href="#${slug}">${name}</a>`;
     });
 }
 
 const parseHeaderIds = (content: string) => {
-    return content.replace(/<(h[1-6])(.*?)>(.*?)<\/\1>/gi, (match, tag, attrs, text) => {
+    return content.replace(/<(h[1-6])(.*?)>(.*?)<\/\1>/gi, (match: string, tag: string, attrs: string, text: string) => {
         if (attrs.includes('id=')) {
             return match;
         }

@@ -9,7 +9,7 @@ export class SitemapGenerator {
 
   #encoding = '<?xml version="1.0" encoding="UTF-8" ?>'
 
-  constructor({ outFile, host }) {
+  constructor({ host }) {
     this.host = host
   }
 

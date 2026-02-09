@@ -11,7 +11,7 @@ const isLoading = ref(true)
 const posts = ref([])
 const sitemapBridge = SitemapBridge.getInstance()
 
-const seriesFilter = computed((): string => route.params.series.toString())
+const seriesFilter = computed<string>(() => route.params.series.toString())
 
 const pageTitle = computed(() => {
   if (seriesFilter.value) {
@@ -23,7 +23,7 @@ const pageTitle = computed(() => {
 
 const fetchPosts = async () => {
   await sitemapBridge.load()
-  
+
   if (seriesFilter.value) {
     posts.value = sitemapBridge.bySeriesSlug(seriesFilter.value)
   } else {
@@ -43,22 +43,34 @@ onMounted(() => {
     <h1 class="text-2xl font-semibold flex flex-col md:w-3/4 max-w-[70w]">
       {{ pageTitle }}
 
-      <small v-if="!seriesFilter" class="opacity-70 font-normal font-md w-full leading-snug flex-1">
+      <small
+        v-if="!seriesFilter"
+        class="opacity-70 font-normal font-md w-full leading-snug flex-1"
+      >
         Aqui eu escrevo meus devaneios, registro minhas aventuras de trabalho e compartilho
         experiências da profissão.
       </small>
-      <small v-else class="opacity-70 font-normal font-md w-full leading-snug flex-1">
+      <small
+        v-else
+        class="opacity-70 font-normal font-md w-full leading-snug flex-1"
+      >
         Listando todos os artigos desta série.
       </small>
     </h1>
   </SectionWithHeader>
 
-  <div v-if="isLoading" class="w-full px-6 max-w-5xl mx-auto py-12 flex flex-col items-center">
-    <span class="loading loading-dots"></span>
+  <div
+    v-if="isLoading"
+    class="w-full px-6 max-w-5xl mx-auto py-12 flex flex-col items-center"
+  >
+    <span class="loading loading-dots" />
     <p>Carregando posts...</p>
   </div>
 
-  <ul v-else class="py-4 px-2 md:px-4 lg:w-5/6 mx-auto list">
+  <ul
+    v-else
+    class="py-4 px-2 md:px-4 lg:w-5/6 mx-auto list"
+  >
     <PostTimelineFeature :posts="posts" />
   </ul>
 </template>

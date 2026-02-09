@@ -1,6 +1,6 @@
-<script setup>
+<script setup lang="ts">
 import "@/assets/blog.css";
-import { computed, nextTick, onBeforeMount, onMounted, ref, watch } from 'vue';
+import { computed, nextTick, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import Prism from 'prismjs'
 
@@ -9,11 +9,13 @@ import BadgeElement from '@/components/BadgeElement.vue';
 import { Icon } from '@iconify/vue';
 import { SitemapBridge } from '@/router/sitemap';
 import { slugify } from '@/utils/slugify';
+import type { Post } from '@/data/Posts';
 
 const { year, article } = useRoute().params;
 
 const sitemapBridge = SitemapBridge.getInstance();
-const postMetadata = ref({
+
+const postMetadata = ref<Post>({
   path: '',
   title: '',
   excerpt: '',
@@ -24,9 +26,9 @@ const postMetadata = ref({
 
 const displayPost = ref(false);
 
-const postContent = ref(null);
+const sanitizedHtmlPostContent = ref<string | null>(null);
 
-const postRelatedSeries = ref([]);
+const postRelatedSeries = ref<Post[]>([]);
 
 const seriesUrl = computed(() => {
   if (!postMetadata.value.serie) return '';
@@ -41,14 +43,14 @@ const loadArticle = async () => {
     category: post.attributes.category[0] ?? '',
   };
 
-  postContent.value = transformContent(post.html);
+  sanitizedHtmlPostContent.value = transformContent(post.html);
 
   nextTick(() => setTimeout(() => Prism.highlightAll(), 750))
 }
 
 const loadSeries = async () => {
   await sitemapBridge.load();
-  postRelatedSeries.value = sitemapBridge.bySeries(postMetadata.value.serie);
+  postRelatedSeries.value = sitemapBridge.bySeries(postMetadata.value?.serie ?? '');
 }
 
 
@@ -90,7 +92,7 @@ onMounted(() => {
       </div>
 
       <section
-        v-else="displayPost"
+        v-else
         :class="[
           'card',
           'bg-neutral',
@@ -204,9 +206,9 @@ onMounted(() => {
       </section>
     </Transition>
 
+    <!-- eslint-disable-next-line vue/no-v-html -->
     <article
       id="article-body"
-      key="article"
       :class="[
         'text-base',
         'line-numbers',
@@ -219,7 +221,7 @@ onMounted(() => {
         !displayPost && 'opacity-0 delay-0 duration-200',
         displayPost && 'opacity-100 delay-1000 duration-1000',
       ]"
-      v-html="postContent"
+      v-html="sanitizedHtmlPostContent"
     />
   </div>
 </template>

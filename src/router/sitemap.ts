@@ -15,9 +15,7 @@ export interface Post {
 export class SitemapBridge {
   private static instance: SitemapBridge;
   private _posts: Post[] = [];
-  private isLoaded: boolean = false;
-
-  private constructor() {}
+  private isLoaded = false;
 
   public static getInstance(): SitemapBridge {
     if (!SitemapBridge.instance) {
@@ -35,7 +33,7 @@ export class SitemapBridge {
 
     try {
       const response = await fetch('/sitemap.json');
-      this._posts = await response.json();
+      this._posts = (await response.json()) as Post[];
       this.isLoaded = true;
       return this._posts;
     } catch (error) {
@@ -59,13 +57,13 @@ export class SitemapBridge {
   public bySeries(serieName: string): Post[] {
     return this._posts
       .filter(post => post.serie === serieName)
-      .sort((a, b) => (a.serie_part || 0) - (b.serie_part || 0));
+      .sort((a, b) => (a.serie_part ?? 0) - (b.serie_part ?? 0));
   }
 
   public bySeriesSlug(slug: string): Post[] {
     return this._posts
       .filter(post => post.serie && slugify(post.serie) === slug)
-      .sort((a, b) => (a.serie_part || 0) - (b.serie_part || 0));
+      .sort((a, b) => (a.serie_part ?? 0) - (b.serie_part ?? 0));
   }
 
   public byCategory(category: string): Post[] {
@@ -86,7 +84,7 @@ export class SitemapBridge {
    * Sorts posts by publication date, descending (newest first).
    */
   private sortByDate(posts: Post[]): Post[] {
-    return [...posts].sort((a, b) => 
+    return [...posts].sort((a, b) =>
       new Date(b.published_at).getTime() - new Date(a.published_at).getTime()
     );
   }
