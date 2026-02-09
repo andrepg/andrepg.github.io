@@ -43,7 +43,7 @@ function addArticleToSitemap(item) {
 
 function main() {
   report(`Building blog sitemap for ${__blogRoot}`)
-  let articleList = getArticlesList()
+  const articleList = getArticlesList()
 
   report(`\t${articleList.length} articles found.\nCollecting front-matter properties.`)
   articleList.forEach(addArticleToSitemap)

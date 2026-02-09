@@ -34,7 +34,7 @@ export class SitemapGenerator {
   }
 
   generateSitemap(pages) {
-    let sitemap = {
+    const sitemap = {
       urlset: this.#generateUrlSet(pages)
     }
 

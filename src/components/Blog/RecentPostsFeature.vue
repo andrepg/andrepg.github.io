@@ -25,24 +25,32 @@ onMounted(() => {
   <div class="card bg-base-300/85">
     <div class="card-body">
       <h2 class="card-title m-0 flex flex-row items-center gap-2">
-        <Icon icon="hugeicons:quill-write-02" class="text-2xl" />
+        <Icon
+          icon="hugeicons:quill-write-02"
+          class="text-2xl"
+        />
         Postagens Recentes
       </h2>
 
       <div class="gap-8">
-        <PostTimelineFeature v-if="posts.length" :posts="posts" />
+        <PostTimelineFeature
+          v-if="posts.length"
+          :posts="posts"
+        />
 
-        <a href="/blog" :class="[
-          'btn',
-          'btn-sm',
-          'btn-block',
-          'btn-outline',
-          'hover:btn-primary',
-        ]">
+        <a
+          href="/blog"
+          :class="[
+            'btn',
+            'btn-sm',
+            'btn-block',
+            'btn-outline',
+            'hover:btn-primary',
+          ]"
+        >
           Ver postagens mais antigas
         </a>
       </div>
-
     </div>
   </div>
 </template>

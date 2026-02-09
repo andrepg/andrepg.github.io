@@ -1,25 +1,30 @@
 <template>
-  <ul id="bubbles"
+  <ul
+    id="bubbles"
     :class="[
       'fixed',
       'bg-primary/4',
       'w-full',
       'h-full',
       'overflow-clip'
-    ]">
-    <li v-for="bubble in Array.from({ length: 12 })" :key="'bubble-' + bubble" :class="[
-      'absolute',
-      'list-none',
-      'rounded-full!',
-      'will-change-transform',
-      'transforom-gpu',
-      'bg-primary/5',
-      'bottom-0',
-      'z-0',
-      'm-0',
-      'p-0',
-    ]">
-    </li>
+    ]"
+  >
+    <li
+      v-for="bubble in Array.from({ length: 12 })"
+      :key="'bubble-' + bubble"
+      :class="[
+        'absolute',
+        'list-none',
+        'rounded-full!',
+        'will-change-transform',
+        'transforom-gpu',
+        'bg-primary/5',
+        'bottom-0',
+        'z-0',
+        'm-0',
+        'p-0',
+      ]"
+    />
   </ul>
 </template>
 

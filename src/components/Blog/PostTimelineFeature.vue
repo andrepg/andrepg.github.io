@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import { Post } from '@/data/Posts';
 import PostSingleCardFeature from './PostSingleCardFeature.vue';
 
 defineProps<{
-	posts: any[];
+	posts: Array<Post>
 }>()
 </script>
 

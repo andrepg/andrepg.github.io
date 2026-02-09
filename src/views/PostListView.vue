@@ -11,7 +11,7 @@ const isLoading = ref(true)
 const posts = ref([])
 const sitemapBridge = SitemapBridge.getInstance()
 
-const seriesFilter = computed(() => route.params.series as string)
+const seriesFilter = computed((): string => route.params.series.toString())
 
 const pageTitle = computed(() => {
   if (seriesFilter.value) {
