@@ -42,6 +42,12 @@ export const Tecnologias = [
         recommended: true
     },
     {
+        label: "VueJS,
+        target: 'https://vuejs.org',
+        icon: 'material-icon-theme:vue',
+        recomended: true,
+    },
+    {
         label: 'Node.js',
         target: 'https://nodejs.org/',
         icon: 'logos:nodejs-icon',
