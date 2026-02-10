@@ -11,7 +11,7 @@
     "lint": "eslint -c eslint.config.js",
     "lint:fix": "eslint -c eslint.config.js --fix",
     "format": "prettier --write src/",
-    "prebuild": "npm run build-sitemap",
+    "prebuild": "yarn build-sitemap",
     "build-sitemap": "tsx src/sitemap/sitemap.ts"
   },
   "dependencies": {
