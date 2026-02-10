@@ -6,15 +6,27 @@ export const Tecnologias = [
         recommended: true
     },
     {
+        label: "HTML",
+        target: "https://www.w3.org/html/",
+        icon: "vscode-icons:file-type-html",
+        recommended: true
+    },
+    {
         label: "CSS",
-        target: "https://html.com/",
-        icon: "logos:html-5",
+        target: "https://www.w3.org/Style/CSS/",
+        icon: "vscode-icons:file-type-css2",
         recommended: true
     },
     {
         label: 'PHP',
         target: 'https://php.net/',
-        icon: 'logos:php',
+        icon: 'ri:php-line',
+        recommended: true
+    },
+    {
+        label: 'WordPress',
+        target: 'https://wordpress.org/',
+        icon: 'ic:baseline-wordpress',
         recommended: true
     },
     {
@@ -56,25 +68,25 @@ export const Tecnologias = [
     {
         label: 'GitHub',
         target: 'https://github.com/',
-        icon: 'logos:github-icon',
+        icon: 'mdi:github',
         recommended: true
     },
     {
         label: 'AWS',
         target: 'https://aws.amazon.com/',
-        icon: 'logos:aws',
+        icon: 'mdi:aws',
         recommended: true
     },
     {
         label: 'Docker',
         target: 'https://www.docker.com/',
-        icon: 'logos:docker-icon',
+        icon: 'material-icon-theme:docker',
         recommended: true
     },
     {
         label: 'Linux',
         target: 'https://www.linux.org/',
-        icon: 'logos:linux-tux',
+        icon: 'uil:linux',
         recommended: true
     },
     {

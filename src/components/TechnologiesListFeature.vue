@@ -41,13 +41,24 @@ defineProps<{
             'items-center',
             'py-4',
             'btn',
+            'btn-soft',
             'btn-square',
             'tooltip',
           ]"
         >
           <Icon
             :icon="item.icon"
-            class="size-20 max-h-12 group-hover/project-item:scale-110 transition-transform duration-300"
+            :class="[
+              'size-16',
+              'max-h-12',
+              'will-change-transform',
+              'transition-all',
+              'duration-100',
+              'saturate-0',
+              'group-hover/project-item:scale-110',
+              'group-hover/project-item:saturate-100',
+              item.icon.includes('next') && 'fill-transparent group-hover/project-item:fill-inherit',
+            ]"
           />
           <!-- <span>{{ item.label }}</span> -->
         </div>
