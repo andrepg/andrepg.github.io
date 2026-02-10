@@ -18,9 +18,9 @@ export const HomepageLinks = [
     blank: ''
   },
   {
-    label: 'Curriculum',
+    label: 'Currículo',
     icon: 'hugeicons:briefcase-01',
-    target: 'https://andrepg.github.io/curriculum',
+    target: 'https://andrepg.github.io/curriculo',
     blank: ''
   }
 ];

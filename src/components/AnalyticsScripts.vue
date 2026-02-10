@@ -22,3 +22,7 @@ if (import.meta.env.VITE_ENV == 'production') {
   console.log("Tracking scripts disabled.")
 }
 </script>
+
+<template>
+  <div></div>
+</template>

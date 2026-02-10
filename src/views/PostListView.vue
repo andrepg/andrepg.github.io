@@ -5,13 +5,16 @@ import { useRoute } from 'vue-router'
 import PostTimelineFeature from '@/components/Blog/PostTimelineFeature.vue'
 
 import { SitemapBridge } from '@/router/sitemap'
+import { Post } from '@/data/Posts'
 
 const route = useRoute()
 const isLoading = ref(true)
-const posts = ref([])
+
+const posts = ref<Post[]>([])
+
 const sitemapBridge = SitemapBridge.getInstance()
 
-const seriesFilter = computed<string>(() => route.params.series.toString())
+const seriesFilter = computed<string>(() => route.params.series?.toString() ?? '');
 
 const pageTitle = computed(() => {
   if (seriesFilter.value) {
