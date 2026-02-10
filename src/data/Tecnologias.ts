@@ -42,7 +42,7 @@ export const Tecnologias = [
         recommended: true
     },
     {
-        label: "VueJS,
+        label: 'VueJS',
         target: 'https://vuejs.org',
         icon: 'material-icon-theme:vue',
         recomended: true,
