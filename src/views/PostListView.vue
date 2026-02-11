@@ -5,7 +5,7 @@ import { useRoute } from 'vue-router'
 import PostTimelineFeature from '@/components/Blog/PostTimelineFeature.vue'
 
 import { SitemapBridge } from '@/router/sitemap'
-import { Post } from '@data/Posts'
+import { Post } from '@/interfaces'
 
 const route = useRoute()
 const isLoading = ref(true)
@@ -62,18 +62,7 @@ onMounted(() => {
     </h1>
   </SectionWithHeader>
 
-  <div
-    v-if="isLoading"
-    class="w-full px-6 max-w-5xl mx-auto py-12 flex flex-col items-center"
-  >
-    <span class="loading loading-dots" />
-    <p>Carregando posts...</p>
+  <div class="max-w-5xl mx-auto md:px-5">
+    <PostTimelineFeature :posts="posts" :is-loading="isLoading" />
   </div>
-
-  <ul
-    v-else
-    class="py-4 px-2 md:px-4 lg:w-5/6 mx-auto list"
-  >
-    <PostTimelineFeature :posts="posts" />
-  </ul>
 </template>
