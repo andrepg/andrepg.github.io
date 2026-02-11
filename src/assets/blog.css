@@ -15,7 +15,7 @@
     h1,
     h2,
     h3 {
-        @apply font-serif tracking-wide mt-10 mb-4;
+        @apply font-serif mt-10 mb-4;
     }
 
     /**
@@ -38,7 +38,7 @@
     ul,
     ol {
         word-break: normal;
-        @apply list list-inside leading-tight gap-2 card card-border px-7 py-8 bg-neutral/40;
+        @apply list list-inside leading-tight gap-2 card card-border px-7 py-8 bg-neutral/10 dark:bg-neutral/40;
 
         &:is(ul) {
             @apply list-disc;
@@ -63,7 +63,7 @@
     p code,
     li code,
     blockquote code {
-        @apply indent-0 px-2 py-0.5 badge badge-neutral font-light text-sm;
+        @apply indent-0 px-2 py-0.5 badge badge-neutral font-light text-sm leading-tight;
     }
 
     /**

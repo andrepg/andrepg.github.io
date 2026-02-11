@@ -95,7 +95,8 @@ onMounted(() => {
         v-else
         :class="[
           'card',
-          'bg-neutral',
+          'bg-base-200',
+          'dark:bg-neutral',
           'transition-all',
         ]"
       >
