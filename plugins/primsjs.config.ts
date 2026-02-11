@@ -1,4 +1,4 @@
-export const PrismJsLanguages: string[] = [
+const SupportedLanguages: string[] = [
   'docker',
   'dockerfile',
   'gitignore',
@@ -22,8 +22,15 @@ export const PrismJsLanguages: string[] = [
   'shell'
 ];
 
-export const PrismJsPlugins: string[] = [
+const SupportedPlugins: string[] = [
   'show-language',
   'line-numbers',
   'match-braces'
 ];
+
+export const PrismJsConfig = {
+  css: true,
+  theme: 'tomorrow',
+  languages: SupportedLanguages,
+  plugins: SupportedPlugins
+}

@@ -4,7 +4,7 @@ import { computed, nextTick, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import Prism from 'prismjs'
 
-import { transformContent } from '@/config/MarkdownTransformers';
+import { transformContent } from '@/utils/transformers';
 import BadgeElement from '@/components/BadgeElement.vue';
 import { Icon } from '@iconify/vue';
 import { SitemapBridge } from '@/router/sitemap';

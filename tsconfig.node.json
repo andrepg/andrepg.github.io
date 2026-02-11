@@ -8,12 +8,22 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "noEmit": true,
-    "allowJs": true
+    "allowJs": true,
+
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@blog/*": ["./blog/*"],
+      "@public/*": ["./public/*"],
+      "@data/*": ["./data/*"],
+      "@plugins/*": ["./plugins/*"]
+    } 
   },
   "include": [
     "vite.config.js",
     "vitest.config.js",
     "eslint.config.js",
-    "postcss.config.js"
+    "postcss.config.js",
+    "plugins/**/*.ts"
   ]
 }
