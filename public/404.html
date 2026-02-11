@@ -26,6 +26,15 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
+  <noscript>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.15/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+      #main {
+        opacity: 1 !important;
+      }
+    </style>
+  </noscript>
+
   <script>
     /**
      * Current requested resource
@@ -40,7 +49,7 @@
 
     if (resource.includes('blog') || resource.includes('curriculo')) {
       console.log("Redirecting user to App")
-      sessionStorage.setItem('redirect',resource)
+      sessionStorage.setItem('redirect', resource)
 
       refresh = document.createElement('meta')
 
@@ -104,6 +113,13 @@
 
 
 <body class="flex flex-col min-h-screen dark:bg-gray-900 dark:text-gray-200">
+  <noscript>
+    <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 sticky top-0 z-50" role="alert">
+      <p class="font-bold">JavaScript Desativado</p>
+      <p>Para uma melhor experiência e para que os redirecionamentos automáticos funcionem, por favor, ative o JavaScript.</p>
+    </div>
+  </noscript>
+
   <div class="flex flex-col h-full justify-between min-h-screen">
     <div id="main" class="opacity-0 w-full flex-1 flex flex-col items-center justify-center">
       <div class="fof">
