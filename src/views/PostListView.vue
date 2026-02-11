@@ -5,7 +5,7 @@ import { useRoute } from 'vue-router'
 import PostTimelineFeature from '@/components/Blog/PostTimelineFeature.vue'
 
 import { SitemapBridge } from '@/router/sitemap'
-import { Post } from '@/data/Posts'
+import { Post } from '@data/Posts'
 
 const route = useRoute()
 const isLoading = ref(true)

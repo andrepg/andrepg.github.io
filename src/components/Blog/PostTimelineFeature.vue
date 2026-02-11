@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Post } from '@/data/Posts';
+import type { Post } from '@/interfaces';
 import PostSingleCardFeature from './PostSingleCardFeature.vue';
 
 defineProps<{

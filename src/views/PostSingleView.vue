@@ -9,7 +9,7 @@ import BadgeElement from '@/components/BadgeElement.vue';
 import { Icon } from '@iconify/vue';
 import { SitemapBridge } from '@/router/sitemap';
 import { slugify } from '@/utils/slugify';
-import type { Post } from '@/data/Posts';
+import type { Post } from '@/interfaces';
 
 const { year, article } = useRoute().params;
 

@@ -1,5 +1,5 @@
 <script setup>
-import { HomepageLinks } from "@/data/ProfileIcons";
+import { HomepageLinks } from "@data/ProfileIcons";
 import { Icon } from "@iconify/vue";
 </script>
 
