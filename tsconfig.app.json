@@ -29,7 +29,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@blog/*": ["./blog/*"],
-      "@public/*": ["./public/*"]
+      "@public/*": ["./public/*"],
+      "@data/*": ["./data/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.tsx", "src/**/*.jsx", "src/**/*.vue", "src/**/*.d.ts"]

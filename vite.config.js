@@ -33,6 +33,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@data': fileURLToPath(new URL('./data', import.meta.url)),
       '@blog': fileURLToPath(new URL('./blog', import.meta.url)),
       '@public': fileURLToPath(new URL('./public', import.meta.url))
     }
