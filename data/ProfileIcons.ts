@@ -14,13 +14,13 @@ export const HomepageLinks = [
   {
     label: 'Blog',
     icon: 'hugeicons:quill-write-02',
-    target: 'https://andrepg.github.io/blog',
+    target: '/blog',
     blank: ''
   },
   {
     label: 'Currículo',
     icon: 'hugeicons:briefcase-01',
-    target: 'https://andrepg.github.io/curriculo',
+    target: '/curriculo',
     blank: ''
   }
 ];
