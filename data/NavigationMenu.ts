@@ -1,4 +1,6 @@
-export const HomepageMenu = [
+import { NavigationMenu } from '@/interfaces';
+
+export const HomepageMenu: NavigationMenu[] = [
   {
     name: 'Homepage',
     menu: true,
@@ -24,22 +26,27 @@ export const HomepageMenu = [
     menu: false,
     name: 'Posts - Series',
     path: '/blog/series/:series',
+    icon: '',
     component: () => import('@/views/PostListView.vue')
   },
   {
     menu: false,
     name: 'Posts - Single',
+    icon: '',
     path: '/blog/:year/:article',
     component: () => import('@/views/PostSingleView.vue')
   },
   {
     menu: false,
     name: 'Catch All',
+    icon: '',
     path: '/:catchAll(.*)',
     component: () => {
       console.log('Redirecting to 404');
       sessionStorage.removeItem('redirect');
       window.location.replace('/404.html');
+
+      return Promise.resolve(null);
     }
   }
 ];
