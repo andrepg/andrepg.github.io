@@ -36,17 +36,4 @@ export const HomepageMenu: NavigationMenu[] = [
     path: '/blog/:year/:article',
     component: () => import('@/views/PostSingleView.vue')
   },
-  {
-    menu: false,
-    name: 'Catch All',
-    icon: '',
-    path: '/:catchAll(.*)',
-    component: () => {
-      console.log('Redirecting to 404');
-      sessionStorage.removeItem('redirect');
-      window.location.replace('/404.html');
-
-      return Promise.resolve(null);
-    }
-  }
 ];
