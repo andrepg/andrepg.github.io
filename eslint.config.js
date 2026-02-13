@@ -11,7 +11,6 @@ export default tseslint.config(
       '**/dist/**',
       '**/node_modules/**',
       '**/public/**',
-      'src/sitemap/sitemap.js',
       'src/env.d.ts',
     ],
   },
