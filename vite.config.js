@@ -1,4 +1,5 @@
 import { fileURLToPath, URL } from 'node:url'
+import path from 'node:path'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -8,6 +9,7 @@ import prismjsPlugin from 'vite-plugin-prismjs'
 
 import { PrismJsConfig } from './plugins/primsjs.config.ts'
 import { MarkdownRenderConfig } from './plugins/markdown-render.config.ts'
+import { getMarkdownBlogRoutes } from './src/utils/ssg.ts'
 
 export default defineConfig({
   plugins: [
@@ -22,6 +24,14 @@ export default defineConfig({
       '@data': fileURLToPath(new URL('./data', import.meta.url)),
       '@blog': fileURLToPath(new URL('./blog', import.meta.url)),
       '@public': fileURLToPath(new URL('./public', import.meta.url))
+    }
+  },
+
+  ssgOptions: {
+    includedRoutes() {
+      return getMarkdownBlogRoutes({ 
+        searchPath: path.resolve(__dirname, './blog'),
+      });
     }
   }
 })
