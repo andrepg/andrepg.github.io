@@ -1,4 +1,6 @@
-<script>
+<script setup>
+import { onMounted } from 'vue';
+
 function setupTagManager(w, d, s, l, i) {
   w[l] = w[l] || []; w[l].push({
     'gtm.start':
@@ -14,13 +16,15 @@ function setupMSClarity(c, l, a, r, i, t, y) {
   y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
 }
 
-if (import.meta.env.VITE_ENV == 'production') {
-  console.log("Enabling tracking scripts")
-  setupTagManager(window, document, 'script', 'dataLayer', 'GTM-M3XF5L6')
-  setupMSClarity(window, document, 'clarity', 'script', 'mm8qkhz9hd')
-} else {
-  console.log("Tracking scripts disabled.")
-}
+onMounted(() => {
+  if (import.meta.env.VITE_ENV == 'production') {
+    console.log("Enabling tracking scripts")
+    setupTagManager(window, document, 'script', 'dataLayer', 'GTM-M3XF5L6')
+    setupMSClarity(window, document, 'clarity', 'script', 'mm8qkhz9hd')
+  } else {
+    console.log("Tracking scripts disabled.")
+  }
+})
 </script>
 
 <template>

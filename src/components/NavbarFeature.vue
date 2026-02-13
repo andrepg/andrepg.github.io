@@ -1,21 +1,26 @@
-<script setup>
-import { version } from "@/../package.json";
+<script setup lang="ts">
+import { version } from "../../package.json";
 
 import { Icon } from '@iconify/vue';
 import { HomepageMenu } from '@data/NavigationMenu';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, computed } from 'vue';
+import { useRoute } from 'vue-router';
 
+const route = useRoute();
 const opaqueNavbar = ref(false);
 
-let title = "";
-
-if (window.location.pathname === "/curriculo") {
-    title = "Currículo";
-}
-
-if (window.location.pathname.includes('blog')) {
-    title = "Blog";
-}
+const title = computed(() => {
+    // During SSR or initial load, route might not be fully populated
+    const path = route?.path || "";
+    
+    if (path === "/curriculo") {
+        return "Currículo";
+    }
+    if (path.includes('blog')) {
+        return "Blog";
+    }
+    return "";
+});
 
 const scrollToTop = () => {
     window.scrollTo({
