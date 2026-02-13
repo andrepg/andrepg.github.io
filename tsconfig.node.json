@@ -24,6 +24,7 @@
     "vitest.config.js",
     "eslint.config.js",
     "postcss.config.js",
-    "plugins/**/*.ts"
+    "plugins/**/*.ts",
+    "src/utils/ssg.ts"
   ]
 }
