@@ -2,36 +2,19 @@ import { readdirSync } from 'node:fs'
 import path from 'node:path'
 
 /**
- * Searches for all markdown files in a directory and returns them as formatted route paths.
- * 
- * @param baseDir - The directory where the markdown files are located.
- * @param routePrefix - The prefix to add to the returned routes (e.g., '/blog').
- * @returns An array of route strings.
+ * Recursively searches for all markdown files in a directory and returns them as formatted route paths.
+ * Useful for Vite SSG to determine which routes to render during build.
+ *
+ * @param options - Configuration object for searching routes.
+ * @param options.searchPath - The current directory to search within.
+ * @param options.rootPath - The root blog directory used to calculate the relative path (defaults to searchPath).
+ * @param options.fileList - The accumulator array for the discovered routes.
+ * @returns An array of route strings (e.g., ['/blog/2024/my-post']).
  */
-
-// function walk(dir, fileList = []) {
-//   const files = readdirSync(dir, { withFileTypes: true })
-
-//   for (const file of files) {
-//     const fullPath = path.join(dir, file.name)
-
-//     if (file.isDirectory()) {
-//       walk(fullPath, fileList)
-//     } else if (file.name.endsWith('.md')) {
-//       const relative = path.relative(blogDir, fullPath)
-//       const normalized = relative.replace(/\\/g, '/')
-//       const routePath = normalized.replace('.md', '')
-
-//       fileList.push(`/blog/${routePath}`)
-//     }
-//   }
-
-//   return fileList
-// }
-
-export const getMarkdownBlogRoutes = ({ searchPath, fileList = [] }: {
+export const getMarkdownBlogRoutes = ({ searchPath, rootPath = searchPath, fileList = [] }: {
     searchPath: string,
-    fileList: string[]
+    rootPath?: string,
+    fileList?: string[]
 }) => {
     const directoryContent = readdirSync(searchPath, { withFileTypes: true });
 
@@ -39,12 +22,12 @@ export const getMarkdownBlogRoutes = ({ searchPath, fileList = [] }: {
         const fullPath = path.join(searchPath, item.name);
 
         if (item.isDirectory()) {
-            getMarkdownBlogRoutes({ searchPath: fullPath, fileList });
+            getMarkdownBlogRoutes({ searchPath: fullPath, rootPath, fileList });
             return;
         }
 
         if (item.isFile() && item.name.endsWith('.md')) {
-            const relativePath = path.relative(searchPath, fullPath)
+            const relativePath = path.relative(rootPath, fullPath)
                 .replaceAll(/\\/g, '/')
                 .replace('.md', '');
 
