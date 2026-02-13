@@ -3,8 +3,8 @@ import { fileURLToPath } from 'url';
 import { lstatSync, readdirSync, readFileSync, writeFileSync } from 'fs';
 import FrontMatter from 'front-matter';
 
-import { SitemapGenerator } from './SitemapGenerator';
-import type { Post } from '../data/Posts';
+import { SitemapGenerator } from '@/sitemap/sitemap.generator';
+import type { Post } from '@/interfaces';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -43,8 +43,8 @@ function addArticleToSitemap(item: string): void {
   const fm = FrontMatter<Post>(content);
 
   sitemap.push({
-    path: item.replace('.md', ''),
     ...fm.attributes,
+    path: item.replace('.md', ''),
   });
 
   report(`\tFile processed -> ${item}`);
