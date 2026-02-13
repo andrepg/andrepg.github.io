@@ -7,9 +7,9 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import { plugin as markdown } from 'vite-plugin-markdown'
 import prismjsPlugin from 'vite-plugin-prismjs'
 
-import { PrismJsConfig } from './plugins/primsjs.config.ts'
-import { MarkdownRenderConfig } from './plugins/markdown-render.config.ts'
-import { getMarkdownBlogRoutes } from './src/utils/ssg.ts'
+import { PrismJsConfig } from './plugins/primsjs.config'
+import { MarkdownRenderConfig } from './plugins/markdown-render.config'
+import { getMarkdownBlogRoutes } from './src/utils/ssg'
 
 export default defineConfig({
   plugins: [
@@ -27,6 +27,7 @@ export default defineConfig({
     }
   },
 
+  // @ts-expect-error This will be handled by Vite SSG wrapper
   ssgOptions: {
     includedRoutes() {
       return getMarkdownBlogRoutes({ 

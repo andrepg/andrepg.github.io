@@ -20,7 +20,7 @@
     } 
   },
   "include": [
-    "vite.config.js",
+    "vite.config.ts",
     "vitest.config.js",
     "eslint.config.js",
     "postcss.config.js",
