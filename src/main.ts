@@ -1,7 +1,8 @@
 import './assets/main.css'
 
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
+import { ViteSSG } from 'vite-ssg'
 
-createApp(App).use(router).mount('#app')
+import App from './App.vue'
+import { HomepageMenu } from '@data/NavigationMenu'
+
+export const createApp = ViteSSG(App, { routes: HomepageMenu })
