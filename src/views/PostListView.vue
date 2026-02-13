@@ -4,7 +4,7 @@ import { computed, nextTick, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import PostTimelineFeature from '@/components/Blog/PostTimelineFeature.vue'
 
-import { SitemapBridge } from '@/router/sitemap'
+import { SitemapBridge } from '@/sitemap/sitemap.bridge'
 import { Post } from '@/interfaces'
 
 const route = useRoute()
