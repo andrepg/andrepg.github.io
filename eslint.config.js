@@ -69,7 +69,7 @@ export default tseslint.config(
       'vue/no-v-html': [
         'error',
         {
-          ignorePattern: '^sanitizedHtml',
+          ignorePattern: '^sanitized',
         },
       ],
       //   '@typescript-eslint/no-explicit-any': 'warn',
