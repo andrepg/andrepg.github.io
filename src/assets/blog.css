@@ -3,7 +3,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
 
 #article-body {
-    @apply flex flex-col max-w-11/12 lg:max-w-8/12 mx-auto;
+    @apply flex flex-col mt-12 mb-4 text-base mx-auto xl:max-w-9/12;
+    @apply break-all;
     font-family: 'Lora', serif;
     font-size: 1.15rem;
     line-height: 1.25;
@@ -19,8 +20,8 @@
     }
 
     /**
-        * Apply default article's paragraph style
-        */
+    * Apply default article's paragraph style
+    */
     p {
         @apply my-4 indent-8;
         word-break: normal;
@@ -32,9 +33,9 @@
     }
 
     /**
-        * Lists and list items styles
-        * Numbering, disc, fonts, etc.
-        */
+    * Lists and list items styles
+    * Numbering, disc, fonts, etc.
+    */
     ul,
     ol {
         word-break: normal;
@@ -50,25 +51,33 @@
     }
 
     /**
-        * Code styles
-        */
+    * Code styles
+    */
     .code-toolbar {
-        @apply text-xs tracking-wide;
+        @apply text-sm tracking-wide;
 
         pre {
             @apply rounded-xl py-3;
+        }
+
+        .toolbar .toolbar-item {
+            @apply text-lg mt-2 me-2 font-sans;
+
+            span {
+                @apply badge badge-soft;
+            }
         }
     }
 
     p code,
     li code,
     blockquote code {
-        @apply indent-0 px-2 py-0.5 badge badge-neutral font-light text-sm leading-tight;
+        @apply indent-0 px-2 py-0.5 badge badge-neutral font-light text-sm leading-none;
     }
 
     /**
-        * Links styles
-        */
+    * Links styles
+    */
     a,
     li a,
     p a {
@@ -89,8 +98,8 @@
     }
 
     /**
-        * Blockquote styles
-        */
+    * Blockquote styles
+    */
     blockquote {
         @apply card card-body card-border bg-primary/10 pt-2 pb-6 font-light text-lg leading-tight;
 
