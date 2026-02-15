@@ -7,10 +7,9 @@ import App from './App.vue'
 import { HomepageMenu } from '@data/NavigationMenu'
 import { createRouter, createWebHistory } from 'vue-router'
 import { createHead } from '@unhead/vue/client'
+import { BASE_URL } from './utils/blog-reader'
 
 // TODO Maybe move this to a config file
-export const BASE_URL = import.meta.env.BASE_URL;
-
 const bootstrapDevelopmentMode = () => {
     const router = createRouter({
         history: createWebHistory(),
