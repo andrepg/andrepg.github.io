@@ -52,7 +52,13 @@ const parseHeaderIds = (content: string) => {
 }
 
 export const transformContent = (content: string) => {
-    let parsed = parseCheckboxes(content);
+    let parsed = content;
+
+    if (!parsed) {
+        return '';
+    }
+
+    parsed = parseCheckboxes(parsed);
     parsed = parseAnchors(parsed);
     parsed = parseHeaderIds(parsed);
 
