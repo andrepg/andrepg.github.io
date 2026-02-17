@@ -15,6 +15,7 @@ export interface Post {
   tags: string[];
   published_at: string;
   serie?: string;
+  serie_part?: number;
   cover?: string;
 }
 
