@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
 
 #article-body {
-    @apply flex flex-col mt-12 mb-4 text-base mx-auto xl:max-w-9/12;
+    @apply flex flex-col text-base mx-auto xl:max-w-9/12;
     @apply break-all;
     font-family: 'Lora', serif;
     font-size: 1.15rem;
@@ -67,6 +67,10 @@
                 @apply badge badge-soft;
             }
         }
+    }
+
+    p abbr {
+        @apply tooltip indent-0;
     }
 
     p code,

@@ -51,6 +51,30 @@ const parseHeaderIds = (content: string) => {
     });
 }
 
+/**
+ * 
+ * @param content string 
+ * @returns string
+ */
+const parseAbbr = (content: string) => {
+    return content.replace(/<abbr(.*?)>(.*?)<\/abbr>/gi, (match: string, attrs: string, text: string) => {
+        const titleMatch = /title="([^"]*)"/i.exec(attrs);
+        if (!titleMatch) {
+            return match;
+        }
+        const title = titleMatch[1];
+
+        let newAttrs = attrs;
+
+        // Add data-tip if not present
+        if (!newAttrs.includes('data-tip=')) {
+            newAttrs += ` data-tip="${title}"`;
+        }
+
+        return `<abbr${newAttrs}>${text}</abbr>`;
+    });
+}
+
 export const transformContent = (content: string) => {
     let parsed = content;
 
@@ -61,6 +85,7 @@ export const transformContent = (content: string) => {
     parsed = parseCheckboxes(parsed);
     parsed = parseAnchors(parsed);
     parsed = parseHeaderIds(parsed);
+    parsed = parseAbbr(parsed);
 
     return parsed;
 }
