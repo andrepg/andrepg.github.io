@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@data/*": ["./data/*"],
+      "@blog/*": ["./blog/*"],
+      "@public/*": ["./public/*"],
+      "@plugins/*": ["./plugins/*"],
+      "@config/*": ["./config/*"]
+    },
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "preserve",
+    "jsxImportSource": "vue",
+    "allowJs": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true
+  }
+}
