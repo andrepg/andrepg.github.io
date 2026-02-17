@@ -31,30 +31,55 @@ export const blogModules: Record<string, PostMarkdown> = import.meta.glob('/blog
 export const getHeadTags = (
     metadata: PostMarkdown['attributes'],
     canonicalUrl: string
-) => {
-    if (!metadata) return {}
+) => ({
+  title: metadata.title,
+  meta: [
+    { name: 'description', content: metadata.excerpt || 'Blog de André Paul Grandsire' },
 
-    return {
-    title: metadata.title,
-    meta: [
-      { name: 'description', content: metadata.excerpt },
+    // Open Graph
+    { property: 'og:type', content: 'article' },
+    { property: 'og:title', content: metadata.title },
+    { property: 'og:description', content: metadata.excerpt || 'Blog de André Paul Grandsire' },
+    { property: 'og:url', content: canonicalUrl },
 
-      // Open Graph
-      { property: 'og:type', content: 'article' },
-      { property: 'og:title', content: metadata.title },
-      { property: 'og:description', content: metadata.excerpt },
-      { property: 'og:url', content: canonicalUrl },
-
-      // Twitter
-      { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:title', content: metadata.title },
-      { name: 'twitter:description', content: metadata.excerpt },
-    ],
-    link: [
-      { rel: 'canonical', href: canonicalUrl }
-    ]
-  }
-}
+    // Twitter
+    { name: 'twitter:card', content: 'summary' },
+    { name: 'twitter:title', content: metadata.title },
+    { name: 'twitter:description', content: metadata.excerpt || 'Blog de André Paul Grandsire' },
+  ],
+  link: [
+    { rel: 'canonical', href: canonicalUrl }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": metadata.title,
+        "author": {
+          "@type": "Person",
+          "name": "André Paul Grandsire" // TODO Change this to author from build in the future
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "andrepg.dev",
+          "logo": {
+            "@type": "ImageObject",
+            "url": `${APP_CONFIG.BASE_URL}/favicon-512x512.png`
+          }
+        },
+        "datePublished": metadata.published_at,
+        "dateModified": metadata.published_at,
+        "description": metadata.excerpt,
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": canonicalUrl
+        }
+      })
+    }
+  ]
+})
 
 
 export const allPosts: Post[] = Object.entries(blogModules)
