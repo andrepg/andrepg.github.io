@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import "@/assets/blog.css";
 
-import { computed } from 'vue'
+import { onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useHead } from '@unhead/vue'
 import { transformContent } from '@/utils/transformers'
@@ -18,27 +18,25 @@ const route = useRoute()
 /**
  * Resolve post metadata and content
  */
-const post = computed(() => blogModules[`/blog/${route.params.year}/${route.params.article}.md`] ?? null)
+const post = blogModules[`/blog/${route.params.year}/${route.params.article}.md`] ?? null
 
-const metadata = computed(() => post.value.attributes);
+const metadata = post.attributes;
 
-const sanitizedContent = computed(() => transformContent(post.value.html));
+const sanitizedContent = transformContent(post.html);
 
-const canonicalUrl = computed(() => `${BASE_URL}${route.path}`)
+const canonicalUrl = `${APP_CONFIG.BASE_URL}${route.path}`
 
-const headTags = computed(() => getHeadTags(metadata.value, canonicalUrl.value));
-
-const postsRelatedBySeries = computed(() => getPostsBySerie(metadata.value.serie, canonicalUrl.value));
+const postsRelatedBySeries = getPostsBySerie(metadata.serie, canonicalUrl);
 
 /**
  * Head tags — executa durante SSG
  */
-useHead(headTags)
+useHead(getHeadTags(metadata, canonicalUrl))
 
 /**
  * Highlight code blocks
  */
-Prism.highlightAll();
+onMounted(() => Prism.highlightAll())
 </script>
 
 <template>
@@ -71,10 +69,10 @@ Prism.highlightAll();
           </li>
         </ul>
       </div>
-  
+
       <h1 class="leading-tight">{{ metadata.title }}</h1>
       <p class="text-base leading-tight">{{ metadata.excerpt }}</p>
-  
+
       <ul class="join join-horizontal flex-wrap gap-2 items-center my-2">
         <li v-for="tag in metadata.tags" :key="tag">
           <BadgeElement class="shadow-lg badge-soft">
