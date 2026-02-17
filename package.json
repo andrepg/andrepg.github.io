@@ -5,14 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "build": "vite-ssg build",
-    "preview": "vite preview --host",
+    "build": "vite-ssg build && yarn build-sitemap",
+    "preview": "vite preview",
     "test:unit": "vitest",
     "lint": "eslint -c eslint.config.js",
     "lint:fix": "eslint -c eslint.config.js --fix",
     "format": "prettier --write src/",
-    "prebuild": "yarn build-sitemap",
-    "build-sitemap": "tsx src/sitemap/sitemap.ts"
+    "build-sitemap": "tsx src/sitemap.generator.ts"
   },
   "dependencies": {
     "@unhead/vue": "^2.1.4",
