@@ -31,8 +31,9 @@
       "@blog/*": ["./blog/*"],
       "@public/*": ["./public/*"],
       "@data/*": ["./data/*"],
-      "@plugins/*": ["./plugins/*"]
+      "@plugins/*": ["./plugins/*"],
+      "@config/*": ["./config/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.tsx", "src/**/*.jsx", "src/**/*.vue", "src/**/*.d.ts", "plugins/**/*.ts", "data/**/*.ts"]
+  "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.tsx", "src/**/*.jsx", "src/**/*.vue", "src/**/*.d.ts", "plugins/**/*.ts", "data/**/*.ts", "config/**/*.ts"]
 }

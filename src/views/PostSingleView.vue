@@ -6,11 +6,12 @@ import { useRoute } from 'vue-router'
 import { useHead } from '@unhead/vue'
 import { transformContent } from '@/utils/transformers'
 import Prism from 'prismjs'
-import { BASE_URL, blogModules, getHeadTags, getPostsBySerie } from "@/utils/blog-reader";
+import { blogModules, getHeadTags, getPostsBySerie } from "@/utils/blog-reader";
 import BadgeElement from "@/components/BadgeElement.vue";
 import { Icon } from "@iconify/vue";
 import { slugify } from "@/utils/slugify";
 import SectionWithHeader from "@/components/Layout/SectionWithHeader.vue";
+import APP_CONFIG from "@config/app";
 
 const route = useRoute()
 

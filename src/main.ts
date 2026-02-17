@@ -7,7 +7,7 @@ import App from './App.vue'
 import { HomepageMenu } from '@data/NavigationMenu'
 import { createRouter, createWebHistory } from 'vue-router'
 import { createHead } from '@unhead/vue/client'
-import { BASE_URL } from './utils/blog-reader'
+import { APP_CONFIG } from '@config/app'
 
 // TODO Maybe move this to a config file
 const bootstrapDevelopmentMode = () => {
@@ -24,12 +24,12 @@ const bootstrapDevelopmentMode = () => {
 
 const bootstrapProductionMode = () => ViteSSG(App, {
     routes: HomepageMenu,
-    base: BASE_URL
+    base: APP_CONFIG.BASE_URL,
 })
 
 let vueApp;
 
-if (import.meta.env.DEV) {
+if (APP_CONFIG.IS_DEV) {
     bootstrapDevelopmentMode()
 } else {
     vueApp = bootstrapProductionMode()

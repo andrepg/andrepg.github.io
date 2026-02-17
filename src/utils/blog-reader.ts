@@ -1,10 +1,10 @@
 import { Post, PostMarkdown } from "@/interfaces";
+import { APP_CONFIG } from "@config/app";
 
 /**
- * The base URL of the application, retrieved from Vite's environment variables.
- * Used for building absolute paths and resolving static assets.
+ * The base URL of the application, retrieved from the centralized config.
  */
-export const BASE_URL = import.meta.env.BASE_URL;
+export const BASE_URL = APP_CONFIG.BASE_URL;
 
 /**
  * A collection of all blog post modules found in the /blog directory.
