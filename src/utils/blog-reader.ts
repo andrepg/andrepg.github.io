@@ -35,12 +35,13 @@ export const getHeadTags = (
   title: metadata.title,
   meta: [
     { name: 'description', content: metadata.excerpt || 'Blog de André Paul Grandsire' },
-
+    
     // Open Graph
     { property: 'og:type', content: 'article' },
     { property: 'og:title', content: metadata.title },
     { property: 'og:description', content: metadata.excerpt || 'Blog de André Paul Grandsire' },
     { property: 'og:url', content: canonicalUrl },
+    { property: 'article:published_time', content: metadata.published_at || new Date().toISOString() },
 
     // Twitter
     { name: 'twitter:card', content: 'summary' },
