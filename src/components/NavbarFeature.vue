@@ -12,13 +12,15 @@ const opaqueNavbar = ref(false);
 const title = computed(() => {
     // During SSR or initial load, route might not be fully populated
     const path = route?.path || "";
-    
+
     if (path === "/curriculo") {
         return "Currículo";
     }
-    if (path.includes('blog')) {
+
+    if (path.endsWith('/blog')) {
         return "Blog";
     }
+    
     return "";
 });
 
@@ -51,11 +53,8 @@ onMounted(() => {
       'px-4',
       'w-full',
       'transition-all',
-      'ease-in-out',
-      'delay-500',
-      'bg-primary/90',
-      'dark:bg-neutral-900/90',
-      !opaqueNavbar && 'bg-transparent dark:bg-transparent',
+
+      opaqueNavbar ? 'bg-neutral/50 backdrop-blur-lg' : 'bg-neutral/0'
     ]"
   >
     <div class="flex-none">
