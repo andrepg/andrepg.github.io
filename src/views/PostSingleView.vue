@@ -1,74 +1,111 @@
 <script setup lang="ts">
+import "@/assets/blog.css";
+
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useHead } from '@unhead/vue'
-import { BASE_URL } from '@/main'
+import { transformContent } from '@/utils/transformers'
+import Prism from 'prismjs'
+import { BASE_URL, blogModules, getHeadTags, getPostsBySerie } from "@/utils/blog-reader";
+import BadgeElement from "@/components/BadgeElement.vue";
+import { Icon } from "@iconify/vue";
+import { slugify } from "@/utils/slugify";
+import SectionWithHeader from "@/components/Layout/SectionWithHeader.vue";
 
 const route = useRoute()
 
 /**
- * Carrega TODOS os markdowns no build
+ * Resolve post metadata and content
  */
-const modules = import.meta.glob('/blog/**/*.md', { eager: true }) as Record<
-  string,
-  {
-    attributes: any
-    html: string
-  }
->
+const post = computed(() => blogModules[`/blog/${route.params.year}/${route.params.article}.md`] ?? null)
 
-/**
- * Resolve o path real do markdown baseado na rota
- */
-const postPath = computed(() => {
-  return `/blog/${route.params.year}/${route.params.article}.md`
-})
+const metadata = computed(() => post.value.attributes);
 
-const post = computed(() => {
-  return modules[postPath.value] ?? null
-})
+const sanitizedContent = computed(() => transformContent(post.value.html));
 
-if (!post.value) {
-  throw new Error(`Post not found: ${postPath.value}`)
-}
+const canonicalUrl = computed(() => `${BASE_URL}${route.path}`)
 
-const metadata = post.value.attributes
-const content = post.value.html
+const headTags = computed(() => getHeadTags(metadata.value, canonicalUrl.value));
 
-const canonicalUrl = computed(() => {
-  return `${BASE_URL}${route.path}`
-})
+const postsRelatedBySeries = computed(() => getPostsBySerie(metadata.value.serie, canonicalUrl.value));
 
 /**
  * Head tags — executa durante SSG
  */
-useHead({
-  title: metadata.title,
-  meta: [
-    { name: 'description', content: metadata.excerpt },
+useHead(headTags)
 
-    // Open Graph
-    { property: 'og:type', content: 'article' },
-    { property: 'og:title', content: metadata.title },
-    { property: 'og:description', content: metadata.excerpt },
-    { property: 'og:url', content: canonicalUrl.value },
-
-    // Twitter
-    { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: metadata.title },
-    { name: 'twitter:description', content: metadata.excerpt },
-  ],
-  link: [
-    { rel: 'canonical', href: canonicalUrl.value }
-  ]
-})
+/**
+ * Highlight code blocks
+ */
+Prism.highlightAll();
 </script>
 
 <template>
-  <article>
-    <h1>{{ metadata.title }}</h1>
-    <p><small>{{ metadata.published_at }}</small></p>
+  <div
+    :class="[
+    'flex',
+    'flex-col',
+    'w-full',
+    'gap-10',
+    'px-5',
+    'lg:px-10',
+    'max-w-9/12',
+    'mx-auto',
+    'not-2xl:max-w-11/12'
+  ]"
+  >
+    <SectionWithHeader 
+      :class="[
+      'glass',
+      'bg-accent',
+      'text-accent-content',
+      'shadow-lg',
+      'rounded-b-xl',
+    ]">
+      <div class="breadcrumbs text-sm">
+        <ul>
+          <li><a href="/blog">Blog</a></li>
+          <li v-if="metadata.category">
+            <a :href="`/blog/category/${slugify(metadata.category)}`">{{ metadata.category }}</a>
+          </li>
+        </ul>
+      </div>
+  
+      <h1 class="leading-tight">{{ metadata.title }}</h1>
+      <p class="text-base leading-tight">{{ metadata.excerpt }}</p>
+  
+      <ul class="join join-horizontal flex-wrap gap-2 items-center my-2">
+        <li v-for="tag in metadata.tags" :key="tag">
+          <BadgeElement class="shadow-lg badge-soft">
+            {{ tag }}
+          </BadgeElement>
+        </li>
+      </ul>
+    </SectionWithHeader>
 
-    <div v-html="content"></div>
-  </article>
+    <article id="article-body" v-html="sanitizedContent"></article>
+
+    <hr class="border-base-300">
+
+    <ul
+      v-if="metadata.serie"
+      class="menu menu-vertical w-full bg-base-300 rounded-lg shadow-xl backdrop-blur-lg">
+      <li class="menu-title flex items-center gap-2 text-lg">
+        <Icon icon="hugeicons:book-open-02" class="size-7 inline-block" />
+        <span>Este post faz parte de uma série. Veja os outros artigos:</span>
+      </li>
+      <li
+        v-for="postFromSerie in postsRelatedBySeries"
+        :key="postFromSerie.path"
+        class="p-0 hover:text-primary"
+      >
+        <a
+          :href="postFromSerie.path"
+          class=""
+        >
+          {{ postFromSerie.title }}
+        </a>
+      </li>
+    </ul>
+  </div>
 </template>
