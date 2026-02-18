@@ -27,14 +27,14 @@ export const HomepageMenu: NavigationMenu[] = [
     menu: true,
     icon: 'hugeicons:quill-write-02',
     path: '/blog',
-    component: () => import('@/views/BlogIndexView.vue')
+    component: () => import('@/views/BlogListView.vue')
   },
   {
     menu: false,
     name: 'Posts - Series',
     path: '/blog/series/:series',
     icon: '',
-    component: () => import('@/views/BlogIndexView.vue')
+    component: () => import('@/views/BlogListView.vue')
   },
   {
     menu: false,
