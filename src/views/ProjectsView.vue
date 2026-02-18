@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { Projects } from '@data/Projects';
+import SectionWithHeader from '@/components/Layout/SectionWithHeader.vue';
+import BasePageLayout from '@/components/Layout/BasePageLayout.vue';
 import ProjectsListFeature from '@/components/ProjectsListFeature.vue'
-
 import { useHead } from '@unhead/vue';
-import { APP_CONFIG } from '@config/app';
+import APP_CONFIG from '@config/app';
 
 const projects = Projects;
+
 
 useHead({
   title: "Projetos | André Paul Grandsire",
@@ -26,21 +28,19 @@ useHead({
 </script>
 
 <template>
-  <div
-    :class="[
-      'flex',
-      'flex-col',
-      'pt-16',
-      'px-5',
-      'pb-20',
-      'gap-5',
-      'z-10',
-      'max-w-5xl',
-      'mx-auto',
-    ]"
-  >
+  <BasePageLayout>
+    <template #header>
+      <SectionWithHeader>
+        <h1 class="text-2xl font-semibold flex flex-col md:w-3/4 max-w-[70w]">
+          Projetos
+          <small class="opacity-70 font-normal font-md w-full leading-snug flex-1">
+            Lista de projetos e portfólio. Aqui listo aqueles que considero mais ativos ou relevantes.
+          </small>
+        </h1>
+      </SectionWithHeader>
+    </template>
+
     <ProjectsListFeature :projects="projects" />
-  </div>
-
-
+  </BasePageLayout>
 </template>
+

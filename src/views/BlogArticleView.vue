@@ -11,8 +11,10 @@ import BadgeElement from "@/components/BadgeElement.vue";
 import { Icon } from "@iconify/vue";
 import { slugify } from "@/utils/slugify";
 import SectionWithHeader from "@/components/Layout/SectionWithHeader.vue";
+import BlogPageLayout from "@/components/Layout/BlogPageLayout.vue";
 import APP_CONFIG from "@config/app";
 import GlassCard from "@/components/Layout/GlassCard.vue";
+
 
 const route = useRoute()
 
@@ -41,90 +43,71 @@ onMounted(() => Prism.highlightAll())
 </script>
 
 <template>
-  <div
-    :class="[
-    'flex',
-    'flex-col',
-    'w-full',
-    'gap-10',
-    'px-5',
-    'lg:px-10',
-    'max-w-10/12',
-    'mx-auto',
-    'not-2xl:max-w-11/12',
-    'bg-base-100',
-    'shadow-2xl',
-    'rounded-b-lg',
-    'pb-10',
-  ]"
-  >
-    <SectionWithHeader>
-      <div class="breadcrumbs text-sm">
-        <ul>
-          <li><a href="/blog">Blog</a></li>
-          <li v-if="metadata.category">
-            <a :href="`/blog/category/${slugify(metadata.category)}`">{{ metadata.category }}</a>
+  <BlogPageLayout>
+    <template #header>
+      <SectionWithHeader>
+        <div class="breadcrumbs text-sm">
+          <ul>
+            <li><a href="/blog">Blog</a></li>
+            <li v-if="metadata.category">
+              <a :href="`/blog/category/${slugify(metadata.category)}`">{{ metadata.category }}</a>
+            </li>
+          </ul>
+        </div>
+
+        <h1 class="leading-tight">{{ metadata.title }}</h1>
+        <p class="text-base leading-tight">{{ metadata.excerpt }}</p>
+
+        <ul class="join join-horizontal flex-wrap gap-2 items-center my-2">
+          <li v-for="tag in metadata.tags" :key="tag">
+            <BadgeElement class="shadow-lg badge-soft">
+              {{ tag }}
+            </BadgeElement>
           </li>
         </ul>
-      </div>
-
-      <h1 class="leading-tight">{{ metadata.title }}</h1>
-      <p class="text-base leading-tight">{{ metadata.excerpt }}</p>
-
-      <ul class="join join-horizontal flex-wrap gap-2 items-center my-2">
-        <li v-for="tag in metadata.tags" :key="tag">
-          <BadgeElement class="shadow-lg badge-soft">
-            {{ tag }}
-          </BadgeElement>
-        </li>
-      </ul>
-    </SectionWithHeader>
+      </SectionWithHeader>
+    </template>
 
     <article id="article-body" v-html="sanitizedContent"></article>
-  </div>
 
-  <div
-    :class="[
-      'mt-10',
-      'max-w-10/12',
-      'mx-auto',
-      'not-2xl:max-w-11/12',
-    ]">
-    <GlassCard>
-      <ul
-      v-if="metadata.serie"
-      :class="[
-        'menu',
-        'menu-vertical',
-        'w-full',
-        'rounded-lg',
-        'shadow-xl',
-        'backdrop-blur-lg'
-      ]">
-        <li class="menu-title flex items-center gap-2 text-lg">
-          <Icon icon="hugeicons:book-open-02" class="size-7 inline-block" />
-          <span>Este post faz parte de uma série. Veja os outros artigos:</span>
-        </li>
-        <li
-          v-for="postFromSerie in postsRelatedBySeries"
-          :key="postFromSerie.path"
+    <template v-if="metadata.serie" #footer>
+      <GlassCard>
+        <ul
           :class="[
-            'p-2',
-            'transition-all',
-            'duration-500',
-            'backdrop-blur-lg',
+            'menu',
+            'menu-vertical',
+            'w-full',
             'rounded-lg',
-            postFromSerie.path === route.path ? 'menu-active disabled' : '',
-            postFromSerie.path !== route.path ? 'hover:indent-2 hover:text-primary' : '',
+            'shadow-xl',
+            'backdrop-blur-lg'
           ]"
         >
-          <a 
-          :href="postFromSerie.path === route.path ? undefined : postFromSerie.path">
-            {{ postFromSerie.title }}
-          </a>
-        </li>
-      </ul>
-    </GlassCard>
-  </div>
-
+          <li class="menu-title flex items-center gap-2 text-lg">
+            <Icon icon="hugeicons:book-open-02" class="size-7 inline-block" />
+            <span>Este post faz parte de uma série. Veja os outros artigos:</span>
+          </li>
+          <li
+            v-for="postFromSerie in postsRelatedBySeries"
+            :key="postFromSerie.path"
+            :class="[
+              'p-2',
+              'transition-all',
+              'duration-500',
+              'backdrop-blur-lg',
+              'rounded-lg',
+              postFromSerie.path === route.path ? 'menu-active disabled' : '',
+              postFromSerie.path !== route.path ? 'hover:indent-2 hover:text-primary' : '',
+            ]"
+          >
+            <a 
+              :href="postFromSerie.path === route.path ? undefined : postFromSerie.path"
+            >
+              {{ postFromSerie.title }}
+            </a>
+          </li>
+        </ul>
+      </GlassCard>
+    </template>
+  </BlogPageLayout>
 </template>
+
