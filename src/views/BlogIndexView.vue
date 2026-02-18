@@ -2,7 +2,8 @@
 import SectionWithHeader from '@/components/Layout/SectionWithHeader.vue';
 import PostTimelineFeature from '@/components/Blog/PostTimelineFeature.vue';
 
-import { Post, PostMarkdown } from '@/interfaces';
+
+
 import { blogModules } from '@/utils/blog-reader';
 import APP_CONFIG from '@config/app';
 import { useHead } from '@unhead/vue';
@@ -25,11 +26,17 @@ const posts = Object.entries(blogModules)
   );
 
 useHead({
-  title: "Blog | André Paul Grandsire",  // TODO Change to the environment variable
+  title: "Blog | André Paul Grandsire",
   meta: [
     { name: 'description', content: 'Blog pessoal de André Paul Grandsire' },
     { property: 'og:type', content: 'website' },
+    { property: 'og:title', content: "Blog | André Paul Grandsire" },
+    { property: 'og:description', content: 'Blog pessoal de André Paul Grandsire' },
+    { name: 'twitter:card', content: 'summary' },
+    { name: 'twitter:title', content: "Blog | André Paul Grandsire" },
+    { name: 'twitter:description', content: 'Blog pessoal de André Paul Grandsire' },
   ],
+
   link: [
     { rel: 'canonical', href: `${APP_CONFIG.BASE_URL}/blog` }
   ],

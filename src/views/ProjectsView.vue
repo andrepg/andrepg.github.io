@@ -12,11 +12,17 @@ useHead({
   meta: [
     { name: 'description', content: 'Lista de projetos e portfólio de André Paul Grandsire' },
     { property: 'og:type', content: 'website' },
+    { property: 'og:title', content: "Projetos | André Paul Grandsire" },
+    { property: 'og:description', content: 'Lista de projetos e portfólio de André Paul Grandsire' },
+    { name: 'twitter:card', content: 'summary' },
+    { name: 'twitter:title', content: "Projetos | André Paul Grandsire" },
+    { name: 'twitter:description', content: 'Lista de projetos e portfólio de André Paul Grandsire' },
   ],
   link: [
     { rel: 'canonical', href: `${APP_CONFIG.BASE_URL}/projetos` }
   ],
 });
+
 </script>
 
 <template>
