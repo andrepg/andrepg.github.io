@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Icon } from "@iconify/vue";
-import GlassCard from "@/components/Layout/GlassCard.vue";
+import GlassCard from "@/components/GlassCard.vue";
 
 defineProps<{
 	projects: {
@@ -36,10 +36,11 @@ defineProps<{
       Aqui listo aqueles que considero mais ativos ou relevantes para meu portefólio.
     </p>
 
-    <ul class="mx-auto w-full grid xl:grid-cols-2 gap-4">
+    <TransitionGroup appear tag="ul" class="mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-4" name="fade">
       <li
-        v-for="project in projects"
+        v-for="(project, index) in projects"
         :key="project.label"
+        :style="{ transitionDelay: `${index * 150}ms` }"
       >
         <a
           target="blank"
@@ -55,6 +56,7 @@ defineProps<{
             'justify-start',
             'btn',
             'btn-primary',
+            'dark:text-neutral-content',
             'btn-soft',
             'p-0',
             'h-auto'
@@ -116,6 +118,6 @@ defineProps<{
           </div>
         </a>
       </li>
-    </ul>
+    </TransitionGroup>
   </GlassCard>
 </template>

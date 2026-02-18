@@ -1,8 +1,8 @@
 <script setup>
 import { RouterView } from 'vue-router'
 import FooterFeature from "@/components/Layout/FooterFeature.vue";
-import Navbar from '@/components/NavbarFeature.vue';
-import BubblesAnimation from '@/components/Layout/BubblesAnimation.vue';
+import Navbar from '@/components/Layout/NavbarFeature.vue';
+import BubblesAnimation from '@/components/BubblesAnimation.vue';
 </script>
 
 <template>

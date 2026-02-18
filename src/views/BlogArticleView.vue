@@ -10,10 +10,10 @@ import { blogModules, getHeadTags, getPostsBySerie } from "@/utils/blog-reader";
 import BadgeElement from "@/components/BadgeElement.vue";
 import { Icon } from "@iconify/vue";
 import { slugify } from "@/utils/slugify";
-import SectionWithHeader from "@/components/Layout/SectionWithHeader.vue";
+import SectionWithHeader from "@/components/SectionWithHeader.vue";
 import BlogPageLayout from "@/components/Layout/BlogPageLayout.vue";
 import APP_CONFIG from "@config/app";
-import GlassCard from "@/components/Layout/GlassCard.vue";
+import GlassCard from "@/components/GlassCard.vue";
 
 
 const route = useRoute()
@@ -60,7 +60,7 @@ onMounted(() => Prism.highlightAll())
 
         <ul class="join join-horizontal flex-wrap gap-2 items-center my-2">
           <li v-for="tag in metadata.tags" :key="tag">
-            <BadgeElement class="shadow-lg badge-soft">
+            <BadgeElement class="shadow-lg font-bold badge-primary">
               {{ tag }}
             </BadgeElement>
           </li>

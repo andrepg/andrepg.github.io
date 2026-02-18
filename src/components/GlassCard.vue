@@ -26,7 +26,7 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div
+  <section
     :class="[
       'rounded-2xl',
       'overflow-hidden',
@@ -40,7 +40,7 @@ withDefaults(defineProps<Props>(), {
     ]"
   >
     <slot />
-  </div>
+  </section>
 </template>
 
 <style scoped>

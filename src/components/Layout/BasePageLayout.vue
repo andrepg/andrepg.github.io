@@ -8,7 +8,7 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {
-  maxWidth: 'max-w-5/6',
+  maxWidth: 'max-w-11/12 xl:m-w-5/6',
 });
 </script>
 

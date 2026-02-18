@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Icon } from "@iconify/vue";
-import GlassCard from "@/components/Layout/GlassCard.vue";
+import GlassCard from "@/components/GlassCard.vue";
 
 defineProps<{
 	items: {
@@ -26,10 +26,11 @@ defineProps<{
       Tecnologias com as quais eu trabalho ou já trabalhei. Línguas, sistemas, frameworks e bibliotecas.
     </p>
 
-    <ul class="mx-auto w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+    <TransitionGroup appear tag="ul" class="mx-auto w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4" name="fade">
       <li
-        v-for="item in items"
+        v-for="(item, index) in items"
         :key="item.label"
+        :style="{ transitionDelay: `${index * 50}ms` }"
       >
         <div
           :data-tip="item.label"
@@ -60,6 +61,7 @@ defineProps<{
           />
         </div>
       </li>
-    </ul>
+    </TransitionGroup>
+
   </GlassCard>
 </template>

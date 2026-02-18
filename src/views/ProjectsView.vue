@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { Projects } from '@data/Projects';
-import SectionWithHeader from '@/components/Layout/SectionWithHeader.vue';
+import SectionWithHeader from '@/components/SectionWithHeader.vue';
 import BasePageLayout from '@/components/Layout/BasePageLayout.vue';
-import ProjectsListFeature from '@/components/ProjectsListFeature.vue'
 import { useHead } from '@unhead/vue';
 import APP_CONFIG from '@config/app';
+import ProjectsListFeature from '@/components/Skills/ProjectsListFeature.vue';
 
 const projects = Projects;
 
@@ -31,7 +31,7 @@ useHead({
   <BasePageLayout>
     <template #header>
       <SectionWithHeader>
-        <h1 class="text-2xl font-semibold flex flex-col md:w-3/4 max-w-[70w]">
+        <h1 class="text-2xl font-semibold flex flex-col">
           Projetos
           <small class="opacity-70 font-normal font-md w-full leading-snug flex-1">
             Lista de projetos e portfólio. Aqui listo aqueles que considero mais ativos ou relevantes.

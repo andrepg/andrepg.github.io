@@ -4,29 +4,15 @@ import BlogPageLayout from '@/components/Layout/BlogPageLayout.vue';
 
 import PostTimelineFeature from '@/components/Blog/PostTimelineFeature.vue';
 
-
-
-import { blogModules } from '@/utils/blog-reader';
 import APP_CONFIG from '@config/app';
+import { getPublished } from '@/utils/blog-reader';
 import { useHead } from '@unhead/vue';
-import SectionWithHeader from '@/components/Layout/SectionWithHeader.vue';
+import SectionWithHeader from '@/components/SectionWithHeader.vue';
+import GlassCard from '@/components/GlassCard.vue';
 
-const posts = Object.entries(blogModules)
-  .map(([path, mod]) => {
-    const match = /\/blog\/(\d+)\/(.+)\.md$/.exec(path);
-
-    if (!match) return null;
-
-    mod.attributes.path = path.replace('.md', '');
-
-    return mod.attributes;
-  })
-  .filter(post => !!post)
-  .filter(post => post?.published_at)
-  .sort((a, b) =>
-    new Date(b?.published_at || 0).getTime() -
-    new Date(a?.published_at || 0).getTime()
-  );
+const posts = getPublished().sort(
+  (a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime()
+);
 
 useHead({
   title: "Blog | André Paul Grandsire",
@@ -98,9 +84,9 @@ useHead({
       </SectionWithHeader>
     </template>
 
-    <div class="max-w-5xl mx-auto md:px-5">
+    <GlassCard class="px-5">
       <PostTimelineFeature :posts="posts" :is-loading="false" compact-mode />
-    </div>
+    </GlassCard>
   </BlogPageLayout>
 </template>
 

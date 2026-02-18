@@ -6,6 +6,7 @@ import MyProfile from '@/components/ProfileCardFeature.vue';
 import RecomendationsFeature from '@/components/RecomendationsFeature.vue';
 import { useHead } from '@unhead/vue';
 import APP_CONFIG from '@config/app';
+import RecentPostsFeature from '@/components/Blog/RecentPostsFeature.vue';
 
 useHead({
   title: 'André Paul Grandsire | Software Engineer',
@@ -42,34 +43,18 @@ useHead({
   >
     <!-- Profile with enhanced glass effect wrapper if needed, 
            but components already have glass. Let's make the gap larger for better visual breathing -->
-    <section class="animate-fade-in-up">
+    <Transition appear name='fade'>
       <MyProfile />
-    </section>
+    </Transition>
 
     <!-- Recomendations -->
-    <section class="animate-fade-in-up delay-150">
+    <Transition appear name='fade' class="delay-100!">
       <RecomendationsFeature />
-    </section>
+    </Transition>
+
+    <!-- Recent posts -->
+    <Transition appear name='fade' class="delay-200!">
+      <RecentPostsFeature />
+    </Transition>
   </div>
 </template>
-
-<style scoped>
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.8s ease-out forwards;
-}
-
-.delay-150 {
-  animation-delay: 0.15s;
-}
-</style>

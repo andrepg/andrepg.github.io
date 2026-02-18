@@ -112,6 +112,10 @@ export const allPosts: Post[] = Object.entries(blogModules)
   return allPosts.find(p => p.path === path)
 }
 
+export function getPublished(): Post[] {
+  return allPosts.filter(post => post.published_at);
+}
+
 export function getPostsBySerie(
   serie?: string,
   excludePath?: string

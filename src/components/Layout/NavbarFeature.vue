@@ -1,30 +1,9 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue';
 import { HomepageMenu } from '@data/NavigationMenu';
-import { onMounted, ref, computed } from 'vue';
-import { useRoute } from 'vue-router';
+import { onMounted, ref } from 'vue';
 
-const route = useRoute();
 const opaqueNavbar = ref(false);
-
-const title = computed(() => {
-    // During SSR or initial load, route might not be fully populated
-    const path = route?.path || "";
-
-    if (path === "/curriculo") {
-        return "Currículo";
-    }
-
-    if (path.endsWith('/blog')) {
-        return "Blog";
-    }
-
-    if (path === "/projetos") {
-        return "Projetos";
-    }
-    
-    return "";
-});
 
 const scrollToTop = () => {
     window.scrollTo({
@@ -114,24 +93,7 @@ onMounted(() => {
       </div>
     </div>
 
-    <div class="flex-1 px-4">
-      <h1
-        :class="[
-          'w-1/2',
-          'm-0',
-          'text-xl',
-          'font-medium',
-          'transition-all',
-          'duration-300',
-          'delay-200',
-          'ease-in-out',
-          opaqueNavbar ? 'text-neutral-content' : 'text-primary',
-          opaqueNavbar ? 'translate-x-0' : 'translate-x-[90%]'
-        ]"
-      >
-        {{ title }}
-      </h1>
-    </div>
+    <div class="grow"> </div>
 
     <div class="flex-none">
       <button

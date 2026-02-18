@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import SectionWithHeader from '@/components/Layout/SectionWithHeader.vue';
+import SectionWithHeader from '@/components/SectionWithHeader.vue';
 import BasePageLayout from '@/components/Layout/BasePageLayout.vue';
 
 import ProjectsListFeature from '@/components/ProjectsListFeature.vue';

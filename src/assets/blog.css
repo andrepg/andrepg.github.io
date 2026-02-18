@@ -4,6 +4,7 @@
 
 #article-body {
     @apply flex flex-col text-base mx-auto xl:max-w-9/12;
+    @apply bg-base-100 rounded-lg px-4 md:px-8 lg:px-10 shadow-lg;
     @apply break-all;
     font-family: 'Lora', serif;
     font-size: 1.15rem;
