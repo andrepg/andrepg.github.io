@@ -6,8 +6,8 @@ const projects = Projects.filter(project => project.recommended);
 </script>
 
 <template>
-  <div class="card glass bg-neutral/40 backdrop-blur-lg text-neutral">
-    <div class="card-body pt-0">
+  <div class="card">
+    <div class="card-body px-0">
       <ProjectsListFeature :projects="projects" />
       <div class="card-actions">
         <a

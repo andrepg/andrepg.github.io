@@ -12,6 +12,7 @@ import { Icon } from "@iconify/vue";
 import { slugify } from "@/utils/slugify";
 import SectionWithHeader from "@/components/Layout/SectionWithHeader.vue";
 import APP_CONFIG from "@config/app";
+import GlassCard from "@/components/Layout/GlassCard.vue";
 
 const route = useRoute()
 
@@ -48,19 +49,16 @@ onMounted(() => Prism.highlightAll())
     'gap-10',
     'px-5',
     'lg:px-10',
-    'max-w-9/12',
+    'max-w-10/12',
     'mx-auto',
-    'not-2xl:max-w-11/12'
+    'not-2xl:max-w-11/12',
+    'bg-base-100',
+    'shadow-2xl',
+    'rounded-b-lg',
+    'pb-10',
   ]"
   >
-    <SectionWithHeader 
-      :class="[
-      'glass',
-      'bg-accent',
-      'text-accent-content',
-      'shadow-lg',
-      'rounded-b-xl',
-    ]">
+    <SectionWithHeader>
       <div class="breadcrumbs text-sm">
         <ul>
           <li><a href="/blog">Blog</a></li>
@@ -83,28 +81,50 @@ onMounted(() => Prism.highlightAll())
     </SectionWithHeader>
 
     <article id="article-body" v-html="sanitizedContent"></article>
-
-    <hr class="border-base-300">
-
-    <ul
-      v-if="metadata.serie"
-      class="menu menu-vertical w-full bg-base-300 rounded-lg shadow-xl backdrop-blur-lg">
-      <li class="menu-title flex items-center gap-2 text-lg">
-        <Icon icon="hugeicons:book-open-02" class="size-7 inline-block" />
-        <span>Este post faz parte de uma série. Veja os outros artigos:</span>
-      </li>
-      <li
-        v-for="postFromSerie in postsRelatedBySeries"
-        :key="postFromSerie.path"
-        class="p-0 hover:text-primary"
-      >
-        <a
-          :href="postFromSerie.path"
-          class=""
-        >
-          {{ postFromSerie.title }}
-        </a>
-      </li>
-    </ul>
   </div>
+
+  <div
+    :class="[
+      'mt-10',
+      'max-w-10/12',
+      'mx-auto',
+      'not-2xl:max-w-11/12',
+    ]">
+    <GlassCard>
+      <ul
+      v-if="metadata.serie"
+      :class="[
+        'menu',
+        'menu-vertical',
+        'w-full',
+        'rounded-lg',
+        'shadow-xl',
+        'backdrop-blur-lg'
+      ]">
+        <li class="menu-title flex items-center gap-2 text-lg">
+          <Icon icon="hugeicons:book-open-02" class="size-7 inline-block" />
+          <span>Este post faz parte de uma série. Veja os outros artigos:</span>
+        </li>
+        <li
+          v-for="postFromSerie in postsRelatedBySeries"
+          :key="postFromSerie.path"
+          :class="[
+            'p-2',
+            'transition-all',
+            'duration-500',
+            'backdrop-blur-lg',
+            'rounded-lg',
+            postFromSerie.path === route.path ? 'menu-active disabled' : '',
+            postFromSerie.path !== route.path ? 'hover:indent-2 hover:text-primary' : '',
+          ]"
+        >
+          <a 
+          :href="postFromSerie.path === route.path ? undefined : postFromSerie.path">
+            {{ postFromSerie.title }}
+          </a>
+        </li>
+      </ul>
+    </GlassCard>
+  </div>
+
 </template>

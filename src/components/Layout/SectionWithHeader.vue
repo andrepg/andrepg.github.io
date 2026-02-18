@@ -10,6 +10,12 @@
       'px-2',
       'sm:px-10',
       'w-full', 
+      'glass',
+      'bg-secondary/20',
+      'text-neutral',
+      'backdrop-blur-lg',
+      'shadow-lg',
+      'rounded-b-lg',
       $attrs.class
     ]"
   >

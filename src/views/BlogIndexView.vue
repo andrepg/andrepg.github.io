@@ -79,20 +79,42 @@ useHead({
 </script>
 
 <template>
-  <SectionWithHeader>
-    <h1 class="text-2xl font-semibold leading-tight">
-      Todos as minhas publicações
-    </h1>
+  <div
+    :class="[
+      'flex',
+      'flex-col',
+      'w-full',
+      'gap-10',
+      'px-5',
+      'lg:px-10',
+      'max-w-10/12',
+      'mx-auto',
+      'not-2xl:max-w-11/12',
+      'bg-base-100/50',
+      'backdrop-blur-lg',
+      'shadow-2xl',
+      'min-h-screen',
+      'pb-20',
+      'rounded-b-lg',
+    ]"
+  >
+    <SectionWithHeader>
+      <h1 class="text-2xl font-semibold leading-tight">
+        Todas as minhas publicações
+      </h1>
 
-    <small
-      class="opacity-70 font-normal font-md w-full leading-tight flex-1"
-    >
-      Aqui eu escrevo meus devaneios, registro minhas aventuras de trabalho e compartilho
-      experiências da profissão.
-    </small>
-  </SectionWithHeader>
+      <small
+        class="opacity-70 font-normal font-md w-full leading-tight flex-1"
+      >
+        Aqui eu escrevo meus devaneios, registro minhas aventuras de trabalho e compartilho
+        experiências da profissão.
+      </small>
+    </SectionWithHeader>
 
-  <div class="max-w-5xl mx-auto md:px-5">
-    <PostTimelineFeature :posts="posts" :is-loading="false" />
+    <div class="max-w-5xl mx-auto md:px-5">
+      <PostTimelineFeature :posts="posts" :is-loading="false" />
+    </div>
   </div>
 </template>
+
+

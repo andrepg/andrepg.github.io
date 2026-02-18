@@ -1,119 +1,103 @@
 <template>
-  <ul
-    id="bubbles"
-    :class="[
-      'fixed',
-      'bg-primary/4',
-      'w-full',
-      'h-full',
-      'overflow-clip'
-    ]"
+  <div
+    class="fixed inset-0 pointer-events-none overflow-hidden z-0"
+    id="liquid-background"
   >
-    <li
-      v-for="bubble in Array.from({ length: 12 })"
-      :key="'bubble-' + bubble"
-      :class="[
-        'absolute',
-        'list-none',
-        'rounded-full!',
-        'will-change-transform',
-        'transforom-gpu',
-        'bg-primary/5',
-        'bottom-0',
-        'z-0',
-        'm-0',
-        'p-0',
-      ]"
-    />
-  </ul>
+    <div
+      v-for="i in 6"
+      :key="i"
+      :class="['blob', `blob-${i}`]"
+    ></div>
+  </div>
 </template>
 
 <style scoped>
-#bubbles li {
-  animation: 30s bubblesUp 0s ease-out infinite;
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  will-change: transform;
+  animation: move linear infinite;
 }
 
-#bubbles li:nth-child(1) {
-  left: 25%;
-  width: 80px;
-  height: 80px;
-  animation-delay: 0s;
+.blob-1 {
+  width: 400px;
+  height: 400px;
+  background: var(--color-primary, #570df8);
+  top: -100px;
+  left: -100px;
+  animation-duration: 25s;
 }
 
-#bubbles li:nth-child(2) {
-  left: 10%;
-  width: 20px;
-  height: 20px;
-  animation-delay: 2s;
+.blob-2 {
+  width: 500px;
+  height: 500px;
+  background: var(--color-secondary, #f000b8);
+  top: 40%;
+  right: -150px;
+  animation-duration: 30s;
+  animation-direction: reverse;
 }
 
-#bubbles li:nth-child(3) {
-  left: 70%;
-  width: 20px;
-  height: 20px;
-  animation-delay: 4s;
-}
-
-#bubbles li:nth-child(4) {
-  left: 40%;
-  width: 60px;
-  height: 60px;
-  animation-delay: 6s;
-}
-
-#bubbles li:nth-child(5) {
-  left: 65%;
-  width: 20px;
-  height: 20px;
-  animation-delay: 8s;
-}
-
-#bubbles li:nth-child(6) {
-  left: 75%;
-  width: 110px;
-  height: 110px;
-  animation-delay: 8s;
-}
-
-#bubbles li:nth-child(7) {
-  left: 35%;
-  width: 150px;
-  height: 150px;
-  animation-delay: 6s;
-}
-
-#bubbles li:nth-child(8) {
-  left: 50%;
-  width: 25px;
-  height: 25px;
-  animation-delay: 14s;
-}
-
-#bubbles li:nth-child(9) {
+.blob-3 {
+  width: 350px;
+  height: 350px;
+  background: var(--color-accent, #37cdbe);
+  bottom: -50px;
   left: 20%;
-  width: 15px;
-  height: 15px;
-  animation-delay: 16s;
+  animation-duration: 22s;
 }
 
-#bubbles li:nth-child(10) {
-  left: 85%;
-  width: 150px;
-  height: 150px;
-  animation-delay: 0s;
+.blob-4 {
+  width: 300px;
+  height: 300px;
+  background: var(--color-primary, #570df8);
+  bottom: 20%;
+  right: 15%;
+  animation-duration: 28s;
+  opacity: 0.3;
 }
 
-@keyframes bubblesUp {
+.blob-5 {
+  width: 450px;
+  height: 450px;
+  background: var(--color-secondary, #f000b8);
+  top: 10%;
+  left: 30%;
+  animation-duration: 35s;
+  opacity: 0.2;
+}
+
+.blob-6 {
+  width: 250px;
+  height: 250px;
+  background: var(--color-accent, #37cdbe);
+  top: 60%;
+  left: -50px;
+  animation-duration: 20s;
+  opacity: 0.3;
+}
+
+@keyframes move {
   0% {
-    transform: translateY(0);
-    opacity: 1;
-    border-radius: 0;
+    transform: translate(0, 0) scale(1);
   }
-
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
   100% {
-    transform: translateY(-3000px);
-    opacity: 0;
-    border-radius: 50%;
+    transform: translate(0, 0) scale(1);
   }
+}
+
+/* Base DaisyUI color fallbacks if CSS variables aren't injected directly */
+:root {
+  --color-primary: oklch(var(--p));
+  --color-secondary: oklch(var(--s));
+  --color-accent: oklch(var(--a));
 }
 </style>

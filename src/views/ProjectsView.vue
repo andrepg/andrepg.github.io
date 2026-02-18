@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Projects } from '@data/Projects';
 import ProjectsListFeature from '@/components/ProjectsListFeature.vue'
-import BubblesAnimation from '@/components/Layout/BubblesAnimation.vue';
+
 import { useHead } from '@unhead/vue';
 import { APP_CONFIG } from '@config/app';
 
@@ -36,11 +36,11 @@ useHead({
       'gap-5',
       'z-10',
       'max-w-5xl',
-      'mx-auto'
+      'mx-auto',
     ]"
   >
     <ProjectsListFeature :projects="projects" />
   </div>
 
-  <BubblesAnimation />
+
 </template>

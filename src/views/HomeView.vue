@@ -1,5 +1,5 @@
 <script setup>
-import BubblesAnimation from '@/components/Layout/BubblesAnimation.vue'
+
 import MyProfile from '@/components/ProfileCardFeature.vue';
 
 
@@ -30,19 +30,46 @@ useHead({
     :class="[
       'flex',
       'flex-col',
-      'pt-16',
-      'pb-0',
+      'pt-24',
+      'pb-20',
       'px-5',
-      'gap-5',
+      'gap-10',
+      'relative',
       'z-10',
+      'max-w-5xl',
+      'mx-auto'
     ]"
   >
-    <!-- Profile -->
-    <MyProfile />
+    <!-- Profile with enhanced glass effect wrapper if needed, 
+           but components already have glass. Let's make the gap larger for better visual breathing -->
+    <section class="animate-fade-in-up">
+      <MyProfile />
+    </section>
 
     <!-- Recomendations -->
-    <RecomendationsFeature />
+    <section class="animate-fade-in-up delay-150">
+      <RecomendationsFeature />
+    </section>
   </div>
-
-  <BubblesAnimation />
 </template>
+
+<style scoped>
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.delay-150 {
+  animation-delay: 0.15s;
+}
+</style>

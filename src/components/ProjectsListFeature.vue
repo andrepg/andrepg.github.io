@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Icon } from "@iconify/vue";
+import GlassCard from "@/components/Layout/GlassCard.vue";
 
 defineProps<{
 	projects: {
@@ -13,7 +14,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="flex flex-col gap-5">
+  <GlassCard class="flex flex-col gap-5 p-6">
     <h2
       id="projetos"
       class="text-xl font-semibold flex items-center gap-2 mb-0"
@@ -55,6 +56,8 @@ defineProps<{
             'btn',
             'btn-primary',
             'btn-soft',
+            'p-0',
+            'h-auto'
           ]"
         >
           <div
@@ -68,7 +71,7 @@ defineProps<{
               'md:justify-start',
               'items-start',
               'py-4',
-              'px-2',
+              'px-4',
             ]"
           >
             <div
@@ -83,6 +86,7 @@ defineProps<{
                 'mb-0',
                 'border-b',
                 'border-base-content/10',
+                'w-full'
               ]"
             >
               <Icon
@@ -113,5 +117,5 @@ defineProps<{
         </a>
       </li>
     </ul>
-  </div>
+  </GlassCard>
 </template>

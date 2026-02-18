@@ -27,35 +27,46 @@ const getPostYear = (date: string) => new Date(Date.parse(date)).toLocaleDateStr
       'flex-col',
       'gap-3',
       'group/post-single',
-      'transition-all duration-0 ease',
+      'transition-all duration-500 ease-out',
       'md:flex-row',
       'md:gap-4',
       'md:justify-center',
-      'md:rounded-lg',
-      'md:shadow-lg',
-      'md:bg-primary/5',
-      'md:hover:text-primary',
+      'md:rounded-xl',
+      'bg-base-200/80',
+      'backdrop-blur-2xl',
+      'border',
+      'border-white/10',
+      'shadow-xl',
+      'hover:shadow-primary/30',
+      'hover:border-primary/40',
+      'hover:bg-primary/10',
+      'text-base-content',
       'lg:gap-6',
+      'overflow-hidden',
+      'transform will-change-transform',
+
     ]"
   >
     <!-- Metadata square -->
     <div
       :class="[
         'flex flex-row',
-        'opacity-50',
-        'alert alert-soft',
+        'backdrop-blur-md',
         'justify-start',
+        'p-4',
         'md:w-1/6',
         'md:flex-col',
         'md:justify-center',
         'md:items-center',
         'md:gap-1',
-        'transition-all ease',
-        'delay-0 duration-500',
+        'transition-all ease-in-out',
+        'duration-500',
         'group-hover/post-single:opacity-100',
-        'group-hover/post-single:alert-info',
+        'group-hover/post-single:bg-primary/80',
+        'group-hover/post-single:text-primary-content',
       ]"
     >
+
       <div
         :class="[
           'flex flex-row',
@@ -72,7 +83,6 @@ const getPostYear = (date: string) => new Date(Date.parse(date)).toLocaleDateStr
             'md:group-hover/post-single:scale-200',
             'md:group-hover/post-single:-rotate-12',
             'md:group-hover/post-single:-translate-x-full',
-            // 'md:group-hover/post-single:translate-y-full',
             'md:group-hover/post-single:opacity-0',
             'md:group-hover/post-single:delay-0',
             'md:group-hover/post-single:duration-500',
@@ -86,11 +96,9 @@ const getPostYear = (date: string) => new Date(Date.parse(date)).toLocaleDateStr
             'font-semibold',
             'md:font-light',
             'leading-none',
-            'text-base-content',
-            'transform transition duration-700 delay-0 ease-out',
+            'transform transition duration-700 ease-out',
             'md:group-hover/post-single:-translate-x-2/3',
             'md:group-hover/post-single:scale-120',
-            'md:group-hover/post-single:delay-300'
           ]"
         >
           {{ getPostDay(post.published_at) }}
@@ -111,6 +119,7 @@ const getPostYear = (date: string) => new Date(Date.parse(date)).toLocaleDateStr
         'flex-col',
         'gap-2',
         'py-2',
+        'px-4',
         'md:py-3',
         'md:my-3',
         'lg:self-center',
@@ -118,11 +127,19 @@ const getPostYear = (date: string) => new Date(Date.parse(date)).toLocaleDateStr
     >
       <small
         v-if="post.serie"
-        class="text-xs font-semibold tracking-wide uppercase"
+        class="text-xs font-bold tracking-widest uppercase text-primary/70 group-hover/post-single:text-primary transition-colors duration-500"
       >{{ post.serie }}</small>
 
-      <tag class="leading-none my-0">{{ post.title }}</tag>
-      <p class="leading-tight">{{ post.excerpt }}</p>
+      <component
+        :is="tag"
+        class="text-xl font-bold leading-tight my-0 transition-colors duration-500 group-hover/post-single:text-primary"
+      >
+        {{ post.title }}
+      </component>
+      <p class="text-sm leading-relaxed opacity-80 group-hover/post-single:opacity-100 transition-opacity duration-500 line-clamp-2">
+        {{ post.excerpt }}
+      </p>
     </div>
+
   </a>
 </template>
