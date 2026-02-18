@@ -99,7 +99,7 @@ useHead({
     </template>
 
     <div class="max-w-5xl mx-auto md:px-5">
-      <PostTimelineFeature :posts="posts" :is-loading="false" />
+      <PostTimelineFeature :posts="posts" :is-loading="false" compact-mode />
     </div>
   </BlogPageLayout>
 </template>

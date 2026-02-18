@@ -11,7 +11,7 @@
       'sm:px-10',
       'w-full', 
       'glass',
-      'bg-secondary/20',
+      'bg-primary/20',
       'text-neutral',
       'backdrop-blur-lg',
       'shadow-lg',

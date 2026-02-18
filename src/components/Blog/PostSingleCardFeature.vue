@@ -2,7 +2,16 @@
 import { Icon } from '@iconify/vue'
 import { Post } from '@/interfaces'
 
-defineProps<{ post: Post; tag: string }>();
+interface Props {
+  post: Post;
+  tag: string;
+  compactMode?: boolean;
+}
+
+withDefaults(defineProps<Props>(), {
+  compactMode: false,
+});
+
 
 const getPostDay = (date: string) => new Date(Date.parse(date)).toLocaleDateString('pt-BR', {
   day: 'numeric',
@@ -114,29 +123,36 @@ const getPostYear = (date: string) => new Date(Date.parse(date)).toLocaleDateStr
     <div
       :class="[
         'md:w-5/6',
-        'self-start',
         'flex',
         'flex-col',
-        'gap-2',
         'py-2',
         'px-4',
         'md:py-3',
         'md:my-3',
         'lg:self-center',
+        'gap-2',
+        compactMode && 'self-center',
+        !compactMode && 'self-start',
       ]"
     >
       <small
-        v-if="post.serie"
+        v-if="post.serie && !compactMode"
         class="text-xs font-bold tracking-widest uppercase text-primary/70 group-hover/post-single:text-primary transition-colors duration-500"
       >{{ post.serie }}</small>
 
       <component
         :is="tag"
-        class="text-xl font-bold leading-tight my-0 transition-colors duration-500 group-hover/post-single:text-primary"
+        :class="[
+          compactMode ? 'text-lg' : 'text-xl',
+          'font-bold leading-tight my-0 transition-colors duration-500 group-hover/post-single:text-primary'
+        ]"
       >
         {{ post.title }}
       </component>
-      <p class="text-sm leading-relaxed opacity-80 group-hover/post-single:opacity-100 transition-opacity duration-500 line-clamp-2">
+      <p 
+        v-if="!compactMode"
+        class="text-sm leading-relaxed opacity-80 group-hover/post-single:opacity-100 transition-opacity duration-500 line-clamp-2"
+      >
         {{ post.excerpt }}
       </p>
     </div>

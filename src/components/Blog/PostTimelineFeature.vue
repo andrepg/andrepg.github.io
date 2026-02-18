@@ -5,7 +5,8 @@ import PostSingleCardFeature from './PostSingleCardFeature.vue';
 
 const props = defineProps<{
   posts: Post[],
-  isLoading?: boolean
+  isLoading?: boolean,
+  compactMode?: boolean
 }>()
 </script>
 
@@ -28,7 +29,8 @@ const props = defineProps<{
         'md:transition-all duration-500 ease',
       ]"
     >
-      <PostSingleCardFeature tag="h2" :post="post" />
+      <PostSingleCardFeature tag="h2" :post="post" :compact-mode="compactMode" />
     </li>
   </TransitionGroup>
 </template>
+

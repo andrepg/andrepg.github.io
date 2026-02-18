@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { version } from "../../package.json";
-
 import { Icon } from '@iconify/vue';
 import { HomepageMenu } from '@data/NavigationMenu';
 import { onMounted, ref, computed } from 'vue';
@@ -57,7 +55,6 @@ onMounted(() => {
       'px-4',
       'w-full',
       'transition-all',
-
       opaqueNavbar ? 'bg-neutral/50 backdrop-blur-lg' : 'bg-neutral/0'
     ]"
   >
@@ -95,29 +92,23 @@ onMounted(() => {
             class="drawer-overlay"
           />
 
-          <section class="bg-base-200 min-h-full w-80 p-4">
+          <section class="flex flex-col gap-5 justify-center bg-primary/60 backdrop-blur-md text-primary-content min-h-full w-80 p-4">
             <ul class="menu menu-vertical w-full">
-              <li class="menu-title w-full text-left">
+              <li class="menu-title text-primary-content w-full text-left">
                 Navegação
               </li>
 
               <li
                 v-for="link in HomepageMenu.filter(link => link.menu)"
                 :key="link.name"
-                class="my-2"
+                class="py-1.5 transition-all duration-500 hover:menu-active rounded-lg hover:bg-primary"
               >
-                <a :href="link.path">
-                  <span class="w-full text-left flex items-center gap-2">
-                    <Icon :icon="link.icon" />
-                    {{ link.name }}
-                  </span>
+                <a :href="link.path" class="w-full text-left flex items-center gap-3">
+                  <Icon :icon="link.icon" class="text-lg" />
+                  {{ link.name }}
                 </a>
               </li>
             </ul>
-
-            <p class="text-center text-xs opacity-50">
-              versão {{ version }}
-            </p>
           </section>
         </div>
       </div>
