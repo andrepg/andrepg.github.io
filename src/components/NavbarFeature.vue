@@ -20,6 +20,10 @@ const title = computed(() => {
     if (path.endsWith('/blog')) {
         return "Blog";
     }
+
+    if (path === "/projetos") {
+        return "Projetos";
+    }
     
     return "";
 });

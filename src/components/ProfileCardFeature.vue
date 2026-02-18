@@ -4,7 +4,7 @@ import { Icon } from "@iconify/vue";
 </script>
 
 <template>
-  <div class="card bg-base-300/85">
+  <div class="card glass bg-neutral/40 backdrop-blur-lg text-neutral">
     <div class="card-body p-6">
       <div class="flex flex-col items-start md:flex-row gap-5 md:items-center">
         <div class="avatar">

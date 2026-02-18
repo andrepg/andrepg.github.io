@@ -47,11 +47,13 @@ defineProps<{
           :class="[
             'group/project-item',
             'flex',
+            'hover:cursor-pointer',
             'flex-col',
             'h-full',
             'w-full',
             'justify-start',
             'btn',
+            'btn-primary',
             'btn-soft',
           ]"
         >

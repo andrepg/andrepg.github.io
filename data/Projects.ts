@@ -42,13 +42,6 @@ export const Projects = [
     recommended: true
   },
   {
-    label: "This website",
-    target: "https://github.com/andrepg/andrepg.github.io",
-    icon: 'hugeicons:computer-video-call',
-    recommended: true,
-    description: 'O código-fonte deste website'
-  }, 
-  {
     label: "Laravel Sail Podman",
     target: "https://github.com/Startap/sail-podman",
     icon: 'hugeicons:archive-03',

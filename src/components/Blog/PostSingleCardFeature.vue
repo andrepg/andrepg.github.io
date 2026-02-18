@@ -1,31 +1,18 @@
-<script setup>
+<script setup lang="ts">
 import { Icon } from '@iconify/vue'
+import { Post } from '@/interfaces'
 
-defineProps({
-  post: {
-    required: true,
-    type: {
-      path: String,
-      title: String,
-      excerpt: String,
-      published_at: String,
-      category: String,
-      tags: Array,
-    }
-  }
-})
+defineProps<{ post: Post; tag: string }>();
 
-const getBlogUrl = (path) => '/blog/'.concat(path)
-
-const getPostDay = (date) => new Date(Date.parse(date)).toLocaleDateString('pt-BR', {
+const getPostDay = (date: string) => new Date(Date.parse(date)).toLocaleDateString('pt-BR', {
   day: 'numeric',
 })
 
-const getPostMonth = (date) => new Date(Date.parse(date)).toLocaleDateString('pt-BR', {
+const getPostMonth = (date: string) => new Date(Date.parse(date)).toLocaleDateString('pt-BR', {
   month: 'long'
 })
 
-const getPostYear = (date) => new Date(Date.parse(date)).toLocaleDateString('pt-BR', {
+const getPostYear = (date: string) => new Date(Date.parse(date)).toLocaleDateString('pt-BR', {
   year: 'numeric'
 })
 
@@ -34,7 +21,7 @@ const getPostYear = (date) => new Date(Date.parse(date)).toLocaleDateString('pt-
 <template>
   <!-- Line row -->
   <a
-    :href="getBlogUrl(post.path)"
+    :href="post.path"
     :class="[
       'flex',
       'flex-col',
@@ -134,7 +121,7 @@ const getPostYear = (date) => new Date(Date.parse(date)).toLocaleDateString('pt-
         class="text-xs font-semibold tracking-wide uppercase"
       >{{ post.serie }}</small>
 
-      <h3 class="leading-none my-0">{{ post.title }}</h3>
+      <tag class="leading-none my-0">{{ post.title }}</tag>
       <p class="leading-tight">{{ post.excerpt }}</p>
     </div>
   </a>

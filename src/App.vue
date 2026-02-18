@@ -8,7 +8,7 @@ import Navbar from '@/components/NavbarFeature.vue';
   <Navbar />
 
   <Suspense>
-    <main class="flex flex-col w-full h-screen justify-between">
+    <main class="flex flex-col w-full min-h-screen justify-between">
       <div class="flex flex-col w-full self-start">
         <RouterView />
       </div>

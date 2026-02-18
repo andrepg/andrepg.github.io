@@ -3,21 +3,21 @@ import { nextTick, onMounted, ref } from "vue";
 import PostTimelineFeature from "./PostTimelineFeature.vue";
 import { Icon } from "@iconify/vue";
 
-import { SitemapBridge } from "@/sitemap/sitemap.bridge";
+// import { SitemapBridge } from "@/sitemap/sitemap.bridge";
 
 const posts = ref([])
-const sitemapBridge = SitemapBridge.getInstance()
+// const sitemapBridge = SitemapBridge.getInstance()
 
-const fetchPosts = async () => {
-  await sitemapBridge.load()
-  posts.value = sitemapBridge.published()
-    .filter(post => post.path.includes('blog'))
-    .slice(0, 5)
-}
+// const fetchPosts = async () => {
+//   await sitemapBridge.load()
+//   posts.value = sitemapBridge.published()
+//     .filter(post => post.path.includes('blog'))
+//     .slice(0, 5)
+// }
 
-onMounted(() => {
-  nextTick(fetchPosts)
-})
+// onMounted(() => {
+//   nextTick(fetchPosts)
+// })
 </script>
 
 

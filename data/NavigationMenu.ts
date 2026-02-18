@@ -16,24 +16,31 @@ export const HomepageMenu: NavigationMenu[] = [
     component: () => import('@/views/AboutView.vue')
   },
   {
+    name: 'Projetos',
+    menu: true,
+    icon: 'hugeicons:computer-video-call',
+    path: '/projetos',
+    component: () => import('@/views/ProjectsView.vue')
+  },
+  {
     name: 'Blog',
     menu: true,
     icon: 'hugeicons:quill-write-02',
     path: '/blog',
-    component: () => import('@/views/PostListView.vue')
+    component: () => import('@/views/BlogIndexView.vue')
   },
   {
     menu: false,
     name: 'Posts - Series',
     path: '/blog/series/:series',
     icon: '',
-    component: () => import('@/views/PostListView.vue')
+    component: () => import('@/views/BlogIndexView.vue')
   },
   {
     menu: false,
     name: 'Posts - Single',
     icon: '',
     path: '/blog/:year/:article',
-    component: () => import('@/views/PostSingleView.vue')
+    component: () => import('@/views/BlogArticleView.vue')
   },
 ];
