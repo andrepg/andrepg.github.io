@@ -11,6 +11,7 @@ import CardHeaderFeature from '@/components/CardHeaderFeature.vue';
 import GlassCard from '@/components/GlassCard.vue';
 import { Icon } from '@iconify/vue';
 import { computed, ref } from 'vue';
+import SearchBlogFeature from '@/components/Features/SearchBlogFeature.vue';
 
 const posts = getPublished().sort(
   (a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime()
@@ -91,22 +92,26 @@ useHead({
     </template>
 
     <GlassCard class="flex flex-col px-5">
-      <button
-        class="btn btn-soft btn-primary place-self-end btn-sm transition-all duration-300 min-w-40"
-        @click="toggleDisplayMode"
-      >
-        <Transition name="fade" mode="out-in">
-          <div :key="displayMode" class="flex items-center justify-center gap-2 whitespace-nowrap w-full">
-            <Icon
-              :icon="isCompactMode ? 'hugeicons:grid-view' : 'hugeicons:list-view'"
-              class="text-lg"
-            />
-            <span>
-              {{ isCompactMode ? 'Ver completo' : 'Ver simplificado' }}
-            </span>
-          </div>
-        </Transition>
-      </button>
+      <div class="flex flex-row flex-wrap justify-between items-center">
+        <SearchBlogFeature />
+  
+        <button
+          class="btn btn-soft btn-primary transition-all duration-300 min-w-40"
+          @click="toggleDisplayMode"
+        >
+          <Transition name="fade" mode="out-in">
+            <div :key="displayMode" class="flex items-center justify-center gap-2 whitespace-nowrap w-full">
+              <Icon
+                :icon="isCompactMode ? 'hugeicons:grid-view' : 'hugeicons:list-view'"
+                class="text-lg"
+              />
+              <span>
+                {{ isCompactMode ? 'Ver completo' : 'Ver simplificado' }}
+              </span>
+            </div>
+          </Transition>
+        </button>
+      </div>
 
       <PostTimelineFeature
         :posts="posts"

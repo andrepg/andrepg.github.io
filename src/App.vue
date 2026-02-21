@@ -37,6 +37,7 @@ import BubblesAnimation from '@/components/BubblesAnimation.vue';
     <BubblesAnimation />
 
     <!-- Decorative Liquid Blobs -->
+     <div class="fixed bg-primary/35 top-0 bottom-0 left-0 right-0 pointer-events-none"></div>
     <div class="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/20 rounded-full blur-[100px] animate-pulse pointer-events-none"></div>
     <div class="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-secondary/20 rounded-full blur-[100px] animate-pulse pointer-events-none" style="animation-delay: 2s;"></div>
   </div>
