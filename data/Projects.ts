@@ -14,6 +14,13 @@ export const Projects = [
     description: 'App Flatpak com códigos HTTP com suas descrições e usos'
   },
   {
+    label: 'Atlas (Delphi)',
+    target: 'https://github.com/Startap/atlas',
+    icon: 'hugeicons:book-01',
+    recommended: false,
+    description: 'Um framework (não finalizado) para aplicações Delphi'
+  },
+  {
     label: '.dotfiles',
     target: 'https://github.com/andrepg/dotfiles/',
     icon: 'hugeicons:computer-terminal-01',
