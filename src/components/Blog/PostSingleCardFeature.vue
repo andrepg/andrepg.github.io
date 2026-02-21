@@ -41,7 +41,8 @@ const getPostYear = (date: string) => new Date(Date.parse(date)).toLocaleDateStr
       'md:gap-4',
       'md:justify-center',
       'md:rounded-xl',
-      'bg-base-200/80',
+      'glass',
+      'bg-base-200/30',
       'backdrop-blur-2xl',
       'border',
       'border-white/10',
@@ -129,33 +130,111 @@ const getPostYear = (date: string) => new Date(Date.parse(date)).toLocaleDateStr
         'px-4',
         'md:py-3',
         'md:my-3',
-        'lg:self-center',
         'gap-2',
+        'transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]',
         compactMode && 'self-center',
         !compactMode && 'self-start',
       ]"
     >
-      <small
-        v-if="post.serie && !compactMode"
-        class="text-xs font-bold tracking-widest uppercase text-primary/70 group-hover/post-single:text-primary transition-colors duration-500"
-      >{{ post.serie }}</small>
+      <Transition name="expand">
+        <small
+          v-if="post.serie && !compactMode"
+          :class="[
+            'text-xs font-bold tracking-widest uppercase transition-all duration-500 will-change-transform backface-hidden',
+            'text-primary/70 group-hover/post-single:text-primary',
+          ]"
+        >{{ post.serie }}</small>
+      </Transition>
 
       <component
         :is="tag"
         :class="[
-          compactMode ? 'text-lg' : 'text-xl',
-          'font-bold leading-tight my-0 transition-colors duration-500 group-hover/post-single:text-primary'
+          'text-base',
+          'font-bold',
+          'leading-tight',
+          'my-0',
+          'transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]',
+          'group-hover/post-single:text-primary',
         ]"
       >
         {{ post.title }}
       </component>
-      <p 
-        v-if="!compactMode"
-        class="text-sm leading-relaxed opacity-80 group-hover/post-single:opacity-100 transition-opacity duration-500 line-clamp-2"
-      >
-        {{ post.excerpt }}
-      </p>
+
+      <div class="w-full transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]">
+        <Transition name="expand">
+          <p
+            v-if="!compactMode"
+            :class="[
+              'text-sm leading-relaxed opacity-80 group-hover/post-single:opacity-100 transition-opacity duration-500 line-clamp-2 backface-hidden',
+              'text-start'
+            ]"
+          >
+            {{ post.excerpt }}
+          </p>
+        </Transition>
+      </div>
+      <!-- <Transition name="expand">
+        <div v-if="!compactMode" class="overflow-hidden will-change-auto w-full">
+          <p 
+            :class="[
+              'text-sm leading-relaxed opacity-80 group-hover/post-single:opacity-100 transition-opacity duration-500 line-clamp-2 backface-hidden',
+              'text-start'
+            ]"
+          >
+            {{ post.excerpt }}
+          </p>
+        </div>
+      </Transition> -->
     </div>
 
   </a>
 </template>
+
+<style scoped>
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.expand-enter-active,
+.expand-leave-active {
+  transition: 
+    opacity 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    grid-template-rows 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: grid;
+  grid-template-rows: 1fr;
+}
+
+.expand-enter-from,
+.expand-leave-to {
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transform: scale(0.95) translateY(-5px);
+}
+
+.expand-enter-to,
+.expand-leave-from {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* CSS for smooth horizontal alignment transition */
+.is-centered {
+  margin-left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: fit-content;
+}
+
+.is-started {
+  margin-left: 0 !important;
+  transform: translateX(0) !important;
+  width: fit-content;
+}
+
+.expand-enter-active > *,
+.expand-leave-active > * {
+  overflow: hidden;
+}
+</style>

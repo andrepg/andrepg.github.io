@@ -3,7 +3,7 @@
 import MyProfile from '@/components/ProfileCardFeature.vue';
 
 
-import RecomendationsFeature from '@/components/RecomendationsFeature.vue';
+import RecomendationsFeature from '@/components/Features/RecomendationsFeature.vue';
 import { useHead } from '@unhead/vue';
 import APP_CONFIG from '@config/app';
 import RecentPostsFeature from '@/components/Blog/RecentPostsFeature.vue';

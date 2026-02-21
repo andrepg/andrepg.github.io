@@ -6,6 +6,7 @@ import { useHead } from '@unhead/vue';
 import APP_CONFIG from '@config/app';
 import ProjectCardFeature from '@/components/Features/ProjectCardFeature.vue';
 import GlassCard from '@/components/GlassCard.vue';
+import AnimatedList from '@/components/AnimatedList.vue';
 
 const projects = Projects;
 
@@ -42,19 +43,20 @@ useHead({
     </template>
 
     <GlassCard class="px-4 py-8">
-      <TransitionGroup appear tag="ul" class="mx-auto w-full columns-1 md:columns-2 gap-4" name="fade">
-        <li
-          v-for="(project, index) in projects"
-          :key="project.label"
-          class="break-inside-avoid-column mb-4"
-          :style="{ transitionDelay: `${index * 150}ms` }">
-          <ProjectCardFeature :project="project" />
-        </li>
-      </TransitionGroup>
+      <AnimatedList
+        :items="projects"
+        list-class="mx-auto w-full columns-1 md:columns-2 gap-4"
+        item-class="break-inside-avoid-column mb-4"
+        :delay="150"
+      >
+        <template #default="{ item }">
+          <ProjectCardFeature :project="item" />
+        </template>
+      </AnimatedList>
 
 
 
-      <p class="text-sm mt-3 mx-auto text-center">
+      <p class="text-sm mt-3 mx-auto text-center max-w-prose">
         A lista mais extensa de projetos pode ser encontrada no meu <a
           href="https://github.com/andrepg"
           target="_blank"

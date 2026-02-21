@@ -20,18 +20,19 @@ defineProps<{
         :href="project.target"
         :class="[
         'group/project-item',
-        'bg-neutral/10',
         'relative',
         'flex',
         'flex-col',
         'gap-4',
-        'backdrop-blur-lg',
         'p-4',
+        'glass',
+        'shadow-lg',
         'rounded-xl',
-        'transition-colors',
+        'transition-all',
+        'transform transform-gpu',
         'duration-300',
+        'hover:shadow-xl',
         'hover:cursor-pointer',
-        'hover:bg-primary/20',
     ]">
             <div
                 :class="[
@@ -41,10 +42,6 @@ defineProps<{
                     'md:justify-start',
                     'gap-2',
                     'text-lg',
-                    'pb-3',
-                    'mb-0',
-                    'border-b',
-                    'border-base-content/10',
                     'w-full'
             ]">
                 <Icon
@@ -61,11 +58,11 @@ defineProps<{
             <p
                 :class="[
                     'opacity-70',
-                    'font-normal',
                     'text-start',
                     'font-md',
                     'w-full',
                     'leading-snug',
+                    'font-light',
                     'flex-1',
                 ]"
             >{{ project.description }}</p>

@@ -72,34 +72,44 @@ onMounted(() => Prism.highlightAll())
 
     <template v-if="metadata.serie" #footer>
       <GlassCard>
+        <p class="py-3 flex items-center gap-2 text-lg">
+          <Icon icon="hugeicons:book-open-02" class="size-7 inline-block" />
+          <span>Este post faz parte da serie 
+            <a 
+            :href="`/blog/serie/${slugify(metadata.serie)}`" 
+            class="link link-primary uppercase font-bold text-sm">{{ metadata.serie }}</a>.
+            Veja os outros artigos:</span>
+        </p>
+
         <ul
           :class="[
-            'menu',
-            'menu-vertical',
+            'list',
+            'list-vertical',
+            'p-3',
+            'shadow-lg',
             'w-full',
             'rounded-lg',
-            'shadow-xl',
             'backdrop-blur-lg'
           ]"
         >
-          <li class="menu-title flex items-center gap-2 text-lg">
-            <Icon icon="hugeicons:book-open-02" class="size-7 inline-block" />
-            <span>Este post faz parte de uma série. Veja os outros artigos:</span>
-          </li>
           <li
-            v-for="postFromSerie in postsRelatedBySeries"
+            v-for="(postFromSerie, index) in postsRelatedBySeries"
             :key="postFromSerie.path"
+            data-tip="Este post"
             :class="[
               'p-2',
               'transition-all',
               'duration-500',
               'backdrop-blur-lg',
               'rounded-lg',
-              postFromSerie.path === route.path ? 'menu-active disabled' : '',
-              postFromSerie.path !== route.path ? 'hover:indent-2 hover:text-primary' : '',
+              'list-item',
+              postFromSerie.path === route.path && 'tooltip',
+              postFromSerie.path === route.path && 'bg-primary/20 disabled opacity-70',
+              postFromSerie.path !== route.path && 'hover:indent-2 hover:text-primary',
             ]"
           >
-            <a 
+            <span class="w-fit me-2 font-extralight ">{{ index+1 }}</span>
+            <a
               :href="postFromSerie.path === route.path ? undefined : postFromSerie.path"
             >
               {{ postFromSerie.title }}

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Icon } from "@iconify/vue";
 import GlassCard from "@/components/GlassCard.vue";
+import AnimatedList from "@/components/AnimatedList.vue";
 
 defineProps<{
 	items: {
@@ -27,12 +28,11 @@ defineProps<{
       <i class="opacity-70">- algumas delas, claro</i>.
     </p>
 
-    <TransitionGroup appear tag="ul" class="mx-auto w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4" name="fade">
-      <li
-        v-for="(item, index) in items"
-        :key="item.label"
-        :style="{ transitionDelay: `${index * 50}ms` }"
-      >
+    <AnimatedList
+      :items="items"
+      list-class="mx-auto w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4"
+    >
+      <template #default="{ item }">
         <div
           :data-tip="item.label"
           :class="[
@@ -61,8 +61,8 @@ defineProps<{
             ]"
           />
         </div>
-      </li>
-    </TransitionGroup>
+      </template>
+    </AnimatedList>
 
   </GlassCard>
 </template>

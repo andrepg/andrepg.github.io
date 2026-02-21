@@ -9,10 +9,20 @@ import { getPublished } from '@/utils/blog-reader';
 import { useHead } from '@unhead/vue';
 import CardHeaderFeature from '@/components/CardHeaderFeature.vue';
 import GlassCard from '@/components/GlassCard.vue';
+import { Icon } from '@iconify/vue';
+import { computed, ref } from 'vue';
 
 const posts = getPublished().sort(
   (a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime()
 );
+
+const displayMode = ref<'grid' | 'list'>('list');
+
+const toggleDisplayMode = () => {
+  displayMode.value = displayMode.value === 'grid' ? 'list' : 'grid';
+};
+
+const isCompactMode = computed(() => displayMode.value === 'list');
 
 useHead({
   title: "Blog | André Paul Grandsire",
@@ -80,8 +90,28 @@ useHead({
       </CardHeaderFeature>
     </template>
 
-    <GlassCard class="px-5">
-      <PostTimelineFeature :posts="posts" :is-loading="false" compact-mode />
+    <GlassCard class="flex flex-col px-5">
+      <button
+        class="btn btn-soft btn-primary place-self-end btn-sm transition-all duration-300 min-w-40"
+        @click="toggleDisplayMode"
+      >
+        <Transition name="fade" mode="out-in">
+          <div :key="displayMode" class="flex items-center justify-center gap-2 whitespace-nowrap w-full">
+            <Icon
+              :icon="isCompactMode ? 'hugeicons:grid-view' : 'hugeicons:list-view'"
+              class="text-lg"
+            />
+            <span>
+              {{ isCompactMode ? 'Ver completo' : 'Ver simplificado' }}
+            </span>
+          </div>
+        </Transition>
+      </button>
+
+      <PostTimelineFeature
+        :posts="posts"
+        :is-loading="false"
+        :compact-mode="displayMode === 'list'" />
     </GlassCard>
   </BlogPageLayout>
 </template>

@@ -28,6 +28,7 @@ withDefaults(defineProps<Props>(), {
 <template>
   <section
     :class="[
+      'py-4 px-5 md:px-8 md:py-6',
       'rounded-2xl',
       'overflow-hidden',
       'transition-all',

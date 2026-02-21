@@ -1,7 +1,10 @@
 <script setup>
+import { ref } from "vue";
 import { HomepageLinks } from "@data/ProfileIcons";
 import { Icon } from "@iconify/vue";
 import GlassCard from "./GlassCard.vue";
+
+const isImageLoaded = ref(false);
 </script>
 
 <template>
@@ -18,13 +21,30 @@ import GlassCard from "./GlassCard.vue";
       'hover:border-white/20'
     ]">
 
-    <div class="card-body p-6">
       <div class="flex flex-col items-start md:flex-row gap-5 md:items-center">
-        <div class="avatar">
-          <div class="size-24 rounded-xl ring-2 ring-neutral-content shadow-lg">
+        <div class="avatar transition-all duration-500">
+          <div 
+            :class="[
+            'size-24',
+            'rounded-xl',
+            'shadow-lg',
+            'relative',
+            'overflow-hidden',
+            'ring-0',
+            'ring-neutral-content',
+            isImageLoaded && 'ring-2',
+            !isImageLoaded && 'skeleton',
+          ]">
+            <div
+              v-show="!isImageLoaded"
+              class="skeleton absolute inset-0 size-full z-0"
+            ></div>
             <img
               src="https://github.com/andrepg.png"
               alt="A NFT of a programmer with a cup of coffee in hands and sitting, looking at the camera"
+              class="relative z-10 transition-opacity duration-500"
+              :class="isImageLoaded ? 'opacity-100' : 'opacity-0'"
+              @load="isImageLoaded = true"
             >
           </div>
         </div>
@@ -58,6 +78,5 @@ import GlassCard from "./GlassCard.vue";
           </ul>
         </div>
       </div>
-    </div>
   </GlassCard>
 </template>

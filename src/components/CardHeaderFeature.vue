@@ -11,7 +11,7 @@ defineProps({
 </script>
 
 <template>
-<GlassCard class="pt-16 px-5 rounded-t-none pb-5">
+<GlassCard class="pt-16! px-5 rounded-t-none pb-5">
   <Transition appear name="fade" >
 	<component
 		:is="tag"

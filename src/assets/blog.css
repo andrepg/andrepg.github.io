@@ -4,7 +4,7 @@
 
 #article-body {
     @apply flex flex-col text-base mx-auto xl:max-w-9/12;
-    @apply bg-base-100 rounded-lg px-4 md:px-8 lg:px-10 shadow-lg;
+    @apply bg-base-100 rounded-lg px-4 md:px-8 lg:px-10 shadow-lg py-4 lg:py-8;
     @apply break-all;
     font-family: 'Lora', serif;
     font-size: 1.15rem;
@@ -17,7 +17,7 @@
     h1,
     h2,
     h3 {
-        @apply font-serif mt-10 mb-4;
+        @apply font-serif mt-10 mb-1;
     }
 
     /**
@@ -40,7 +40,10 @@
     ul,
     ol {
         word-break: normal;
-        @apply list list-inside leading-tight gap-2 card card-border px-7 py-8 bg-neutral/10 dark:bg-neutral/40;
+        @apply list list-inside card card-border leading-tight;
+        @apply gap-2 px-7 py-8;
+        @apply glass shadow-xl;
+        @apply bg-primary/10 bg-blend-lighten;
 
         &:is(ul) {
             @apply list-disc;
@@ -58,7 +61,7 @@
         @apply text-sm tracking-wide;
 
         pre {
-            @apply rounded-xl py-3;
+            @apply rounded-xl py-3 shadow-md;
         }
 
         .toolbar .toolbar-item {
@@ -106,7 +109,9 @@
     * Blockquote styles
     */
     blockquote {
-        @apply card card-body card-border bg-primary/10 pt-2 pb-6 font-light text-lg leading-tight;
+        @apply card card-body card-border pt-2 pb-6 ;
+        @apply glass shadow-lg bg-accent/20 bg-blend-darken;
+        @apply font-light text-lg leading-tight;
 
         &::before {
             content: '💬';

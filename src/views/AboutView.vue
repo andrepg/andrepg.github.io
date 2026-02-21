@@ -7,7 +7,7 @@ import { useHead } from '@unhead/vue';
 import BasePageLayout from '@/components/Layout/BasePageLayout.vue';
 import CardHeaderFeature from '@/components/CardHeaderFeature.vue';
 import TechnologyCardFeature from '@/components/Features/TechnologyCardFeature.vue';
-import RecomendationsFeature from '@/components/RecomendationsFeature.vue';
+import RecomendationsFeature from '@/components/Features/RecomendationsFeature.vue';
 
 const tecnologias = Tecnologias;
 

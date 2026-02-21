@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue';
 import { HomepageMenu } from '@data/NavigationMenu';
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
+import { useScrollWatcher, getPosition, pastThreeshold } from '@/utils/scroll-watcher';
 
 const opaqueNavbar = ref(false);
 
@@ -12,15 +13,9 @@ const scrollToTop = () => {
     });
 }
 
-onMounted(() => {
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 100) {
-            opaqueNavbar.value = true;
-        } else {
-            opaqueNavbar.value = false;
-        }
-    });
-})
+useScrollWatcher(() => {
+  opaqueNavbar.value = pastThreeshold(getPosition(), 100);
+});
 </script>
 
 <template>

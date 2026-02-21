@@ -6,9 +6,20 @@
 </script>
 
 <template>
-  <div class="flex flex-col w-full gap-5 mx-auto max-w-10/12 not-2xl:max-w-11/12 z-10 relative">
+  <div
+    :class="[
+      'flex',
+      'flex-col',
+      'w-full',
+      'gap-5',
+      'mx-auto',
+      'max-w-10/12',
+      'not-2xl:max-w-11/12',
+      'z-10',
+      'relative',
+    ]">
     <slot name="header" />
-    
+
     <div
       :class="[
         'flex',
@@ -19,9 +30,7 @@
         'pb-20',
       ]"
     >
-      <main>
-        <slot />
-      </main>
+      <slot />
 
       <footer v-if="$slots.footer" class="mt-10">
         <slot name="footer" />
@@ -29,4 +38,3 @@
     </div>
   </div>
 </template>
-

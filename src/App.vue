@@ -21,9 +21,13 @@ import BubblesAnimation from '@/components/BubblesAnimation.vue';
 
     <Suspense>
       <main class="flex flex-col w-full min-h-screen justify-start relative z-10">
-        <div class="grow pb-10">
-          <RouterView />
-        </div>
+        <RouterView v-slot="{ Component, route }">
+          <transition name="page" mode="out-in">
+            <div :key="route.path" class="grow pb-10 transition-all duration-500 ease-in-out min-h-screen">
+              <component :is="Component" />
+            </div>
+          </transition>
+        </RouterView>
 
         <FooterFeature />
       </main>
@@ -31,10 +35,29 @@ import BubblesAnimation from '@/components/BubblesAnimation.vue';
 
     <!-- Global Liquid Animation -->
     <BubblesAnimation />
-    
+
     <!-- Decorative Liquid Blobs -->
     <div class="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/20 rounded-full blur-[100px] animate-pulse pointer-events-none"></div>
     <div class="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-secondary/20 rounded-full blur-[100px] animate-pulse pointer-events-none" style="animation-delay: 2s;"></div>
   </div>
 </template>
 
+<style scoped>
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.4s ease-out;
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+}
+
+.page-enter-from {
+  transform: translateY(10px);
+}
+
+.page-leave-to {
+  transform: translateY(-10px);
+}
+</style>
