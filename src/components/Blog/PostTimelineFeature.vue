@@ -13,6 +13,8 @@ const props = defineProps<{
 <template>
   <AnimatedList
     :items="posts"
+    tag="ul"
+    item-tag="li"
     list-class="list"
     item-class="p-0 not-sm:p-2 my-4 transition-all duration-0 ease md:transition-all duration-500 ease"
     :delay="150"
