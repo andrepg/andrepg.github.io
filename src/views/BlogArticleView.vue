@@ -10,7 +10,7 @@ import { blogModules, getHeadTags, getPostsBySerie } from "@/utils/blog-reader";
 import BadgeElement from "@/components/BadgeElement.vue";
 import { Icon } from "@iconify/vue";
 import { slugify } from "@/utils/slugify";
-import SectionWithHeader from "@/components/SectionWithHeader.vue";
+import CardHeaderFeature from "@/components/CardHeaderFeature.vue";
 import BlogPageLayout from "@/components/Layout/BlogPageLayout.vue";
 import APP_CONFIG from "@config/app";
 import GlassCard from "@/components/GlassCard.vue";
@@ -45,8 +45,8 @@ onMounted(() => Prism.highlightAll())
 <template>
   <BlogPageLayout>
     <template #header>
-      <SectionWithHeader>
-        <div class="breadcrumbs text-sm">
+      <CardHeaderFeature tag="div">
+        <div class="breadcrumbs text-sm font-normal">
           <ul>
             <li><a href="/blog">Blog</a></li>
             <li v-if="metadata.category">
@@ -56,7 +56,7 @@ onMounted(() => Prism.highlightAll())
         </div>
 
         <h1 class="leading-tight">{{ metadata.title }}</h1>
-        <p class="text-base leading-tight">{{ metadata.excerpt }}</p>
+        <p class="text-base leading-tight font-normal">{{ metadata.excerpt }}</p>
 
         <ul class="join join-horizontal flex-wrap gap-2 items-center my-2">
           <li v-for="tag in metadata.tags" :key="tag">
@@ -65,7 +65,7 @@ onMounted(() => Prism.highlightAll())
             </BadgeElement>
           </li>
         </ul>
-      </SectionWithHeader>
+      </CardHeaderFeature>
     </template>
 
     <article id="article-body" v-html="sanitizedContent"></article>

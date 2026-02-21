@@ -18,12 +18,13 @@ defineProps<{
       id="experiencia"
       class="text-xl font-semibold flex items-center gap-2 mb-0"
     >
-      <Icon icon="hugeicons:3rd-bracket-square" />
-      Experiência
+      <Icon icon="hugeicons:3rd-bracket-square" class="text-2xl" />
+      Tecnologias trabalhadas
     </h2>
 
     <p class="opacity-70 font-normal font-md w-full leading-snug flex-1 md:max-w-[70ch]">
-      Tecnologias com as quais eu trabalho ou já trabalhei. Línguas, sistemas, frameworks e bibliotecas.
+      Bibliotecas, ferramentas, linguagens e frameworks com os quais já trabalhei
+      <i class="opacity-70">- algumas delas, claro</i>.
     </p>
 
     <TransitionGroup appear tag="ul" class="mx-auto w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4" name="fade">

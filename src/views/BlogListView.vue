@@ -7,7 +7,7 @@ import PostTimelineFeature from '@/components/Blog/PostTimelineFeature.vue';
 import APP_CONFIG from '@config/app';
 import { getPublished } from '@/utils/blog-reader';
 import { useHead } from '@unhead/vue';
-import SectionWithHeader from '@/components/SectionWithHeader.vue';
+import CardHeaderFeature from '@/components/CardHeaderFeature.vue';
 import GlassCard from '@/components/GlassCard.vue';
 
 const posts = getPublished().sort(
@@ -70,18 +70,14 @@ useHead({
 <template>
   <BlogPageLayout>
     <template #header>
-      <SectionWithHeader>
-        <h1 class="text-2xl font-semibold leading-tight">
+      <CardHeaderFeature tag="h1">
+        <template #default>
           Todas as minhas publicações
-        </h1>
-
-        <small
-          class="opacity-70 font-normal font-md w-full leading-tight flex-1"
-        >
-          Aqui eu escrevo meus devaneios, registro minhas aventuras de trabalho e compartilho
-          experiências da profissão.
-        </small>
-      </SectionWithHeader>
+        </template>
+        <template #subtitle>
+          Os registros do meu trabalho, notas relevantes e devaneios sobre a tecnologia.
+        </template>
+      </CardHeaderFeature>
     </template>
 
     <GlassCard class="px-5">

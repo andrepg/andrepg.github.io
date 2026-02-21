@@ -1,10 +1,22 @@
 <script setup>
 import { HomepageLinks } from "@data/ProfileIcons";
 import { Icon } from "@iconify/vue";
+import GlassCard from "./GlassCard.vue";
 </script>
 
 <template>
-  <div class="card glass bg-base-100/30 backdrop-blur-2xl border border-white/10 shadow-2xl transition-all duration-500 hover:shadow-primary/20 hover:border-white/20">
+  <GlassCard
+    :class="[
+      'bg-base-100/30',
+      'backdrop-blur-2xl',
+      'border',
+      'border-white/10',
+      'shadow-2xl',
+      'transition-all',
+      'duration-500',
+      'hover:shadow-primary/20',
+      'hover:border-white/20'
+    ]">
 
     <div class="card-body p-6">
       <div class="flex flex-col items-start md:flex-row gap-5 md:items-center">
@@ -47,5 +59,5 @@ import { Icon } from "@iconify/vue";
         </div>
       </div>
     </div>
-  </div>
+  </GlassCard>
 </template>

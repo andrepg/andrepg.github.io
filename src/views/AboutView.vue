@@ -1,15 +1,14 @@
 <script setup lang="ts">
-import SectionWithHeader from '@/components/SectionWithHeader.vue';
-import BasePageLayout from '@/components/Layout/BasePageLayout.vue';
-
-import ProjectsListFeature from '@/components/ProjectsListFeature.vue';
-import { Projects } from '@data/Projects';
-import { Tecnologias } from '@data/Tecnologias';
-import TechnologiesListFeature from '@/components/TechnologiesListFeature.vue';
-import { useHead } from '@unhead/vue';
 import APP_CONFIG from '@config/app';
+import { Tecnologias } from '@data/Tecnologias';
 
-const projects = Projects;
+import { useHead } from '@unhead/vue';
+
+import BasePageLayout from '@/components/Layout/BasePageLayout.vue';
+import CardHeaderFeature from '@/components/CardHeaderFeature.vue';
+import TechnologyCardFeature from '@/components/Features/TechnologyCardFeature.vue';
+import RecomendationsFeature from '@/components/RecomendationsFeature.vue';
+
 const tecnologias = Tecnologias;
 
 useHead({
@@ -33,7 +32,7 @@ useHead({
 <template>
   <BasePageLayout>
     <template #header>
-      <SectionWithHeader>
+      <CardHeaderFeature>
         <h1 class="text-2xl font-semibold flex flex-col md:w-3/4 max-w-[70w]">
           Experiência & Projetos
 
@@ -42,11 +41,11 @@ useHead({
             experiência de mercado real.
           </small>
         </h1>
-      </SectionWithHeader>
+      </CardHeaderFeature>
     </template>
 
-    <TechnologiesListFeature :items="tecnologias" />
-    <ProjectsListFeature :projects="projects" />
+    <TechnologyCardFeature :items="tecnologias" />
+    <RecomendationsFeature />
   </BasePageLayout>
 </template>
 

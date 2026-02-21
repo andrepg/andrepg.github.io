@@ -27,6 +27,7 @@ withDefaults(defineProps<Props>(), {
     ]"
   >
     <slot name="header" />
+
     <slot />
   </div>
 </template>
