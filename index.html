@@ -16,6 +16,11 @@
   <meta name="twitter:card" content="summary" />
 
   <link rel="canonical" href="https://andrepg.github.io/" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Andada+Pro:ital,wght@0,400..840;1,400..840&family=Parkinsans:wght@300..800&display=swap" rel="stylesheet">
+
   <script type="module" src="/src/main.ts"></script>
 
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -24,7 +29,7 @@
   <link rel="manifest" href="/site.webmanifest">
 </head>
 
-<body class="min-h-screen">
+<body class="h-screen overflow-y-hidden">
   <script>
     const redirect = sessionStorage.getItem('redirect');
 
@@ -35,7 +40,7 @@
     }
   </script>
 
-  <div id="app" class="flex flex-col min-h-screen"></div>
+  <div id="app" class="h-screen scroll-smooth overflow-y-scroll"></div>
 </body>
 
 </html>
