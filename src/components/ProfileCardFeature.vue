@@ -1,4 +1,5 @@
 <script setup>
+import { UserConfig } from "@data/website";
 import GlassCard from "./GlassCard.vue";
 import SocialMediaShortcuts from "./SocialMediaShortcuts.vue";
 import AsyncImage from "@/components/AsyncImage.vue";
@@ -23,19 +24,20 @@ import AsyncImage from "@/components/AsyncImage.vue";
           'hover:ring-2',
           'transition-all'
         ]">
-          <AsyncImage src="https://github.com/andrepg.png" alt="A NFT of a programmer with a cup of coffee in hands and sitting, looking at the camera" />
+          <AsyncImage 
+            :src="UserConfig.author.avatar" 
+            :alt="UserConfig.author.name" />
         </div>
       </div>
 
       <h1 class="flex flex-col leading-none">
-        André Paul Grandsire
-        <small class="font-normal text-lg">Desenvolvedor Full Stack</small>
+        {{ UserConfig.author.name }}
+        <small class="font-normal text-lg">{{ UserConfig.author.role }}</small>
         <SocialMediaShortcuts />
       </h1>
 
       <p class="leading-tight font-light grow">
-        Programador desde 2014, com experiência em desenvolvimento web, mobile e desktop.
-        Auto em OpenSource e Corporativo.
+        {{ UserConfig.author.biography }}
       </p>
     </div>
 

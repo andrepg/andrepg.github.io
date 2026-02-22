@@ -2,19 +2,19 @@ export const Tecnologias = [
     {
         label: "Laravel",
         target: "https://laravel.com/",
-        icon: "logos:laravel",
+        icon: "simple-icons:laravel",
         recommended: true
     },
     {
         label: "HTML",
         target: "https://www.w3.org/html/",
-        icon: "vscode-icons:file-type-html",
+        icon: "mdi:language-html5",
         recommended: true
     },
     {
         label: "CSS",
         target: "https://www.w3.org/Style/CSS/",
-        icon: "vscode-icons:file-type-css2",
+        icon: "mdi:language-css3",
         recommended: true
     },
     {
@@ -26,49 +26,49 @@ export const Tecnologias = [
     {
         label: 'WordPress',
         target: 'https://wordpress.org/',
-        icon: 'ic:baseline-wordpress',
+        icon: 'mdi:wordpress',
         recommended: true
     },
     {
         label: 'React',
         target: 'https://reactjs.org/',
-        icon: 'logos:react',
+        icon: 'simple-icons:react',
         recommended: true
     },
     {
         label: 'Next.js',
         target: 'https://nextjs.org/',
-        icon: 'logos:nextjs-icon',
+        icon: 'simple-icons:nextdotjs',
         recommended: true
     },
     {
         label: 'VueJS',
         target: 'https://vuejs.org',
-        icon: 'material-icon-theme:vue',
+        icon: 'simple-icons:vuedotjs',
         recommended: true,
     },
     {
         label: 'Node.js',
         target: 'https://nodejs.org/',
-        icon: 'logos:nodejs-icon',
+        icon: 'simple-icons:nodedotjs',
         recommended: true
     },
     {
         label: 'Nest.js',
         target: 'https://nestjs.com/',
-        icon: 'logos:nestjs',
+        icon: 'simple-icons:nestjs',
         recommended: true
     },
     {
         label: 'TypeScript',
         target: 'https://www.typescriptlang.org/',
-        icon: 'logos:typescript-icon',
+        icon: 'mdi:language-typescript',
         recommended: true
     },
     {
         label: 'Git',
         target: 'https://git-scm.com/',
-        icon: 'logos:git-icon',
+        icon: 'mdi:git',
         recommended: true
     },
     {
@@ -86,19 +86,19 @@ export const Tecnologias = [
     {
         label: 'Docker',
         target: 'https://www.docker.com/',
-        icon: 'material-icon-theme:docker',
+        icon: 'mdi:docker',
         recommended: true
     },
     {
         label: 'Linux',
         target: 'https://www.linux.org/',
-        icon: 'uil:linux',
+        icon: 'simple-icons:linux',
         recommended: true
     },
     {
         label: 'Windows',
         target: 'https://www.microsoft.com/',
-        icon: 'logos:microsoft-windows-icon',
+        icon: 'mdi:microsoft-windows',
         recommended: true
     },
 ]

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Transition from "vue"
 import GlassCard from './GlassCard.vue';
 
 defineProps({
@@ -11,7 +10,7 @@ defineProps({
 </script>
 
 <template>
-<GlassCard class="pt-16! px-5 rounded-t-none pb-5">
+<GlassCard class="pt-16! px-5 rounded-t-none pb-5 mb-10 transition-all duration-500">
   <Transition appear name="fade" >
 	<component
 		:is="tag"
@@ -23,8 +22,6 @@ defineProps({
 			'font-semibold',
 			['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(tag) && 'font-semibold'
 		]">
-
-
 
 		<slot />
 

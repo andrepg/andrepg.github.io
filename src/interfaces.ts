@@ -34,6 +34,7 @@ export interface IApplicationConfig {
     avatar: string;
 
     biography: string;
+    shortBiography: string;
     
   }
 }

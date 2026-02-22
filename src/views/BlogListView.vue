@@ -13,10 +13,30 @@ import { Icon } from '@iconify/vue';
 import { computed, ref } from 'vue';
 import SearchBlogFeature from '@/components/Features/SearchBlogFeature.vue';
 import { getBlogIndexTags } from '@/utils/blog-metadata';
+import { useRoute } from 'vue-router';
+import { slugify } from '@/utils/slugify';
+
+const route = useRoute();
 
 const posts = getPublished().sort(
   (a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime()
 );
+
+const filteredPosts = computed(() => {
+  const { series, category, tag } = route.query;
+
+  if (!series && !category && !tag) {
+    return posts;
+  }
+
+  return posts.filter(post => {
+    const matchesSeries = !series || slugify(post.serie || '') === series;
+    const matchesCategory = !category || slugify(post.category || '') === category;
+    const matchesTag = !tag || (post.tags && post.tags.some(t => slugify(t) === tag));
+
+    return matchesSeries && matchesCategory && matchesTag;
+  });
+});
 
 const displayMode = ref<'grid' | 'list'>('list');
 
@@ -65,7 +85,7 @@ useHead(getBlogIndexTags(posts));
       </div>
 
       <PostTimelineFeature
-        :posts="posts"
+        :posts="filteredPosts"
         :is-loading="false"
         :compact-mode="displayMode === 'list'" />
     </GlassCard>

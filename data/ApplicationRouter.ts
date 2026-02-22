@@ -31,13 +31,6 @@ export const ApplicationRouter: INavigationMenu[] = [
   },
   {
     menu: false,
-    name: 'Posts - Series',
-    path: '/blog/series/:series',
-    icon: '',
-    component: () => import('@/views/BlogListView.vue')
-  },
-  {
-    menu: false,
     name: 'Posts - Single',
     icon: '',
     path: '/blog/:year/:article',

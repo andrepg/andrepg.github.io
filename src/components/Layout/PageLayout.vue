@@ -18,6 +18,7 @@ const layoutClasses = computed(() => {
       'pt-24',
       'pb-20',
       'px-5',
+      'gap-10',
       'max-w-5xl'
     ];
   }

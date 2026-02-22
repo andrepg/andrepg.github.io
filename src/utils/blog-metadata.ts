@@ -2,6 +2,9 @@ import { IPost, IPostMarkdown } from "@/interfaces";
 import APP_CONFIG from "@config/app";
 import { ReactiveHead } from "@unhead/vue";
 import { getPlainOg, getTwitterOg } from "./site-metadata";
+import { UserConfig } from "@data/website";
+
+const BLOG_TITLE = `Blog de ${UserConfig.author.name}`
 
 const getBlogPostingLdJson = (
     metadata: IPostMarkdown['attributes'],
@@ -12,11 +15,11 @@ const getBlogPostingLdJson = (
     "headline": metadata.title,
     "author": {
         "@type": "Person",
-        "name": "André Paul Grandsire" // TODO Change this to author from build in the future
+        "name": UserConfig.author.name,
     },
     "publisher": {
         "@type": "Organization",
-        "name": "andrepg.dev",
+        "name": UserConfig.author.name,
         "logo": {
             "@type": "ImageObject",
             "url": `${APP_CONFIG.BASE_URL}/favicon-512x512.png`
@@ -34,8 +37,8 @@ const getBlogPostingLdJson = (
 const getBlogIndexLdJson = (posts: IPost[]) => JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Blog",
-    "name": "Blog | André Paul Grandsire",
-    "description": "Blog pessoal de André Paul Grandsire",
+    "name": `Blog | ${UserConfig.author.name}`,
+    "description": BLOG_TITLE,
     "url": `${APP_CONFIG.BASE_URL}/blog`,
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -47,11 +50,11 @@ const getBlogIndexLdJson = (posts: IPost[]) => JSON.stringify({
         "datePublished": post.published_at,
         "author": {
             "@type": "Person",
-            "name": "André Paul Grandsire"
+            "name": UserConfig.author.name,
         },
         "publisher": {
             "@type": "Organization",
-            "name": "André Paul Grandsire",
+            "name": UserConfig.author.name,
             "logo": {
                 "@type": "ImageObject",
                 "url": `${APP_CONFIG.BASE_URL}/favicon-512x512.png`
@@ -80,13 +83,13 @@ export const getSinglePostTags = (
 ): ReactiveHead => ({
   title: metadata.title,
   meta: [
-    { name: 'description', content: metadata.excerpt || 'Blog de André Paul Grandsire' },
+    { name: 'description', content: metadata.excerpt || BLOG_TITLE },
     { property: 'article:published_time', content: metadata.published_at || new Date().toISOString() },
 
     // Open Graph
     ...getPlainOg({
       title: metadata.title,
-      description: metadata.excerpt || 'Blog de André Paul Grandsire',
+      description: metadata.excerpt || BLOG_TITLE,
       canonicalUrl
     }),
 
@@ -94,7 +97,7 @@ export const getSinglePostTags = (
     ...getTwitterOg({
       card: 'summary',
       title: metadata.title,
-      description: metadata.excerpt || 'Blog de André Paul Grandsire'
+      description: metadata.excerpt || BLOG_TITLE
     })
   ],
   link: [
@@ -109,18 +112,18 @@ export const getSinglePostTags = (
 })
 
 export const getBlogIndexTags = (posts: IPost[]): ReactiveHead => ({
-  title: "Blog | André Paul Grandsire",
+  title: BLOG_TITLE,
   meta: [
-    { name: 'description', content: 'Blog pessoal de André Paul Grandsire' },
+    { name: 'description', content: BLOG_TITLE },
     ...getPlainOg({
-      title: "Blog | André Paul Grandsire",
-      description: 'Blog pessoal de André Paul Grandsire',
+      title: `Postagens |  ${BLOG_TITLE}`,
+      description: `Postagens |  ${BLOG_TITLE}`,
       canonicalUrl: `${APP_CONFIG.BASE_URL}/blog`
     }),
     ...getTwitterOg({
       card: 'summary',
-      title: "Blog | André Paul Grandsire",
-      description: 'Blog pessoal de André Paul Grandsire'
+      title: `Postagens |  ${BLOG_TITLE}`,
+      description: `Postagens |  ${BLOG_TITLE}`,
     })
   ],
 
@@ -133,25 +136,4 @@ export const getBlogIndexTags = (posts: IPost[]): ReactiveHead => ({
       textContent: getBlogIndexLdJson(posts),
     }
   ]
-})
-
-export const getBasePageTags = ({ 
-  canonicalUrl,
-  title,
-  description
- }: { 
-  canonicalUrl: string,
-  title: string,
-  description: string
- }) => ({
-  title,
-  meta: [
-    { name: 'description', content: description },
-    ...getPlainOg({ title, description, canonicalUrl }),
-    ...getTwitterOg({ card: 'summary', title, description })
-  ],
-
-  link: [
-    { rel: 'canonical', href: canonicalUrl }
-  ],
 })

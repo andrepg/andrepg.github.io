@@ -14,7 +14,7 @@ const posts = getPublished().sort(
 
 
 <template>
-  <GlassCard class="flex flex-col gap-4 dark:text-neutral">
+  <GlassCard class="flex flex-col gap-4">
       <SectionHeader icon="hugeicons:quill-write-02" subtitle="As últimas postagens do meu blog pessoal, aqui neste mesmo site.">
         <template #title>
           Postagens Recentes

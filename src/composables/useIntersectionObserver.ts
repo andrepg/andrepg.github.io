@@ -10,14 +10,18 @@ import { onMounted, onUnmounted, ref, type Ref } from 'vue';
  */
 export function useIntersectionObserver(
   target: Ref<HTMLElement | null>,
+  callback?: (entries: IntersectionObserverEntry[]) => void,
   options: IntersectionObserverInit = { rootMargin: '0px', threshold: 0.1 }
 ) {
   const isIntersecting = ref(false);
   let observer: IntersectionObserver | null = null;
 
   onMounted(() => {
-    observer = new IntersectionObserver(([entry]) => {
-      isIntersecting.value = entry.isIntersecting;
+    observer = new IntersectionObserver((entries) => {
+      isIntersecting.value = entries[0].isIntersecting;
+      if (callback) {
+        callback(entries);
+      }
     }, options);
 
     if (target.value) {

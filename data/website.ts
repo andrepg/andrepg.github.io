@@ -8,7 +8,9 @@ export const UserConfig = Object.freeze({
     },
     author: {
         name: "André Paul Grandsire",
-        avatar: "/avatar.png", // TODO Missing implementation
-        biography: "Engenheiro de Software, apaixonado por tecnologia e desenvolvimento de software."
+        avatar: "https://github.com/andrepg.png",
+        role: "Programador Full Stack",
+        biography: "Programador desde 2014, criando soluções mobile, web e desktop. Apaixonado por novas tecnologias. Trabalho publicando em Open Source, criações e consultorias.",
+        shortBiography: "Programador desde 2014, criando soluções mobile, web e desktop. Apaixonado por novas tecnologias."
     }
 } as IApplicationConfig);

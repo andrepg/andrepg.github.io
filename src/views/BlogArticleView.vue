@@ -51,13 +51,13 @@ onMounted(() => Prism.highlightAll())
           <ul>
             <li><a href="/blog">Blog</a></li>
             <li v-if="metadata.category">
-              <a :href="`/blog/category/${slugify(metadata.category)}`">{{ metadata.category }}</a>
+              <a :href="`/blog?category=${slugify(metadata.category)}`">{{ metadata.category }}</a>
             </li>
           </ul>
         </div>
 
         <h1 class="leading-tight">{{ metadata.title }}</h1>
-        <p class="text-base leading-tight font-normal">{{ metadata.excerpt }}</p>
+        <p class=" leading-tight font-normal">{{ metadata.excerpt }}</p>
 
         <ul class="join join-horizontal flex-wrap gap-2 items-center my-2">
           <li v-for="tag in metadata.tags" :key="tag">
@@ -77,7 +77,7 @@ onMounted(() => Prism.highlightAll())
           <Icon icon="hugeicons:book-open-02" class="size-7 inline-block" />
           <span>Este post faz parte da serie 
             <a 
-            :href="`/blog/serie/${slugify(metadata.serie)}`" 
+            :href="`/blog?series=${slugify(metadata.serie)}`" 
             class="link link-primary uppercase font-bold text-sm">{{ metadata.serie }}</a>.
             Veja os outros artigos:</span>
         </p>

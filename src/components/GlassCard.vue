@@ -9,6 +9,12 @@ interface Props {
    * Tailwind classes to add to the main container
    */
   class?: string|string[];
+
+  /**
+   * Whether to define solid style
+   */
+  solid?: boolean;
+
   /**
    * Whether to show a shadow on hover
    */
@@ -19,6 +25,7 @@ withDefaults(defineProps<Props>(), {
   tag: 'section',
   class: '',
   hoverable: false,
+  solid: false,
 });
 </script>
 
@@ -31,13 +38,13 @@ withDefaults(defineProps<Props>(), {
       'overflow-hidden',
       'transition-all',
       'duration-500',
-      'glass',
-      'outline-1',
-      'outline-primary',
-      'backdrop-blur-lg',
-      'shadow-md',
+      'border-t border-l',
+      'shadow-xl',
+      !solid && 'backdrop-blur-xl bg-white/10 dark:bg-white/5 border-white/20 dark:border-white/10 shadow-black/5',
       hoverable && 'transform will-change-transform',
-      hoverable && 'hover:shadow-2xl hover:bg-primary/40',
+      hoverable && 'hover:shadow-2xl hover:bg-base-100/70',
+      solid && 'bg-base-200/85 backdrop-blur-lg',
+      solid && 'text-base-content border-white/10',
       $props.class
     ]"
   >

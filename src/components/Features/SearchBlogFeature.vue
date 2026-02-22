@@ -113,7 +113,7 @@ onUnmounted(() => {
 
             <!-- Modal Body: Results (Skeletons) -->
             <div class="p-4 max-h-[60vh] overflow-y-auto">
-                <div class="text-xs font-bold text-base-content/40 uppercase tracking-widest mb-4 px-2">
+                <div class="text-xs font-bold /40 uppercase tracking-widest mb-4 px-2">
                     Resultados Sugeridos
                 </div>
 
