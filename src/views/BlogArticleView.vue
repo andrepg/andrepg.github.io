@@ -47,25 +47,35 @@ onMounted(() => Prism.highlightAll())
   <PageLayout :type="PageLayoutType.BLOG">
     <template #header>
       <CardHeaderFeature tag="div">
-        <div class="breadcrumbs text-sm font-normal">
-          <ul>
-            <li><a href="/blog">Blog</a></li>
-            <li v-if="metadata.category">
-              <a :href="`/blog?category=${slugify(metadata.category)}`">{{ metadata.category }}</a>
-            </li>
-          </ul>
-        </div>
+        <template #default>
+          <div class="breadcrumbs text-sm font-normal">
+            <ul>
+              <li><a href="/blog">Blog</a></li>
+              <li v-if="metadata.category">
+                <a :href="`/blog?category=${slugify(metadata.category)}`">{{ metadata.category }}</a>
+              </li>
+            </ul>
+          </div>
+          <h1 class="leading-tight mb-1">{{ metadata.title }}</h1>
+        </template>
 
-        <h1 class="leading-tight">{{ metadata.title }}</h1>
-        <p class=" leading-tight font-normal">{{ metadata.excerpt }}</p>
+        <template
+          v-if="metadata.excerpt" 
+          #subtitle>
+          <p class=" leading-tight font-normal">{{ metadata.excerpt }}</p>
+        </template>
 
+        <template 
+          v-if="metadata.tags"
+          #actions>
         <ul class="join join-horizontal flex-wrap gap-2 items-center my-2">
           <li v-for="tag in metadata.tags" :key="tag">
-            <span class="badge shadow-lg font-bold badge-primary">
+            <span class="badge shadow-lg badge-sm font-bold badge-primary">
               {{ tag }}
             </span>
           </li>
         </ul>
+        </template>
       </CardHeaderFeature>
     </template>
 

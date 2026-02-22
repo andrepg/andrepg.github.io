@@ -32,7 +32,7 @@ import AsyncImage from "@/components/AsyncImage.vue";
 
       <h1 class="flex flex-col leading-none">
         {{ UserConfig.author.name }}
-        <small class="font-normal text-lg">{{ UserConfig.author.role }}</small>
+        <small class="font-normal text-lg mb-4">{{ UserConfig.author.role }}</small>
         <SocialMediaShortcuts />
       </h1>
 

@@ -26,7 +26,7 @@ defineProps<{
     'relative',
     'flex',
     'flex-col',
-    'gap-4',
+    'gap-2',
     'transition-all',
     'transform transform-gpu',
     'duration-300',
@@ -38,19 +38,19 @@ defineProps<{
         'items-center',
         'md:justify-start',
         'gap-2',
-        'text-lg',
+        'text-base',
         'w-full'
-      ]">
-    <Icon
-      :icon="project.icon"
-      :class="[
-      'text-2xl',
-      'transition-transform',
-      'duration-300',
-      'group-hover/project-item:scale-125',
-    ]"/>
+    ]">
+      <Icon
+        :icon="project.icon"
+        :class="[
+        'size-7',
+        'transition-transform',
+        'duration-300',
+        'group-hover/project-item:scale-125',
+      ]"/>
 
-    <h3 class="lg:text-start leading-none tracking-tight">{{ project.label }}</h3>
+      <h3 class="lg:text-start  text-md font-semibold leading-none tracking-tight">{{ project.label }}</h3>
     </div>
 
     <p

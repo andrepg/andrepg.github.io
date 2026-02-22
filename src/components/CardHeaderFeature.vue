@@ -28,6 +28,7 @@ defineProps({
 		<small class="opacity-70 font-md w-full leading-snug flex-1 font-normal!">
 			<slot name="subtitle" />
 		</small>
+		<slot name="actions" />
 	</component>
   </Transition>
 </GlassCard>

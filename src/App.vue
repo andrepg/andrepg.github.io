@@ -3,6 +3,22 @@ import { RouterView } from 'vue-router'
 import FooterFeature from "@/components/Layout/FooterFeature.vue";
 import Navbar from '@/components/Layout/NavbarFeature.vue';
 import BubblesAnimation from '@/components/BubblesAnimation.vue';
+import LoadingScreen from '@/components/LoadingScreen.vue';
+
+const blobBaseClasses = [
+  'fixed',
+  'w-[70%]',
+  'h-[70%]',
+  'rounded-full',
+  'blur-[120px]',
+  'animate-pulse',
+  'pointer-events-none',
+  'mix-blend-multiply',
+  'dark:mix-blend-soft-light',
+  'transition-all',
+  'duration-1000',
+  'delay-1000',
+];
 </script>
 
 <template>
@@ -12,17 +28,16 @@ import BubblesAnimation from '@/components/BubblesAnimation.vue';
       'min-h-screen',
       'overflow-x-hidden',
       'bg-linear-to-br',
-      'from-primary/20',
-      'via-base-100',
-      'to-secondary/20',
+      'from-primary/30',
+      'via-primary/20',
+      'to-secondary/30',
     ]"
   >
     <Navbar />
 
-    <Suspense>
-      <main class="flex flex-col w-full min-h-screen justify-start relative z-10">
+    <main class="flex flex-col w-full min-h-screen justify-start relative z-10">
         <RouterView v-slot="{ Component, route }">
-          <transition name="page" mode="out-in">
+          <transition name="page" mode="default">
             <div :key="route.path" class="grow pb-10 transition-all min-h-screen">
               <component :is="Component" />
             </div>
@@ -31,19 +46,27 @@ import BubblesAnimation from '@/components/BubblesAnimation.vue';
 
         <FooterFeature />
       </main>
-    </Suspense>
 
     <!-- Global Liquid Animation -->
     <BubblesAnimation />
 
     <!-- Decorative Liquid Blobs -->
-     <div class="fixed inset-0 bg-base-100/40 backdrop-blur-[120px] pointer-events-none z-0"></div>
+    <div class="fixed inset-0 bg-neutral/20 backdrop-blur-[120px] pointer-events-none z-0"></div>
     <div 
-      class="fixed top-[-20%] left-[-20%] w-[70%] h-[70%] rounded-full blur-[120px] animate-pulse pointer-events-none mix-blend-multiply dark:mix-blend-soft-light transition-all duration-1000 bg-primary/40"
+      :class="[
+        ...blobBaseClasses,
+        'top-[-20%]',
+        'left-[-20%]',
+        'bg-primary/40'
+      ]"
     ></div>
     <div 
-      class="fixed bottom-[-20%] right-[-20%] w-[70%] h-[70%] rounded-full blur-[120px] animate-pulse pointer-events-none mix-blend-multiply dark:mix-blend-soft-light transition-all duration-1000 bg-secondary/40" 
-      style="animation-delay: 2s;"
+      :class="[
+        ...blobBaseClasses,
+        'bottom-[-20%]',
+        'right-[-20%]',
+        'bg-secondary/40'
+      ]"
     ></div>
   </div>
 </template>
@@ -51,7 +74,7 @@ import BubblesAnimation from '@/components/BubblesAnimation.vue';
 <style scoped>
 .page-enter-active,
 .page-leave-active {
-  transition: all 0.4s ease-out;
+  transition: all 0.25s ease-out;
 }
 
 .page-enter-from,
@@ -60,10 +83,10 @@ import BubblesAnimation from '@/components/BubblesAnimation.vue';
 }
 
 .page-enter-from {
-  transform: translateY(10px);
+  transform: translateX(10px);
 }
 
 .page-leave-to {
-  transform: translateY(-10px);
+  transform: translateX(-10px);
 }
 </style>

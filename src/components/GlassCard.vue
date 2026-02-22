@@ -40,12 +40,16 @@ withDefaults(defineProps<Props>(), {
       'duration-500',
       'border-t border-l',
       'shadow-xl',
-      !solid && 'backdrop-blur-xl bg-white/10 dark:bg-white/5 border-white/20 dark:border-white/10 shadow-black/5',
+      'backdrop-blur-xl',
       hoverable && 'transform will-change-transform',
       hoverable && 'hover:shadow-2xl hover:bg-base-100/70',
+
+      !solid && 'bg-base-200/40 border-base-200/50',
+      !solid && 'dark:bg-base-100/40 dark:border-base-300/50',
+
       solid && 'bg-base-200/85 backdrop-blur-lg',
       solid && 'text-base-content border-white/10',
-      $props.class
+      typeof $props.class === 'string' ? $props.class : $props.class.join(' ')
     ]"
   >
     <slot />

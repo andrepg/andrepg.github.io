@@ -41,7 +41,7 @@ const getFullDate = (date: string) => new Date(Date.parse(date)).toLocaleDateStr
   solid
   :class="[
     'list-row group',
-    'flex flex-row gap-2',
+    'flex flex-row gap-6',
     'ease-[cubic-bezier(0.34,1.56,0.64,1)]',
     compactMode ? 'py-0! px-4!' : 'py-2! px-6!',
     compactMode ? 'rounded-sm' : 'rounded-xl',
@@ -90,7 +90,7 @@ const getFullDate = (date: string) => new Date(Date.parse(date)).toLocaleDateStr
       <span>{{ getFullDate(post.published_at) }}</span>
     </div>
 
-    <span v-if="post.serie" class="text-xs opacity-80 uppercase leading-none">{{ post.serie }}</span>
+    <span v-if="post.serie" class="text-xs opacity-80 font-bold uppercase tracking-tight leading-none">{{ post.serie }}</span>
 
     <span class="font-normal">{{  post.title }}</span>
 
@@ -98,7 +98,7 @@ const getFullDate = (date: string) => new Date(Date.parse(date)).toLocaleDateStr
       name="fade"
       :duration="{ enter: 700, leave: 200 }"
     >
-      <small v-if="!compactMode">{{ post.excerpt }}</small>
+      <small v-if="!compactMode" class="opacity-70">{{ post.excerpt }}</small>
     </Transition>
   </component>
 </GlassCard>

@@ -1,15 +1,31 @@
 @import './base-styles.css';
 
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+@layer base {
+  body {
+    min-height: 100vh;
+    line-height: 1.6;
+    font-family: "Cabin", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cabin', sans-serif;
+    font-weight: 600;
+  }
+}
 
 #article-body {
+    @apply rounded-lg shadow-lg;
+    @apply bg-base-200/70;
     @apply flex flex-col text-base mx-auto xl:max-w-9/12;
-    @apply bg-base-100 rounded-lg px-4 md:px-8 lg:px-10 shadow-lg py-4 lg:py-8;
-    @apply break-all;
-    font-family: 'Lora', serif;
+    @apply px-4 md:px-8 lg:px-10 py-4 lg:py-8;
+    @apply break-all font-light;
     font-size: 1.15rem;
     line-height: 1.25;
-    letter-spacing: 0.012em;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -17,7 +33,7 @@
     h1,
     h2,
     h3 {
-        @apply font-serif mt-10 mb-1;
+        @apply mt-10 mb-1;
     }
 
     /**
@@ -40,10 +56,8 @@
     ul,
     ol {
         word-break: normal;
-        @apply list list-inside card card-border leading-tight;
-        @apply gap-2 px-7 py-8;
-        @apply glass shadow-xl;
-        @apply bg-primary/10 bg-blend-lighten;
+        @apply list list-inside leading-tight bg-base-100/40 shadow-lg;
+        @apply gap-2 px-7 py-8 my-2 outline outline-base-100/70 rounded-lg;
 
         &:is(ul) {
             @apply list-disc;

@@ -71,7 +71,7 @@ useIntersectionObserver(
             v-for="link in menu"
             :key="link.path"
             :href="link.path"
-            class="link link-hover flex items-center gap-2 transition-colors hover:text-primary opacity-80 hover:opacity-100"
+            class="link link-hover flex items-center gap-2 transition-colors opacity-80 hover:opacity-100"
           >
             <Icon :icon="link.icon" class="text-xs" />
             {{ link.name }}
@@ -89,7 +89,7 @@ useIntersectionObserver(
     </div>
 
     <Transition name="fade">
-      <div v-if="showFooter" class="mt-12 pt-8 border-t border-primary-content/10 flex flex-wrap gap-x-8 gap-y-3 opacity-60 text-xs tracking-wide transition-all duration-1000" style="transition-delay: 750ms">
+      <div v-if="showFooter" class="mt-12 pt-8 border-t border-primary-content/25 flex flex-wrap gap-x-8 gap-y-3 opacity-60 text-xs tracking-wide transition-all duration-1000" style="transition-delay: 750ms">
         <div class="flex items-center gap-2">
           <Icon icon="lucide:git-branch" class="size-3.5" />
           <span>Versão {{ appVersion }}</span>
