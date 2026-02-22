@@ -4,6 +4,7 @@ import PostTimelineFeature from "./PostTimelineFeature.vue";
 import { Icon } from "@iconify/vue";
 import { getPublished } from "@/utils/blog-reader";
 import GlassCard from "../GlassCard.vue";
+import SectionHeader from "@/components/SectionHeader.vue";
 
 
 const posts = getPublished().sort(
@@ -14,14 +15,11 @@ const posts = getPublished().sort(
 
 <template>
   <GlassCard class="flex flex-col gap-4 dark:text-neutral">
-      <h2 class="text-xl font-semibold flex items-center gap-2 mb-0">
-        <Icon icon="hugeicons:quill-write-02" class="text-2xl" />
-        Postagens Recentes
-      </h2>
-
-     <p class="opacity-70 font-normal font-md w-full leading-snug">
-        As últimas postagens do meu blog pessoal, aqui neste mesmo site.
-      </p>
+      <SectionHeader icon="hugeicons:quill-write-02" subtitle="As últimas postagens do meu blog pessoal, aqui neste mesmo site.">
+        <template #title>
+          Postagens Recentes
+        </template>
+      </SectionHeader>
 
       <div class="gap-8">
         <PostTimelineFeature

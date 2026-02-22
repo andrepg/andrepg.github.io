@@ -11,6 +11,6 @@
     "postcss.config.js",
     "plugins/**/*.ts",
     "config/**/*.ts",
-    "src/utils/ssg.ts"
+    "plugins/ssg.ts"
   ]
 }

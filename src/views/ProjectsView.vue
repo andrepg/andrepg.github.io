@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Projects } from '@data/Projects';
 import CardHeaderFeature from '@/components/CardHeaderFeature.vue';
-import BasePageLayout from '@/components/Layout/BasePageLayout.vue';
+import PageLayout from '@/components/Layout/PageLayout.vue';
 import { useHead } from '@unhead/vue';
 import APP_CONFIG from '@config/app';
 import ProjectCardFeature from '@/components/Features/ProjectCardFeature.vue';
@@ -30,7 +30,7 @@ useHead({
 </script>
 
 <template>
-  <BasePageLayout>
+  <PageLayout>
     <template #header>
       <CardHeaderFeature tag="h1">
         <template #default>
@@ -66,6 +66,6 @@ useHead({
         Aqui listo aqueles que considero mais ativos ou relevantes para meu portefólio.
       </p>
     </GlassCard>
-  </BasePageLayout>
+  </PageLayout>
 </template>
 

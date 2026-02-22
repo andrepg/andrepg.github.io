@@ -2,6 +2,7 @@
 import { Icon } from "@iconify/vue";
 import GlassCard from "@/components/GlassCard.vue";
 import AnimatedList from "@/components/AnimatedList.vue";
+import SectionHeader from "@/components/SectionHeader.vue";
 
 defineProps<{
 	items: {
@@ -15,18 +16,15 @@ defineProps<{
 
 <template>
   <GlassCard class="flex flex-col gap-5 p-6">
-    <h2
-      id="experiencia"
-      class="text-xl font-semibold flex items-center gap-2 mb-0"
-    >
-      <Icon icon="hugeicons:3rd-bracket-square" class="text-2xl text-primary" />
-      Tecnologias trabalhadas
-    </h2>
-
-    <p class="opacity-70 font-normal font-md w-full leading-snug flex-1 md:max-w-[70ch]">
-      Bibliotecas, ferramentas, linguagens e frameworks com os quais já trabalhei
-      <i class="opacity-70">- algumas delas, claro</i>.
-    </p>
+    <SectionHeader icon="hugeicons:3rd-bracket-square">
+      <template #title>
+        Tecnologias trabalhadas
+      </template>
+      <template #subtitle>
+        Bibliotecas, ferramentas, linguagens e frameworks com os quais já trabalhei
+        <i class="opacity-70">- algumas delas, claro</i>.
+      </template>
+    </SectionHeader>
 
     <AnimatedList
       :items="items"

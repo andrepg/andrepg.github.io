@@ -4,25 +4,23 @@ import { Projects } from '@data/Projects';
 import GlassCard from '@/components/GlassCard.vue';
 import ProjectCardFeature from '@/components/Features/ProjectCardFeature.vue';
 import AnimatedList from '@/components/AnimatedList.vue';
+import SectionHeader from '@/components/SectionHeader.vue';
 
 const projects = Projects.filter(project => project.recommended);
 </script>
 
 <template>
   <GlassCard class="flex flex-col gap-4">
-      <h2
-        id="recomendacoes"
-        class="text-xl font-semibold flex items-center gap-2 mb-0"
-      >
-        <Icon icon="hugeicons:star" class="text-2xl text-primary" />
+    <SectionHeader icon="hugeicons:star">
+      <template #title>
         Recomendações
-      </h2>
-
-      <p class="opacity-70 font-normal font-md w-full leading-snug">
+      </template>
+      <template #subtitle>
         Dentro os meus projetos, estes abaixo são os meus preferidos.
         A lista completa está disponível na página de
         <a href="/projetos" class="link link-primary">projetos</a>.
-      </p>
+      </template>
+    </SectionHeader>
 
     <AnimatedList
       :items="projects"

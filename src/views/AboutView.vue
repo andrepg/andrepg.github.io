@@ -4,7 +4,7 @@ import { Tecnologias } from '@data/Technologies';
 
 import { useHead } from '@unhead/vue';
 
-import BasePageLayout from '@/components/Layout/BasePageLayout.vue';
+import PageLayout from '@/components/Layout/PageLayout.vue';
 import CardHeaderFeature from '@/components/CardHeaderFeature.vue';
 import TechnologyCardFeature from '@/components/Features/TechnologyCardFeature.vue';
 import RecomendationsFeature from '@/components/Features/RecomendationsFeature.vue';
@@ -30,7 +30,7 @@ useHead({
 
 
 <template>
-  <BasePageLayout>
+  <PageLayout>
     <template #header>
       <CardHeaderFeature>
         <h1 class="text-2xl font-semibold flex flex-col md:w-3/4 max-w-[70w]">
@@ -46,6 +46,6 @@ useHead({
 
     <TechnologyCardFeature :items="tecnologias" />
     <RecomendationsFeature />
-  </BasePageLayout>
+  </PageLayout>
 </template>
 

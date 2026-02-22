@@ -1,10 +1,10 @@
 import { IPost, IPostMarkdown } from "@/interfaces";
-import { APP_CONFIG } from "@config/app";
+import { UserConfig } from "@data/website";
 
 /**
  * The base URL of the application, retrieved from the centralized config.
  */
-export const BASE_URL = APP_CONFIG.BASE_URL;
+export const BASE_URL = UserConfig.website.url;
 
 /**
  * A collection of all blog post modules found in the /blog directory.
@@ -15,73 +15,6 @@ export const BASE_URL = APP_CONFIG.BASE_URL;
 export const blogModules: Record<string, IPostMarkdown> = import.meta.glob('/blog/**/*.md', {
     eager: true
 });
-
-/**
- * Generates SEO head tags (title, meta, and social media tags) for a blog post.
- *
- * This function takes the post metadata and a canonical URL to produce an object
- * compatible with Vue's useHead or similar head management libraries.
- * It includes standard meta description, Open Graph tags for Facebook/LinkedIn,
- * and Twitter Card tags.
- *
- * @param metadata - The blog post's frontmatter attributes (title, excerpt, etc.)
- * @param canonicalUrl - The full, unique URL for this specific blog post
- * @returns An object containing title, meta array, and link array for SEO headers
- */
-export const getHeadTags = (
-    metadata: IPostMarkdown['attributes'],
-    canonicalUrl: string
-) => ({
-  title: metadata.title,
-  meta: [
-    { name: 'description', content: metadata.excerpt || 'Blog de André Paul Grandsire' },
-    
-    // Open Graph
-    { property: 'og:type', content: 'article' },
-    { property: 'og:title', content: metadata.title },
-    { property: 'og:description', content: metadata.excerpt || 'Blog de André Paul Grandsire' },
-    { property: 'og:url', content: canonicalUrl },
-    { property: 'article:published_time', content: metadata.published_at || new Date().toISOString() },
-
-    // Twitter
-    { name: 'twitter:card', content: 'summary' },
-    { name: 'twitter:title', content: metadata.title },
-    { name: 'twitter:description', content: metadata.excerpt || 'Blog de André Paul Grandsire' },
-  ],
-  link: [
-    { rel: 'canonical', href: canonicalUrl }
-  ],
-  script: [
-    {
-      type: 'application/ld+json',
-      children: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "headline": metadata.title,
-        "author": {
-          "@type": "Person",
-          "name": "André Paul Grandsire" // TODO Change this to author from build in the future
-        },
-        "publisher": {
-          "@type": "Organization",
-          "name": "andrepg.dev",
-          "logo": {
-            "@type": "ImageObject",
-            "url": `${APP_CONFIG.BASE_URL}/favicon-512x512.png`
-          }
-        },
-        "datePublished": metadata.published_at,
-        "dateModified": metadata.published_at,
-        "description": metadata.excerpt,
-        "mainEntityOfPage": {
-          "@type": "WebPage",
-          "@id": canonicalUrl
-        }
-      })
-    }
-  ]
-})
-
 
 export const allPosts: IPost[] = Object.entries(blogModules)
   .map(([fullPath, mod]) => {

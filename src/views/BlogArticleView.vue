@@ -4,14 +4,15 @@ import "@/assets/blog.css";
 import { onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useHead } from '@unhead/vue'
-import { transformContent } from '@/utils/transformers'
+import { transformContent } from '@plugins/transformers'
 import Prism from 'prismjs'
-import { blogModules, getHeadTags, getPostsBySerie } from "@/utils/blog-reader";
-import BadgeElement from "@/components/BadgeElement.vue";
+import { blogModules, getPostsBySerie } from "@/utils/blog-reader";
+import { getSinglePostTags } from "@/utils/blog-metadata";
 import { Icon } from "@iconify/vue";
 import { slugify } from "@/utils/slugify";
 import CardHeaderFeature from "@/components/CardHeaderFeature.vue";
-import BlogPageLayout from "@/components/Layout/BlogPageLayout.vue";
+import PageLayout from "@/components/Layout/PageLayout.vue";
+import { PageLayoutType } from "@/enumerators";
 import APP_CONFIG from "@config/app";
 import GlassCard from "@/components/GlassCard.vue";
 
@@ -34,7 +35,7 @@ const postsRelatedBySeries = getPostsBySerie(metadata.serie, canonicalUrl);
 /**
  * Head tags — executa durante SSG
  */
-useHead(getHeadTags(metadata, canonicalUrl))
+useHead(getSinglePostTags(metadata, canonicalUrl))
 
 /**
  * Highlight code blocks
@@ -43,7 +44,7 @@ onMounted(() => Prism.highlightAll())
 </script>
 
 <template>
-  <BlogPageLayout>
+  <PageLayout :type="PageLayoutType.BLOG">
     <template #header>
       <CardHeaderFeature tag="div">
         <div class="breadcrumbs text-sm font-normal">
@@ -60,9 +61,9 @@ onMounted(() => Prism.highlightAll())
 
         <ul class="join join-horizontal flex-wrap gap-2 items-center my-2">
           <li v-for="tag in metadata.tags" :key="tag">
-            <BadgeElement class="shadow-lg font-bold badge-primary">
+            <span class="badge shadow-lg font-bold badge-primary">
               {{ tag }}
-            </BadgeElement>
+            </span>
           </li>
         </ul>
       </CardHeaderFeature>
@@ -118,6 +119,6 @@ onMounted(() => Prism.highlightAll())
         </ul>
       </GlassCard>
     </template>
-  </BlogPageLayout>
+  </PageLayout>
 </template>
 

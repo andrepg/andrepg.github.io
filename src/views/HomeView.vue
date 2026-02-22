@@ -7,6 +7,8 @@ import RecomendationsFeature from '@/components/Features/RecomendationsFeature.v
 import { useHead } from '@unhead/vue';
 import APP_CONFIG from '@config/app';
 import RecentPostsFeature from '@/components/Blog/RecentPostsFeature.vue';
+import PageLayout from '@/components/Layout/PageLayout.vue';
+import { PageLayoutType } from '@/enumerators';
 
 useHead({
   title: 'André Paul Grandsire | Software Engineer',
@@ -27,20 +29,7 @@ useHead({
 
 
 <template>
-  <div
-    :class="[
-      'flex',
-      'flex-col',
-      'pt-24',
-      'pb-20',
-      'px-5',
-      'gap-10',
-      'relative',
-      'z-10',
-      'max-w-5xl',
-      'mx-auto'
-    ]"
-  >
+  <PageLayout :type="PageLayoutType.HOME">
     <!-- Profile with enhanced glass effect wrapper if needed, 
            but components already have glass. Let's make the gap larger for better visual breathing -->
     <Transition appear name='fade'>
@@ -56,5 +45,5 @@ useHead({
     <Transition appear name='fade' class="delay-200!">
       <RecentPostsFeature />
     </Transition>
-  </div>
+  </PageLayout>
 </template>

@@ -1,9 +1,7 @@
 <script setup>
-import { ref } from "vue";
 import GlassCard from "./GlassCard.vue";
 import SocialMediaShortcuts from "./SocialMediaShortcuts.vue";
-
-const isImageLoaded = ref(false);
+import AsyncImage from "@/components/AsyncImage.vue";
 </script>
 
 <template>
@@ -15,27 +13,17 @@ const isImageLoaded = ref(false);
       <div class="avatar transition-all duration-500 md:self-center">
         <div 
           :class="[
+          'min-w-24 max-w-36',
           'min-h-24 max-h-36',
+          'aspect-square',
           'rounded-xl',
           'shadow-lg',
-          'relative',
-          'overflow-hidden',
           'ring-0',
           'ring-neutral-content',
-          isImageLoaded && 'ring-2',
-          !isImageLoaded && 'skeleton',
+          'hover:ring-2',
+          'transition-all'
         ]">
-          <div
-            v-show="!isImageLoaded"
-            class="skeleton absolute inset-0 size-full z-0"
-          ></div>
-          <img
-            src="https://github.com/andrepg.png"
-            alt="A NFT of a programmer with a cup of coffee in hands and sitting, looking at the camera"
-            class="relative z-10 transition-opacity duration-500"
-            :class="isImageLoaded ? 'opacity-100' : 'opacity-0'"
-            @load="isImageLoaded = true"
-          >
+          <AsyncImage src="https://github.com/andrepg.png" alt="A NFT of a programmer with a cup of coffee in hands and sitting, looking at the camera" />
         </div>
       </div>
 

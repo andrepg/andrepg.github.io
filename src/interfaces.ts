@@ -6,7 +6,6 @@ export interface INavigationMenu {
   component: () => Promise<unknown>;
 }
 
-
 export interface IPost {
   path: string;
   title: string;
@@ -22,4 +21,19 @@ export interface IPost {
 export interface IPostMarkdown {
   attributes: IPost;
   html: string;
+}
+
+export interface IApplicationConfig {
+  website: {
+    name: string;
+    url: string;
+    description: string;
+  },
+  author: {
+    name: string;
+    avatar: string;
+
+    biography: string;
+    
+  }
 }
