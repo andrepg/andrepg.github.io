@@ -92,11 +92,11 @@ useHead({
     </template>
 
     <GlassCard class="flex flex-col px-5">
-      <div class="flex flex-row flex-wrap justify-between items-center">
+      <div class="flex flex-row flex-wrap gap-3 justify-between items-center">
         <SearchBlogFeature />
   
         <button
-          class="btn btn-soft btn-primary transition-all duration-300 min-w-40"
+          class="btn btn-soft btn-primary not-md:btn-block transition-all duration-300 min-w-40"
           @click="toggleDisplayMode"
         >
           <Transition name="fade" mode="out-in">

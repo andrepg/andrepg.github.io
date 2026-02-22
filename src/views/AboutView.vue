@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import APP_CONFIG from '@config/app';
-import { Tecnologias } from '@data/Tecnologias';
+import { Tecnologias } from '@data/Technologies';
 
 import { useHead } from '@unhead/vue';
 

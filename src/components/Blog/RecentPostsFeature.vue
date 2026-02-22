@@ -13,7 +13,7 @@ const posts = getPublished().sort(
 
 
 <template>
-  <GlassCard class="flex flex-col gap-4">
+  <GlassCard class="flex flex-col gap-4 dark:text-neutral">
       <h2 class="text-xl font-semibold flex items-center gap-2 mb-0">
         <Icon icon="hugeicons:quill-write-02" class="text-2xl" />
         Postagens Recentes

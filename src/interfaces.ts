@@ -1,4 +1,4 @@
-export interface NavigationMenu {
+export interface INavigationMenu {
   name: string;
   menu: boolean;
   icon: string;
@@ -7,7 +7,7 @@ export interface NavigationMenu {
 }
 
 
-export interface Post {
+export interface IPost {
   path: string;
   title: string;
   excerpt: string;
@@ -19,7 +19,7 @@ export interface Post {
   cover?: string;
 }
 
-export interface PostMarkdown {
-  attributes: Post;
+export interface IPostMarkdown {
+  attributes: IPost;
   html: string;
 }

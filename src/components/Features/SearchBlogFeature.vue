@@ -42,10 +42,19 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <div class="search-feature">
+    <div class="grow">
         <!-- Trigger Input as a Label for DaisyUI floating-label compatibility -->
         <label 
-            class="input floating-label border-0 outline-0 shadow-lg ring-0 min-w-80 cursor-pointer" 
+            :class="[
+                'input',
+                'floating-label',
+                'border-0',
+                'outline-0',
+                'shadow-lg',
+                'ring-0',
+                'cursor-pointer',
+                'w-full'
+            ]" 
             @click.prevent="openSearch"
         >
             <span class="rounded-full py-1 px-2 bg-primary-content shadow-md text-primary">Pesquisar</span>

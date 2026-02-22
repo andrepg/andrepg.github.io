@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue';
-import { HomepageMenu } from '@data/NavigationMenu';
+import { ApplicationRouter } from '@data/ApplicationRouter';
 import { ref } from 'vue';
 import { useScrollWatcher, getPosition, pastThreeshold } from '@/utils/scroll-watcher';
+import SocialMediaShortcuts from '@/components/SocialMediaShortcuts.vue';
 
 const opaqueNavbar = ref(false);
 
@@ -73,7 +74,7 @@ useScrollWatcher(() => {
               </li>
 
               <li
-                v-for="link in HomepageMenu.filter(link => link.menu)"
+                v-for="link in ApplicationRouter.filter(link => link.menu)"
                 :key="link.name"
                 class="py-1.5 transition-all duration-500 hover:menu-active rounded-lg hover:bg-primary"
               >
@@ -83,6 +84,12 @@ useScrollWatcher(() => {
                 </a>
               </li>
             </ul>
+
+            <div class="divider divider-neutral px-4"></div>
+
+            <div class="px-4">
+               <SocialMediaShortcuts />
+            </div>
           </section>
         </div>
       </div>

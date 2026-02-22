@@ -1,4 +1,4 @@
-import { Post, PostMarkdown } from "@/interfaces";
+import { IPost, IPostMarkdown } from "@/interfaces";
 import { APP_CONFIG } from "@config/app";
 
 /**
@@ -12,7 +12,7 @@ export const BASE_URL = APP_CONFIG.BASE_URL;
  * The keys are the relative file paths, and the values contain the post's
  * frontmatter metadata and HTML content.
  */
-export const blogModules: Record<string, PostMarkdown> = import.meta.glob('/blog/**/*.md', {
+export const blogModules: Record<string, IPostMarkdown> = import.meta.glob('/blog/**/*.md', {
     eager: true
 });
 
@@ -29,7 +29,7 @@ export const blogModules: Record<string, PostMarkdown> = import.meta.glob('/blog
  * @returns An object containing title, meta array, and link array for SEO headers
  */
 export const getHeadTags = (
-    metadata: PostMarkdown['attributes'],
+    metadata: IPostMarkdown['attributes'],
     canonicalUrl: string
 ) => ({
   title: metadata.title,
@@ -83,7 +83,7 @@ export const getHeadTags = (
 })
 
 
-export const allPosts: Post[] = Object.entries(blogModules)
+export const allPosts: IPost[] = Object.entries(blogModules)
   .map(([fullPath, mod]) => {
     const cleanPath = fullPath
       .replace('/blog/', '')
@@ -112,7 +112,7 @@ export const allPosts: Post[] = Object.entries(blogModules)
   return allPosts.find(p => p.path === path)
 }
 
-export function getPublished(): Post[] {
+export function getPublished(): IPost[] {
   return allPosts.filter(post => post.published_at);
 }
 

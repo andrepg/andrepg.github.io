@@ -23,7 +23,7 @@ import BubblesAnimation from '@/components/BubblesAnimation.vue';
       <main class="flex flex-col w-full min-h-screen justify-start relative z-10">
         <RouterView v-slot="{ Component, route }">
           <transition name="page" mode="out-in">
-            <div :key="route.path" class="grow pb-10 transition-all duration-500 ease-in-out min-h-screen">
+            <div :key="route.path" class="grow pb-10 transition-all min-h-screen">
               <component :is="Component" />
             </div>
           </transition>

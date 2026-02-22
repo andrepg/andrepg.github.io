@@ -4,7 +4,7 @@ import { createApp as createVueApp } from 'vue'
 import { ViteSSG } from 'vite-ssg'
 
 import App from './App.vue'
-import { HomepageMenu } from '@data/NavigationMenu'
+import { ApplicationRouter } from '@data/ApplicationRouter'
 import { createRouter, createWebHistory } from 'vue-router'
 import { createHead } from '@unhead/vue/client'
 import { APP_CONFIG } from '@config/app'
@@ -13,7 +13,7 @@ import { APP_CONFIG } from '@config/app'
 const bootstrapDevelopmentMode = () => {
     const router = createRouter({
         history: createWebHistory(),
-        routes: HomepageMenu,
+        routes: ApplicationRouter,
     })
 
     createVueApp(App)
@@ -23,7 +23,7 @@ const bootstrapDevelopmentMode = () => {
 }
 
 const bootstrapProductionMode = () => ViteSSG(App, {
-    routes: HomepageMenu,
+    routes: ApplicationRouter,
     base: APP_CONFIG.BASE_URL,
 })
 

@@ -1,6 +1,6 @@
-import { NavigationMenu } from '@/interfaces';
+import { INavigationMenu } from '@/interfaces';
 
-export const HomepageMenu: NavigationMenu[] = [
+export const ApplicationRouter: INavigationMenu[] = [
   {
     name: 'Homepage',
     menu: true,

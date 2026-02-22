@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { Post } from '@/interfaces';
+import { IPost } from '@/interfaces';
 import PostSingleCardFeature from './PostSingleCardFeature.vue';
 import AnimatedList from '@/components/AnimatedList.vue';
 
 const props = defineProps<{
-  posts: Post[],
-  isLoading?: boolean,
+  posts: IPost[],
   compactMode?: boolean
 }>()
 </script>
@@ -15,8 +14,7 @@ const props = defineProps<{
     :items="posts"
     tag="ul"
     item-tag="li"
-    list-class="list"
-    item-class="p-0 not-sm:p-2 my-4 transition-all duration-0 ease md:transition-all duration-500 ease"
+    list-class="list gap-4 my-4"
     :delay="150"
   >
     <template #default="{ item }">

@@ -30,8 +30,11 @@ defineProps<{
         'rounded-xl',
         'transition-all',
         'transform transform-gpu',
+        'backdrop-blur-xl',
         'duration-300',
         'hover:shadow-xl',
+        'hover:bg-primary',
+        'hover:text-primary-content',
         'hover:cursor-pointer',
     ]">
             <div

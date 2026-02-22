@@ -9,7 +9,7 @@ const projects = Projects.filter(project => project.recommended);
 </script>
 
 <template>
-  <GlassCard class="flex flex-col gap-4">
+  <GlassCard class="flex flex-col gap-4 dark:text-neutral">
       <h2
         id="recomendacoes"
         class="text-xl font-semibold flex items-center gap-2 mb-0"
@@ -21,7 +21,7 @@ const projects = Projects.filter(project => project.recommended);
       <p class="opacity-70 font-normal font-md w-full leading-snug">
         Dentro os meus projetos, estes abaixo são os meus preferidos.
         A lista completa está disponível na página de
-        <a href="/projetos" class="link link-primary">projetos</a>.
+        <a href="/projetos" class="link link-primary dark:link-neutral">projetos</a>.
       </p>
 
     <AnimatedList
