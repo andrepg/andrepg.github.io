@@ -19,7 +19,7 @@ defineProps<{
       id="experiencia"
       class="text-xl font-semibold flex items-center gap-2 mb-0"
     >
-      <Icon icon="hugeicons:3rd-bracket-square" class="text-2xl" />
+      <Icon icon="hugeicons:3rd-bracket-square" class="text-2xl text-primary" />
       Tecnologias trabalhadas
     </h2>
 
