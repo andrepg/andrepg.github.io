@@ -1,5 +1,13 @@
 import { fileURLToPath, URL } from 'node:url'
 import path from 'node:path'
+import os from 'node:os'
+
+// Limit the number of CPUs reported to Node.js and libraries
+const originalCpus = os.cpus;
+os.cpus = () => {
+    const cpus = originalCpus();
+    return cpus.slice(0, 2);
+};
 
 import { defineConfig, UserConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -10,6 +18,7 @@ import prismjsPlugin from 'vite-plugin-prismjs'
 import { PrismJsConfig } from './plugins/primsjs.config'
 import { MarkdownRenderConfig } from './plugins/markdown-render.config'
 import { getMarkdownBlogRoutes } from './plugins/ssg'
+import { ApplicationRouter } from './data/ApplicationRouter'
 
 export default defineConfig({
   plugins: [
@@ -31,14 +40,23 @@ export default defineConfig({
   },
 
   ssgOptions: {
+    concurrency: 2,
     includedRoutes() {
+      console.log(`[ssg] Preparing static routes`);
+
       const blogRoutes = getMarkdownBlogRoutes({ 
         searchPath: path.resolve(__dirname, './blog'),
       });
 
-      console.log(blogRoutes)
-      
-      return blogRoutes;
+      console.log(`[ssg] Found ${blogRoutes.length} blog routes`);
+
+      const staticRoutes = ApplicationRouter
+        .filter(route => !route.path.includes(':'))
+        .map(route => route.path);
+
+      console.log(`[ssg] Found ${staticRoutes.length} static routes`);
+
+      return Array.from(new Set([...staticRoutes, ...blogRoutes]));
     },
   },
 } as UserConfig)
