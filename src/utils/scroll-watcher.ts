@@ -1,4 +1,4 @@
-import { onUnmounted } from 'vue';
+import { onMounted, onUnmounted } from 'vue';
 
 /**
  * A composable that safely watches scroll events, improving performance using
@@ -23,7 +23,9 @@ export const useScrollWatcher = (callback: () => void, delay = 1000) => {
     };
 
     // Adds the listener as passive to not block scrolling (better performance)
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    onMounted(() => {
+        window.addEventListener('scroll', handleScroll, { passive: true });
+    })
 
     // Removes the watcher automatically when the component is unmounted
     onUnmounted(() => {
