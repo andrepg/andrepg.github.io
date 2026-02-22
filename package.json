@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@unhead/vue": "^2.1.4",
+    "@vueuse/core": "^14.2.1",
     "front-matter": "^4.0.2",
     "prismjs": "^1.30.0",
     "vite-plugin-prismjs": "^0.0.11",
