@@ -18,10 +18,11 @@
   <link rel="canonical" href="https://andrepg.github.io/" />
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Andada+Pro:ital,wght@0,400..840;1,400..840&family=Parkinsans:wght@300..800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Parkinsans:wght@300..800&display=swap" rel="stylesheet">
 
   <script type="module" src="/src/main.ts"></script>
+  <link rel="stylesheet" href="/src/assets/main.css">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -29,7 +30,7 @@
   <link rel="manifest" href="/site.webmanifest">
 </head>
 
-<body class="h-screen overflow-y-hidden">
+<body class="min-h-screen overflow-x-hidden h-auto">
   <script>
     const redirect = sessionStorage.getItem('redirect');
 
@@ -40,7 +41,51 @@
     }
   </script>
 
-  <div id="app" class="h-screen scroll-smooth overflow-y-scroll"></div>
+  <div id="app"></div>
+
+  <!-- Universal Loading Screen (Static Version) -->
+  <div id="static-loader" class="fixed inset-0 -z-10 flex items-center justify-center overflow-hidden">
+    <!-- Background matching App.vue -->
+    <div class="fixed inset-0 bg-linear-to-br from-primary/30 via-primary/20 to-secondary/30 pointer-events-none"></div>
+    
+    <div class="fixed w-[70%] h-[70%] rounded-full blur-[120px] animate-pulse pointer-events-none mix-blend-multiply dark:mix-blend-soft-light transition-all duration-1000 delay-1000 top-[-20%] left-[-20%] bg-primary/40"></div>
+    <div class="fixed w-[70%] h-[70%] rounded-full blur-[120px] animate-pulse pointer-events-none mix-blend-multiply dark:mix-blend-soft-light transition-all duration-1000 delay-1000 bottom-[-20%] right-[-20%] bg-secondary/40"></div>
+    
+    <!-- Overlay Glass matching App.vue -->
+    <div class="fixed inset-0 bg-neutral/20 backdrop-blur-[120px] pointer-events-none"></div>
+
+    <!-- DaisyUI Spinner and Loading Text -->
+    <div class="relative z-10 flex flex-col items-center gap-8">
+      <span class="loading loading-spinner loading-lg text-primary scale-125"></span>
+      <div class="text-xs font-bold uppercase text-base-100 animate-pulse">
+        Carregando
+      </div>
+    </div>
+
+    <style>
+      /* Critical styles for immediate rendering */
+      #static-loader {
+        background-color: oklch(12% 0.042 264.695);
+        font-family: 'Cabin', sans-serif;
+      }
+      
+      @media (prefers-color-scheme: light) {
+        #static-loader {
+          background-color: transparent;
+        }
+      }
+
+      /* Essential fallback animation if Tailwind/DaisyUI isn't ready */
+      .loading-spinner {
+        display: inline-block;
+        border: 4px solid currentColor;
+        border-right-color: transparent;
+        border-radius: 50%;
+        animation: spin-fallback 0.75s linear infinite;
+      }
+      @keyframes spin-fallback { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    </style>
+  </div>
 </body>
 
 </html>
