@@ -122,9 +122,9 @@ topSentinel,
   </div>
 
   <button
-    @click="toggleTheme"
     class="btn btn-primary btn-soft btn-sm btn-square"
     title="Alternar tema"
+    @click="toggleTheme"
   >
     <transition name="fade" mode="out-in">
       <Icon

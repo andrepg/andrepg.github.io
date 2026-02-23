@@ -1,7 +1,7 @@
 <template>
   <div
-    class="fixed inset-0 pointer-events-none overflow-hidden z-0"
     id="liquid-background"
+    class="fixed inset-0 pointer-events-none overflow-hidden z-0"
   >
     <div
       v-for="i in 6"
