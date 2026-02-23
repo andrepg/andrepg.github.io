@@ -1,3 +1,22 @@
+/**
+ * Application
+ */
+export interface IUserConfig {
+  website: {
+    name: string;
+    url: string;
+    description: string;
+  },
+  author: {
+    name: string;
+    avatar: string;
+    role: string;
+
+    biography: string;
+    shortBiography: string;
+  }
+}
+
 export interface INavigationMenu {
   name: string;
   menu: boolean;
@@ -6,6 +25,9 @@ export interface INavigationMenu {
   component: () => Promise<unknown>;
 }
 
+/**
+ * Blog entities
+ */
 export interface IPost {
   path: string;
   title: string;
@@ -23,22 +45,9 @@ export interface IPostMarkdown {
   html: string;
 }
 
-export interface IApplicationConfig {
-  website: {
-    name: string;
-    url: string;
-    description: string;
-  },
-  author: {
-    name: string;
-    avatar: string;
-
-    biography: string;
-    shortBiography: string;
-    
-  }
-}
-
+/**
+ * Sitemap and HTML entities
+ */
 export interface ISitemapDto {
   path: string;
   title: string;
@@ -50,7 +59,19 @@ export interface ISitemapDto {
 }
 
 export interface IHtmlMetaTag {
+  [key: `data-${string}`]: string | boolean | undefined;
+
   name?: string;
   property?: string;
-  content: string;
+  content?: string;
+}
+
+export interface IBaseOgParams {
+    title: string,
+    description: string,
+    canonicalUrl?: string
+}
+
+export interface ITwitterOgParams extends IBaseOgParams {
+    card: string,
 }

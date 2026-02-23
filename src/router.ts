@@ -1,4 +1,4 @@
-import { ApplicationRouter } from "@data/ApplicationRouter";
+import { ApplicationRouter } from "@config/routes";
 import { createRouter, createWebHistory } from "vue-router";
 import { APP_CONFIG } from "@config/app";
 

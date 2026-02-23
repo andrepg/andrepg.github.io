@@ -1,6 +1,6 @@
 <script setup>
 
-import MyProfile from '@/components/ProfileCardFeature.vue';
+import MyProfile from '@/components/ProjectCard.vue';
 
 
 import RecomendationsFeature from '@/components/Features/RecomendationsFeature.vue';

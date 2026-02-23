@@ -11,7 +11,7 @@
     "lint": "eslint -c eslint.config.js",
     "lint:fix": "eslint -c eslint.config.js --fix",
     "format": "prettier --write src/",
-    "build-sitemap": "tsx src/sitemap.generator.ts"
+    "build-sitemap": "tsx src/sitemap.ts"
   },
   "dependencies": {
     "@unhead/vue": "^2.1.4",

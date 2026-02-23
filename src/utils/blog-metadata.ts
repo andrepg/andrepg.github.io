@@ -1,7 +1,7 @@
 import { IPost, IPostMarkdown } from "@/interfaces";
 import APP_CONFIG from "@config/app";
 import { ReactiveHead } from "@unhead/vue";
-import { getPlainOg, getTwitterOg } from "./site-metadata";
+import { dtoPlainOg, dtoTwitterOg } from "./site-metadata";
 import { UserConfig } from "@data/website";
 
 const BLOG_TITLE = `Blog de ${UserConfig.author.name}`
@@ -87,14 +87,14 @@ export const getSinglePostTags = (
     { property: 'article:published_time', content: metadata.published_at || new Date().toISOString() },
 
     // Open Graph
-    ...getPlainOg({
+    ...dtoPlainOg({
       title: metadata.title,
       description: metadata.excerpt || BLOG_TITLE,
       canonicalUrl
     }),
 
     // Twitter
-    ...getTwitterOg({
+    ...dtoTwitterOg({
       card: 'summary',
       title: metadata.title,
       description: metadata.excerpt || BLOG_TITLE
@@ -115,12 +115,12 @@ export const getBlogIndexTags = (posts: IPost[]): ReactiveHead => ({
   title: BLOG_TITLE,
   meta: [
     { name: 'description', content: BLOG_TITLE },
-    ...getPlainOg({
+    ...dtoPlainOg({
       title: `Postagens |  ${BLOG_TITLE}`,
       description: `Postagens |  ${BLOG_TITLE}`,
       canonicalUrl: `${APP_CONFIG.BASE_URL}/blog`
     }),
-    ...getTwitterOg({
+    ...dtoTwitterOg({
       card: 'summary',
       title: `Postagens |  ${BLOG_TITLE}`,
       description: `Postagens |  ${BLOG_TITLE}`,

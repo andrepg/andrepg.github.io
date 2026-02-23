@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { SocialMediaLinks } from "@data/SocialMediaIcons";
+import { SocialMediaLinks } from "@data/social-media";
 import { Icon } from "@iconify/vue";
 </script>
 

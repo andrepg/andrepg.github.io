@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { Icon } from "@iconify/vue";
-import { Projects } from '@data/Projects';
+import { Projects } from '@data/projects';
 import GlassCard from '@/components/GlassCard.vue';
 import ProjectCardFeature from '@/components/Features/ProjectCardFeature.vue';
 import AnimatedList from '@/components/AnimatedList.vue';

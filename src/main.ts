@@ -4,7 +4,7 @@ import { createApp as createVueApp } from 'vue'
 import { ViteSSG } from 'vite-ssg'
 
 import App from './App.vue'
-import { ApplicationRouter } from '@data/ApplicationRouter'
+import { ApplicationRouter } from '@config/routes'
 import { createRouter, createWebHistory } from 'vue-router'
 import { createHead } from '@unhead/vue/client'
 import { APP_CONFIG } from '@config/app'

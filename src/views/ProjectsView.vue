@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Projects } from '@data/Projects';
+import { Projects } from '@data/projects';
 import CardHeaderFeature from '@/components/CardHeaderFeature.vue';
 import PageLayout from '@/components/Layout/PageLayout.vue';
 import { useHead } from '@unhead/vue';

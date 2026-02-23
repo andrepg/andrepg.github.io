@@ -1,55 +1,25 @@
+import { IBaseOgParams, IHtmlMetaTag, ITwitterOgParams } from "@/interfaces";
 import { UserConfig } from "@data/website";
 
-interface IBaseOgParams {
-    title: string,
-    description: string,
-    canonicalUrl?: string
-}
+const defaultUrl = UserConfig.website.url;
 
-interface ITwitterOgParams {
-    card: string,
-    title: string,
-    description: string
-}
-
-interface ILinkTag {
-    rel: string,
-    href: string
-}
-
-interface IHeadTag {
-    [key: `data-${string}`]: string | boolean | undefined;
-    
-    name: string,
-    content: string
-}
-
-interface IPropertyTag {
-    [key: `data-${string}`]: string | boolean | undefined;
-    
-    property: string,
-    content: string
-}
-
-export const getPlainOg = ({
+export const dtoPlainOg = ({
     title,
     description,
     canonicalUrl
-}: IBaseOgParams): IPropertyTag[] => [
+}: IBaseOgParams): IHtmlMetaTag[] => [
     { property: 'og:type', content: 'website' },
     { property: 'og:title', content: title },
     { property: 'og:description', content: description },
-    { property: 'og:url', content: canonicalUrl ?? UserConfig.website.url },
+    { property: 'og:url', content: canonicalUrl ?? defaultUrl },
 ]
 
-export const getTwitterOg = ({
+export const dtoTwitterOg = ({
     card,
     title,
     description
-}: ITwitterOgParams): IHeadTag[] => ([
+}: ITwitterOgParams): IHtmlMetaTag[] => ([
     { name: 'twitter:card', content: card },
     { name: 'twitter:title', content: title },
     { name: 'twitter:description', content: description },
 ]);
-
-export const getLinkTag = ({ rel, href }: ILinkTag): ILinkTag => ({ rel, href });

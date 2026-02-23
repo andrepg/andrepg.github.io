@@ -5,7 +5,7 @@ import pluginVue from 'eslint-plugin-vue';
 import prettierConfig from 'eslint-config-prettier';
 
 /** @type {import('eslint').Linter.Config[]} */
-export default tseslint.config(
+export default tseslint.configs.base(
   {
     ignores: [
       '**/dist/**',

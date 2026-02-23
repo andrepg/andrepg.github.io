@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue';
-import { ApplicationRouter } from '@data/ApplicationRouter';
+import { ApplicationRouter } from '@config/routes';
 import { ref } from 'vue';
 import SocialMediaShortcuts from '@/components/SocialMediaShortcuts.vue';
 import { useIntersectionObserver } from '@/composables/useIntersectionObserver';

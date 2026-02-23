@@ -1,7 +1,7 @@
 <script setup>
-import AnalyticsScripts from "@/components/AnalyticsScripts.vue"
+import AnalyticsScripts from "@/components/Layout/AnalyticsScripts.vue"
 import SocialMediaShortcuts from "@/components/SocialMediaShortcuts.vue"
-import { ApplicationRouter } from "@data/ApplicationRouter";
+import { ApplicationRouter } from "@config/routes";
 import { ref } from "vue";
 import { Icon } from "@iconify/vue";
 import { useIntersectionObserver } from "@/composables/useIntersectionObserver";

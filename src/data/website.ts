@@ -1,6 +1,6 @@
-import { IApplicationConfig } from "@/interfaces";
+import { IUserConfig } from "@/interfaces";
 
-export const UserConfig = Object.freeze({
+export const UserConfig: IUserConfig = Object.freeze({
     website: {
         name: "André Paul Grandsire ",
         url: "https://andrepg.github.io",
@@ -13,4 +13,4 @@ export const UserConfig = Object.freeze({
         biography: "Programador desde 2014, criando soluções mobile, web e desktop. Apaixonado por novas tecnologias. Trabalho publicando em Open Source, criações e consultorias.",
         shortBiography: "Programador desde 2014, criando soluções mobile, web e desktop. Apaixonado por novas tecnologias."
     }
-} as IApplicationConfig);
+});
