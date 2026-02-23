@@ -1,82 +1,118 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import xml from 'xml';
+import path from "node:path";
+
+import { getFileTree } from "src/sitemap/sitemap.generator";
+import { generateJsonSitemap } from "./sitemap/sitemap.json";
 
 /**
  * Sitemap generator that crawls the dist directory for HTML files
  * and produces a sitemap.xml.
  */
 
-const HOST = "https://andrepg.com.br";
 const DIST_DIR = path.resolve(process.cwd(), 'dist');
+export const log = (message: string) => {
+    console.log(`[sitemap] ${message}`)
+}
 
-function walkSync(dir: string, fileList: string[] = []) {
-  if (!fs.existsSync(dir)) return fileList;
+log('Starting sitemap generation');
+
+log('Reading exported HTML files');
+const fileTree = getFileTree(DIST_DIR);
+
+log('Generating JSON sitemap');
+const jsonRecordsProcessed = generateJsonSitemap(fileTree, DIST_DIR);
+
+log('Generating XML sitemap');
+// const xmlRecordsProcessed = generateXmlSitemap(fileTree);
+
+log('Sitemap generation completed');
+
+if (fileTree.length > 0) {
+  log(`- Found ${fileTree.length} pages`);
+}
+
+if (jsonRecordsProcessed > 0) {
+  log(`- Generated ${jsonRecordsProcessed} JSON objects`);
+}
+
+// log(`- Found ${xmlRecordsProcessed} blog articles`);
+
+// function isDirectory(filePath: string) {
+//   return fs.statSync(filePath).isDirectory();
+// }
+
+// function searchHtmlFilesRecursive(dir: string, initialList: string[] = []) {
+//   if (!fileExists(dir)) return initialList;
+
+//   const files = fs.readdirSync(dir);
+
+//   files.forEach(iteration => {
+//     const filePath = path.join(dir, iteration);
+
+//     if (isDirectory(fiyarn lePath)) {
+//       searchHtmlFilesRecursive(filePath, initialList);
+//       return;
+//     }
+
+//     if (filePath.endsWith('.html')) {
+//       initialList.push(filePath);
+//     }
+//   });
   
-  const files = fs.readdirSync(dir);
-  files.forEach((file) => {
-    const filePath = path.join(dir, file);
-    if (fs.statSync(filePath).isDirectory()) {
-      walkSync(filePath, fileList);
-    } else {
-      if (file.endsWith('.html')) {
-        fileList.push(filePath);
-      }
-    }
-  });
-  return fileList;
-}
+//   console.log(initialList);
 
-function generateSitemapRow(file: string) {
-  const relativePath = path.relative(DIST_DIR, file)
-    .replaceAll(/\\/g, '/')
-    .replace('index.html', '')
-    .replace('.html', '');
+//   return initialList;
+// }
 
-  // Clean up trailing slash
-  const urlPath = relativePath.endsWith('/')
-    ? relativePath
-  :   (relativePath ? `${relativePath}` : '');
+// function generateSitemapRow(file: string) {
+//   const relativePath = path.relative(DIST_DIR, file)
+//     .replaceAll(/\\/g, '/')
+//     .replace('index.html', '')
+//     .replace('.html', '');
 
-  const fileContent = fs.readFileSync(file, 'utf-8');
+//   // Clean up trailing slash
+//   const urlPath = relativePath.endsWith('/')
+//     ? relativePath
+//     : (relativePath ? `${relativePath}` : '');
 
-  const lastmod = RegExp(
-    /<meta\s+property="article:published_time"\s+content="([^"]+)"/i
-  ).exec(fileContent)?.[1];
+//   const fileContent = fs.readFileSync(file, 'utf-8');
 
-  return {
-    url: [
-      { loc: `${HOST}/${urlPath}` },
-      { lastmod },
-      { changefreq: 'monthly' },
-      { priority: relativePath === '' ? 1.0 : 0.5 },
-    ],
-  };
-}
+//   const lastmod = RegExp(
+//     /<meta\s+property="article:published_time"\s+content="([^"]+)"/i
+//   ).exec(fileContent)?.[1];
 
-function generateSitemap() {
-  console.log('Crawling dist directory for HTML files...');
-  const files = walkSync(DIST_DIR);
+//   return {
+//     url: [
+//       { loc: `${HOST}/${urlPath}` },
+//       { lastmod },
+//       { changefreq: 'monthly' },
+//       { priority: relativePath === '' ? 1.0 : 0.5 },
+//     ],
+//   };
+// }
 
-  const sitemapItems = files.map(generateSitemapRow);
+// function generateSitemap() {
+//   console.log('Crawling dist directory for HTML files...');
+//   const files = searchHtmlFilesRecursive(DIST_DIR);
 
-  const sitemapObject = {
-    urlset: [
-      {
-        _attr: {
-          xmlns: 'http://www.sitemaps.org/schemas/sitemap/0.9',
-        },
-      },
-      ...sitemapItems,
-    ],
-  };
+//   // const sitemapItems = files.map(generateSitemapRow);
 
-  const sitemapXml = '<?xml version="1.0" encoding="UTF-8" ?>' + xml(sitemapObject);
+//   // const sitemapObject = {
+//   //   urlset: [
+//   //     {
+//   //       _attr: {
+//   //         xmlns: 'http://www.sitemaps.org/schemas/sitemap/0.9',
+//   //       },
+//   //     },
+//   //     ...sitemapItems,
+//   //   ],
+//   // };
 
-  fs.writeFileSync(path.join(DIST_DIR, 'sitemap.xml'), sitemapXml);
+//   // const sitemapXml = '<?xml version="1.0" encoding="UTF-8" ?>' + xml(sitemapObject);
 
-  console.log(`Sitemap generated successfully in ${path.join(DIST_DIR, 'sitemap.xml')}`);
-  console.log(`Total URLs: ${sitemapItems.length}`);
-}
+//   // fs.writeFileSync(path.join(DIST_DIR, 'sitemap.xml'), sitemapXml);
 
-generateSitemap();
+//   // console.log(`Sitemap generated successfully in ${path.join(DIST_DIR, 'sitemap.xml')}`);
+//   // console.log(`Total URLs: ${sitemapItems.length}`);
+// }
+
+// generateSitemap();

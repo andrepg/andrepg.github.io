@@ -38,3 +38,19 @@ export interface IApplicationConfig {
     
   }
 }
+
+export interface ISitemapDto {
+  path: string;
+  title: string;
+  description: string;
+  type: string;
+  keywords?: string[];
+  publishedTime?: string;
+  modifiedTime?: string;
+}
+
+export interface IHtmlMetaTag {
+  name?: string;
+  property?: string;
+  content: string;
+}
