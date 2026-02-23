@@ -2,7 +2,7 @@ import { IApplicationConfig } from "@/interfaces";
 
 export const UserConfig = Object.freeze({
     website: {
-        name: "andrepg.dev",
+        name: "André Paul Grandsire ",
         url: "https://andrepg.github.io",
         description: "Website pessoal de André Paul Grandsire"
     },

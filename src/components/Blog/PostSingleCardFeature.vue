@@ -81,7 +81,7 @@ const getFullDate = (date: string) => new Date(Date.parse(date)).toLocaleDateStr
       'font-light',
       'transition-all',
       'duration-1000',
-      'gap-2',
+      'gap-0',
       'leading-tight',
     ]">
     <div class="flex flex-row gap-2 text-sm font-light md:hidden">
@@ -92,7 +92,7 @@ const getFullDate = (date: string) => new Date(Date.parse(date)).toLocaleDateStr
 
     <span v-if="post.serie" class="text-xs opacity-80 font-bold uppercase tracking-tight leading-none">{{ post.serie }}</span>
 
-    <span class="font-normal">{{  post.title }}</span>
+    <span class="font-normal mt-1 mb-2">{{  post.title }}</span>
 
     <Transition
       name="fade"

@@ -15,6 +15,16 @@ export const APP_CONFIG = {
      */
     IS_DEV: import.meta.env.DEV,
     IS_PROD: import.meta.env.PROD,
+
+    ALGOLIA: {
+        APPLICATION_ID: import.meta.env.VITE_ALGOLIA_APPLICATION_ID,
+        API_KEY: import.meta.env.VITE_ALGOLIA_API_KEY,
+        INDEX_NAME: import.meta.env.VITE_ALGOLIA_INDEX_NAME,
+
+        FIRST_KEY: import.meta.env.VITE_ALGOLIA_FIRST_KEY,
+        SEC_KEY: import.meta.env.VITE_ALGOLIA_SEC_KEY,
+        TER_KEY: import.meta.env.VITE_ALGOLIA_TER_KEY,
+    } as const,
 } as const;
 
 export default APP_CONFIG;

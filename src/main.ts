@@ -9,7 +9,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { createHead } from '@unhead/vue/client'
 import { APP_CONFIG } from '@config/app'
 
-// TODO Maybe move this to a config file
 const bootstrapDevelopmentMode = () => {
     const router = createRouter({
         history: createWebHistory(),

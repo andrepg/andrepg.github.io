@@ -1,154 +1,33 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue';
-import { ref, onMounted, onUnmounted, nextTick } from 'vue'
+import "https://unpkg.com/@algolia/sitesearch@latest/dist/search.min.js";
 
-const isModalOpen = ref(false);
+import { onMounted } from 'vue';
 
-const searchQuery = ref('');
-
-const searchModal = ref<HTMLDialogElement | null>(null);
-
-const inputModal = ref<HTMLInputElement | null>(null);
-
-const openSearch = () => {
-    isModalOpen.value = true;
-    searchModal.value?.showModal();
-
-    // Increase delay to ensure the browser has finished the dialog opening process
-    setTimeout(() => {
-        inputModal.value?.focus();
-    }, 200);
-}
-
-const closeSearch = () => {
-    isModalOpen.value = false;
-    searchModal.value?.close();
-}
-
-const handleKeyDown = (e: KeyboardEvent) => {
-    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-        e.preventDefault()
-        openSearch()
-    }
-}
+import APP_CONFIG from '@config/app';
 
 onMounted(() => {
-    window.addEventListener('keydown', handleKeyDown)
-})
-
-onUnmounted(() => {
-    window.removeEventListener('keydown', handleKeyDown)
-})
+    // @ts-expect-error SiteSearch will be loaded by VueJS by now, if it works as I expected
+    window.SiteSearch?.init({
+        container: "#search",
+        applicationId: APP_CONFIG.ALGOLIA.APPLICATION_ID,
+        apiKey: APP_CONFIG.ALGOLIA.API_KEY,
+        indexName: APP_CONFIG.ALGOLIA.INDEX_NAME,
+        attributes: {
+            primaryText: APP_CONFIG.ALGOLIA.FIRST_KEY,
+            secondaryText: APP_CONFIG.ALGOLIA.SEC_KEY,
+            tertiaryText: APP_CONFIG.ALGOLIA.TER_KEY,
+            url: "", // the URL of the hit
+            image: "" // the image URL of the hit
+        },
+        darkMode: document.documentElement.getAttribute('data-theme') === 'dark',
+    });
+});
 </script>
 
 <template>
-    <div class="grow">
-        <!-- Trigger Input as a Label for DaisyUI floating-label compatibility -->
-        <label 
-            :class="[
-                'input',
-                'floating-label',
-                'border-0',
-                'outline-0',
-                'shadow-lg',
-                'ring-0',
-                'cursor-pointer',
-                'w-full'
-            ]" 
-            @click.prevent="openSearch"
-        >
-            <span class="rounded-full py-1 px-2 bg-primary-content shadow-md text-primary">Pesquisar</span>
-            <input 
-                type="text" 
-                placeholder="Pesquisar" 
-                readonly 
-                tabindex="-1" 
-                class="cursor-pointer"
-            />
-            <kbd class="kbd kbd-md">⌘ K</kbd>
-        </label>
-    </div>
-
-    <!-- Search Modal -->
-    <dialog ref="searchModal" class="modal">
-        <div
-        :class="[
-            'modal-box',
-            'max-w-2xl',
-            'p-0',
-            'overflow-hidden',
-            'shadow-2xl',
-            'transition-all',
-            'transform',
-            isModalOpen ? 'duration-0 delay-0' : 'duration-500'
-        ]">
-            <!-- Modal Header: Input -->
-            <div class="flex items-center bg-base-200/10 gap-4 p-4 border-b border-base-content/5">
-                <Icon icon="hugeicons:search-01" class="text-2xl" />
-
-                <input 
-                    ref="inputModal"
-                    v-model="searchQuery" 
-                    type="text"
-                    placeholder="Pesquisar no blog..." 
-                    autofocus
-                    :class="[
-                        'w-full',
-                        'input',
-                        'outline-0',
-                        'border-0',
-                        'ring-1',
-                        'ring-base-300',
-                        'transition-all',
-                        'duration-300',
-                        'focus:ring-2',
-                        'focus:shadow-lg',
-                        'focus:ring-primary/50',
-                    ]"
-                />
-                <button class="btn btn-ghost btn-sm btn-circle" @click="closeSearch">
-                    <Icon icon="hugeicons:cancel-01" class="text-2xl" />
-                </button>
-            </div>
-
-            <!-- Modal Body: Results (Skeletons) -->
-            <div class="p-4 max-h-[60vh] overflow-y-auto">
-                <div class="text-xs font-bold /40 uppercase tracking-widest mb-4 px-2">
-                    Resultados Sugeridos
-                </div>
-
-                <ul class="flex flex-col gap-2">
-                    <li v-for="i in 3" :key="i" class="p-3 rounded-xl flex items-center gap-4">
-                        <div class="skeleton h-12 w-12 shrink-0 rounded-lg"></div>
-                        <div class="flex flex-col gap-2 w-full">
-                            <div class="skeleton h-4 w-3/4"></div>
-                            <div class="skeleton h-3 w-1/2 opacity-50"></div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Modal Footer -->
-            <div class="p-3 bg-base-200/50 flex justify-between items-center text-sm">
-                <div class="flex gap-4 px-2">
-                    <span class="flex flex-row gap-1.5 items-center font-light">
-                        <kbd class="kbd kbd-sm">ENTER</kbd>
-                        Selecionar
-                    </span>
-                    <span class="flex flex-row gap-1.5 items-center font-light">
-                        <kbd class="kbd kbd-sm">↑↓</kbd>
-                        Navegar
-                    </span>
-                    <span class="flex flex-row gap-1.5 items-center font-light">
-                        <kbd class="kbd kbd-sm">ESC</kbd>
-                        Fechar
-                    </span>
-                </div>
-            </div>
-        </div>
-
-        <form v-if="isModalOpen" method="dialog" class="modal-backdrop backdrop-blur-sm delay-0! duration-0!">
-            <button @click="closeSearch">close</button>
-        </form>
-    </dialog>
+    <div id="search"></div>
 </template>
+
+<style scoped>
+@import "https://unpkg.com/@algolia/sitesearch@latest/dist/search.min.css";
+</style>
