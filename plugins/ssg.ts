@@ -1,3 +1,4 @@
+import { ApplicationRouter } from '../config/routes';
 import { readdirSync } from 'node:fs'
 import path from 'node:path'
 
@@ -36,4 +37,35 @@ export const getMarkdownBlogRoutes = ({ searchPath, rootPath = searchPath, fileL
     });
 
     return fileList;
+}
+/**
+ * Filters the application routes to return only static paths (those without parameters).
+ * Useful for determining which top-level pages should be pre-rendered.
+ *
+ * @returns An array of static route paths (e.g., ['/', '/about']).
+ */
+export const getWebsiteRoutes = () => ApplicationRouter.filter(
+    route => !route.path.includes(':')
+).map(o => o.path)
+
+/**
+ * Orchestrates the collection of all routes for Static Site Generation (SSG).
+ * It combines static website routes with dynamically discovered blog post routes.
+ *
+ * @returns A unique array of all strings representing the routes to be pre-rendered.
+ */
+export const getRouteConfig = () => {
+    console.log(`[ssg] Preparing static routes`);
+
+    const blogRoutes = getMarkdownBlogRoutes({
+        searchPath: path.resolve(process.cwd(), 'blog'),
+    });
+
+    console.log(`[ssg] Found ${blogRoutes.length} blog routes`);
+
+    const staticRoutes = getWebsiteRoutes()
+
+    console.log(`[ssg] Found ${staticRoutes.length} static routes`);
+
+    return Array.from(new Set([...staticRoutes, ...blogRoutes]));
 }

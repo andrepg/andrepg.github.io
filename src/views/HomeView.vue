@@ -1,14 +1,14 @@
 <script setup>
 
-import MyProfile from '@/components/ProjectCard.vue';
+import { PageLayoutType } from '@/enumerators';
 
-
-import RecomendationsFeature from '@/components/Features/RecomendationsFeature.vue';
 import { useHead } from '@unhead/vue';
 import APP_CONFIG from '@config/app';
-import RecentPostsFeature from '@/components/Blog/RecentPostsFeature.vue';
+
 import PageLayout from '@/components/Layout/PageLayout.vue';
-import { PageLayoutType } from '@/enumerators';
+import MyProfile from '@/components/Features/ProfileCardFeature.vue';
+import RecomendationsFeature from '@/components/Features/RecomendationsFeature.vue';
+import RecentPostsFeature from '@/components/Blog/RecentPostsFeature.vue';
 
 useHead({
   title: 'André Paul Grandsire | Software Engineer',

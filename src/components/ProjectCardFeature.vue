@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Icon } from "@iconify/vue";
-import GlassCard from "../GlassCard.vue";
+import GlassCard from "@/components/GlassCard.vue";
 
 defineProps<{
     project: {

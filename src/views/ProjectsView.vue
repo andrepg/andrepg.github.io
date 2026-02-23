@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import { useHead } from '@unhead/vue';
 import { Projects } from '@data/projects';
+import APP_CONFIG from '@config/app';
+
 import CardHeaderFeature from '@/components/CardHeaderFeature.vue';
 import PageLayout from '@/components/Layout/PageLayout.vue';
-import { useHead } from '@unhead/vue';
-import APP_CONFIG from '@config/app';
-import ProjectCardFeature from '@/components/Features/ProjectCardFeature.vue';
+import ProjectCardFeature from '@/components/ProjectCardFeature.vue';
 import GlassCard from '@/components/GlassCard.vue';
 import AnimatedList from '@/components/AnimatedList.vue';
 

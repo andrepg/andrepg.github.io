@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Projects } from '@data/projects';
 import GlassCard from '@/components/GlassCard.vue';
-import ProjectCardFeature from '@/components/Features/ProjectCardFeature.vue';
+import ProjectCardFeature from '@/components/ProjectCardFeature.vue';
 import AnimatedList from '@/components/AnimatedList.vue';
 import SectionHeader from '@/components/SectionHeader.vue';
 
