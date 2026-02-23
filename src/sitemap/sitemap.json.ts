@@ -20,12 +20,12 @@ const sitemapDto = (tags: IHtmlMetaTag[], canonical: string): ISitemapDto => ({
     description: getMetaTagContent(tags, 'description'),
     type: getMetaTagContent(tags, 'og:type'),
     keywords: getMetaTagContent(tags, 'keywords').split(','),
-    publishedTime: '',
+    publishedTime: getMetaTagContent(tags, 'article:published_time'),
     modifiedTime: '',
     // TODO Add more tags to HTML and here. We can feed from JSON ld as well
 })
 
-const parseHtmlFile = (file: string) => {
+export const parseHtmlFile = (file: string): ISitemapDto => {
     const head = parseHtmlHeader(file);
     const children = head?.querySelectorAll('meta');
 
