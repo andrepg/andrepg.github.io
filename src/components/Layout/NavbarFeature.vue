@@ -99,16 +99,12 @@ topSentinel,
           <li
           v-for="link in ApplicationRouter.filter(link => link.menu)"
           :key="link.name"
-          :class="[
-            'py-1.5',
-            'transition-all',
-            'duration-500',
-            'hover:bg-primary',
-            'rounded-lg',
-            'hover:shadow-lg'
-          ]"
+          class="py-1.5"
           >
-            <a :href="link.path" class="uppercase text-xs font-bold tracking-wider w-full text-left flex items-center gap-3">
+            <a
+              :href="link.path"
+              class="uppercase text-xs font-bold tracking-wider w-full text-left flex items-center gap-3 transition-all duration-500 hover:bg-primary rounded-lg hover:shadow-lg px-4 py-2"
+            >
               <Icon :icon="link.icon" class="text-xl" />{{ link.name }}
             </a>
           </li>
