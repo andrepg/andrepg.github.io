@@ -23,7 +23,9 @@ const props = withDefaults(defineProps<Props>(), {
   delay: 50,
   threshold: 0.1,
   tag: 'ul',
-  itemTag: 'li'
+  itemTag: 'li',
+  listClass: '',
+  itemClass: '',
 });
 
 const isVisible = ref(false);

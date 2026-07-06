@@ -9,8 +9,7 @@ tags:
   - markdown
 serie: Um blog feito em casa
 serie_part: 2
-category:
-  - Programação
+category: Programação
 excerpt: Segunda parte explorando como organizei a estrutura de pastas e automatizei a geração do sitemap para o blog.
 ---
 

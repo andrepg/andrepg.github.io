@@ -1,5 +1,4 @@
 <script setup>
-import { nextTick, onMounted, ref } from "vue";
 import PostTimelineFeature from "./PostTimelineFeature.vue";
 import { Icon } from "@iconify/vue";
 import { getPublished } from "@/utils/blog-reader";
@@ -9,7 +8,7 @@ import SectionHeader from "@/components/SectionHeader.vue";
 
 const posts = getPublished().sort(
   (a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime()
-).splice(0, 5)
+).slice(0, 5)
 </script>
 
 

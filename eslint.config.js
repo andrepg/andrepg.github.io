@@ -1,61 +1,50 @@
-import js from '@eslint/js';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 import pluginVue from 'eslint-plugin-vue';
 import prettierConfig from 'eslint-config-prettier';
 
-/** @type {import('eslint').Linter.Config[]} */
-export default tseslint.configs.base(
+export default tseslint.config(
   {
     ignores: [
       '**/dist/**',
+      '**/.vite-ssg-temp/**',
       '**/node_modules/**',
       '**/public/**',
       'src/env.d.ts',
     ],
   },
 
-  ...pluginVue.configs['flat/recommended'],
+  tseslint.configs.base,
 
-  /**
-   * The TypeScript lint settings
-   */
-  {
-    basePath: 'src',
+  ...tseslint.configs.recommended.map(config => ({
+    ...config,
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
-    extends: [
-      ...tseslint.configs.recommendedTypeChecked,
-      ...tseslint.configs.stylisticTypeChecked,
-    ],
-    languageOptions: {
-      parserOptions: {
-        projectService: true,
-        tsconfigRootDir: import.meta.dirname,
-      },
+  })),
+
+  {
+    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+      ],
     },
   },
 
-  /**
-   * These are the Vue lint settings
-   */
+  ...pluginVue.configs['flat/recommended'],
+
   {
     files: ['**/*.vue'],
-    plugins: {
-      vue: pluginVue,
-    },
     languageOptions: {
-      parser: pluginVue.parser,
       parserOptions: {
         parser: tseslint.parser,
         extraFileExtensions: ['.vue'],
         sourceType: 'module',
-      }
+      },
     },
   },
 
-  /**
-   * The global variables and language options
-   */
   {
     languageOptions: {
       globals: {
@@ -64,6 +53,7 @@ export default tseslint.configs.base(
       },
     },
   },
+
   {
     rules: {
       'vue/no-v-html': [
@@ -72,23 +62,8 @@ export default tseslint.configs.base(
           ignorePattern: '^sanitized',
         },
       ],
-      //   '@typescript-eslint/no-explicit-any': 'warn',
-      //   'no-unused-vars': 'off',
-      //   '@typescript-eslint/no-unused-vars': [
-      //     'warn',
-      //     {
-      //       argsIgnorePattern: '^_',
-      //       varsIgnorePattern: '^_',
-      //     },
-      //   ],
-      //   '@typescript-eslint/no-unsafe-assignment': 'warn',
-      //   '@typescript-eslint/no-unsafe-member-access': 'warn',
-      //   '@typescript-eslint/no-unsafe-call': 'warn',
-      //   '@typescript-eslint/no-unsafe-return': 'warn',
-      //   '@typescript-eslint/no-floating-promises': 'warn',
-      //   '@typescript-eslint/await-thenable': 'warn',
-      //   '@typescript-eslint/no-unsafe-argument': 'warn',
-  }
+    },
   },
+
   prettierConfig,
 );
