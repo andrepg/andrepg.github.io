@@ -4,6 +4,7 @@ import { PageLayoutType } from '@/enumerators';
 
 import { useHead } from '@unhead/vue';
 import APP_CONFIG from '@config/app';
+import { UserConfig } from "@data/website";
 
 import PageLayout from '@/components/Layout/PageLayout.vue';
 import MyProfile from '@/components/Features/ProfileCardFeature.vue';
@@ -17,9 +18,11 @@ useHead({
     { property: 'og:type', content: 'website' },
     { property: 'og:title', content: 'André Paul Grandsire | Software Engineer' },
     { property: 'og:description', content: 'Explore o portfólio e blog de André Paul Grandsire, desenvolvedor de software focado em Vue.js e PHP.' },
+    { property: 'og:image', content: UserConfig.website.image },
     { name: 'twitter:card', content: 'summary' },
     { name: 'twitter:title', content: 'André Paul Grandsire | Software Engineer' },
     { name: 'twitter:description', content: 'Explore o portfólio e blog de André Paul Grandsire, desenvolvedor de software focado em Vue.js e PHP.' },
+    { name: 'twitter:image', content: UserConfig.website.image },
   ],
   link: [
     { rel: 'canonical', href: APP_CONFIG.BASE_URL }

@@ -92,13 +92,15 @@ export const getSinglePostTags = (
       description: metadata.excerpt || BLOG_TITLE,
       canonicalUrl
     }),
+    { property: 'og:image', content: UserConfig.website.image },
 
     // Twitter
     ...dtoTwitterOg({
       card: 'summary',
       title: metadata.title,
       description: metadata.excerpt || BLOG_TITLE
-    })
+    }),
+    { name: 'twitter:image', content: UserConfig.website.image }
   ],
   link: [
     { rel: 'canonical', href: canonicalUrl }
@@ -120,11 +122,13 @@ export const getBlogIndexTags = (posts: IPost[]): ReactiveHead => ({
       description: `Postagens |  ${BLOG_TITLE}`,
       canonicalUrl: `${APP_CONFIG.BASE_URL}/blog`
     }),
+    { property: 'og:image', content: UserConfig.website.image },
     ...dtoTwitterOg({
       card: 'summary',
       title: `Postagens |  ${BLOG_TITLE}`,
       description: `Postagens |  ${BLOG_TITLE}`,
-    })
+    }),
+    { name: 'twitter:image', content: UserConfig.website.image }
   ],
 
   link: [

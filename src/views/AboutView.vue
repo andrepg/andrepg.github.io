@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import APP_CONFIG from '@config/app';
 import { Tecnologias } from '@data/experience';
+import { UserConfig } from "@data/website";
 
 import { useHead } from '@unhead/vue';
 
@@ -18,9 +19,11 @@ useHead({
     { property: 'og:type', content: 'website' },
     { property: 'og:title', content: 'Experiência & Projetos | André Paul Grandsire' },
     { property: 'og:description', content: 'Minha trajetória e carreira resumida, projetos publicados e experiência de mercado real.' },
+    { property: 'og:image', content: UserConfig.website.image },
     { name: 'twitter:card', content: 'summary' },
     { name: 'twitter:title', content: 'Experiência & Projetos | André Paul Grandsire' },
     { name: 'twitter:description', content: 'Minha trajetória e carreira resumida, projetos publicados e experiência de mercado real.' },
+    { name: 'twitter:image', content: UserConfig.website.image },
   ],
   link: [
     { rel: 'canonical', href: `${APP_CONFIG.BASE_URL}/curriculo` }

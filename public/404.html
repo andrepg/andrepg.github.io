@@ -6,24 +6,34 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta charset="UTF-8">
 
-  <title>André Paul Grandsire</title>
+  <title>Página não encontrada | André Paul Grandsire</title>
 
+  <meta name="description" content="Página não encontrada. Volte para a página inicial ou navegue pelo menu." />
   <meta name="google-site-verification" content="9ohRRNaoFMcCz6ru0CCyRYJku-JQVrjAZ_x4PxbIGA8" />
 
-  <meta property="og:title" content="André Paul Grandsire" />
+  <meta property="og:title" content="Página não encontrada | André Paul Grandsire" />
+  <meta property="og:description" content="Página não encontrada. Volte para a página inicial ou navegue pelo menu." />
+  <meta property="og:image" content="https://andrepg.github.io/android-chrome-512x512.png" />
   <meta property="og:locale" content="pt_BR" />
-  <meta property="og:url" content="https://andrepg.github.io/" />
+  <meta property="og:url" content="https://andrepg.github.io/404.html" />
   <meta property="og:site_name" content="André Paul Grandsire" />
-  <meta property="twitter:title" content="André Paul Grandsire" />
+  <meta property="twitter:title" content="Página não encontrada | André Paul Grandsire" />
+  <meta name="twitter:description" content="Página não encontrada. Volte para a página inicial ou navegue pelo menu." />
+  <meta name="twitter:image" content="https://andrepg.github.io/android-chrome-512x512.png" />
   <meta name="twitter:card" content="summary" />
 
-  <link rel="canonical" href="https://andrepg.github.io/" />
+  <link rel="canonical" href="https://andrepg.github.io/404.html" />
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+  <meta name="theme-color" content="#570df8" />
 
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
   <noscript>
@@ -36,24 +46,14 @@
   </noscript>
 
   <script>
-    /**
-     * Current requested resource
-     * @type {string}
-     */
     const resource = location.href
 
-    /**
-     * We will redirect only if the page belongs to blog namespace
-     */
-    console.table({ date: new Date().toISOString(), resource })
-
     if (resource.includes('blog') || resource.includes('curriculo')) {
-      console.log("Redirecting user to App")
       sessionStorage.setItem('redirect', resource)
 
-      refresh = document.createElement('meta')
+      const refresh = document.createElement('meta')
 
-      refresh.content = '0;URL=\'/\''
+      refresh.content = "0;URL='/'"
       refresh.httpEquiv = 'refresh'
 
       document.head.appendChild(refresh)
@@ -76,7 +76,7 @@
     }
 
     body {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Cabin', sans-serif;
       color: #888;
       margin: 0;
     }
@@ -125,6 +125,12 @@
       <div class="fof">
         <h1>Error 404</h1>
         <p>Parece que essa página foi perdida.</p>
+        <nav class="flex flex-wrap gap-4 justify-center mt-8">
+          <a href="/" class="text-purple-300 hover:text-purple-100 underline underline-offset-4 transition-colors">Início</a>
+          <a href="/curriculo" class="text-purple-300 hover:text-purple-100 underline underline-offset-4 transition-colors">Currículo</a>
+          <a href="/projetos" class="text-purple-300 hover:text-purple-100 underline underline-offset-4 transition-colors">Projetos</a>
+          <a href="/blog" class="text-purple-300 hover:text-purple-100 underline underline-offset-4 transition-colors">Blog</a>
+        </nav>
       </div>
     </div>
 
