@@ -6,6 +6,7 @@ export interface IUserConfig {
     name: string;
     url: string;
     description: string;
+    image: string;
   },
   author: {
     name: string;

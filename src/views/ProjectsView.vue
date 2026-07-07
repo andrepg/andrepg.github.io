@@ -2,7 +2,8 @@
 import { useHead } from '@unhead/vue';
 import { Projects } from '@data/projects';
 import APP_CONFIG from '@config/app';
-
+import { UserConfig } from "@data/website";
+ 
 import CardHeaderFeature from '@/components/CardHeaderFeature.vue';
 import PageLayout from '@/components/Layout/PageLayout.vue';
 import ProjectCardFeature from '@/components/ProjectCardFeature.vue';
@@ -19,9 +20,11 @@ useHead({
   { property: 'og:type', content: 'website' },
   { property: 'og:title', content: "Projetos | André Paul Grandsire" },
   { property: 'og:description', content: 'Lista de projetos e portfólio de André Paul Grandsire' },
+  { property: 'og:image', content: UserConfig.website.image },
   { name: 'twitter:card', content: 'summary' },
   { name: 'twitter:title', content: "Projetos | André Paul Grandsire" },
   { name: 'twitter:description', content: 'Lista de projetos e portfólio de André Paul Grandsire' },
+  { name: 'twitter:image', content: UserConfig.website.image },
   ],
   link: [
   { rel: 'canonical', href: `${APP_CONFIG.BASE_URL}/projetos` }
