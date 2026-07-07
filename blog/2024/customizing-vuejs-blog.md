@@ -9,8 +9,7 @@ tags:
   - markdown
 serie: Um blog feito em casa
 serie_part: 3
-category:
-  - Programação
+category: Programação
 excerpt: Finalizando a série com detalhes sobre renderização de posts, indexação e o hack de redirecionamento para o GitHub Pages.
 ---
 

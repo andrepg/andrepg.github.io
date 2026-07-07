@@ -32,3 +32,9 @@ yarn.lock
 package-lock.json
 
 public/sitemap.*
+
+.env
+
+# Yarn Berry local cache
+.yarn/
+!.yarnrc.yml

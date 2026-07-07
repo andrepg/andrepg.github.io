@@ -9,8 +9,7 @@ tags:
   - markdown
 serie: Um blog feito em casa
 serie_part: 1
-category:
-  - Programação
+category: Programação
 excerpt: Início da série sobre como construí meu blog, focando nas ferramentas, pacotes iniciais e configurações do Vite.
 ---
 # 💡Introdução

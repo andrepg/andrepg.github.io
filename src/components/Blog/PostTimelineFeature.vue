@@ -1,27 +1,25 @@
 <script setup lang="ts">
-import type { Post } from '@/interfaces';
+import { IPost } from '@/interfaces';
 import PostSingleCardFeature from './PostSingleCardFeature.vue';
-import { TransitionGroup } from 'vue';
+import AnimatedList from '@/components/AnimatedList.vue';
 
-defineProps<{
-  posts: Post[];
-  isLoading?: boolean;
-}>();
+const props = defineProps<{
+  posts: IPost[],
+  compactMode?: boolean
+}>()
 </script>
 
 <template>
-  <TransitionGroup
-    name="fade"
+  <AnimatedList
+    :items="posts"
     tag="ul"
-    class="list"
+    item-tag="li"
+    list-class="list gap-4 my-4"
+    :delay="150"
   >
-    <li
-      v-for="(post, index) in posts"
-      :key="post.path"
-      class="p-0 not-sm:p-2 my-4"
-      :style="{ transitionDelay: `${index * 100}ms` }"
-    >
-      <PostSingleCardFeature :post="post" />
-    </li>
-  </TransitionGroup>
+    <template #default="{ item }">
+      <PostSingleCardFeature tag="h2" :post="item" :compact-mode="compactMode" />
+    </template>
+  </AnimatedList>
 </template>
+

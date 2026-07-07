@@ -1,41 +1,38 @@
 # 💼 andrepg.github.io
 
-This is my main website, my personal hub and my personal blog. It's built with Vite and VueJS, powered by Vite Markdown and PrismsJS.
+My personal website, portfolio, and blog — built with **Vue 3 + Vite SSG** (Static Site Generation), powered by `vite-plugin-markdown` and PrismJS.
+
+## 🧱 Architecture
+
+This project uses **Vite SSG** (`vite-ssg`) to pre-render every route as static HTML at build time. Blog posts are written in Markdown (under `blog/`) and loaded at build time via Vite's glob import. The result is a fully static site deployable to GitHub Pages.
 
 ## 🤖 Recommended IDE Setup
 
-To build or explore this app, I recommend some configurations, they are the following:
-
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-- Use the VSCode Workspace file to open the project and use the recommended plugins
-
+- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (disable Vetur) + [TypeScript Vue Plugin](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin)
+- Use the `.vscode/andrepg.code-workspace` file to open the project
 
 ## 🛠️ Project Setup
 
-First, you need to install all the project's dependencies with NPM or Yarn. It's your choice.
-
 ```sh
-# With NPM
-npm install
-
-# With Yarn
 yarn install
 ```
 
-### 💻 Compile and Hot-Reload for Development
+### 💻 Development (Hot-Reload)
 
 ```sh
-npm run dev
+yarn dev
 ```
 
-### 📤 Compile and Minify for Production
+### 📤 Production Build (SSG)
 
 ```sh
-npm run build
+yarn build
 ```
 
-### 🔍 Lint with [ESLint](https://eslint.org/)
+This runs `vite-ssg build` (generates static HTML) followed by `build-sitemap` (generates XML + JSON sitemaps).
+
+### 🔍 Lint
 
 ```sh
-npm run lint
+yarn lint
 ```

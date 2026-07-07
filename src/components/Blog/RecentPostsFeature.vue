@@ -1,36 +1,24 @@
 <script setup>
-import { nextTick, onMounted, ref } from "vue";
 import PostTimelineFeature from "./PostTimelineFeature.vue";
 import { Icon } from "@iconify/vue";
+import { getPublished } from "@/utils/blog-reader";
+import GlassCard from "../GlassCard.vue";
+import SectionHeader from "@/components/SectionHeader.vue";
 
-import { SitemapBridge } from "@/router/sitemap";
 
-const posts = ref([])
-const sitemapBridge = SitemapBridge.getInstance()
-
-const fetchPosts = async () => {
-  await sitemapBridge.load()
-  posts.value = sitemapBridge.published()
-    .filter(post => post.path.includes('blog'))
-    .slice(0, 5)
-}
-
-onMounted(() => {
-  nextTick(fetchPosts)
-})
+const posts = getPublished().sort(
+  (a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime()
+).slice(0, 5)
 </script>
 
 
 <template>
-  <div class="card bg-base-300/85">
-    <div class="card-body">
-      <h2 class="card-title m-0 flex flex-row items-center gap-2">
-        <Icon
-          icon="hugeicons:quill-write-02"
-          class="text-2xl"
-        />
-        Postagens Recentes
-      </h2>
+  <GlassCard class="flex flex-col gap-4">
+      <SectionHeader icon="hugeicons:quill-write-02" subtitle="As últimas postagens do meu blog pessoal, aqui neste mesmo site.">
+        <template #title>
+          Postagens Recentes
+        </template>
+      </SectionHeader>
 
       <div class="gap-8">
         <PostTimelineFeature
@@ -38,19 +26,19 @@ onMounted(() => {
           :posts="posts"
         />
 
-        <a
-          href="/blog"
-          :class="[
-            'btn',
-            'btn-sm',
-            'btn-block',
-            'btn-outline',
-            'hover:btn-primary',
-          ]"
-        >
-          Ver postagens mais antigas
-        </a>
       </div>
-    </div>
-  </div>
+
+      <a
+        href="/blog"
+        :class="[
+          'btn',
+          'btn-block',
+          'btn-wide',
+          'mx-auto',
+          'btn-soft btn-primary',
+        ]"
+      >
+        Ver postagens mais antigas
+      </a>
+  </GlassCard>
 </template>

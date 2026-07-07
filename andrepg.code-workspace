@@ -9,23 +9,34 @@
 			"dbaeumer.vscode-eslint"
 		]
 	},
-
 	"settings": {
+		"editor.codeLens": true,
+		"typescript.autoClosingTags": true,
+		"typescript.format.enable": true,
+		"typescript.suggest.autoImports": true,
+		"typescript.experimental.useTsgo": true,
+		"typescript.preferences.importModuleSpecifier": "shortest",
+		"typescript.referencesCodeLens.enabled": true,
+		"typescript.referencesCodeLens.showOnAllFunctions": true,
+		"vue.inlayHints.missingProps": true,
 		"vue.autoInsert.dotValue": true,
 		"vue.editor.focusMode": true,
 		"vue.hover.rich": true,
-		"vue.inlayHints.missingProps": true,
+		"vue.autoInsert.bracketSpacing": true,
+		"vue.editor.reactivityVisualization": true,
+		"vue.format.template.enabled": false,
+		"vue.codeActions.askNewComponentName": true,
+		"vue.editor.templateInterpolationDecorators": true,
 		"[vue]": {
-			"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+			"editor.defaultFormatter": "vscode.typescript-language-features",
+			"editor.autoIndent": "full"
 		},
 		"[typescript]": {
-			"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+			"editor.defaultFormatter": "vscode.typescript-language-features"
 		},
-		"[typescriptreact]": {
-			"editor.defaultFormatter": "dbaeumer.vscode-eslint"
-		},
-		"[jsx-tags]": {
-			"editor.defaultFormatter": "dbaeumer.vscode-eslint"
-		}
-	},
+		"eslint.format.enable": true,
+		"css.format.spaceAroundSelectorSeparator": true,
+		"javascript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": true,
+		"typescript.tsdk": "node_modules/typescript/lib"
+	}
 }

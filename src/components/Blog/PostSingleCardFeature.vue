@@ -1,141 +1,105 @@
-<script setup>
+<script setup lang="ts">
 import { Icon } from '@iconify/vue'
+import { IPost } from '@/interfaces'
+import GlassCard from '@/components/GlassCard.vue'
 
-defineProps({
-  post: {
-    required: true,
-    type: {
-      path: String,
-      title: String,
-      excerpt: String,
-      published_at: String,
-      category: String,
-      tags: Array,
-    }
-  }
-})
+interface Props {
+  post: IPost;
+  tag: string;
+  compactMode?: boolean;
+}
 
-const getBlogUrl = (path) => '/blog/'.concat(path)
+withDefaults(defineProps<Props>(), {
+  compactMode: false,
+});
 
-const getPostDay = (date) => new Date(Date.parse(date)).toLocaleDateString('pt-BR', {
+
+const getPostDay = (date: string) => new Date(Date.parse(date)).toLocaleDateString('pt-BR', {
   day: 'numeric',
 })
 
-const getPostMonth = (date) => new Date(Date.parse(date)).toLocaleDateString('pt-BR', {
+const getPostMonth = (date: string) => new Date(Date.parse(date)).toLocaleDateString('pt-BR', {
   month: 'long'
 })
 
-const getPostYear = (date) => new Date(Date.parse(date)).toLocaleDateString('pt-BR', {
+const getPostYear = (date: string) => new Date(Date.parse(date)).toLocaleDateString('pt-BR', {
+  year: 'numeric'
+})
+
+const getFullDate = (date: string) => new Date(Date.parse(date)).toLocaleDateString('pt-BR', {
+  day: 'numeric',
+  month: 'long',
   year: 'numeric'
 })
 
 </script>
 
 <template>
-  <!-- Line row -->
-  <a
-    :href="getBlogUrl(post.path)"
+<GlassCard
+  tag="a"
+  hoverable
+  solid
+  :class="[
+    'list-row group',
+    'flex flex-row gap-6',
+    'ease-[cubic-bezier(0.34,1.56,0.64,1)]',
+    compactMode ? 'py-0! px-4!' : 'py-2! px-6!',
+    compactMode ? 'rounded-sm' : 'rounded-xl',
+  ]"
+  :href="post.path">
+  <Transition
+    tag="div"
+    class="stat not-md:hidden w-fit gap-0"
+    :appear="!compactMode"
+    name="fade"
+    :duration="{ enter: 500, leave: 200 }">
+    <div v-if="!compactMode" class="stat not-md:hidden w-fit gap-0 leading-tight">
+      <Icon
+        icon="mdi:calendar-blank-outline"
+        :class="[
+          'z-0 absolute left-0 top-2',
+          'h-10/12 w-auto',
+          'transition-all',
+          'duration-500',
+          '',
+          'translate-x-full group-hover:translate-x-0',
+          'opacity-0 group-hover:opacity-5',
+        ]" />
+
+      <span class="z-10 stat-title">{{ getPostMonth(post.published_at) }} </span>
+      <span class="z-10 stat-value">{{ getPostDay(post.published_at) }}</span>
+      <span class="z-10 stat-desc">{{ getPostYear(post.published_at) }}</span>
+    </div>
+  </Transition>
+
+  <component
+    :is="tag"
     :class="[
       'flex',
       'flex-col',
-      'gap-3',
-      'group/post-single',
-      'transition-all duration-0 ease',
-      'md:flex-row',
-      'md:gap-4',
-      'md:justify-center',
-      'md:rounded-lg',
-      'md:shadow-lg',
-      'md:bg-primary/5',
-      'md:hover:text-primary',
-      'lg:gap-6',
-    ]"
-  >
-    <!-- Metadata square -->
-    <div
-      :class="[
-        'flex flex-row',
-        'opacity-50',
-        'alert alert-soft',
-        'justify-start',
-        'md:w-1/6',
-        'md:flex-col',
-        'md:justify-center',
-        'md:items-center',
-        'md:gap-1',
-        'transition-all ease',
-        'delay-0 duration-500',
-        'group-hover/post-single:opacity-100',
-        'group-hover/post-single:alert-info',
-      ]"
-    >
-      <div
-        :class="[
-          'flex flex-row',
-          'gap-2',
-          'md:gap-1',
-          'items-center',
-        ]"
-      >
-        <Icon
-          icon="hugeicons:calendar-02"
-          :class="[
-            'size-5 opacity-70',
-            'transform transition duration-700 delay-500 ease',
-            'md:group-hover/post-single:scale-200',
-            'md:group-hover/post-single:-rotate-12',
-            'md:group-hover/post-single:-translate-x-full',
-            // 'md:group-hover/post-single:translate-y-full',
-            'md:group-hover/post-single:opacity-0',
-            'md:group-hover/post-single:delay-0',
-            'md:group-hover/post-single:duration-500',
-          ]"
-        />
+      'text-lg',
+      'font-light',
+      'transition-all',
+      'duration-1000',
+      'gap-0',
+      'leading-tight',
+    ]">
+    <div class="flex flex-row gap-2 text-sm font-light md:hidden">
+      <Icon icon="hugeicons:calendar-04" class="" />
 
-        <span
-          :class="[
-            'text-lg',
-            'md:text-xl',
-            'font-semibold',
-            'md:font-light',
-            'leading-none',
-            'text-base-content',
-            'transform transition duration-700 delay-0 ease-out',
-            'md:group-hover/post-single:-translate-x-2/3',
-            'md:group-hover/post-single:scale-120',
-            'md:group-hover/post-single:delay-300'
-          ]"
-        >
-          {{ getPostDay(post.published_at) }}
-        </span>
-      </div>
-
-      <div class="flex flex-col text-start md:text-center">
-        <span class="text-xs font-light">{{ getPostMonth(post.published_at) }}</span>
-        <span class="text-xs font-light">{{ getPostYear(post.published_at) }}</span>
-      </div>
+      <span>{{ getFullDate(post.published_at) }}</span>
     </div>
 
-    <div
-      :class="[
-        'md:w-5/6',
-        'self-start',
-        'flex',
-        'flex-col',
-        'gap-2',
-        'py-2',
-        'md:py-3',
-        'md:my-3',
-        'lg:self-center',
-      ]"
-    >
-      <small
-        v-if="post.serie"
-        class="text-xs font-semibold tracking-wide uppercase"
-      >{{ post.serie }}</small>
+    <span v-if="post.serie" class="text-xs opacity-80 font-bold uppercase tracking-tight leading-none">{{ post.serie }}</span>
 
-      <h3 class="leading-none my-0">{{ post.title }}</h3>
-      <p class="leading-tight">{{ post.excerpt }}</p>
-    </div>
-  </a>
+    <span class="font-normal mt-1 mb-2">{{  post.title }}</span>
+
+    <Transition
+      name="fade"
+      :duration="{ enter: 700, leave: 200 }"
+    >
+      <small v-if="!compactMode" class="opacity-70">{{ post.excerpt }}</small>
+    </Transition>
+  </component>
+</GlassCard>
 </template>

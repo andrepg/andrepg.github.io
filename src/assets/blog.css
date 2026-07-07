@@ -1,13 +1,31 @@
 @import './base-styles.css';
 
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+@layer base {
+  body {
+    min-height: 100vh;
+    line-height: 1.6;
+    font-family: "Cabin", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cabin', sans-serif;
+    font-weight: 600;
+  }
+}
 
 #article-body {
-    @apply flex flex-col max-w-11/12 lg:max-w-8/12 mx-auto;
-    font-family: 'Lora', serif;
+    @apply rounded-lg shadow-lg;
+    @apply bg-base-200/70;
+    @apply flex flex-col text-base mx-auto xl:max-w-9/12;
+    @apply px-4 md:px-8 lg:px-10 py-4 lg:py-8;
+    @apply break-all font-light;
     font-size: 1.15rem;
     line-height: 1.25;
-    letter-spacing: 0.012em;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -15,12 +33,12 @@
     h1,
     h2,
     h3 {
-        @apply font-serif mt-10 mb-4;
+        @apply mt-10 mb-1;
     }
 
     /**
-        * Apply default article's paragraph style
-        */
+    * Apply default article's paragraph style
+    */
     p {
         @apply my-4 indent-8;
         word-break: normal;
@@ -32,13 +50,14 @@
     }
 
     /**
-        * Lists and list items styles
-        * Numbering, disc, fonts, etc.
-        */
+    * Lists and list items styles
+    * Numbering, disc, fonts, etc.
+    */
     ul,
     ol {
         word-break: normal;
-        @apply list list-inside leading-tight gap-2 card card-border px-7 py-8 bg-neutral/10 dark:bg-neutral/40;
+        @apply list list-inside leading-tight bg-base-100/40 shadow-lg;
+        @apply gap-2 px-7 py-8 my-2 outline outline-base-100/70 rounded-lg;
 
         &:is(ul) {
             @apply list-disc;
@@ -50,25 +69,37 @@
     }
 
     /**
-        * Code styles
-        */
+    * Code styles
+    */
     .code-toolbar {
-        @apply text-xs tracking-wide;
+        @apply text-sm tracking-wide;
 
         pre {
-            @apply rounded-xl py-3;
+            @apply rounded-xl py-3 shadow-md;
         }
+
+        .toolbar .toolbar-item {
+            @apply text-lg mt-2 me-2 font-sans;
+
+            span {
+                @apply badge badge-soft;
+            }
+        }
+    }
+
+    p abbr {
+        @apply tooltip indent-0;
     }
 
     p code,
     li code,
     blockquote code {
-        @apply indent-0 px-2 py-0.5 badge badge-neutral font-light text-sm leading-tight;
+        @apply indent-0 px-2 py-0.5 badge badge-neutral font-light text-sm leading-none;
     }
 
     /**
-        * Links styles
-        */
+    * Links styles
+    */
     a,
     li a,
     p a {
@@ -89,10 +120,12 @@
     }
 
     /**
-        * Blockquote styles
-        */
+    * Blockquote styles
+    */
     blockquote {
-        @apply card card-body card-border bg-primary/10 pt-2 pb-6 font-light text-lg leading-tight;
+        @apply card card-body card-border pt-2 pb-6 ;
+        @apply glass shadow-lg bg-accent/20 bg-blend-darken;
+        @apply font-light text-lg leading-tight;
 
         &::before {
             content: '💬';

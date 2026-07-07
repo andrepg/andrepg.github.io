@@ -1,7 +1,37 @@
 import './assets/main.css'
 
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
+import { createApp as createVueApp } from 'vue'
+import { ViteSSG } from 'vite-ssg'
 
-createApp(App).use(router).mount('#app')
+import App from './App.vue'
+import { ApplicationRouter } from '@config/routes'
+import { createRouter, createWebHistory } from 'vue-router'
+import { createHead } from '@unhead/vue/client'
+import { APP_CONFIG } from '@config/app'
+
+const bootstrapDevelopmentMode = () => {
+    const router = createRouter({
+        history: createWebHistory(),
+        routes: ApplicationRouter,
+    })
+
+    createVueApp(App)
+        .use(router)
+        .use(createHead())
+        .mount('#app')
+}
+
+const bootstrapProductionMode = () => ViteSSG(App, {
+    routes: ApplicationRouter,
+    base: APP_CONFIG.BASE_URL,
+})
+
+let vueApp;
+
+if (APP_CONFIG.IS_DEV) {
+    bootstrapDevelopmentMode()
+} else {
+    vueApp = bootstrapProductionMode()
+}
+
+export const createApp = vueApp;

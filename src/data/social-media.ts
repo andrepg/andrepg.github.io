@@ -1,4 +1,4 @@
-export const HomepageLinks = [
+export const SocialMediaLinks = [
   {
     label: 'Twitch',
     icon: 'hugeicons:twitch',

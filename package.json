@@ -5,19 +5,22 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "build": "vite build",
-    "preview": "vite preview --host",
+    "build": "vite-ssg build && yarn build-sitemap",
+    "preview": "vite preview",
     "test:unit": "vitest",
     "lint": "eslint -c eslint.config.js",
     "lint:fix": "eslint -c eslint.config.js --fix",
     "format": "prettier --write src/",
-    "prebuild": "yarn build-sitemap",
-    "build-sitemap": "tsx src/sitemap/sitemap.ts"
+    "build-sitemap": "tsx src/sitemap.ts"
   },
   "dependencies": {
+    "@unhead/vue": "^2.1.4",
+    "@vueuse/core": "^14.2.1",
     "front-matter": "^4.0.2",
+    "node-html-parser": "^7.0.2",
     "prismjs": "^1.30.0",
     "vite-plugin-prismjs": "^0.0.11",
+    "vite-ssg": "^28.3.0",
     "vue": "^3.5.27",
     "vue-router": "^5.0.2",
     "xml": "^1.0.1"
