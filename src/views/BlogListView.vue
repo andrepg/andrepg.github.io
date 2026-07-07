@@ -11,7 +11,6 @@ import CardHeaderFeature from '@/components/CardHeaderFeature.vue';
 import GlassCard from '@/components/GlassCard.vue';
 import { Icon } from '@iconify/vue';
 import { computed, ref } from 'vue';
-import SearchBlogFeature from '@/components/Features/SearchBlogFeature.vue';
 import { getBlogIndexTags } from '@/utils/blog-metadata';
 import { useRoute } from 'vue-router';
 import { slugify } from '@/utils/slugify';
@@ -64,8 +63,6 @@ useHead(getBlogIndexTags(posts));
 
     <GlassCard class="flex flex-col px-5">
       <div class="flex flex-row flex-wrap gap-3 justify-between items-center">
-        <SearchBlogFeature />
-  
         <button
           class="btn btn-soft btn-primary not-md:btn-block transition-all duration-300 min-w-40"
           @click="toggleDisplayMode"

@@ -59,8 +59,6 @@ export interface ISitemapDto {
 }
 
 export interface IHtmlMetaTag {
-  [key: `data-${string}`]: string | boolean | undefined;
-
   name?: string;
   property?: string;
   content?: string;

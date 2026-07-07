@@ -4,12 +4,12 @@ import SocialMediaShortcuts from "@/components/SocialMediaShortcuts.vue"
 import { ApplicationRouter } from "@config/routes";
 import { ref } from "vue";
 import { Icon } from "@iconify/vue";
-import { useIntersectionObserver } from "@/composables/useIntersectionObserver";
+import { useIntersectionObserver } from "@vueuse/core";
 import { UserConfig } from "@data/website";
 import AsyncImage from "../AsyncImage.vue";
 
 const showFooter = ref(false);
-const footerRef = ref(null);
+const footerRef = ref<HTMLElement | null>(null);
 
 const menu = ApplicationRouter.filter(o => o.menu === true);
 

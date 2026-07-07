@@ -3,11 +3,10 @@ import { Icon } from '@iconify/vue';
 import { ApplicationRouter } from '@config/routes';
 import { ref } from 'vue';
 import SocialMediaShortcuts from '@/components/SocialMediaShortcuts.vue';
-import { useIntersectionObserver } from '@/composables/useIntersectionObserver';
-import { useColorMode } from '@vueuse/core';
+import { useColorMode, useIntersectionObserver } from '@vueuse/core';
 
 const opaqueNavbar = ref(false);
-const topSentinel = ref(null);
+const topSentinel = ref<HTMLElement | null>(null);
 
 const mode = useColorMode({
   attribute: 'data-theme',

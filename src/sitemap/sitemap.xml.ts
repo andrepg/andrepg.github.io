@@ -3,12 +3,18 @@ import { saveFile } from './sitemap.file-io';
 import { parseHtmlFile } from './sitemap.json';
 
 export const generateXmlSitemap = (files: string[], directory: string): number => {
+    const ROOT_HOSTNAMES = ['andrepg.github.io', 'andre.startap.dev'];
+
     const sitemapItems = files.map(file => {
         const data = parseHtmlFile(file);
         
-        // Priority logic: 1.0 for root index, 0.5 for everything else.
-        // Assuming data.path is the canonical URL. If it ends exactly with the host, it's the root.
-        const isRoot = data.path.endsWith('andrepg.github.io') || data.path.endsWith('andrepg.github.io/');
+        let isRoot = false;
+        try {
+            const hostname = new URL(data.path).hostname;
+            isRoot = ROOT_HOSTNAMES.includes(hostname);
+        } catch {
+            // data.path is not a valid URL; treat as non-root
+        }
 
         return {
             url: [

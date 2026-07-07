@@ -1,10 +1,4 @@
 import { IPost, IPostMarkdown } from "@/interfaces";
-import { UserConfig } from "@data/website";
-
-/**
- * The base URL of the application, retrieved from the centralized config.
- */
-export const BASE_URL = UserConfig.website.url;
 
 /**
  * A collection of all blog post modules found in the /blog directory.
@@ -41,10 +35,6 @@ export const allPosts: IPost[] = Object.entries(blogModules)
     (b.published_at ?? '').localeCompare(a.published_at ?? '')
   )
 
-  export function getPostByPath(path: string) {
-  return allPosts.find(p => p.path === path)
-}
-
 export function getPublished(): IPost[] {
   return allPosts.filter(post => post.published_at);
 }
@@ -60,10 +50,4 @@ export function getPostsBySerie(
     .sort((a, b) => (a.serie_part ?? 0) - (b.serie_part ?? 0))
 }
 
-export function getPostsByTag(tag: string) {
-  return allPosts.filter(p => p.tags?.includes(tag))
-}
 
-export function getPostsByCategory(category: string) {
-  return allPosts.filter(p => p.category?.includes(category))
-}
