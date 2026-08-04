@@ -23,7 +23,7 @@ const bootstrapDevelopmentMode = () => {
 
 const bootstrapProductionMode = () => ViteSSG(App, {
     routes: ApplicationRouter,
-    base: APP_CONFIG.BASE_URL,
+    base: APP_CONFIG.BASE_URL ? new URL(APP_CONFIG.BASE_URL).pathname : '/',
 })
 
 let vueApp;
