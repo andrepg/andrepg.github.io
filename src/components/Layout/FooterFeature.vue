@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import AnalyticsScripts from "@/components/Layout/AnalyticsScripts.vue"
 import SocialMediaShortcuts from "@/components/SocialMediaShortcuts.vue"
 import { ApplicationRouter } from "@config/routes";
