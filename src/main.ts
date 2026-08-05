@@ -9,10 +9,13 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { createHead } from '@unhead/vue/client'
 import { APP_CONFIG } from '@config/app'
 
+const scrollBehavior = () => ({ top: 0 });
+
 const bootstrapDevelopmentMode = () => {
     const router = createRouter({
         history: createWebHistory(),
         routes: ApplicationRouter,
+        scrollBehavior,
     })
 
     createVueApp(App)
@@ -24,6 +27,7 @@ const bootstrapDevelopmentMode = () => {
 const bootstrapProductionMode = () => ViteSSG(App, {
     routes: ApplicationRouter,
     base: APP_CONFIG.BASE_URL ? new URL(APP_CONFIG.BASE_URL).pathname : '/',
+    scrollBehavior,
 })
 
 let vueApp;

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import "@/assets/blog.css";
 
-import { onMounted } from 'vue'
+import { onMounted, nextTick, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useHead } from '@unhead/vue'
 import { transformContent } from '@plugins/transformers'
@@ -14,7 +14,6 @@ import CardHeaderFeature from "@/components/CardHeaderFeature.vue";
 import PageLayout from "@/components/Layout/PageLayout.vue";
 import { PageLayoutType } from "@/enumerators";
 import APP_CONFIG from "@config/app";
-import GlassCard from "@/components/GlassCard.vue";
 
 
 const route = useRoute()
@@ -22,7 +21,11 @@ const route = useRoute()
 /**
  * Resolve post metadata and content
  */
-const post = blogModules[`/blog/${route.params.year}/${route.params.article}.md`] ?? null
+const post = blogModules[`/blog/${route.params.year}/${route.params.article}.md`];
+
+if (!post) {
+  throw new Error(`Blog post not found: /blog/${route.params.year}/${route.params.article}`);
+}
 
 const metadata = post.attributes;
 
@@ -38,9 +41,22 @@ const postsRelatedBySeries = getPostsBySerie(metadata.serie, canonicalUrl);
 useHead(getSinglePostTags(metadata, canonicalUrl))
 
 /**
- * Highlight code blocks
+ * Highlight code blocks after the article renders.
+ * Scoped to the article to avoid touching the rest of the page,
+ * and guarded against double-highlighting when the auto-init already ran.
  */
-onMounted(() => Prism.highlightAll())
+const articleRef = ref<HTMLElement | null>(null);
+
+onMounted(async () => {
+  await nextTick();
+
+  const article = articleRef.value;
+  if (!article) return;
+
+  if (article.querySelector('code .token')) return;
+
+  Prism.highlightAllUnder(article);
+});
 </script>
 
 <template>
@@ -79,11 +95,11 @@ onMounted(() => Prism.highlightAll())
       </CardHeaderFeature>
     </template>
 
-    <article id="article-body" v-html="sanitizedContent"></article>
+    <article id="article-body" ref="articleRef" v-html="sanitizedContent"></article>
 
     <template v-if="metadata.serie" #footer>
-      <GlassCard>
-        <p class="py-3 flex items-center gap-2 text-lg">
+      <section class="flex flex-col gap-3 reading-column">
+        <p class="flex items-center gap-2 text-lg">
           <Icon icon="hugeicons:book-open-02" class="size-7 inline-block" />
           <span>Este post faz parte da serie 
             <a 
@@ -92,34 +108,19 @@ onMounted(() => Prism.highlightAll())
             Veja os outros artigos:</span>
         </p>
 
-        <ul
-          :class="[
-            'list',
-            'list-vertical',
-            'p-3',
-            'shadow-lg',
-            'w-full',
-            'rounded-lg',
-            'backdrop-blur-lg'
-          ]"
-        >
+        <ul class="flex flex-col gap-2 list-none">
           <li
             v-for="(postFromSerie, index) in postsRelatedBySeries"
             :key="postFromSerie.path"
             data-tip="Este post"
             :class="[
-              'p-2',
-              'transition-all',
-              'duration-500',
-              'backdrop-blur-lg',
-              'rounded-lg',
-              'list-item',
-              postFromSerie.path === route.path && 'tooltip',
-              postFromSerie.path === route.path && 'bg-primary/20 disabled opacity-70',
-              postFromSerie.path !== route.path && 'hover:indent-2 hover:text-primary',
+              'flex items-baseline gap-3',
+              'p-2 rounded-lg transition-all duration-500',
+              postFromSerie.path === route.path && 'bg-primary/20 opacity-70',
+              postFromSerie.path !== route.path && 'hover:bg-base-200/60 hover:text-primary',
             ]"
           >
-            <span class="w-fit me-2 font-extralight ">{{ index+1 }}</span>
+            <span class="w-fit font-extralight">{{ index+1 }}</span>
             <a
               :href="postFromSerie.path === route.path ? undefined : postFromSerie.path"
             >
@@ -127,7 +128,7 @@ onMounted(() => Prism.highlightAll())
             </a>
           </li>
         </ul>
-      </GlassCard>
+      </section>
     </template>
   </PageLayout>
 </template>

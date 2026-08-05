@@ -63,6 +63,7 @@ export interface IHtmlMetaTag {
   name?: string;
   property?: string;
   content?: string;
+  [key: `data-${string}`]: string;
 }
 
 export interface IBaseOgParams {
