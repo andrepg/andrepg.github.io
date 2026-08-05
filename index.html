@@ -39,16 +39,6 @@
 </head>
 
 <body class="min-h-screen overflow-x-hidden h-auto">
-  <script>
-    const redirect = sessionStorage.getItem('redirect');
-
-    if (redirect !== location.href) {
-      sessionStorage.removeItem('redirect');
-
-      history.replaceState(null, null, redirect);
-    }
-  </script>
-
   <div id="app"></div>
 
   <!-- Universal Loading Screen (Static Version) -->

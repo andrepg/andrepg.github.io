@@ -46,20 +46,6 @@
   </noscript>
 
   <script>
-    const resource = location.href
-
-    if (resource.includes('blog') || resource.includes('curriculo')) {
-      sessionStorage.setItem('redirect', resource)
-
-      const refresh = document.createElement('meta')
-
-      refresh.content = "0;URL='/'"
-      refresh.httpEquiv = 'refresh'
-
-      document.head.appendChild(refresh)
-      window.location.replace('/')
-    }
-
     setTimeout(() => {
       document.getElementById('main').classList.toggle('opacity-100')
       document.getElementById('main').classList.toggle('opacity-0')
