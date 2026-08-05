@@ -1,5 +1,8 @@
 import { INavigationMenu } from '@/interfaces';
 
+export const getMenuItems = (): INavigationMenu[] =>
+  ApplicationRouter.filter(link => link.menu);
+
 export const ApplicationRouter: INavigationMenu[] = [
   {
     name: 'Homepage',

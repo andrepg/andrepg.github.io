@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AnalyticsScripts from "@/components/Layout/AnalyticsScripts.vue"
 import SocialMediaShortcuts from "@/components/SocialMediaShortcuts.vue"
-import { ApplicationRouter } from "@config/routes";
+import { getMenuItems } from "@config/routes";
 import { ref } from "vue";
 import { Icon } from "@iconify/vue";
 import { useIntersectionObserver } from "@vueuse/core";
@@ -11,7 +11,7 @@ import AsyncImage from "../AsyncImage.vue";
 const showFooter = ref(false);
 const footerRef = ref<HTMLElement | null>(null);
 
-const menu = ApplicationRouter.filter(o => o.menu === true);
+const menu = getMenuItems();
 
 // Informações de build (em um projeto real poderiam vir de variáveis de ambiente do Vite)
 const appVersion = "0.0.2";

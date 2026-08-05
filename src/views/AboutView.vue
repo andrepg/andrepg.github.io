@@ -36,7 +36,7 @@ useHead({
   <PageLayout>
     <template #header>
       <CardHeaderFeature>
-        <h1 class="text-2xl font-semibold flex flex-col md:w-3/4 max-w-[70w]">
+        <h1 class="text-2xl font-semibold flex flex-col md:w-3/4">
           Experiência & Projetos
 
           <small class="opacity-70 font-normal font-md w-full leading-snug flex-1">

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // import "https://unpkg.com/@algolia/sitesearch@latest/dist/search.min.js";
 
-import { onMounted } from 'vue';
+// import { onMounted } from 'vue';
 
-import APP_CONFIG from '@config/app';
+// import APP_CONFIG from '@config/app';
 
 // onMounted(() => {
 //     // @ts-expect-error SiteSearch will be loaded by VueJS by now, if it works as I expected

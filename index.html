@@ -26,8 +26,8 @@
   <meta name="theme-color" content="#570df8" />
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Parkinsans:wght@300..800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&display=swap" rel="stylesheet">
 
   <script type="module" src="/src/main.ts"></script>
   <link rel="stylesheet" href="/src/assets/main.css">
@@ -53,19 +53,10 @@
 
   <!-- Universal Loading Screen (Static Version) -->
   <div id="static-loader" class="fixed inset-0 -z-10 flex items-center justify-center overflow-hidden">
-    <!-- Background matching App.vue -->
-    <div class="fixed inset-0 bg-linear-to-br from-primary/30 via-primary/20 to-secondary/30 pointer-events-none"></div>
-    
-    <div class="fixed w-[70%] h-[70%] rounded-full blur-[120px] animate-pulse pointer-events-none mix-blend-multiply dark:mix-blend-soft-light transition-all duration-1000 delay-1000 top-[-20%] left-[-20%] bg-primary/40"></div>
-    <div class="fixed w-[70%] h-[70%] rounded-full blur-[120px] animate-pulse pointer-events-none mix-blend-multiply dark:mix-blend-soft-light transition-all duration-1000 delay-1000 bottom-[-20%] right-[-20%] bg-secondary/40"></div>
-    
-    <!-- Overlay Glass matching App.vue -->
-    <div class="fixed inset-0 bg-neutral/20 backdrop-blur-[120px] pointer-events-none"></div>
-
     <!-- DaisyUI Spinner and Loading Text -->
     <div class="relative z-10 flex flex-col items-center gap-8">
       <span class="loading loading-spinner loading-lg text-primary scale-125"></span>
-      <div class="text-xs font-bold uppercase text-base-100 animate-pulse">
+      <div class="text-xs font-bold uppercase text-base-content animate-pulse">
         Carregando
       </div>
     </div>
@@ -79,7 +70,7 @@
       
       @media (prefers-color-scheme: light) {
         #static-loader {
-          background-color: transparent;
+          background-color: oklch(100% 0 0);
         }
       }
 

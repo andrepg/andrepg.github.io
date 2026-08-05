@@ -33,20 +33,20 @@ useHead({
 
 <template>
   <PageLayout :type="PageLayoutType.HOME">
-    <!-- Profile with enhanced glass effect wrapper if needed, 
-           but components already have glass. Let's make the gap larger for better visual breathing -->
+    <!-- Header -->
     <Transition appear name='fade'>
       <MyProfile />
     </Transition>
 
-    <!-- Recomendations -->
-    <Transition appear name='fade' class="delay-100!">
-      <RecomendationsFeature />
-    </Transition>
+    <!-- Projects & Blog posts -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
+      <Transition appear name='fade' class="delay-100!">
+        <RecomendationsFeature class="h-full" />
+      </Transition>
 
-    <!-- Recent posts -->
-    <Transition appear name='fade' class="delay-200!">
-      <RecentPostsFeature />
-    </Transition>
+      <Transition appear name='fade' class="delay-200!">
+        <RecentPostsFeature class="h-full" />
+      </Transition>
+    </div>
   </PageLayout>
 </template>

@@ -13,8 +13,8 @@
   --color-base-200: oklch(20% 0.042 265.755);
   --color-base-300: oklch(27% 0.041 260.031);
   --color-base-content: oklch(96% 0.007 247.896);
-  --color-primary: oklch(68% 0.22 303.724);
-  --color-primary-content: oklch(14% 0.03 308.299);
+  --color-primary: oklch(48% 0.19 303.724);
+  --color-primary-content: oklch(97% 0.02 303.724);
   --color-secondary: oklch(62% 0.2 277.366);
   --color-secondary-content: oklch(14% 0.03 12.422);
   --color-accent: oklch(55% 0.027 264.364);
@@ -73,6 +73,45 @@
   --border: 1px;
   --depth: 1;
   --noise: 0;
+}
+
+/*
+  Soft buttons in dark mode: the resting soft background is only an 8% tint of
+  the button color over base-100, so the default text (--btn-color) drops to
+  ~2.7:1. Use a lighter text here. Scoped to the resting state so hover/active
+  keep the high-contrast primary-content text.
+*/
+[data-theme='dark']
+  .btn-soft.btn-primary:not(.btn-active, :hover, :active:focus, :focus-visible, :disabled, [disabled], .btn-disabled) {
+  --btn-fg: oklch(75% 0.16 303.724);
+}
+[data-theme='dark']
+  .btn-soft.btn-secondary:not(.btn-active, :hover, :active:focus, :focus-visible, :disabled, [disabled], .btn-disabled) {
+  --btn-fg: oklch(78% 0.15 277.366);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme])
+    .btn-soft.btn-primary:not(.btn-active, :hover, :active:focus, :focus-visible, :disabled, [disabled], .btn-disabled) {
+    --btn-fg: oklch(75% 0.16 303.724);
+  }
+  :root:not([data-theme])
+    .btn-soft.btn-secondary:not(.btn-active, :hover, :active:focus, :focus-visible, :disabled, [disabled], .btn-disabled) {
+    --btn-fg: oklch(78% 0.15 277.366);
+  }
+}
+
+/*
+  Width system — single source of truth for page containers.
+  page-container: standard content width for every page layout.
+  reading-column: narrower measure for long-form content (blog articles).
+*/
+@utility page-container {
+  @apply mx-auto w-full max-w-6xl px-4 md:px-6;
+}
+
+@utility reading-column {
+  @apply mx-auto max-w-4xl;
 }
 
 

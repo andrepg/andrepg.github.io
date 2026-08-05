@@ -9,7 +9,7 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   type: PageLayoutType.BASE,
-  maxWidth: 'max-w-11/12 xl:m-w-5/6'
+  maxWidth: 'page-container'
 });
 
 const layoutClasses = computed(() => {
@@ -17,25 +17,22 @@ const layoutClasses = computed(() => {
     return [
       'pt-24',
       'pb-20',
-      'px-5',
       'gap-10',
-      'max-w-5xl'
+      'page-container'
     ];
   }
   
   if (props.type === PageLayoutType.BLOG) {
     return [
-      'gap-5',
-      'max-w-10/12',
-      'not-2xl:max-w-11/12',
+      'gap-10',
+      'page-container',
     ];
   }
 
   // BASE
   return [
     'gap-10',
-    'px-4',
-    props.maxWidth || 'max-w-11/12 xl:m-w-5/6'
+    props.maxWidth || 'page-container'
   ];
 });
 
@@ -57,8 +54,6 @@ const bodyClasses = computed(() => {
     :class="[
       'flex',
       'flex-col',
-      'w-full',
-      'mx-auto',
       'z-10',
       'relative',
       ...layoutClasses

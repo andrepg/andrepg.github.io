@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue';
-import { ApplicationRouter } from '@config/routes';
+import { getMenuItems } from '@config/routes';
 import { ref } from 'vue';
 import SocialMediaShortcuts from '@/components/SocialMediaShortcuts.vue';
 import { useColorMode, useIntersectionObserver } from '@vueuse/core';
+
+const menuItems = getMenuItems();
 
 const opaqueNavbar = ref(false);
 const topSentinel = ref<HTMLElement | null>(null);
@@ -59,7 +61,8 @@ topSentinel,
   'px-4',
   'w-full',
   'transition-all',
-  opaqueNavbar ? 'bg-neutral/50 backdrop-blur-lg' : 'bg-neutral/0'
+  'border-b',
+  opaqueNavbar ? 'bg-base-100 border-base-300' : 'bg-transparent border-transparent'
   ]"
   >
   <div class="flex-none flex items-center gap-2">
@@ -89,14 +92,14 @@ topSentinel,
       class="drawer-overlay"
       />
       
-      <section class="flex flex-col gap-5 justify-between bg-primary/50 backdrop-blur-md text-primary-content min-h-full w-80 px-3 py-4 lg:py-8">
+      <section class="flex flex-col gap-5 justify-between bg-primary/50 text-primary-content min-h-full w-80 px-3 py-4 lg:py-8">
         <ul class="menu menu-vertical w-full">
           <li class="menu-title text-primary-content w-full text-left">
             Navegação
           </li>
           
           <li
-          v-for="link in ApplicationRouter.filter(link => link.menu)"
+          v-for="link in menuItems"
           :key="link.name"
           class="py-1.5"
           >

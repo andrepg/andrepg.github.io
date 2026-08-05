@@ -14,13 +14,6 @@ export const Projects = [
     description: 'App Flatpak com códigos HTTP com suas descrições e usos'
   },
   {
-    label: 'Atlas (Delphi)',
-    target: 'https://github.com/Startap/atlas',
-    icon: 'hugeicons:book-01',
-    recommended: false,
-    description: 'Um framework (não finalizado) para aplicações Delphi'
-  },
-  {
     label: '.dotfiles',
     target: 'https://github.com/andrepg/dotfiles/',
     icon: 'hugeicons:computer-terminal-01',
@@ -40,13 +33,6 @@ export const Projects = [
     icon: 'hugeicons:checkmark-square-02',
     recommended: true,
     description: 'Um To-Do extremamente simples para GNOME/Adwaita'
-  },
-  {
-    label: 'Green Leaf OS',
-    target: 'https://github.com/andrepg/green-leaf',
-    icon: 'hugeicons:computer-video-call',
-    description: 'Uma distribuição Linux customizada, baseada no UBlue com drivers NVidia',
-    recommended: true
   },
   {
     label: "Laravel Sail Podman",
