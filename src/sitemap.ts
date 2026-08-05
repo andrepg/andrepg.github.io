@@ -1,8 +1,8 @@
 import path from "node:path";
 
 import { getFileTree } from "src/sitemap/sitemap.generator";
-import { generateJsonSitemap } from "./sitemap/sitemap.json";
-import { generateXmlSitemap } from "./sitemap/sitemap.xml";
+import { generateJsonSitemap } from "./sitemap/sitemap.json.ts";
+import { generateXmlSitemap } from "./sitemap/sitemap.xml.ts";
 
 /**
  * Sitemap generator that crawls the dist directory for HTML files

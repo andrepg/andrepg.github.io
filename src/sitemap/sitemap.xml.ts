@@ -1,6 +1,6 @@
 import xml from 'xml';
 import { saveFile } from './sitemap.file-io';
-import { parseHtmlFile } from './sitemap.json';
+import { parseHtmlFile } from './sitemap.json.ts';
 
 export const generateXmlSitemap = (files: string[], directory: string): number => {
     const ROOT_HOSTNAMES = ['andrepg.github.io', 'andre.startap.dev'];
