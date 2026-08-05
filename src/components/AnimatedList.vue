@@ -1,10 +1,10 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="T">
 import { ref } from 'vue';
 import { useIntersectionObserver } from '@vueuse/core';
 
-interface Props {
+const props = withDefaults(defineProps<{
   /** The list of items to render */
-  items: any[];
+  items: T[];
   /** The delay in milliseconds between each item appearance (staggering) */
   delay?: number;
   /** IntersectionObserver threshold (0 to 1) */
@@ -17,9 +17,7 @@ interface Props {
   tag?: string;
   /** HTML tag for each item wrapper (default: 'li') */
   itemTag?: string;
-}
-
-const props = withDefaults(defineProps<Props>(), {
+}>(), {
   delay: 50,
   threshold: 0.1,
   tag: 'ul',
