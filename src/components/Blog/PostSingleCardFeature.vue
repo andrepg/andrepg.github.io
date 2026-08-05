@@ -2,6 +2,7 @@
 import { Icon } from '@iconify/vue'
 import { IPost } from '@/interfaces'
 import GlassCard from '@/components/GlassCard.vue'
+import { formatDate } from '@/utils/date'
 
 interface Props {
   post: IPost;
@@ -13,25 +14,6 @@ withDefaults(defineProps<Props>(), {
   compactMode: false,
 });
 
-
-const getPostDay = (date: string) => new Date(Date.parse(date)).toLocaleDateString('pt-BR', {
-  day: 'numeric',
-})
-
-const getPostMonth = (date: string) => new Date(Date.parse(date)).toLocaleDateString('pt-BR', {
-  month: 'long'
-})
-
-const getPostYear = (date: string) => new Date(Date.parse(date)).toLocaleDateString('pt-BR', {
-  year: 'numeric'
-})
-
-const getFullDate = (date: string) => new Date(Date.parse(date)).toLocaleDateString('pt-BR', {
-  day: 'numeric',
-  month: 'long',
-  year: 'numeric'
-})
-
 </script>
 
 <template>
@@ -39,67 +21,26 @@ const getFullDate = (date: string) => new Date(Date.parse(date)).toLocaleDateStr
   tag="a"
   hoverable
   solid
-  :class="[
-    'list-row group',
-    'flex flex-row gap-6',
-    'ease-[cubic-bezier(0.34,1.56,0.64,1)]',
-    compactMode ? 'py-0! px-4!' : 'py-2! px-6!',
-    compactMode ? 'rounded-sm' : 'rounded-xl',
-  ]"
+  class="group flex flex-row items-start gap-4 md:gap-6"
   :href="post.path">
-  <Transition
-    tag="div"
-    class="stat not-md:hidden w-fit gap-0"
-    :appear="!compactMode"
-    name="fade"
-    :duration="{ enter: 500, leave: 200 }">
-    <div v-if="!compactMode" class="stat not-md:hidden w-fit gap-0 leading-tight">
-      <Icon
-        icon="mdi:calendar-blank-outline"
-        :class="[
-          'z-0 absolute left-0 top-2',
-          'h-10/12 w-auto',
-          'transition-all',
-          'duration-500',
-          '',
-          'translate-x-full group-hover:translate-x-0',
-          'opacity-0 group-hover:opacity-5',
-        ]" />
 
-      <span class="z-10 stat-title">{{ getPostMonth(post.published_at) }} </span>
-      <span class="z-10 stat-value">{{ getPostDay(post.published_at) }}</span>
-      <span class="z-10 stat-desc">{{ getPostYear(post.published_at) }}</span>
-    </div>
-  </Transition>
+  <div v-if="!compactMode" class="hidden md:flex flex-col items-center gap-0 w-16 shrink-0 border-r border-base-300/60 pr-4">
+    <span class="text-xs uppercase tracking-wide opacity-60">{{ formatDate(post.published_at, { month: 'short' }) }}</span>
+    <span class="text-2xl font-semibold leading-none my-1">{{ formatDate(post.published_at, { day: 'numeric' }) }}</span>
+    <span class="text-xs opacity-60">{{ formatDate(post.published_at, { year: 'numeric' }) }}</span>
+  </div>
 
-  <component
-    :is="tag"
-    :class="[
-      'flex',
-      'flex-col',
-      'text-lg',
-      'font-light',
-      'transition-all',
-      'duration-1000',
-      'gap-0',
-      'leading-tight',
-    ]">
-    <div class="flex flex-row gap-2 text-sm font-light md:hidden">
-      <Icon icon="hugeicons:calendar-04" class="" />
-
-      <span>{{ getFullDate(post.published_at) }}</span>
+  <div class="flex flex-col gap-1 min-w-0">
+    <div class="flex flex-row flex-wrap items-center gap-2 text-sm opacity-70 md:hidden">
+      <Icon icon="hugeicons:calendar-04" />
+      <span>{{ formatDate(post.published_at, { day: 'numeric', month: 'long', year: 'numeric' }) }}</span>
     </div>
 
-    <span v-if="post.serie" class="text-xs opacity-80 font-bold uppercase tracking-tight leading-none">{{ post.serie }}</span>
+    <span v-if="post.serie" class="text-xs font-bold uppercase tracking-tight opacity-80 leading-none">{{ post.serie }}</span>
 
-    <span class="font-normal mt-1 mb-2">{{  post.title }}</span>
+    <component :is="tag" class="text-lg font-semibold leading-snug mb-0">{{ post.title }}</component>
 
-    <Transition
-      name="fade"
-      :duration="{ enter: 700, leave: 200 }"
-    >
-      <small v-if="!compactMode" class="opacity-70">{{ post.excerpt }}</small>
-    </Transition>
-  </component>
+    <small v-if="!compactMode" class="font-sans text-sm opacity-70 leading-relaxed line-clamp-2">{{ post.excerpt }}</small>
+  </div>
 </GlassCard>
 </template>

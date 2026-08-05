@@ -15,7 +15,7 @@ defineProps<{
 </script>
 
 <template>
-  <GlassCard class="flex flex-col gap-5 p-6">
+  <section class="flex flex-col gap-4">
     <SectionHeader icon="hugeicons:3rd-bracket-square">
       <template #title>
         Tecnologias trabalhadas
@@ -64,19 +64,18 @@ defineProps<{
         </GlassCard>
       </template>
     </AnimatedList>
-
-  </GlassCard>
+  </section>
 </template>
 
 <style scoped>
-@import "@/assets/main.css";
+@reference "../../assets/main.css";
 
 .tech-item {
   @apply tooltip tooltip-primary tooltip-top;
   @apply flex flex-col items-center py-4;
-  @apply w-full h-fit py-4 backdrop-blur-lg shadow-none;
+  @apply w-full h-fit py-4 shadow-none;
   @apply transition-all duration-300;
-  @apply hover:cursor-pointer hover:bg-primary/80 hover:shadow-lg;
+  @apply hover:cursor-pointer hover:bg-primary hover:shadow-lg;
 }
 
 .tech-item-icon {

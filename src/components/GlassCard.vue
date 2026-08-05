@@ -1,7 +1,7 @@
 <script setup lang="ts">
 /**
  * GlassCard Component
- * A reusable container with the "Liquid Glass" design language.
+ * A reusable container with a soft, flat surface design.
  */
 interface Props {
   tag?: string;
@@ -33,22 +33,22 @@ withDefaults(defineProps<Props>(), {
   <component 
     :is="tag"
     :class="[
+      'relative',
       'py-4 px-5 md:px-8 md:py-6',
       'rounded-2xl',
       'overflow-hidden',
       'transition-all',
       'duration-500',
-      'border-t border-l',
-      'shadow-xl',
-      'backdrop-blur-xl',
+      'border',
+      'shadow-sm',
       hoverable && 'transform will-change-transform',
-      hoverable && 'hover:shadow-2xl hover:bg-base-100/70',
+      hoverable && 'hover:shadow-lg hover:bg-base-100/80',
 
-      !solid && 'bg-base-200/40 border-base-200/50',
-      !solid && 'dark:bg-base-100/40 dark:border-base-300/50',
+      !solid && 'bg-base-200/60 border-base-300/60',
+      !solid && 'dark:bg-base-200/50 dark:border-base-300/50',
 
-      solid && 'bg-base-200/85 backdrop-blur-lg',
-      solid && 'text-base-content border-white/10',
+      solid && 'bg-base-200/90',
+      solid && 'text-base-content border-base-300/60',
       typeof $props.class === 'string' ? $props.class : $props.class.join(' ')
     ]"
   >

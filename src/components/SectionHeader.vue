@@ -10,7 +10,7 @@ defineProps<Props>();
 </script>
 
 <template>
-  <div class="flex flex-col gap-2 mb-4">
+  <div class="relative flex flex-col gap-2 mb-4">
     <h2 class="text-2xl font-semibold flex items-center gap-2 mb-0">
       <Icon v-if="icon" :icon="icon" class="size-40 -right-8 rotate-5 top-0 absolute opacity-10 text-base-content" />
       <slot name="title" />

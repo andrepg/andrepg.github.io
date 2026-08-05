@@ -13,15 +13,16 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Cabin', sans-serif;
+    font-family: 'Fraunces', serif;
     font-weight: 600;
+    letter-spacing: -0.015em;
   }
 }
 
 #article-body {
-    @apply rounded-lg shadow-lg;
-    @apply bg-base-200/70;
-    @apply flex flex-col text-base mx-auto xl:max-w-9/12;
+    @apply rounded-lg shadow-sm;
+    @apply bg-base-100;
+    @apply flex flex-col text-base reading-column;
     @apply px-4 md:px-8 lg:px-10 py-4 lg:py-8;
     @apply break-all font-light;
     font-size: 1.15rem;
@@ -56,8 +57,7 @@
     ul,
     ol {
         word-break: normal;
-        @apply list list-inside leading-tight bg-base-100/40 shadow-lg;
-        @apply gap-2 px-7 py-8 my-2 outline outline-base-100/70 rounded-lg;
+        @apply my-4 ps-6 leading-relaxed;
 
         &:is(ul) {
             @apply list-disc;
@@ -65,6 +65,10 @@
 
         &:is(ol) {
             @apply list-decimal;
+        }
+
+        li {
+            @apply my-1.5;
         }
     }
 
@@ -94,7 +98,7 @@
     p code,
     li code,
     blockquote code {
-        @apply indent-0 px-2 py-0.5 badge badge-neutral font-light text-sm leading-none;
+        @apply indent-0 font-mono text-[0.85em] px-1.5 py-0.5 rounded-md bg-base-300/70 border border-base-300/60;
     }
 
     /**
@@ -124,7 +128,7 @@
     */
     blockquote {
         @apply card card-body card-border pt-2 pb-6 ;
-        @apply glass shadow-lg bg-accent/20 bg-blend-darken;
+        @apply bg-accent/10 shadow-sm;
         @apply font-light text-lg leading-tight;
 
         &::before {

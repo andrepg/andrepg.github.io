@@ -14,7 +14,7 @@ const props = defineProps<{
     :items="posts"
     tag="ul"
     item-tag="li"
-    list-class="list gap-4 my-4"
+    list-class="list gap-4"
     :delay="150"
   >
     <template #default="{ item }">

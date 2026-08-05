@@ -8,7 +8,6 @@ import PostTimelineFeature from '@/components/Blog/PostTimelineFeature.vue';
 import { getPublished } from '@/utils/blog-reader';
 import { useHead } from '@unhead/vue';
 import CardHeaderFeature from '@/components/CardHeaderFeature.vue';
-import GlassCard from '@/components/GlassCard.vue';
 import { Icon } from '@iconify/vue';
 import { computed, ref } from 'vue';
 import { getBlogIndexTags } from '@/utils/blog-metadata';
@@ -17,9 +16,7 @@ import { slugify } from '@/utils/slugify';
 
 const route = useRoute();
 
-const posts = getPublished().sort(
-  (a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime()
-);
+const posts = getPublished();
 
 const filteredPosts = computed(() => {
   const { series, category, tag } = route.query;
@@ -61,7 +58,7 @@ useHead(getBlogIndexTags(posts));
       </CardHeaderFeature>
     </template>
 
-    <GlassCard class="flex flex-col px-5">
+    <div class="flex flex-col gap-4">
       <div class="flex flex-row flex-wrap gap-3 justify-between items-center">
         <button
           class="btn btn-soft btn-primary not-md:btn-block transition-all duration-300 min-w-40"
@@ -83,9 +80,8 @@ useHead(getBlogIndexTags(posts));
 
       <PostTimelineFeature
         :posts="filteredPosts"
-        :is-loading="false"
         :compact-mode="displayMode === 'list'" />
-    </GlassCard>
+    </div>
   </PageLayout>
 </template>
 

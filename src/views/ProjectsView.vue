@@ -7,7 +7,6 @@ import { UserConfig } from "@data/website";
 import CardHeaderFeature from '@/components/CardHeaderFeature.vue';
 import PageLayout from '@/components/Layout/PageLayout.vue';
 import ProjectCardFeature from '@/components/ProjectCardFeature.vue';
-import GlassCard from '@/components/GlassCard.vue';
 import AnimatedList from '@/components/AnimatedList.vue';
 
 const projects = Projects;
@@ -46,7 +45,7 @@ useHead({
       </CardHeaderFeature>
     </template>
 
-    <GlassCard class="px-4 py-8">
+    <div class="flex flex-col gap-4">
       <AnimatedList
         :items="projects"
         list-class="mx-auto w-full columns-1 md:columns-2 gap-4"
@@ -60,7 +59,7 @@ useHead({
 
 
 
-      <p class="text-sm mt-3 mx-auto text-center max-w-prose">
+      <p class="text-sm mt-4 mx-auto text-center max-w-prose">
         A lista mais extensa de projetos pode ser encontrada no meu <a
           href="https://github.com/andrepg"
           target="_blank"
@@ -69,7 +68,7 @@ useHead({
         >GitHub</a>.
         Aqui listo aqueles que considero mais ativos ou relevantes para meu portefólio.
       </p>
-    </GlassCard>
+    </div>
   </PageLayout>
 </template>
 

@@ -39,6 +39,10 @@ export function getPublished(): IPost[] {
   return allPosts.filter(post => post.published_at);
 }
 
+export function getRecentPosts(count: number): IPost[] {
+  return getPublished().slice(0, count);
+}
+
 export function getPostsBySerie(
   serie?: string,
   excludePath?: string
