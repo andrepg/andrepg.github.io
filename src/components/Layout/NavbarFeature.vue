@@ -64,7 +64,7 @@ useIntersectionObserver(
         :class="[
           'menu menu-sm menu-horizontal rounded-xl',
           'transition-all duration-700 gap-2',
-          !opaqueNavbar && 'bg-neutral/50 py-0'
+          !opaqueNavbar && 'py-0'
         ]"
       >
         <li v-for="link in menuItems" :key="link.name" class="py-1.5">

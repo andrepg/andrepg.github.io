@@ -7,10 +7,9 @@ import AsyncImage from '@/components/AsyncImage.vue'
 </script>
 
 <template>
-  <div class="mockup-code bg-primary text-primary-content w-full">
+  <div class="mockup-code w-full">
     <div class="mx-4 flex flex-row gap-5">
-      <div class="avatar avatar-placeholder ring-primary ring-2 size-24 rounded-2xl overflow-clip">
-        <div class="bg-primary text-primary-content text-2xl font-light absolute">AP</div>
+      <div class="avatar avatar-placeholder size-24 rounded-2xl overflow-clip">
         <AsyncImage :src="UserConfig.author.avatar" :alt="UserConfig.author.name" />
       </div>
 
