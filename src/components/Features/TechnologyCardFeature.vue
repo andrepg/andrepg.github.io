@@ -16,7 +16,7 @@ defineProps<{
 
 <template>
   <section class="flex flex-col gap-4">
-    <SectionHeader icon="hugeicons:3rd-bracket-square">
+    <SectionHeader>
       <template #title>
         Tecnologias trabalhadas
       </template>

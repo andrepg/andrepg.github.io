@@ -32,23 +32,3 @@ import Navbar from '@/components/Layout/NavbarFeature.vue';
       </main>
   </div>
 </template>
-
-<style scoped>
-.page-enter-active,
-.page-leave-active {
-  transition: all 0.25s ease-out;
-}
-
-.page-enter-from,
-.page-leave-to {
-  opacity: 0;
-}
-
-.page-enter-from {
-  transform: translateX(10px);
-}
-
-.page-leave-to {
-  transform: translateX(-10px);
-}
-</style>

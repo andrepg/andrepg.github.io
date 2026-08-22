@@ -1,46 +1,31 @@
 <script setup>
-import { UserConfig } from "@data/website";
+import { UserConfig } from '@data/website'
 
-import GlassCard from "@/components/GlassCard.vue";
-import SocialMediaShortcuts from "@/components/SocialMediaShortcuts.vue";
-import AsyncImage from "@/components/AsyncImage.vue";
+import GlassCard from '@/components/GlassCard.vue'
+import SocialMediaShortcuts from '@/components/SocialMediaShortcuts.vue'
+import AsyncImage from '@/components/AsyncImage.vue'
 </script>
 
 <template>
-  <GlassCard
-    tag="section"
-    class=""
-  >
-    <div class="flex flex-col md:flex-row flex-wrap gap-0 md:gap-4">
-      <div class="avatar transition-all duration-500 md:self-center">
-        <div 
-          :class="[
-          'min-w-24 max-w-36',
-          'min-h-24 max-h-36',
-          'aspect-square',
-          'rounded-xl',
-          'shadow-lg',
-          'ring-0',
-          'ring-neutral-content',
-          'hover:ring-2',
-          'transition-all'
-        ]">
-          <AsyncImage 
-            :src="UserConfig.author.avatar" 
-            :alt="UserConfig.author.name" />
-        </div>
+  <div class="mockup-code bg-primary text-primary-content w-full">
+    <div class="mx-4 flex flex-row gap-5">
+      <div class="avatar avatar-placeholder ring-primary ring-2 size-24 rounded-2xl overflow-clip">
+        <div class="bg-primary text-primary-content text-2xl font-light absolute">AP</div>
+        <AsyncImage :src="UserConfig.author.avatar" :alt="UserConfig.author.name" />
       </div>
 
-      <h1 class="flex flex-col leading-none">
-        {{ UserConfig.author.name }}
-        <small class="font-normal text-lg mb-4">{{ UserConfig.author.role }}</small>
-        <SocialMediaShortcuts />
-      </h1>
+      <div class="flex flex-col">
+        <h1 class="flex flex-col mt-0 gap-0 leading-tight">
+          {{ UserConfig.author.name }}
+          <small class="font-sans font-extralight text-lg">{{ UserConfig.author.role }}</small>
+        </h1>
 
-      <p class="leading-tight font-light grow">
-        {{ UserConfig.author.biography }}
-      </p>
+        <p class="prose">{{ UserConfig.author.biography }}</p>
+      </div>
     </div>
 
-  </GlassCard>
+    <div class="mx-4 pt-4">
+      <SocialMediaShortcuts />
+    </div>
+  </div>
 </template>

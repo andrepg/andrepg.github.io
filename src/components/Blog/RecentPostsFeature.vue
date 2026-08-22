@@ -11,7 +11,7 @@ const posts = getRecentPosts(5)
 
 <template>
   <section class="flex flex-col gap-4">
-      <SectionHeader icon="hugeicons:quill-write-02" subtitle="As últimas postagens do meu blog pessoal, aqui neste mesmo site.">
+      <SectionHeader subtitle="As últimas postagens do meu blog pessoal, aqui neste mesmo site.">
         <template #title>
           Postagens Recentes
         </template>

@@ -47,7 +47,7 @@ withDefaults(defineProps<Props>(), {
       !solid && 'bg-base-200/60 border-base-300/60',
       !solid && 'dark:bg-base-200/50 dark:border-base-300/50',
 
-      solid && 'bg-base-200/90',
+      solid && 'bg-base-200',
       solid && 'text-base-content border-base-300/60',
       typeof $props.class === 'string' ? $props.class : $props.class.join(' ')
     ]"

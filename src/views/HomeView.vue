@@ -39,7 +39,7 @@ useHead({
     </Transition>
 
     <!-- Projects & Blog posts -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
+    <div class="grid grid-cols-1 gap-10 items-stretch">
       <Transition appear name='fade' class="delay-100!">
         <RecomendationsFeature class="h-full" />
       </Transition>

@@ -59,7 +59,7 @@ useHead(getBlogIndexTags(posts));
     </template>
 
     <div class="flex flex-col gap-4">
-      <div class="flex flex-row flex-wrap gap-3 justify-between items-center">
+      <div class="flex flex-row flex-wrap gap-3 justify-end items-center">
         <button
           class="btn btn-soft btn-primary not-md:btn-block transition-all duration-300 min-w-40"
           @click="toggleDisplayMode"
