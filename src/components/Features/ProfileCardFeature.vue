@@ -1,7 +1,5 @@
 <script setup>
 import { UserConfig } from '@data/website'
-
-import GlassCard from '@/components/GlassCard.vue'
 import SocialMediaShortcuts from '@/components/SocialMediaShortcuts.vue'
 import AsyncImage from '@/components/AsyncImage.vue'
 </script>
