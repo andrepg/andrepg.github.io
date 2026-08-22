@@ -7,6 +7,20 @@ export const Projects = [
     description: 'Uma coletânea de scripts para o desenvolvedor e administrador de sistemas'
   },
   {
+    label: 'JetBrains Flatpak Plugin',
+    target: 'https://github.com/andrepg/jetbrains-flatpak-plugin',
+    icon: 'hugeicons:puzzle',
+    recommended: true,
+    description: 'Um plugin para integrar o SDK Flatpak e GNOME nas IDEs da JetBrains'
+  },
+  {
+    label: 'Do It',
+    target: 'https://github.com/andrepg/do-it',
+    icon: 'hugeicons:checkmark-square-02',
+    recommended: true,
+    description: 'Um To-Do extremamente simples para GNOME/Adwaita'
+  },
+  {
     label: 'HTTP Codes',
     target: 'https://andrepg.github.io/http-codes/',
     icon: 'hugeicons:book-01',
@@ -28,17 +42,10 @@ export const Projects = [
     description: 'Repositório com actions e workflows para o GitHub Actions'
   },
   {
-    label: 'Do It',
-    target: 'https://github.com/andrepg/do-it',
-    icon: 'hugeicons:checkmark-square-02',
-    recommended: true,
-    description: 'Um To-Do extremamente simples para GNOME/Adwaita'
-  },
-  {
-    label: "Laravel Sail Podman",
-    target: "https://github.com/Startap/sail-podman",
+    label: 'Laravel Sail Podman',
+    target: 'https://github.com/Startap/sail-podman',
     icon: 'hugeicons:archive-03',
     recommended: false,
     description: 'Uma biblioteca PHP de compatibilidade entre o Laravel Sail e o Podman'
   }
-];
+]

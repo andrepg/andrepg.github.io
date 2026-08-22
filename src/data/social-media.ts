@@ -22,5 +22,11 @@ export const SocialMediaLinks = [
     icon: 'hugeicons:briefcase-01',
     target: '/curriculo',
     blank: ''
+  },
+  {
+    label: 'Linkedin',
+    icon: 'hugeicons:linkedin-01',
+    target: 'https://linkedin.com/in/andrepg',
+    blank: '_blank'
   }
-];
+]
