@@ -53,7 +53,7 @@ const switchTheme = () => {
 
 <template>
   <button
-    class="btn btn-sm btn-square btn-neutral tooltip tooltip-left"
+    class="btn btn-sm btn-square btn-soft btn-neutral text-neutral-content tooltip tooltip-left"
     :data-tip="switchButton.label"
     @click="switchTheme"
   >
