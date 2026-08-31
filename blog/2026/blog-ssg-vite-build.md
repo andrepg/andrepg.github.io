@@ -1,7 +1,7 @@
 ---
 title: "Gerando o site no build: a virada para o SSG com Vite"
 published: true
-published_at: 2026-08-05
+published_at: 2026-08-06
 tags:
   - development
   - software

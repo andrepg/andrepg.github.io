@@ -1,7 +1,7 @@
 ---
 title: Estrutura, frontmatter e o sitemap automático
 published: true
-published_at: 2026-08-05
+published_at: 2026-08-07
 tags:
   - development
   - software

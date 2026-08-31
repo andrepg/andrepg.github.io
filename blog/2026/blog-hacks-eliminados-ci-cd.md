@@ -1,7 +1,7 @@
 ---
 title: Hacks eliminados, CI/CD e o que vem pela frente
 published: true
-published_at: 2026-08-05
+published_at: 2026-08-09
 tags:
   - development
   - software

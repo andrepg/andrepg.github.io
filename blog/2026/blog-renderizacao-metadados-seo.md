@@ -1,7 +1,7 @@
 ---
 title: Renderização dos posts, metadados automáticos e SEO
 published: true
-published_at: 2026-08-05
+published_at: 2026-08-08
 tags:
   - development
   - software
