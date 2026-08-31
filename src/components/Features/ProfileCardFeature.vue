@@ -1,6 +1,5 @@
 <script setup>
 import { UserConfig } from '@data/website'
-import SocialMediaShortcuts from '@/components/SocialMediaShortcuts.vue'
 import AsyncImage from '@/components/AsyncImage.vue'
 </script>
 
