@@ -1,102 +1,103 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-import { getMenuItems } from '@config/routes'
 import { ref } from 'vue'
-import { useColorMode, useIntersectionObserver } from '@vueuse/core'
+import { useIntersectionObserver } from '@vueuse/core'
+import MainMenu from '@/components/Layout/MainMenu.vue'
+import ThemeSwitcher from '@/components/Layout/ThemeSwitcher.vue'
+import { UserConfig } from '@data/website.ts'
 
-const menuItems = getMenuItems()
-
-const opaqueNavbar = ref(false)
-const scrollWatcher = ref<HTMLElement | null>(null)
-
-const mode = useColorMode({
-  attribute: 'data-theme',
-  modes: {
-    fantasy: 'fantasy',
-    dark: 'dark'
-  }
-})
-
-const toggleTheme = () => {
-  const newMode = mode.value === 'dark' ? 'fantasy' : 'dark'
-
-  // Verifica se o navegador suporta View Transitions
-  if (!document.startViewTransition) {
-    mode.value = newMode
-    return
-  }
-
-  // Executa a transição suave
-  document.startViewTransition(() => {
-    mode.value = newMode
-  })
-}
+const hasScrolled = ref(false)
+const scrollReference = ref<HTMLElement | null>(null)
 
 useIntersectionObserver(
-  scrollWatcher,
+  scrollReference,
   (entries) => {
-    opaqueNavbar.value = !entries[0].isIntersecting
+    hasScrolled.value = !entries[0].isIntersecting
   },
   { threshold: 0 }
 )
 </script>
 
 <template>
-  <div
-    id="anchor-top"
-    ref="scrollWatcher"
-    class="absolute top-0 left-0 w-full h-px pointer-events-none z-0"
-  />
+  <div ref="scrollReference" class="absolute top-0 left-0" />
 
   <nav
     :class="[
-      'navbar transition-all duration-500',
+      'navbar',
       'fixed top-0 z-50',
-      'py-2 px-4 w-full border-b',
-      opaqueNavbar ? 'bg-base-100 border-base-300' : 'bg-transparent border-transparent'
+      'transition-all duration-200',
+      hasScrolled && 'bg-neutral text-neutral-content'
     ]"
   >
-    <div class="navbar-start">André Paul Grandsire</div>
-
-    <div class="navbar-center">
-      <ul
-        tabindex="-1"
-        :class="[
-          'menu menu-sm menu-horizontal rounded-xl',
-          'transition-all duration-700 gap-2',
-          !opaqueNavbar && 'py-0'
-        ]"
-      >
-        <li v-for="link in menuItems" :key="link.name" class="py-1.5">
-          <a
-            :href="link.path"
-            :class="[
-              'flex items-center gap-2',
-              'uppercase font-bold',
-              'transition-all duration-500'
-            ]"
-          >
-            <Icon :icon="link.icon" class="text-xl" />
-            {{ link.name }}
-          </a>
-        </li>
-      </ul>
+    <div class="navbar-start px-2">
+      <span class="font-bold font-serif">
+        {{ UserConfig.author.name }}
+      </span>
     </div>
+    <div class="navbar-center">
+      <MainMenu class="not-lg:hidden" orientation="horizontal" />
+    </div>
+    <div class="navbar-end gap-4">
+      <div class="lg:hidden dropdown dropdown-bottom dropdown-end">
+        <button
+          tabIndex="{0}"
+          class="btn btn-neutral text-neutral-content btn-soft btn-sm">
+          <Icon icon="hugeicons:menu-01" class="text-base" />
+          Menu
+        </button>
+        <MainMenu
+          orientation="vertical"
+          class="dropdown-content z-50 bg-base-100 text-neutral rounded-box"
+        />
+      </div>
 
-    <div class="navbar-end">
-      <button
-        class="btn btn-primary btn-soft btn-sm btn-square"
-        title="Alternar tema"
-        @click="toggleTheme"
-      >
-        <transition name="fade" mode="out-in">
-          <Icon
-            :key="mode"
-            :icon="mode === 'dark' ? 'hugeicons:sun-03' : 'hugeicons:moon-02'"
-            class="size-5"
-          />
-        </transition>
-      </button>
+      <ThemeSwitcher />
     </div>
   </nav>
+  <!--  <div-->
+  <!--    id="anchor-top"-->
+  <!--    ref="scrollWatcher"-->
+  <!--    class="absolute top-0 left-0 w-full h-px pointer-events-none z-0"-->
+  <!--  />-->
+
+  <!--  <nav-->
+  <!--    :class="[-->
+  <!--      'navbar transition-all duration-500',-->
+  <!--      'fixed top-0 z-50',-->
+  <!--      'py-2 px-4 w-full border-b',-->
+  <!--      opaqueNavbar ? 'bg-base-100 border-base-300' : 'bg-transparent border-transparent'-->
+  <!--    ]"-->
+  <!--  >-->
+  <!--    <div class="navbar-start">-->
+  <!--      <span class="font-bold font-serif">André Paul Grandsire</span>-->
+  <!--    </div>-->
+
+  <!--    <div class="navbar-center">-->
+  <!--      <MainMenu orientation="horizontal" />-->
+  <!--    </div>-->
+
+  <!--    <div class="navbar-end gap-5">-->
+  <!--      <details className="dropdown">-->
+  <!--        <summary className="btn m-1">open or close</summary>-->
+  <!--        <ul className="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">-->
+  <!--          <li><a>Item 1</a></li>-->
+  <!--          <li><a>Item 2</a></li>-->
+  <!--        </ul>-->
+  <!--      </details>-->
+
+  <!--      <button-->
+  <!--        class="btn btn-neutral btn-sm btn-square btn-ghost"-->
+  <!--        title="Alternar tema"-->
+  <!--        @click="toggleTheme"-->
+  <!--      >-->
+  <!--        <transition name="fade" mode="out-in">-->
+  <!--          <Icon-->
+  <!--            :key="mode"-->
+  <!--            :icon="mode === 'dark' ? 'hugeicons:sun-03' : 'hugeicons:moon-02'"-->
+  <!--            class="size-5 text-neutral-content"-->
+  <!--          />-->
+  <!--        </transition>-->
+  <!--      </button>-->
+  <!--    </div>-->
+  <!--  </nav>-->
 </template>

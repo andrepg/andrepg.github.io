@@ -19,12 +19,17 @@ const menuOrientation = computed(() => `menu-${props.orientation}`)
 <template>
   <ul
     tabindex="-1"
-    :class="['menu menu-sm', menuOrientation, 'transition-all duration-700 gap-2', 'not-lg:hidden']"
+    :class="['menu menu-sm', menuOrientation]"
   >
-    <li v-for="link in menuItems" :key="link.name" class="py-1.5">
+    <li v-for="link in menuItems" :key="link.name">
       <a
         :href="link.path"
-        :class="['flex items-center gap-2', 'uppercase font-bold', 'transition-all duration-500']"
+        :class="[
+          'flex items-center gap-2',
+          'uppercase font-bold',
+          'transition-all duration-500',
+          'not-lg:py-2'
+        ]"
       >
         <Icon :icon="link.icon" class="text-base" />
         {{ link.name }}
