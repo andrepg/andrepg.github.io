@@ -6,8 +6,8 @@ import AsyncImage from '@/components/AsyncImage.vue'
 
 <template>
   <div class="mockup-code w-full">
-    <div class="mx-4 flex flex-row gap-5">
-      <div class="avatar avatar-placeholder size-24 rounded-2xl overflow-clip">
+    <div class="mx-4 flex flex-row gap-10 lg:px-4">
+      <div class="avatar avatar-placeholder size-32 rounded-2xl overflow-clip">
         <AsyncImage :src="UserConfig.author.avatar" :alt="UserConfig.author.name" />
       </div>
 
@@ -19,10 +19,6 @@ import AsyncImage from '@/components/AsyncImage.vue'
 
         <p class="prose">{{ UserConfig.author.biography }}</p>
       </div>
-    </div>
-
-    <div class="mx-4 pt-4">
-      <SocialMediaShortcuts />
     </div>
   </div>
 </template>

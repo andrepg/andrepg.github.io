@@ -8,12 +8,13 @@ import { Icon } from "@iconify/vue";
     <li
       v-for="link in SocialMediaLinks"
       :key="link.label"
+      class="menu"
     >
       <a
         :href="link.target"
         :target="link.blank"
         :data-tip="link.label"
-        class="join-item btn btn-ghost tooltip"
+        class="join-item menu-item tooltip"
         rel="noopener noreferrer"
       >
         <Icon
