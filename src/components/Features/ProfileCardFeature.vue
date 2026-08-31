@@ -14,7 +14,6 @@ import AsyncImage from '@/components/AsyncImage.vue'
       <div class="flex flex-col">
         <h1 class="flex flex-col mt-0 gap-0 leading-tight">
           {{ UserConfig.author.name }}
-          <small class="font-sans font-extralight text-lg">{{ UserConfig.author.role }}</small>
         </h1>
 
         <p class="prose">{{ UserConfig.author.biography }}</p>
