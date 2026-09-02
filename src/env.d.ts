@@ -12,7 +12,7 @@ declare module '*.md' {
   export default component
   export const attributes: any
   export const html: string
-  export const toc: { level: string, content: string, slug: string }[]
+  export const toc: { level: string; content: string; slug: string }[]
 }
 
 interface ImportMetaEnv {
@@ -32,6 +32,13 @@ interface ImportMetaEnv {
   readonly VITE_ALGOLIA_SEC_KEY: string
   /** Third key to match at Algolia Search */
   readonly VITE_ALGOLIA_TER_KEY: string
+
+  /** Google Tag Manager container ID */
+  readonly VITE_GTM_ID: string
+  /** Google Analytics 4 measurement ID */
+  readonly VITE_GA4_ID: string
+  /** Microsoft Clarity project ID */
+  readonly VITE_CLARITY_ID: string
 
   readonly DEV: boolean
   readonly PROD: boolean
