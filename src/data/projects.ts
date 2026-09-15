@@ -1,17 +1,24 @@
 export const Projects = [
   {
-    label: 'SuperCow',
+    label: 'SuperCow Scripts',
     target: 'https://andrepg.github.io/supercow',
     icon: 'hugeicons:ai-programming',
     recommended: true,
     description: 'Uma coletânea de scripts para o desenvolvedor e administrador de sistemas'
   },
   {
-    label: 'JetBrains Flatpak Plugin',
+    label: 'JetBrains Flatpak DevTools Plugin',
     target: 'https://github.com/andrepg/jetbrains-flatpak-plugin',
     icon: 'hugeicons:puzzle',
     recommended: true,
     description: 'Um plugin para integrar o SDK Flatpak e GNOME nas IDEs da JetBrains'
+  },
+  {
+    label: 'GTK C Renderer',
+    target: 'https://github.com/andrepg/gtk-headless-renderer',
+    icon: 'hugeicons:puzzle',
+    recommended: true,
+    description: 'Um renderizador GTK para o plugin Flatpak DevTools'
   },
   {
     label: 'Do It',
