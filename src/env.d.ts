@@ -15,7 +15,7 @@ declare module '*.md' {
   export const toc: { level: string; content: string; slug: string }[]
 }
 
-interface ImportMetaEnv {
+interface ImportMetaEnv extends ImportMeta['env'] {
   /** Base URL of the application */
   readonly VITE_BASE_URL: string
 

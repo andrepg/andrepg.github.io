@@ -3,6 +3,7 @@ import { Icon } from '@iconify/vue'
 
 import type { SiteThemeId } from '@config/themes'
 import { useTheme } from '@/composables/useTheme'
+import { APP_ICONS } from '@config/icons.ts'
 
 const { themes, currentTheme, selectTheme } = useTheme()
 
@@ -25,7 +26,7 @@ const chooseTheme = (theme: SiteThemeId) => {
       data-tip="Tema"
       class="btn btn-sm btn-square tooltip tooltip-left"
     >
-      <Icon icon="hugeicons:palette" class="text-base" />
+      <Icon :icon="APP_ICONS.themeSwitcher.button" class="text-base" />
     </button>
 
     <ul
@@ -51,7 +52,11 @@ const chooseTheme = (theme: SiteThemeId) => {
 
           <span class="flex-1 text-left">{{ theme.label }}</span>
 
-          <Icon v-if="isCurrentTheme(theme.id)" icon="hugeicons:tick-01" class="text-base" />
+          <Icon
+            v-if="isCurrentTheme(theme.id)"
+            :icon="APP_ICONS.themeSwitcher.selected"
+            class="text-base"
+          />
         </button>
       </li>
     </ul>

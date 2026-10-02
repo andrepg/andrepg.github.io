@@ -4,6 +4,7 @@ import { ref } from 'vue'
 import { useIntersectionObserver } from '@vueuse/core'
 import MainMenu from '@/components/Shell/MainMenu.vue'
 import ThemeSelector from '@/components/Shell/ThemeSelector.vue'
+import { APP_ICONS } from '@config/icons.ts'
 
 const hasScrolled = ref(false)
 const scrollReference = ref<HTMLElement | null>(null)
@@ -31,9 +32,6 @@ useIntersectionObserver(
       hasScrolled ? 'top-5' : 'top-0',
       hasScrolled ? 'w-11/12' : 'w-12/12',
       hasScrolled && 'bg-primary text-primary-content',
-      // !hasScrolled && 'px-5 w-12/12',
-      // hasScrolled && 'bg-primary text-primary-content',
-      // hasScrolled && 'w-11/12 mx-auto rounded-4xl px-10 top-5'
     ]"
   >
     <div class="navbar-start px-2">
@@ -47,7 +45,7 @@ useIntersectionObserver(
     <div class="navbar-end gap-4">
       <div class="lg:hidden dropdown dropdown-bottom dropdown-end">
         <button tabIndex="{0}" class="btn btn-neutral text-neutral-content btn-soft btn-sm">
-          <Icon icon="hugeicons:menu-01" class="text-base" />
+          <Icon :icon="APP_ICONS.menu" class="text-base" />
           Menu
         </button>
         <MainMenu orientation="vertical" class="dropdown-content z-50 bg-base-100 rounded-box" />

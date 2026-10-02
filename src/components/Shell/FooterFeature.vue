@@ -5,6 +5,7 @@ import { ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import { useIntersectionObserver } from '@vueuse/core'
 import { UserConfig } from '@data/website'
+import { APP_ICONS } from '@config/icons.ts'
 
 const showFooter = ref(false)
 const footerRef = ref<HTMLElement | null>(null)
@@ -65,19 +66,19 @@ useIntersectionObserver(
           style="transition-delay: 750ms"
         >
           <div class="flex items-center gap-2">
-            <Icon icon="lucide:git-branch" class="size-3.5" />
+            <Icon :icon="APP_ICONS.footer.gitBranch" class="size-3.5" />
             <span>Versão {{ appVersion }}</span>
           </div>
           <div class="flex items-center gap-2">
-            <Icon icon="lucide:calendar" class="size-3.5" />
+            <Icon :icon="APP_ICONS.footer.buildDate" class="size-3.5" />
             <span>Atualizado em {{ buildDate }}</span>
           </div>
           <div class="flex items-center gap-2">
-            <Icon icon="simple-icons:github" class="size-3.5" />
+            <Icon :icon="APP_ICONS.footer.hosting" class="size-3.5" />
             <span>Hospedado no GitHub Pages</span>
           </div>
           <div class="flex items-center gap-2">
-            <Icon icon="hugeicons:heart-check" class="size-3.5" />
+            <Icon :icon="APP_ICONS.footer.madeWith" class="size-3.5" />
             <span>Feito com VueJS</span>
           </div>
         </div>
