@@ -1,14 +1,11 @@
-import {
-  IJsonLdBuilder,
-  IJsonLdInput,
-  IPost,
-  JsonLdKey
-} from '@/interfaces';
-import { UserConfig } from '../../data/website';
-import { SocialMediaLinks } from '../../data/social-media';
-import { timeline } from '../../data/curriculum';
-import { getTecnologias } from '../../data/experience';
-import { Projects } from '../../data/projects';
+import type { IPost } from '@/interfaces';
+import type { JsonLdBuilder, JsonLdDocument, JsonLdInput, JsonLdKey } from '@/types';
+
+import { UserConfig } from '@data/website';
+import { SocialMediaLinks } from '@data/social-media';
+import { timeline } from '@data/curriculum';
+import { getTecnologias } from '@data/experience';
+import { Projects } from '@data/projects';
 
 const SCHEMA = 'https://schema.org';
 
@@ -59,13 +56,13 @@ const webSiteNode = () => ({
 });
 
 /** Homepage: who the author is, plus the site wrapper. */
-export const personLd: IJsonLdBuilder = () => ({
+export const personLd: JsonLdBuilder = () => ({
   '@context': SCHEMA,
   '@graph': [personNode(), webSiteNode()]
 });
 
 /** Curriculum: the profile page and the roles behind it. */
-export const profileLd: IJsonLdBuilder = () => ({
+export const profileLd: JsonLdBuilder = () => ({
   '@context': SCHEMA,
   '@graph': [
     {
@@ -94,7 +91,7 @@ export const profileLd: IJsonLdBuilder = () => ({
 });
 
 /** Projects index: the published projects as an ordered list. */
-export const collectionLd: IJsonLdBuilder = () => ({
+export const collectionLd: JsonLdBuilder = () => ({
   '@context': SCHEMA,
   '@type': 'CollectionPage',
   '@id': `${absoluteUrl('/projetos')}#webpage`,
@@ -119,7 +116,7 @@ export const collectionLd: IJsonLdBuilder = () => ({
  * handed over to `usePageHead` as a custom schema.
  */
 export const blogLd =
-  (posts: IPost[]): IJsonLdBuilder =>
+  (posts: IPost[]): JsonLdBuilder =>
     () => ({
       '@context': SCHEMA,
       '@type': 'Blog',
@@ -144,7 +141,7 @@ export const blogLd =
 
 /** A single article. Built by the view, which owns the post metadata. */
 export const blogPostingLd =
-  (post: IPost, canonicalUrl: string): IJsonLdBuilder =>
+  (post: IPost, canonicalUrl: string): JsonLdBuilder =>
     () => ({
       '@context': SCHEMA,
       '@type': 'BlogPosting',
@@ -161,7 +158,7 @@ export const blogPostingLd =
       mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl }
     });
 
-const JSON_LD_BUILDERS: Record<JsonLdKey, IJsonLdBuilder> = {
+const JSON_LD_BUILDERS: Record<JsonLdKey, JsonLdBuilder> = {
   person: personLd,
   profile: profileLd,
   collection: collectionLd
@@ -171,7 +168,7 @@ const JSON_LD_BUILDERS: Record<JsonLdKey, IJsonLdBuilder> = {
  * Normalizes the `jsonLd` page metadata into schema documents, expanding the
  * bundled schema keys used by the route declaration.
  */
-export const resolveJsonLd = (input?: IJsonLdInput): Record<string, unknown>[] => {
+export const resolveJsonLd = (input?: JsonLdInput): JsonLdDocument[] => {
   if (!input) return [];
 
   const items = Array.isArray(input) ? input : [input];

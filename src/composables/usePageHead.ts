@@ -2,8 +2,9 @@ import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { useHead, type ReactiveHead } from '@unhead/vue';
 
-import { getRouteSeo, RoutePath } from '@config/routes';
-import { IPageSeo } from '@/interfaces';
+import { getRouteSeo, type RoutePath } from '@config/routes';
+import type { IPageSeo } from '@/interfaces';
+import type { PageSeoOverrides } from '@/types';
 import { resolveJsonLd } from '@/utils/structured-data';
 import {
   buildPageTitle,
@@ -15,9 +16,7 @@ import {
   dtoRobots,
   dtoTwitterOg
 } from '@/utils/site-metadata';
-import { UserConfig } from '../../data/website';
-
-export type PageSeoOverrides = Partial<IPageSeo> | (() => Partial<IPageSeo>);
+import { UserConfig } from '@data/website';
 
 const resolveOverrides = (overrides?: PageSeoOverrides): Partial<IPageSeo> =>
   typeof overrides === 'function' ? overrides() : (overrides ?? {});

@@ -23,6 +23,13 @@ export default tseslint.config(
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
     rules: {
+      // `src/types.ts` and `src/interfaces.ts` are type-only modules reached
+      // from paths with no bundler (the Vite config and `tsx` for the sitemap),
+      // so a type import must never survive as a runtime one.
+      '@typescript-eslint/consistent-type-imports': [
+        'error',
+        { prefer: 'type-imports', fixStyle: 'inline-type-imports' }
+      ],
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-unused-vars': [
         'warn',

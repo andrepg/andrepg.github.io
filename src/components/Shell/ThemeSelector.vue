@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 
-import { SiteThemeId } from '@config/themes'
+import type { SiteThemeId } from '@config/themes'
 import { useTheme } from '@/composables/useTheme'
 
 const { themes, currentTheme, selectTheme } = useTheme()

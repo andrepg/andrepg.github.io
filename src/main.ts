@@ -7,7 +7,7 @@ import App from './App.vue'
 import { ApplicationRouter, RoutePath } from '@config/routes'
 import { createRouter, createWebHistory } from 'vue-router'
 
-type RouteComponent = () => Promise<unknown>;
+import type { RouteComponent } from '@/types';
 
 const routeComponents: Record<RoutePath, RouteComponent> = {
     [RoutePath.HOME]: () => import('@/views/HomeView.vue'),

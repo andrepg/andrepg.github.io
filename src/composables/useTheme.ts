@@ -1,7 +1,6 @@
 import { computed, ref } from 'vue';
 import { usePreferredDark } from '@vueuse/core';
-
-import { getDefaultThemeId, isSiteThemeId, SITE_THEMES, SiteThemeId } from '@config/themes';
+import { getDefaultThemeId, isSiteThemeId, SITE_THEMES, type SiteThemeId } from '@config/themes';
 
 const COOKIE_NAME = 'theme';
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 365;

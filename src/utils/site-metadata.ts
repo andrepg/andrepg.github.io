@@ -1,7 +1,8 @@
 import APP_CONFIG from '@config/app';
 import type { ResolvableMeta, ResolvableScript } from '@unhead/vue';
-import { IBaseOgParams, ITwitterOgParams } from '@/interfaces';
-import { UserConfig } from '../../data/website';
+import type { IBaseOgParams, ITwitterOgParams } from '@/interfaces';
+import type { JsonLdDocument } from '@/types';
+import { UserConfig } from '@data/website';
 
 const SITE_NAME = UserConfig.author.name;
 const SITE_LOCALE = 'pt_BR';
@@ -65,7 +66,7 @@ export const dtoArticle = (publishedTime?: string): ResolvableMeta[] =>
       ]
     : [];
 
-export const dtoJsonLd = (schemas: Record<string, unknown>[]): ResolvableScript[] =>
+export const dtoJsonLd = (schemas: JsonLdDocument[]): ResolvableScript[] =>
   schemas.map(schema => ({
     type: 'application/ld+json',
     textContent: JSON.stringify(schema)
