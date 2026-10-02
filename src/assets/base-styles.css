@@ -1,9 +1,29 @@
 @import 'tailwindcss';
 
-@import "themes/purple-squirrel.css";
-@import "themes/green-seal.css";
-@import "themes/iced-penguin.css";
-@import "themes/white-fox.css";
+@import "./themes/purple-squirrel.css";
+@import "./themes/green-seal.css";
+@import "./themes/iced-penguin.css";
+@import "./themes/white-fox.css";
+
+/*
+  Contrast contract for the palette files in `themes/`. Every theme is audited
+  against these, so keep them in mind before editing a color:
+
+    body text    base-content on base-100/200/300      >= 4.5:1
+    filled chip  <role>-content on <role>               >= 4.5:1
+    outline chip <role> on base-100                    >= 4.5:1
+    soft chip    <role>-content on the 8% role tint    >= 4.5:1
+
+  `btn-outline` and `badge-outline` paint their label and border straight onto
+  the page background, so they need the role color to clear 4.5:1 there. Two of
+  the four accents cannot (iced-penguin 1.56:1, white-fox 1.89:1), so those two
+  controls fall back to base-content, which clears 4.5:1 on every theme
+  (8.6:1 dark, 16.2:1 light). The border follows the label via currentColor.
+*/
+.btn-accent.btn-outline {
+  --btn-rest-fg: var(--color-base-content);
+  --btn-border: var(--color-base-content);
+}
 
 /*
   Width system — single source of truth for page containers.
@@ -79,4 +99,23 @@
 .fade-leave-to {
   opacity: 0;
   transform: translateY(-10px);
+}
+
+/*
+  Theme transition — palette swap effect for the theme selector.
+
+  `data-theme` lives on the document root, so the browser captures the whole page
+  and cross-fades it through the View Transitions API, which is started by
+  `src/composables/useTheme.ts`. Only the timing is overridden here: the default
+  `plus-lighter` blend is deliberately kept, because it prevents the dip through
+  the background color that a plain opacity fade produces.
+
+  Browsers without the API swap the palette instantly, and the media query keeps
+  the effect off for visitors who ask for less motion.
+*/
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 200ms;
+  }
 }
