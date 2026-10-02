@@ -1,52 +1,47 @@
 <script setup>
+import { PageLayoutType } from '@/enumerators'
 
-import { PageLayoutType } from '@/enumerators';
+import { useHead } from '@unhead/vue'
+import APP_CONFIG from '@config/app'
+import { UserConfig } from '@data/website'
 
-import { useHead } from '@unhead/vue';
-import APP_CONFIG from '@config/app';
-import { UserConfig } from "@data/website";
+import PageLayout from '@/components/Layout/PageLayout.vue'
+import ProfileHeroFeature from '@/components/Features/ProfileCardFeature.vue'
+import HighlightedProjectsFeature from '@/components/Features/HighlightedProjectsFeature.vue'
+import RecentPostsFeature from '@/components/Blog/RecentPostsFeature.vue'
 
-import PageLayout from '@/components/Layout/PageLayout.vue';
-import MyProfile from '@/components/Features/ProfileCardFeature.vue';
-import RecomendationsFeature from '@/components/Features/RecomendationsFeature.vue';
-import RecentPostsFeature from '@/components/Blog/RecentPostsFeature.vue';
+const generalOg = [
+  { property: 'og:type', content: 'website' },
+  { property: 'og:title', content: UserConfig.author.name },
+  { property: 'og:description', content: UserConfig.author.shortBiography },
+  { property: 'og:image', content: UserConfig.website.image }
+]
+
+const twitterOg = [
+  { name: 'twitter:card', content: 'summary' },
+  { name: 'twitter:title', content: UserConfig.author.name },
+  { name: 'twitter:description', content: UserConfig.author.shortBiography },
+  { name: 'twitter:image', content: UserConfig.website.image }
+]
 
 useHead({
-  title: 'André Paul Grandsire | Software Engineer',
+  title: UserConfig.author.name,
   meta: [
-    { name: 'description', content: 'Explore o portfólio e blog de André Paul Grandsire, desenvolvedor de software focado em Vue.js e PHP.' },
-    { property: 'og:type', content: 'website' },
-    { property: 'og:title', content: 'André Paul Grandsire | Software Engineer' },
-    { property: 'og:description', content: 'Explore o portfólio e blog de André Paul Grandsire, desenvolvedor de software focado em Vue.js e PHP.' },
-    { property: 'og:image', content: UserConfig.website.image },
-    { name: 'twitter:card', content: 'summary' },
-    { name: 'twitter:title', content: 'André Paul Grandsire | Software Engineer' },
-    { name: 'twitter:description', content: 'Explore o portfólio e blog de André Paul Grandsire, desenvolvedor de software focado em Vue.js e PHP.' },
-    { name: 'twitter:image', content: UserConfig.website.image },
+    { name: 'description', content: UserConfig.author.shortBiography },
+    ...generalOg,
+    ...twitterOg
   ],
-  link: [
-    { rel: 'canonical', href: APP_CONFIG.BASE_URL }
-  ]
+  link: [{ rel: 'canonical', href: APP_CONFIG.BASE_URL }]
 })
 </script>
 
-
 <template>
   <PageLayout :type="PageLayoutType.HOME">
-    <!-- Header -->
-    <Transition appear name='fade'>
-      <MyProfile />
-    </Transition>
+    <ProfileHeroFeature />
 
-    <!-- Projects & Blog posts -->
-    <div class="grid grid-cols-1 gap-10 items-stretch">
-      <Transition appear name='fade' class="delay-100!">
-        <RecomendationsFeature class="h-full" />
-      </Transition>
-
-      <Transition appear name='fade' class="delay-200!">
-        <RecentPostsFeature class="h-full" />
-      </Transition>
+    <div class="flex flex-col gap-24">
+      <HighlightedProjectsFeature class="h-full" />
+      <RecentPostsFeature class="h-full" />
     </div>
   </PageLayout>
 </template>

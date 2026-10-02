@@ -1,68 +1,37 @@
 <script setup lang="ts">
-import { Icon } from "@iconify/vue";
-import GlassCard from "@/components/GlassCard.vue";
+import { Icon } from '@iconify/vue'
+import { Project } from '@data/projects.ts'
 
 defineProps<{
-    project: {
-        label: string;
-        target: string;
-        description?: string;
-        icon: string;
-        recommended: boolean;
-    };
+  project: Project
 }>()
 </script>
 
 <template>
-  <GlassCard
-    tag="a"
+  <a
     target="blank"
     rel="noopener noreferrer"
-    solid
-    hoverable
     :href="project.target"
     :class="[
-    'group/project-item',
-    'relative',
-    'flex',
-    'flex-col',
-    'gap-2',
-    'transition-all',
-    'transform transform-gpu',
-    'duration-300',
-  ]">
-    <div
-      :class="[
-        'flex',
-        'flex-row',
-        'items-center',
-        'md:justify-start',
-        'gap-2',
-        'text-base',
-        'w-full'
-    ]">
+      'group/project-item',
+      'items-start',
+    ]"
+  >
+    <span class="pt-3">
       <Icon
         :icon="project.icon"
         :class="[
-        'size-7',
-        'transition-transform',
-        'duration-300',
-        'group-hover/project-item:scale-125',
-      ]"/>
+          'text-3xl'
+        ]"
+      />
+    </span>
 
-      <h3 class="lg:text-start  text-md font-semibold leading-none tracking-tight">{{ project.label }}</h3>
-    </div>
+    <h3 class="flex flex-col m-0">
+      {{ project.label }}
 
-    <p
-      :class="[
-      'text-start',
-      'font-md',
-      'w-full',
-      'leading-snug',
-      'flex-1',
-      'opacity-80',
-      'group-hover/project-item:opacity-100',
-    ]"
-    >{{ project.description }}</p>
-  </GlassCard>
+      <small class="text-sm font-sans font-light">
+        {{ project.description }}
+      </small>
+    </h3>
+  </a>
 </template>
