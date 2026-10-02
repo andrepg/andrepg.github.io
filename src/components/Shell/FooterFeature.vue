@@ -39,19 +39,17 @@ useIntersectionObserver(
       ]"
     >
       <div class="footer sm:footer-horizontal gap-10">
-        <Transition name="fade">
-          <aside v-if="showFooter" class="flex flex-col gap-4">
-            <div class="flex items-start gap-4">
-              <div class="flex flex-col gap-0">
-                <h5 class="text-xl font-light tracking-tight">{{ UserConfig.author.name }}</h5>
+        <aside v-if="showFooter" class="flex flex-col gap-4">
+          <div class="flex items-start gap-4">
+            <div class="flex flex-col gap-0">
+              <h5 class="text-xl font-light tracking-tight">{{ UserConfig.author.name }}</h5>
 
-                <p class="max-w-xs opacity-70 leading-relaxed text-sm">
-                  {{ UserConfig.author.shortBiography }}
-                </p>
-              </div>
+              <p class="max-w-xs opacity-70 leading-relaxed text-sm">
+                {{ UserConfig.author.shortBiography }}
+              </p>
             </div>
-          </aside>
-        </Transition>
+          </div>
+        </aside>
 
         <Transition name="fade">
           <nav v-if="showFooter" style="transition-delay: 500ms">
