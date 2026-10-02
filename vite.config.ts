@@ -1,7 +1,7 @@
 import { fileURLToPath, URL } from 'node:url'
 import os from 'node:os'
 
-import { defineConfig, UserConfig } from 'vite'
+import { defineConfig, type UserConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { plugin as markdown } from 'vite-plugin-markdown'
@@ -24,7 +24,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      '@data': fileURLToPath(new URL('./src/data', import.meta.url)),
+      '@data': fileURLToPath(new URL('./data', import.meta.url)),
       '@blog': fileURLToPath(new URL('./blog', import.meta.url)),
       '@public': fileURLToPath(new URL('./public', import.meta.url)),
       '@config': fileURLToPath(new URL('./config', import.meta.url)),
