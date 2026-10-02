@@ -3,7 +3,7 @@ import { Icon } from '@iconify/vue'
 import { ref } from 'vue'
 import { useIntersectionObserver } from '@vueuse/core'
 import MainMenu from '@/components/Shell/MainMenu.vue'
-import ThemeSwitcher from '@/components/Shell/ThemeSwitcher.vue'
+import ThemeSelector from '@/components/Shell/ThemeSelector.vue'
 
 const hasScrolled = ref(false)
 const scrollReference = ref<HTMLElement | null>(null)
@@ -25,32 +25,28 @@ useIntersectionObserver(
       'navbar',
       'fixed top-0 z-50',
       'transition-all duration-200',
-      hasScrolled && 'bg-neutral text-neutral-content'
+      hasScrolled && 'bg-primary text-primary-content'
     ]"
   >
     <div class="navbar-start px-2">
-      <span class="font-bold font-serif">
-        APG
-      </span>
+      <span class="font-bold font-serif"> APG </span>
     </div>
     <div class="navbar-center">
       <MainMenu class="not-lg:hidden" orientation="horizontal" />
     </div>
     <div class="navbar-end gap-4">
       <div class="lg:hidden dropdown dropdown-bottom dropdown-end">
-        <button
-          tabIndex="{0}"
-          class="btn btn-neutral text-neutral-content btn-soft btn-sm">
+        <button tabIndex="{0}" class="btn btn-neutral text-neutral-content btn-soft btn-sm">
           <Icon icon="hugeicons:menu-01" class="text-base" />
           Menu
         </button>
         <MainMenu
           orientation="vertical"
-          class="dropdown-content z-50 bg-base-100 text-neutral rounded-box"
+          class="dropdown-content z-50 bg-base-100 rounded-box"
         />
       </div>
 
-      <ThemeSwitcher />
+      <ThemeSelector />
     </div>
   </nav>
 </template>

@@ -34,8 +34,7 @@ useIntersectionObserver(
         'py-12 px-6 md:px-12 lg:px-24',
         'z-10',
         'transition-all duration-1000',
-        'bg-primary text-primary-content',
-        'border-t border-primary/10'
+        'bg-base-300 text-base-content',
       ]"
     >
       <div class="footer sm:footer-horizontal gap-10">
