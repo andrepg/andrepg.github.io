@@ -19,7 +19,7 @@ defineProps<{
       <slot />
     </section>
 
-    <a :href="$props.seeMoreTarget" class="btn btn-primary mx-auto">
+    <a :href="$props.seeMoreTarget" class="btn btn-primary btn-outline mx-auto">
       <Icon icon="hugeicons:briefcase-01" />
       {{ seeMoreText }}
     </a>

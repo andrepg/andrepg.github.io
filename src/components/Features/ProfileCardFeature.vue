@@ -1,6 +1,7 @@
 <script setup>
 import { UserConfig } from '../../../data/website'
 import SocialMediaShortcuts from '@/components/SocialMediaShortcuts.vue'
+import TechnologyShortcuts from '@/components/TechnologyShortcuts.vue'
 </script>
 
 <template>
@@ -10,11 +11,13 @@ import SocialMediaShortcuts from '@/components/SocialMediaShortcuts.vue'
         {{ UserConfig.author.name }}
       </h1>
 
-      <p class="prose max-w-4xl">{{ UserConfig.author.biography }}</p>
+      <small class="prose max-w-4xl mb-10">{{ UserConfig.author.biography }}</small>
 
-      <span class="divider" />
-
-      <SocialMediaShortcuts />
+      <div class="flex flex-col">
+        <SocialMediaShortcuts />
+        <span class="divider" />
+        <TechnologyShortcuts />
+      </div>
     </div>
   </div>
 </template>
