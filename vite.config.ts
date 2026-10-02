@@ -7,24 +7,19 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import { plugin as markdown } from 'vite-plugin-markdown'
 import prismjsPlugin from 'vite-plugin-prismjs'
 
-import { PrismJsConfig } from './plugins/primsjs.config'
-import { MarkdownRenderConfig } from './plugins/markdown-render.config'
-import {  getRouteConfig } from './plugins/ssg'
+import { PrismJsConfig } from './plugins/primsjs.config.ts'
+import { MarkdownRenderConfig } from './plugins/markdown-render.config.ts'
+import { getRouteConfig } from './plugins/ssg.ts'
 
 // Limit the number of CPUs reported to Node.js and libraries
-const originalCpus = os.cpus;
+const originalCpus = os.cpus
 os.cpus = () => {
-  const cpus = originalCpus();
-  return cpus.slice(0, 2);
-};
+  const cpus = originalCpus()
+  return cpus.slice(0, 2)
+}
 
 export default defineConfig({
-  plugins: [
-    vue(),
-    vueJsx(),
-    markdown(MarkdownRenderConfig),
-    prismjsPlugin(PrismJsConfig)
-  ],
+  plugins: [vue(), vueJsx(), markdown(MarkdownRenderConfig), prismjsPlugin(PrismJsConfig)],
 
   resolve: {
     alias: {
@@ -41,6 +36,6 @@ export default defineConfig({
     concurrency: 2,
     includedRoutes() {
       return getRouteConfig()
-    },
-  },
+    }
+  }
 } as UserConfig)

@@ -1,4 +1,4 @@
-import { ApplicationRouter } from '../config/routes';
+import { ApplicationRouter } from '../config/routes.ts';
 import { readdirSync } from 'node:fs'
 import path from 'node:path'
 
