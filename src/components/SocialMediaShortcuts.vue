@@ -4,24 +4,16 @@ import { Icon } from "@iconify/vue";
 </script>
 
 <template>
-  <ul class="join join-horizontal justify-start gap-0">
-    <li
+  <div class="flex flex-row gap-5">
+    <a
       v-for="link in SocialMediaLinks"
-      :key="link.label"
-      class="menu"
+      :key="link.target"
+      :href="link.target"
+      :data-tip="link.label"
+      class="tooltip"
+      rel="noreferrer"
     >
-      <a
-        :href="link.target"
-        :target="link.blank"
-        :data-tip="link.label"
-        class="join-item menu-item tooltip"
-        rel="noopener noreferrer"
-      >
-        <Icon
-          class="text-2xl"
-          :icon="link.icon"
-        />
-      </a>
-    </li>
-  </ul>
+      <Icon class="text-2xl" :icon="link.icon" />
+    </a>
+  </div>
 </template>
