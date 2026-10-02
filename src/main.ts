@@ -23,8 +23,11 @@ const routes = ApplicationRouter.map(route => ({
 }))
 import { createHead } from '@unhead/vue/client'
 import { APP_CONFIG } from '@config/app'
+import { initializeTheme } from '@/composables/useTheme'
 
 const scrollBehavior = () => ({ top: 0 });
+
+initializeTheme()
 
 const bootstrapDevelopmentMode = () => {
     const router = createRouter({

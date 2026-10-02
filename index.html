@@ -24,6 +24,16 @@
   <link rel="canonical" href="https://andrepg.github.io/" />
   <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
   <meta name="theme-color" content="#570df8" />
+
+  <script>
+    // Applies the theme saved by the theme selector (see `config/themes.ts` and
+    // `src/composables/useTheme.ts`) before the first paint, otherwise a
+    // returning visitor would see the default palette first. Without a stored
+    // theme the document keeps no `data-theme`, and the stylesheet resolves
+    // the first light or first dark palette from the system preference.
+    const storedTheme = document.cookie.match(/(?:^|;\s*)theme=([^;]+)/)?.[1];
+    if (storedTheme) document.documentElement.dataset.theme = decodeURIComponent(storedTheme);
+  </script>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,13 +64,13 @@
     <style>
       /* Critical styles for immediate rendering */
       #static-loader {
-        background-color: oklch(12% 0.042 264.695);
+        background-color: #243619;
         font-family: 'Cabin', sans-serif;
       }
       
       @media (prefers-color-scheme: light) {
         #static-loader {
-          background-color: oklch(100% 0 0);
+          background-color: #eaf2eb;
         }
       }
 
