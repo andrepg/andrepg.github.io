@@ -4,33 +4,33 @@
  * A reusable container with a soft, flat surface design.
  */
 interface Props {
-  tag?: string;
+  tag?: string
   /**
    * Tailwind classes to add to the main container
    */
-  class?: string|string[];
+  class?: string | string[]
 
   /**
    * Whether to define solid style
    */
-  solid?: boolean;
+  solid?: boolean
 
   /**
    * Whether to show a shadow on hover
    */
-  hoverable?: boolean;
+  hoverable?: boolean
 }
 
 withDefaults(defineProps<Props>(), {
   tag: 'section',
   class: '',
   hoverable: false,
-  solid: false,
-});
+  solid: false
+})
 </script>
 
 <template>
-  <component 
+  <component
     :is="tag"
     :class="[
       'relative',

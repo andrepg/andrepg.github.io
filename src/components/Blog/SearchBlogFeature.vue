@@ -25,9 +25,9 @@
 </script>
 
 <template>
-    <div id="search"></div>
+  <div id="search"></div>
 </template>
 
 <style scoped>
-@import "https://unpkg.com/@algolia/sitesearch@latest/dist/search.min.css";
+@import 'https://unpkg.com/@algolia/sitesearch@latest/dist/search.min.css';
 </style>

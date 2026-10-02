@@ -1,11 +1,11 @@
-import { computed } from 'vue';
-import { useRoute } from 'vue-router';
-import { useHead, type ReactiveHead } from '@unhead/vue';
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { useHead, type ReactiveHead } from '@unhead/vue'
 
-import { getRouteSeo, type RoutePath } from '@config/routes';
-import type { IPageSeo } from '@/interfaces';
-import type { PageSeoOverrides } from '@/types';
-import { resolveJsonLd } from '@/utils/structured-data';
+import { getRouteSeo, type RoutePath } from '@config/routes'
+import type { IPageSeo } from '@/interfaces'
+import type { PageSeoOverrides } from '@/types'
+import { resolveJsonLd } from '@/utils/structured-data'
 import {
   buildPageTitle,
   canonicalUrl,
@@ -15,11 +15,11 @@ import {
   dtoPlainOg,
   dtoRobots,
   dtoTwitterOg
-} from '@/utils/site-metadata';
-import { UserConfig } from '@data/website';
+} from '@/utils/site-metadata'
+import { UserConfig } from '@data/website'
 
 const resolveOverrides = (overrides?: PageSeoOverrides): Partial<IPageSeo> =>
-  typeof overrides === 'function' ? overrides() : (overrides ?? {});
+  typeof overrides === 'function' ? overrides() : (overrides ?? {})
 
 /**
  * Assembles the whole document head of a page: title, description, keywords,
@@ -28,11 +28,11 @@ const resolveOverrides = (overrides?: PageSeoOverrides): Partial<IPageSeo> =>
  * Pure: given the same metadata it always returns the same head.
  */
 export const buildPageHead = (seo: IPageSeo, canonical: string): ReactiveHead => {
-  const title = buildPageTitle(seo.title);
-  const description = seo.description ?? UserConfig.author.shortBiography;
-  const image = seo.image ?? UserConfig.website.image;
-  const type = seo.type ?? 'website';
-  const card = seo.card ?? 'summary';
+  const title = buildPageTitle(seo.title)
+  const description = seo.description ?? UserConfig.author.shortBiography
+  const image = seo.image ?? UserConfig.website.image
+  const type = seo.type ?? 'website'
+  const card = seo.card ?? 'summary'
 
   return {
     title,
@@ -46,8 +46,8 @@ export const buildPageHead = (seo: IPageSeo, canonical: string): ReactiveHead =>
     ],
     link: [{ rel: 'canonical', href: canonical }],
     script: dtoJsonLd(resolveJsonLd(seo.jsonLd))
-  };
-};
+  }
+}
 
 /**
  * Single entry point for page metadata. The base metadata comes from the route
@@ -69,16 +69,16 @@ export const buildPageHead = (seo: IPageSeo, canonical: string): ReactiveHead =>
  * @param overrides - Fields to replace, or a getter for dynamic pages.
  */
 export const usePageHead = (path: RoutePath, overrides?: PageSeoOverrides): void => {
-  const route = useRoute();
+  const route = useRoute()
 
   const seo = computed<IPageSeo>(() => ({
     ...getRouteSeo(path),
     ...resolveOverrides(overrides)
-  }));
+  }))
 
   // The concrete path is required for dynamic routes such as
   // `/blog/:year/:article`, where the declared path is only a pattern.
-  const canonical = computed(() => seo.value.canonicalUrl ?? canonicalUrl(route.path));
+  const canonical = computed(() => seo.value.canonicalUrl ?? canonicalUrl(route.path))
 
-  useHead(computed<ReactiveHead>(() => buildPageHead(seo.value, canonical.value)));
-};
+  useHead(computed<ReactiveHead>(() => buildPageHead(seo.value, canonical.value)))
+}

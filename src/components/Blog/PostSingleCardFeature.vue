@@ -8,11 +8,7 @@ defineProps<{
 </script>
 
 <template>
-  <a
-    rel="noopener noreferrer"
-    :href="post.path"
-    :class="['group/project-item', 'items-start']"
-  >
+  <a rel="noopener noreferrer" :href="post.path" :class="['group/project-item', 'items-start']">
     <div class="my-auto text-lg flex flex-col leading-none">
       <span>{{ formatDate(post.published_at, { day: '2-digit' }) }}</span>
       <span>{{ formatDate(post.published_at, { month: 'short' }) }}</span>

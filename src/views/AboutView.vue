@@ -27,7 +27,7 @@ const timelineComTecnologias: IResolvedTimelineItem[] = timeline.map((item) => (
 usePageHead(RoutePath.CURRICULUM)
 
 const calculatePosition = (index: number): TimelinePosition =>
-  (index % 2 > 0) ? 'timeline-end' : 'timeline-start'
+  index % 2 > 0 ? 'timeline-end' : 'timeline-start'
 </script>
 
 <template>

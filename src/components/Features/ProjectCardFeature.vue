@@ -12,18 +12,10 @@ defineProps<{
     target="blank"
     rel="noopener noreferrer"
     :href="project.target"
-    :class="[
-      'group/project-item',
-      'items-start',
-    ]"
+    :class="['group/project-item', 'items-start']"
   >
     <span class="pt-3">
-      <Icon
-        :icon="project.icon"
-        :class="[
-          'text-3xl'
-        ]"
-      />
+      <Icon :icon="project.icon" :class="['text-3xl']" />
     </span>
 
     <h3 class="flex flex-col m-0">

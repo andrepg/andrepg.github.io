@@ -5,10 +5,23 @@
 
 export const APP_CONFIG = {
   /**
-   * The full base URL of the site, used for SEO and absolute links.
-   * Defaults to Vite's internal BASE_URL if VITE_BASE_URL is not provided.
+   * Origin the site is published at, as scheme and host with no trailing slash
+   * (e.g. `https://andrepg.github.io`). Deployment knowledge no build tool can
+   * infer, injected at build time by Vite.
    */
-  BASE_URL: (import.meta.env.VITE_BASE_URL ?? '') as string,
+  ORIGIN: ((import.meta.env.VITE_BASE_URL ?? '') as string).replace(/\/+$/, ''),
+
+  /**
+   * Path the site is served from, as resolved by Vite from its `base` option:
+   * `/` at a domain root, `/repo` on a project page.
+   *
+   * Deliberately kept apart from `ORIGIN`. Absolute links are built by joining
+   * the two, so moving the repository under a subpath only means changing the
+   * Vite base — and, more importantly, the router and the canonical links can no
+   * longer disagree about where the site lives. Folding the path into the origin
+   * is what let the two drift apart and emit canonical URLs that 404.
+   */
+  BASE_PATH: import.meta.env.BASE_URL,
 
   /**
    * Environment variables to build the application

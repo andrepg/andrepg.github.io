@@ -1,33 +1,36 @@
 <script setup lang="ts" generic="T">
-import { ref } from 'vue';
-import { useIntersectionObserver } from '@vueuse/core';
+import { ref } from 'vue'
+import { useIntersectionObserver } from '@vueuse/core'
 
-const props = withDefaults(defineProps<{
-  /** The list of items to render */
-  items: T[];
-  /** The delay in milliseconds between each item appearance (staggering) */
-  delay?: number;
-  /** IntersectionObserver threshold (0 to 1) */
-  threshold?: number;
-  /** CSS classes for the container element */
-  listClass?: string;
-  /** CSS classes for each item wrapper */
-  itemClass?: string;
-  /** HTML tag for the container (default: 'ul') */
-  tag?: string;
-  /** HTML tag for each item wrapper (default: 'li') */
-  itemTag?: string;
-}>(), {
-  delay: 50,
-  threshold: 0.1,
-  tag: 'ul',
-  itemTag: 'li',
-  listClass: '',
-  itemClass: '',
-});
+const props = withDefaults(
+  defineProps<{
+    /** The list of items to render */
+    items: T[]
+    /** The delay in milliseconds between each item appearance (staggering) */
+    delay?: number
+    /** IntersectionObserver threshold (0 to 1) */
+    threshold?: number
+    /** CSS classes for the container element */
+    listClass?: string
+    /** CSS classes for each item wrapper */
+    itemClass?: string
+    /** HTML tag for the container (default: 'ul') */
+    tag?: string
+    /** HTML tag for each item wrapper (default: 'li') */
+    itemTag?: string
+  }>(),
+  {
+    delay: 50,
+    threshold: 0.1,
+    tag: 'ul',
+    itemTag: 'li',
+    listClass: '',
+    itemClass: ''
+  }
+)
 
-const isVisible = ref(false);
-const containerRef = ref<HTMLElement | null>(null);
+const isVisible = ref(false)
+const containerRef = ref<HTMLElement | null>(null)
 
 /**
  * Uses IntersectionObserver to trigger the reveal animation
@@ -37,11 +40,11 @@ useIntersectionObserver(
   containerRef,
   ([{ isIntersecting }]) => {
     if (isIntersecting) {
-      isVisible.value = true;
+      isVisible.value = true
     }
   },
   { threshold: props.threshold }
-);
+)
 </script>
 
 <template>
@@ -51,10 +54,7 @@ useIntersectionObserver(
       v-for="(item, index) in items"
       :key="index"
       class="transition-all duration-700 ease-out"
-      :class="[
-        itemClass,
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-      ]"
+      :class="[itemClass, isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8']"
       :style="{ transitionDelay: `${index * delay}ms` }"
     >
       <slot :item="item" :index="index" />

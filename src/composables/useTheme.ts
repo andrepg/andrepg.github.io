@@ -1,43 +1,42 @@
-import { computed, ref } from 'vue';
-import { usePreferredDark } from '@vueuse/core';
-import { getDefaultThemeId, isSiteThemeId, SITE_THEMES, type SiteThemeId } from '@config/themes';
+import { computed, ref } from 'vue'
+import { usePreferredDark } from '@vueuse/core'
+import { getDefaultThemeId, isSiteThemeId, SITE_THEMES, type SiteThemeId } from '@config/themes'
 
-const COOKIE_NAME = 'theme';
-const COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
+const COOKIE_NAME = 'theme'
+const COOKIE_MAX_AGE = 60 * 60 * 24 * 365
 
 /** Theme picked by the visitor, or `null` while there is no preference. */
-const selectedTheme = ref<SiteThemeId | null>(null);
+const selectedTheme = ref<SiteThemeId | null>(null)
 
-let isInitialized = false;
+let isInitialized = false
 
 const readCookie = (name: string): string | null => {
-  if (typeof document === 'undefined') return null;
+  if (typeof document === 'undefined') return null
 
   const value = document.cookie
     .split('; ')
-    .find(cookie => cookie.startsWith(`${name}=`))
+    .find((cookie) => cookie.startsWith(`${name}=`))
     ?.split('=')
     .slice(1)
-    .join('=');
+    .join('=')
 
-  return value ? decodeURIComponent(value) : null;
-};
+  return value ? decodeURIComponent(value) : null
+}
 
 const writeCookie = (name: string, value: string): void => {
-  if (typeof document === 'undefined') return;
+  if (typeof document === 'undefined') return
 
-  document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=${COOKIE_MAX_AGE}; samesite=lax`;
-};
+  document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=${COOKIE_MAX_AGE}; samesite=lax`
+}
 
 const deleteCookie = (name: string): void => {
-  if (typeof document === 'undefined') return;
+  if (typeof document === 'undefined') return
 
-  document.cookie = `${name}=; path=/; max-age=0; samesite=lax`;
-};
+  document.cookie = `${name}=; path=/; max-age=0; samesite=lax`
+}
 
 const prefersReducedMotion = (): boolean =>
-  typeof window !== 'undefined' &&
-  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
 /**
  * Writes the palette to the document root, wrapped in a View Transition so the
@@ -51,25 +50,25 @@ const prefersReducedMotion = (): boolean =>
  * the stored theme on load, where there is nothing to fade from.
  */
 const applyTheme = (theme: SiteThemeId, animate = true): void => {
-  if (typeof document === 'undefined') return;
+  if (typeof document === 'undefined') return
 
   const setTheme = (): void => {
-    document.documentElement.dataset.theme = theme;
-  };
+    document.documentElement.dataset.theme = theme
+  }
 
   const canAnimate =
-    animate && typeof document.startViewTransition === 'function' && !prefersReducedMotion();
+    animate && typeof document.startViewTransition === 'function' && !prefersReducedMotion()
 
   if (!canAnimate) {
-    setTheme();
-    return;
+    setTheme()
+    return
   }
 
   // The update callback cannot fail, but a transition superseded by a faster one
   // (two quick clicks on the selector) rejects `ready` as aborted, which would
   // otherwise surface as an unhandled rejection.
-  document.startViewTransition(setTheme).ready.catch(() => {});
-};
+  document.startViewTransition(setTheme).ready.catch(() => {})
+}
 
 /**
  * Restores the theme saved in the cookie before the app is mounted. A cookie
@@ -80,22 +79,22 @@ const applyTheme = (theme: SiteThemeId, animate = true): void => {
  * where it is a no-op because there is no document to theme.
  */
 export const initializeTheme = (): void => {
-  if (isInitialized || typeof document === 'undefined') return;
+  if (isInitialized || typeof document === 'undefined') return
 
-  isInitialized = true;
+  isInitialized = true
 
-  const storedTheme = readCookie(COOKIE_NAME);
+  const storedTheme = readCookie(COOKIE_NAME)
 
-  if (!storedTheme) return;
+  if (!storedTheme) return
 
   if (!isSiteThemeId(storedTheme)) {
-    deleteCookie(COOKIE_NAME);
-    return;
+    deleteCookie(COOKIE_NAME)
+    return
   }
 
-  selectedTheme.value = storedTheme;
-  applyTheme(storedTheme, false);
-};
+  selectedTheme.value = storedTheme
+  applyTheme(storedTheme, false)
+}
 
 /**
  * Theme of the site: the palette chosen by the visitor, or the first palette of
@@ -105,22 +104,22 @@ export const initializeTheme = (): void => {
  * const { themes, currentTheme, selectTheme } = useTheme()
  */
 export const useTheme = () => {
-  const prefersDark = usePreferredDark();
+  const prefersDark = usePreferredDark()
 
   const currentTheme = computed<SiteThemeId>(
     () => selectedTheme.value ?? getDefaultThemeId(prefersDark.value ? 'dark' : 'light')
-  );
+  )
 
   /** Saves the palette in the cookie and applies it to the document, animating the swap. */
   const selectTheme = (theme: SiteThemeId): void => {
-    selectedTheme.value = theme;
-    writeCookie(COOKIE_NAME, theme);
-    applyTheme(theme);
-  };
+    selectedTheme.value = theme
+    writeCookie(COOKIE_NAME, theme)
+    applyTheme(theme)
+  }
 
   return {
     themes: SITE_THEMES,
     currentTheme,
     selectTheme
-  };
-};
+  }
+}

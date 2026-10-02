@@ -8,27 +8,27 @@
  * an override alias references `IPageSeo`), which is fine because neither
  * import reaches the runtime. Import with `import type` to keep it that way.
  */
-import type { RoutePath } from '@config/routes';
-import type { TechnologyId } from '@data/experience';
-import type { JsonLdInput, OgType, ThemeScheme, TwitterCard } from './types';
+import type { RoutePath } from '@config/routes'
+import type { TechnologyId } from '@data/experience'
+import type { JsonLdInput, OgType, ThemeScheme, TwitterCard } from './types'
 
 /**
  * Application
  */
 export interface IUserConfig {
   website: {
-    name: string;
-    url: string;
-    description: string;
-    image: string;
-  },
+    name: string
+    url: string
+    description: string
+    image: string
+  }
   author: {
-    name: string;
-    avatar: string;
-    role: string;
+    name: string
+    avatar: string
+    role: string
 
-    biography: string;
-    shortBiography: string;
+    biography: string
+    shortBiography: string
   }
 }
 
@@ -36,22 +36,22 @@ export interface IUserConfig {
  * Blog entities
  */
 export interface IPost {
-  path: string;
-  title: string;
-  excerpt: string;
-  category: string;
-  tags: string[];
-  published_at: string;
-  serie?: string;
-  serie_part?: number;
-  cover?: string;
+  path: string
+  title: string
+  excerpt: string
+  category: string
+  tags: string[]
+  published_at: string
+  serie?: string
+  serie_part?: number
+  cover?: string
   /** Front-matter flag. Present on every post and read by `getPublished`. */
-  published?: boolean;
+  published?: boolean
 }
 
 export interface IPostMarkdown {
-  attributes: IPost;
-  html: string;
+  attributes: IPost
+  html: string
 }
 
 /**
@@ -59,28 +59,28 @@ export interface IPostMarkdown {
  * rather than from the front-matter.
  */
 export type IIndexedPost = IPost & {
-  year: string;
-  slug: string;
-};
+  year: string
+  slug: string
+}
 
 /**
  * Sitemap and HTML entities
  */
 export interface ISitemapDto {
-  path: string;
-  title: string;
-  description: string;
-  type: OgType;
-  keywords?: string[];
-  publishedTime?: string;
-  modifiedTime?: string;
+  path: string
+  title: string
+  description: string
+  type: OgType
+  keywords?: string[]
+  publishedTime?: string
+  modifiedTime?: string
 }
 
 export interface IHtmlMetaTag {
-  name?: string;
-  property?: string;
-  content?: string;
-  [key: `data-${string}`]: string;
+  name?: string
+  property?: string
+  content?: string
+  [key: `data-${string}`]: string
 }
 
 /**
@@ -91,46 +91,46 @@ export interface IPageSeo {
    * Short page title. The site name is appended automatically, and pages
    * that leave it empty fall back to the site name alone.
    */
-  title?: string;
+  title?: string
   /** Falls back to the author short biography. */
-  description?: string;
+  description?: string
   /** Falls back to the site share image. */
-  image?: string;
-  type?: OgType;
-  card?: TwitterCard;
-  keywords?: string[];
-  noIndex?: boolean;
+  image?: string
+  type?: OgType
+  card?: TwitterCard
+  keywords?: string[]
+  noIndex?: boolean
   /** Overrides the canonical URL derived from the current route path. */
-  canonicalUrl?: string;
+  canonicalUrl?: string
   /** Emits the `article:*` tags. */
-  publishedTime?: string;
-  jsonLd?: JsonLdInput;
+  publishedTime?: string
+  jsonLd?: JsonLdInput
 }
 
 export interface IBaseOgParams {
-  title: string;
-  description: string;
-  canonicalUrl: string;
-  image: string;
-  type: OgType;
+  title: string
+  description: string
+  canonicalUrl: string
+  image: string
+  type: OgType
 }
 
 export interface ITwitterOgParams {
-  card: TwitterCard;
-  title: string;
-  description: string;
-  image: string;
+  card: TwitterCard
+  title: string
+  description: string
+  image: string
 }
 
 /**
  * Routing
  */
 export interface INavigationMenuItem {
-  name: string;
-  menu: boolean;
-  icon: string;
-  path: RoutePath;
-  seo: IPageSeo;
+  name: string
+  menu: boolean
+  icon: string
+  path: RoutePath
+  seo: IPageSeo
 }
 
 /**
@@ -147,37 +147,37 @@ export interface ISiteTheme<TId extends string = string> {
 export interface ITechnology {
   id: TechnologyId
   label: string
-  target: string;
-  icon: string;
+  target: string
+  icon: string
   /** Highlighted ones are surfaced in the profile card. */
-  recommended: boolean;
+  recommended: boolean
 }
 
 export interface IProject {
   label: string
-  target: string;
-  icon: string;
-  highlight: boolean;
-  description: string;
+  target: string
+  icon: string
+  highlight: boolean
+  description: string
 }
 
 export interface ITimelineItem {
   title: string
   company: string
-  date: string;
-  description: string;
+  date: string
+  description: string
   /** Ids from `Technologies`, resolved to full definitions by `getTecnologias`. */
-  stack: TechnologyId[];
+  stack: TechnologyId[]
 }
 
 /** A timeline entry with its technology ids already resolved for display. */
 export type IResolvedTimelineItem = Omit<ITimelineItem, 'stack'> & {
-  stack: ITechnology[];
-};
+  stack: ITechnology[]
+}
 
 export interface ISocialMediaLink {
-  label: string;
-  icon: string;
-  target: string;
-  blank: '_blank' | '';
+  label: string
+  icon: string
+  target: string
+  blank: '_blank' | ''
 }

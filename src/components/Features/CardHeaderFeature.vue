@@ -12,10 +12,7 @@ defineProps({
 <template>
   <GlassCard
     solid
-    :class="[
-      'pt-16! pb-5 mb-10 px-5 ',
-      'rounded-t-none transition-all duration-500',
-    ]"
+    :class="['pt-16! pb-5 mb-10 px-5 ', 'rounded-t-none transition-all duration-500']"
   >
     <Transition appear name="fade">
       <component

@@ -31,7 +31,7 @@ useIntersectionObserver(
       hasScrolled ? 'px-10' : 'px-5',
       hasScrolled ? 'top-5' : 'top-0',
       hasScrolled ? 'w-11/12' : 'w-12/12',
-      hasScrolled && 'bg-primary text-primary-content',
+      hasScrolled && 'bg-primary text-primary-content'
     ]"
   >
     <div class="navbar-start px-2">

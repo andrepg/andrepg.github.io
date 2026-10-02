@@ -17,10 +17,7 @@ const menuOrientation = computed(() => `menu-${props.orientation}`)
 </script>
 
 <template>
-  <ul
-    tabindex="-1"
-    :class="['menu menu-sm', menuOrientation]"
-  >
+  <ul tabindex="-1" :class="['menu menu-sm', menuOrientation]">
     <li v-for="link in menuItems" :key="link.name">
       <a
         :href="link.path"

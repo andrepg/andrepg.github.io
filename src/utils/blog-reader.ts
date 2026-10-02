@@ -1,4 +1,4 @@
-import type { IIndexedPost, IPost, IPostMarkdown } from '@/interfaces';
+import type { IIndexedPost, IPost, IPostMarkdown } from '@/interfaces'
 
 /**
  * A collection of all blog post modules found in the /blog directory.
@@ -7,14 +7,12 @@ import type { IIndexedPost, IPost, IPostMarkdown } from '@/interfaces';
  * frontmatter metadata and HTML content.
  */
 export const blogModules: Record<string, IPostMarkdown> = import.meta.glob('/blog/**/*.md', {
-    eager: true
-});
+  eager: true
+})
 
 export const allPosts: IIndexedPost[] = Object.entries(blogModules)
   .map(([fullPath, mod]) => {
-    const cleanPath = fullPath
-      .replace('/blog/', '')
-      .replace('.md', '')
+    const cleanPath = fullPath.replace('/blog/', '').replace('.md', '')
 
     const [year, slug] = cleanPath.split('/')
 
@@ -30,30 +28,23 @@ export const allPosts: IIndexedPost[] = Object.entries(blogModules)
       category: mod.attributes.category,
       published_at: mod.attributes.published_at,
       published: mod.attributes.published,
-      cover: mod.attributes.cover,
+      cover: mod.attributes.cover
     }
   })
-  .sort((a, b) =>
-    (b.published_at ?? '').localeCompare(a.published_at ?? '')
-  )
+  .sort((a, b) => (b.published_at ?? '').localeCompare(a.published_at ?? ''))
 
 export function getPublished(): IPost[] {
-  return allPosts.filter(post => post.published_at);
+  return allPosts.filter((post) => post.published_at)
 }
 
 export function getRecentPosts(count: number): IPost[] {
-  return getPublished().slice(0, count);
+  return getPublished().slice(0, count)
 }
 
-export function getPostsBySerie(
-  serie?: string,
-  excludePath?: string
-) {
+export function getPostsBySerie(serie?: string, excludePath?: string) {
   if (!serie) return []
 
   return allPosts
-    .filter(p => p.serie === serie && p.path !== excludePath)
+    .filter((p) => p.serie === serie && p.path !== excludePath)
     .sort((a, b) => (a.serie_part ?? 0) - (b.serie_part ?? 0))
 }
-
-

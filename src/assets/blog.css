@@ -1,120 +1,120 @@
 @import './base-styles.css';
 
 #article-body {
-    @apply rounded-lg shadow-sm;
-    @apply bg-base-100;
-    @apply flex flex-col text-base reading-column;
-    @apply px-4 md:px-8 lg:px-10 py-4 lg:py-8;
-    @apply break-all font-light;
-    font-size: 1.15rem;
-    line-height: 1.25;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  @apply rounded-lg shadow-sm;
+  @apply bg-base-100;
+  @apply flex flex-col text-base reading-column;
+  @apply px-4 md:px-8 lg:px-10 py-4 lg:py-8;
+  @apply break-all font-light;
+  font-size: 1.15rem;
+  line-height: 1.25;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
-    h1,
-    h2,
-    h3 {
-        @apply mt-10 mb-1;
-    }
+  h1,
+  h2,
+  h3 {
+    @apply mt-10 mb-1;
+  }
 
-    /**
+  /**
     * Apply default article's paragraph style
     */
-    p {
-        @apply my-4 indent-8;
-        word-break: normal;
-    }
+  p {
+    @apply my-4 indent-8;
+    word-break: normal;
+  }
 
-    /* When a paragraph contains only a link, remove the indent */
-    p:has(a:first-child) {
-        @apply indent-0;
-    }
+  /* When a paragraph contains only a link, remove the indent */
+  p:has(a:first-child) {
+    @apply indent-0;
+  }
 
-    /**
+  /**
     * Lists and list items styles
     * Numbering, disc, fonts, etc.
     */
-    ul,
-    ol {
-        word-break: normal;
-        @apply my-4 ps-6 leading-relaxed;
+  ul,
+  ol {
+    word-break: normal;
+    @apply my-4 ps-6 leading-relaxed;
 
-        &:is(ul) {
-            @apply list-disc;
-        }
-
-        &:is(ol) {
-            @apply list-decimal;
-        }
-
-        li {
-            @apply my-1.5;
-        }
+    &:is(ul) {
+      @apply list-disc;
     }
 
-    /**
+    &:is(ol) {
+      @apply list-decimal;
+    }
+
+    li {
+      @apply my-1.5;
+    }
+  }
+
+  /**
     * Code styles
     */
-    .code-toolbar {
-        @apply text-sm tracking-wide;
+  .code-toolbar {
+    @apply text-sm tracking-wide;
 
-        pre {
-            @apply rounded-xl py-3 shadow-md;
-        }
-
-        .toolbar .toolbar-item {
-            @apply text-lg mt-2 me-2 font-sans;
-
-            span {
-                @apply badge badge-soft;
-            }
-        }
+    pre {
+      @apply rounded-xl py-3 shadow-md;
     }
 
-    p abbr {
-        @apply tooltip indent-0;
-    }
+    .toolbar .toolbar-item {
+      @apply text-lg mt-2 me-2 font-sans;
 
-    p code,
-    li code,
-    blockquote code {
-        @apply indent-0 font-mono text-[0.85em] px-1.5 py-0.5 rounded-md bg-base-300/70 border border-base-300/60;
+      span {
+        @apply badge badge-soft;
+      }
     }
+  }
 
-    /**
+  p abbr {
+    @apply tooltip indent-0;
+  }
+
+  p code,
+  li code,
+  blockquote code {
+    @apply indent-0 font-mono text-[0.85em] px-1.5 py-0.5 rounded-md bg-base-300/70 border border-base-300/60;
+  }
+
+  /**
     * Links styles
     */
-    a,
-    li a,
-    p a {
-        @apply transition-all duration-250 ease-out;
-        @apply link text-sm underline underline-offset-6 leading-none;
-        @apply hover:text-accent;
+  a,
+  li a,
+  p a {
+    @apply transition-all duration-250 ease-out;
+    @apply link text-sm underline underline-offset-6 leading-none;
+    @apply hover:text-accent;
 
-        &::after {
-            content: "↗";
-            @apply mx-1 opacity-70;
-        }
+    &::after {
+      content: '↗';
+      @apply mx-1 opacity-70;
     }
+  }
 
-    a,
-    li a,
-    p a {
-        word-break: break-all !important;
-    }
+  a,
+  li a,
+  p a {
+    word-break: break-all !important;
+  }
 
-    /**
+  /**
     * Blockquote styles
     */
-    blockquote {
-        @apply card card-body card-border pt-2 pb-6 ;
-        @apply bg-accent/10 shadow-sm;
-        @apply font-light text-lg leading-tight;
+  blockquote {
+    @apply card card-body card-border pt-2 pb-6;
+    @apply bg-accent/10 shadow-sm;
+    @apply font-light text-lg leading-tight;
 
-        &::before {
-            content: '💬';
-            @apply absolute right-2 bottom-2 z-0 text-5xl scale-120 opacity-10 -rotate-y-180;
-        }
+    &::before {
+      content: '💬';
+      @apply absolute right-2 bottom-2 z-0 text-5xl scale-120 opacity-10 -rotate-y-180;
     }
+  }
 }

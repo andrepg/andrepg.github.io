@@ -1,21 +1,19 @@
 <script setup lang="ts">
-import { Icon } from "@iconify/vue";
-import GlassCard from "@/components/GlassCard.vue";
-import AnimatedList from "@/components/Shell/AnimatedList.vue";
-import SectionHeader from "@/components/SectionHeader.vue";
-import type { ITechnology } from "@/interfaces";
+import { Icon } from '@iconify/vue'
+import GlassCard from '@/components/GlassCard.vue'
+import AnimatedList from '@/components/Shell/AnimatedList.vue'
+import SectionHeader from '@/components/SectionHeader.vue'
+import type { ITechnology } from '@/interfaces'
 
 defineProps<{
-	items: ITechnology[];
+  items: ITechnology[]
 }>()
 </script>
 
 <template>
   <section class="flex flex-col gap-4">
     <SectionHeader>
-      <template #title>
-        Tecnologias trabalhadas
-      </template>
+      <template #title> Tecnologias trabalhadas </template>
       <template #subtitle>
         Bibliotecas, ferramentas, linguagens e frameworks com os quais já trabalhei
         <i class="opacity-70">- algumas delas, claro</i>.
@@ -27,12 +25,7 @@ defineProps<{
       list-class="mx-auto w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 max-w-5xl"
     >
       <template #default="{ item }">
-        <GlassCard
-          tag="div"
-          solid
-          :data-tip="item.label"
-          class="group/tech-item tech-item"
-        >
+        <GlassCard tag="div" solid :data-tip="item.label" class="group/tech-item tech-item">
           <Icon
             :icon="item.icon"
             :class="[
@@ -45,18 +38,20 @@ defineProps<{
               'group-hover/tech-item:-translate-y-2/3',
               'group-hover/tech-item:translate-x-2/3',
               'group-hover/tech-item:rotate-12',
-              'group-hover/tech-item:scale-120',
+              'group-hover/tech-item:scale-120'
             ]"
           />
 
-          <span 
-          :class="[
-            'tech-item-label',
-            'translate-y-10',
-            'group-hover/tech-item:-translate-y-3',
-            'group-hover/tech-item:opacity-100',
-            'group-hover/tech-item:block'
-          ]">{{ item.label }}</span>
+          <span
+            :class="[
+              'tech-item-label',
+              'translate-y-10',
+              'group-hover/tech-item:-translate-y-3',
+              'group-hover/tech-item:opacity-100',
+              'group-hover/tech-item:block'
+            ]"
+            >{{ item.label }}</span
+          >
         </GlassCard>
       </template>
     </AnimatedList>

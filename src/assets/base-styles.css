@@ -1,9 +1,9 @@
 @import 'tailwindcss/index.css';
 
-@import "./themes/purple-squirrel.css";
-@import "./themes/green-seal.css";
-@import "./themes/iced-penguin.css";
-@import "./themes/white-fox.css";
+@import './themes/purple-squirrel.css';
+@import './themes/green-seal.css';
+@import './themes/iced-penguin.css';
+@import './themes/white-fox.css';
 
 /*
   Contrast contract for the palette files in `themes/`. Every theme is audited
@@ -21,8 +21,8 @@
   (8.6:1 dark, 16.2:1 light). The border follows the label via currentColor.
 */
 .btn-accent.btn-outline {
-    --btn-rest-fg: var(--color-base-content);
-    --btn-border: var(--color-base-content);
+  --btn-rest-fg: var(--color-base-content);
+  --btn-border: var(--color-base-content);
 }
 
 /*
@@ -31,11 +31,11 @@
   reading-column: narrower measure for long-form content (blog articles).
 */
 @utility page-container {
-    @apply mx-auto w-full max-w-6xl px-4 md:px-6;
+  @apply mx-auto w-full max-w-6xl px-4 md:px-6;
 }
 
 @utility reading-column {
-    @apply mx-auto max-w-4xl;
+  @apply mx-auto max-w-4xl;
 }
 
 /*
@@ -44,76 +44,81 @@
   looks the same as it did with Tailwind CSS v3.
 */
 @layer base {
-    *,
-    ::after,
-    ::before,
-    ::backdrop,
-    ::file-selector-button {
-        border-color: var(--color-gray-200, currentcolor);
-    }
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
 
-    body {
-        min-height: 100vh;
-        line-height: 1.6;
-        font-family: "Cabin", sans-serif;
-        font-size: 16px;
-        font-weight: 400;
-        text-rendering: optimizeLegibility;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    }
+  body {
+    min-height: 100vh;
+    line-height: 1.6;
+    font-family: 'Cabin', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-    h1, h2, h3, h4, h5, h6 {
-        font-family: 'Fraunces', serif;
-        font-weight: 600;
-        letter-spacing: -0.015em;
-    }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
 
-    html {
-        @apply overflow-hidden;
-    }
+  html {
+    @apply overflow-hidden;
+  }
 
-    h1,
-    h2,
-    h3,
-    h4 {
-        @apply font-bold leading-loose my-4;
-    }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-bold leading-loose my-4;
+  }
 
-    h1 {
-        @apply text-3xl;
-    }
+  h1 {
+    @apply text-3xl;
+  }
 
-    h2 {
-        @apply text-2xl;
-    }
+  h2 {
+    @apply text-2xl;
+  }
 
-    h3 {
-        @apply text-xl;
-    }
+  h3 {
+    @apply text-xl;
+  }
 
-    h4 {
-        @apply text-lg;
-    }
+  h4 {
+    @apply text-lg;
+  }
 
-    p {
-        @apply mb-2;
-    }
+  p {
+    @apply mb-2;
+  }
 }
 
 .fade-enter-active,
 .fade-leave-active {
-    transition: all 0.25s ease;
+  transition: all 0.25s ease;
 }
 
 .fade-enter-from {
-    opacity: 0;
-    transform: translateY(10px);
+  opacity: 0;
+  transform: translateY(10px);
 }
 
 .fade-leave-to {
-    opacity: 0;
-    transform: translateY(-10px);
+  opacity: 0;
+  transform: translateY(-10px);
 }
 
 /*
@@ -129,8 +134,8 @@
   the effect off for visitors who ask for less motion.
 */
 @media (prefers-reduced-motion: no-preference) {
-    ::view-transition-old(root),
-    ::view-transition-new(root) {
-        animation-duration: 200ms;
-    }
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 200ms;
+  }
 }

@@ -1,10 +1,9 @@
 <script setup lang="ts">
-
 interface Props {
-  subtitle?: string;
+  subtitle?: string
 }
 
-defineProps<Props>();
+defineProps<Props>()
 </script>
 
 <template>
@@ -12,8 +11,11 @@ defineProps<Props>();
     <h2 class="text-2xl font-semibold flex items-center gap-2 mb-0">
       <slot name="title" />
     </h2>
-    
-    <p v-if="subtitle || $slots.subtitle" class="font-normal font-md w-full max-w-prose leading-snug">
+
+    <p
+      v-if="subtitle || $slots.subtitle"
+      class="font-normal font-md w-full max-w-prose leading-snug"
+    >
       <slot name="subtitle">{{ subtitle }}</slot>
     </p>
   </div>

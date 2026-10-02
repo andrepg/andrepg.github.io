@@ -131,7 +131,7 @@ onMounted(async () => {
             ]"
           >
             <a
-              class="list-col-grow "
+              class="list-col-grow"
               :href="(postFromSerie.path !== route.path && postFromSerie.path) || undefined"
             >
               <span class="text-2xl font-thin opacity-30 tabular-nums me-3">{{ index + 1 }}</span>
