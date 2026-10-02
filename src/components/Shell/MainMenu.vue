@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getMenuItems } from '@config/routes.ts'
+import { getMenuItems } from '@config/routes'
 import { Icon } from '@iconify/vue'
 import { computed } from 'vue'
 

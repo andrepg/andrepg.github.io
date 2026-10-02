@@ -1,4 +1,4 @@
-import { INavigationMenu, IPageSeo } from '@/interfaces.ts';
+import type { INavigationMenuItem, IPageSeo } from '@/interfaces';
 
 export enum RoutePath {
   HOME = '/',
@@ -8,12 +8,7 @@ export enum RoutePath {
   BLOG_ARTICLE = '/blog/:year/:article',
 }
 
-export type RouteMeta = Omit<INavigationMenu, 'component'> & {
-  path: RoutePath;
-  seo: IPageSeo;
-};
-
-export const getMenuItems = (): RouteMeta[] =>
+export const getMenuItems = (): INavigationMenuItem[] =>
   ApplicationRouter.filter(link => link.menu);
 
 /**
@@ -31,7 +26,7 @@ export const getRouteSeo = (path: RoutePath): IPageSeo => {
   return route.seo;
 };
 
-export const ApplicationRouter: RouteMeta[] = [
+export const ApplicationRouter: INavigationMenuItem[] = [
   {
     name: 'Homepage',
     menu: true,
