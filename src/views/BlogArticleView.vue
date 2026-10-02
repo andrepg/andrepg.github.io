@@ -140,7 +140,7 @@ onMounted(async () => {
 
             <span
               v-if="postFromSerie.path === route.path"
-              class="badge badge-soft badge-sm self-center badge-neutral text-neutral-content"
+              class="badge badge-soft badge-sm self-center badge-neutral"
               >Este post</span
             >
           </li>
