@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Projects } from '../../../data/projects'
+import { Projects } from '@data/projects'
 import AnimatedListFeature from '@/components/Features/AnimatedListFeature.vue'
 import AnimatedList from '@/components/Shell/AnimatedList.vue'
 import ProjectCardFeature from '@/components/Features/ProjectCardFeature.vue'

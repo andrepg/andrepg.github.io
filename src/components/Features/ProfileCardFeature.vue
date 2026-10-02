@@ -1,5 +1,5 @@
 <script setup>
-import { UserConfig } from '../../../data/website'
+import { UserConfig } from '@data/website'
 import SocialMediaShortcuts from '@/components/SocialMediaShortcuts.vue'
 import TechnologyShortcuts from '@/components/TechnologyShortcuts.vue'
 </script>

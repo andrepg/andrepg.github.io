@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RoutePath, getRouteSeo } from '@config/routes'
 import { usePageHead } from '@/composables/usePageHead'
-import { Projects } from '../../data/projects'
+import { Projects } from '@data/projects'
 
 import CardHeaderFeature from '@/components/Features/CardHeaderFeature.vue'
 import BaseLayout from '@/layouts/BaseLayout.vue'

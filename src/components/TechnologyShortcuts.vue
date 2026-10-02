@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 
-import { getRecommendedTecnologias } from '../../data/experience'
+import { getRecommendedTecnologias } from '@data/experience'
 
 const tecnologias = getRecommendedTecnologias()
 </script>
