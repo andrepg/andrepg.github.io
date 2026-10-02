@@ -4,17 +4,26 @@ import { Icon } from '@iconify/vue'
 import { RoutePath } from '@config/routes'
 import { usePageHead } from '@/composables/usePageHead'
 
-import { Tecnologias } from '../../data/experience'
+import { getTecnologias, Technologies } from '../../data/experience'
+import { timeline } from '../../data/curriculum.ts'
 
 import BaseLayout from '@/layouts/BaseLayout.vue'
 import CardHeaderFeature from '@/components/Features/CardHeaderFeature.vue'
+import TechnologyBadge from '@/components/TechnologyBadge.vue'
 import TechnologyCardFeature from '@/components/Features/TechnologyCardFeature.vue'
 import SectionHeader from '@/components/SectionHeader.vue'
-import { timeline } from '../../data/curriculum.ts'
 
-const tecnologias = Tecnologias
+const tecnologias = Technologies
+
+/** Timeline entries reference technologies by id, resolved here for display. */
+const timelineComTecnologias = timeline.map((item) => ({
+  ...item,
+  stack: getTecnologias(item.stack)
+}))
 
 usePageHead(RoutePath.CURRICULUM)
+
+const calculatePosition = (index: number) => (index % 2 > 0) ? 'timeline-end' : 'timeline-start';
 </script>
 
 <template>
@@ -39,7 +48,7 @@ usePageHead(RoutePath.CURRICULUM)
     </SectionHeader>
 
     <ul class="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
-      <li v-for="item in timeline" :key="item.title">
+      <li v-for="(item, index) in timelineComTecnologias" :key="item.title">
         <div class="timeline-middle">
           <Icon icon="hugeicons:calendar-02" class="text-lg" />
         </div>
@@ -47,29 +56,32 @@ usePageHead(RoutePath.CURRICULUM)
         <div
           :class="[
             'mb-10',
-            item.position,
-            item.position === 'timeline-start' && ' md:text-end',
-            item.position === 'timeline-end' && ' md:text-start'
+            calculatePosition(index),
+            calculatePosition(index) == 'timeline-start' && ' md:text-end',
+            calculatePosition(index) === 'timeline-end' && ' md:text-start'
           ]"
         >
           <time class="font-mono text-sm font-bold">{{ item.date }}</time>
-          <h3 class="text-lg">
+
+          <h3 class="text-lg text-primary leading-snug">
             {{ item.title }}
             <small class="block text-sm font-light font-sans">{{ item.company }}</small>
           </h3>
 
-          <p class="font-light">{{ item.description }}</p>
+          <p class="prose leading-tight font-light my-6">{{ item.description }}</p>
 
           <div
             :class="[
               'flex flex-row flex-wrap gap-2',
-              item.position === 'timeline-start' && ' md:justify-end',
-              item.position === 'timeline-end' && ' md:justify-start'
+              calculatePosition(index) === 'timeline-start' && ' md:justify-end',
+              calculatePosition(index) === 'timeline-end' && ' md:justify-start'
             ]"
           >
-            <span v-for="tag in item.tags" :key="tag" class="badge badge-sm badge-neutral">
-              {{ tag }}
-            </span>
+            <TechnologyBadge
+              v-for="tecnologia in item.stack"
+              :key="tecnologia.id"
+              :tecnologia="tecnologia"
+            />
           </div>
         </div>
         <hr />
