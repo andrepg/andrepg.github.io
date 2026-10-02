@@ -1,4 +1,4 @@
-import { IPost, IPostMarkdown } from "@/interfaces";
+import type { IIndexedPost, IPost, IPostMarkdown } from '@/interfaces';
 
 /**
  * A collection of all blog post modules found in the /blog directory.
@@ -10,7 +10,7 @@ export const blogModules: Record<string, IPostMarkdown> = import.meta.glob('/blo
     eager: true
 });
 
-export const allPosts: IPost[] = Object.entries(blogModules)
+export const allPosts: IIndexedPost[] = Object.entries(blogModules)
   .map(([fullPath, mod]) => {
     const cleanPath = fullPath
       .replace('/blog/', '')
@@ -29,6 +29,8 @@ export const allPosts: IPost[] = Object.entries(blogModules)
       tags: mod.attributes.tags,
       category: mod.attributes.category,
       published_at: mod.attributes.published_at,
+      published: mod.attributes.published,
+      cover: mod.attributes.cover,
     }
   })
   .sort((a, b) =>
