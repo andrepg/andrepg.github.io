@@ -118,7 +118,7 @@ onMounted(async () => {
           </template>
         </SectionHeader>
 
-        <ul class="list bg-secondary/20 rounded-md">
+        <ul class="list bg-base-100 rounded-md overflow-clip">
           <li
             v-for="(postFromSerie, index) in postsRelatedBySeries"
             :key="postFromSerie.path"
@@ -127,7 +127,7 @@ onMounted(async () => {
               'transition-all duration-500',
               'list-row rounded-none',
               postFromSerie.path !== route.path && 'hover:indent-2 hover:bg-base-200/50',
-              postFromSerie.path === route.path && 'bg-secondary/20 opacity-80'
+              postFromSerie.path === route.path && 'bg-accent text-accent-content opacity-80'
             ]"
           >
             <a

@@ -5,6 +5,7 @@ import { APP_CONFIG } from '@config/app'
 const { GTM_ID, GA4_ID, CLARITY_ID } = APP_CONFIG.ANALYTICS
 
 declare global {
+  // @ts-ignore This interface will be recognized by global DOM
   interface Window {
     dataLayer: unknown[][]
     gtag: (...args: unknown[]) => void
@@ -24,6 +25,8 @@ function injectScript(src: string): void {
 
 function loadGoogleTagManager(): void {
   window.dataLayer = window.dataLayer || []
+
+  // @ts-expect-error gtm.start is not available in dataLayer type
   window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' })
 
   window.gtag = function gtag(...args: unknown[]): void {

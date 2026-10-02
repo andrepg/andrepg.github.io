@@ -27,7 +27,7 @@ const menuOrientation = computed(() => `menu-${props.orientation}`)
         :class="[
           'flex items-center gap-2',
           'uppercase font-bold',
-          'transition-all duration-500',
+          'transition-all duration-100',
           'not-lg:py-2'
         ]"
       >
