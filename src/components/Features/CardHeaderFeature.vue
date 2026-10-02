@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import GlassCard from './GlassCard.vue'
+import GlassCard from '../GlassCard.vue'
 
 defineProps({
   tag: {

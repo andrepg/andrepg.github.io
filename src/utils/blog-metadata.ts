@@ -2,7 +2,7 @@ import { IPost, IPostMarkdown } from "@/interfaces";
 import APP_CONFIG from "@config/app";
 import { ReactiveHead } from "@unhead/vue";
 import { dtoPlainOg, dtoTwitterOg } from "./site-metadata";
-import { UserConfig } from "@data/website";
+import { UserConfig } from "../../data/website";
 
 const BLOG_TITLE = `Blog de ${UserConfig.author.name}`
 

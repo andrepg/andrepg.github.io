@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import AnalyticsScripts from '@/components/Layout/AnalyticsScripts.vue'
+import AnalyticsScripts from '@/components/Shell/AnalyticsScripts.vue'
 import SocialMediaShortcuts from '@/components/SocialMediaShortcuts.vue'
 import { ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import { useIntersectionObserver } from '@vueuse/core'
-import { UserConfig } from '@data/website'
+import { UserConfig } from '../../../data/website'
 
 const showFooter = ref(false)
 const footerRef = ref<HTMLElement | null>(null)

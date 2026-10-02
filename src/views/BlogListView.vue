@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import ContentLayout from '@/components/Layout/ContentLayout.vue';
+import ContentLayout from '@/layouts/ContentLayout.vue';
 
 
 import PostTimelineFeature from '@/components/Blog/PostTimelineFeature.vue';
 
 import { getPublished } from '@/utils/blog-reader';
 import { useHead } from '@unhead/vue';
-import CardHeaderFeature from '@/components/CardHeaderFeature.vue';
+import CardHeaderFeature from '@/components/Features/CardHeaderFeature.vue';
 import { Icon } from '@iconify/vue';
 import { computed, ref } from 'vue';
 import { getBlogIndexTags } from '@/utils/blog-metadata';

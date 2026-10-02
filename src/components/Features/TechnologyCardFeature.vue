@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Icon } from "@iconify/vue";
 import GlassCard from "@/components/GlassCard.vue";
-import AnimatedList from "@/components/AnimatedList.vue";
+import AnimatedList from "@/components/Shell/AnimatedList.vue";
 import SectionHeader from "@/components/SectionHeader.vue";
 
 defineProps<{

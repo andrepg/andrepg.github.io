@@ -1,5 +1,5 @@
 <!--
-  Layout for regular content pages: blog index, blog articles and any other
+  Shell for regular content pages: blog index, blog articles and any other
   page built around a `header`, a content body and an optional `footer`.
 
   The body is wrapped so pages can rely on `h-fit` + bottom padding without

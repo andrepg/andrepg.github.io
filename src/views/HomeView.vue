@@ -1,9 +1,9 @@
 <script setup>
 import { useHead } from '@unhead/vue'
 import APP_CONFIG from '@config/app'
-import { UserConfig } from '@data/website'
+import { UserConfig } from '../../data/website'
 
-import HomeLayout from '@/components/Layout/HomeLayout.vue'
+import HomeLayout from '@/layouts/HomeLayout.vue'
 import ProfileHeroFeature from '@/components/Features/ProfileCardFeature.vue'
 import HighlightedProjectsFeature from '@/components/Features/HighlightedProjectsFeature.vue'
 import RecentPostsFeature from '@/components/Blog/RecentPostsFeature.vue'

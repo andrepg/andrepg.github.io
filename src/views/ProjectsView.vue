@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { useHead } from '@unhead/vue'
-import { Projects } from '@data/projects'
+import { Projects } from '../../data/projects'
 import APP_CONFIG from '@config/app'
-import { UserConfig } from '@data/website'
+import { UserConfig } from '../../data/website'
 
-import CardHeaderFeature from '@/components/CardHeaderFeature.vue'
-import BaseLayout from '@/components/Layout/BaseLayout.vue'
-import ProjectCardFeature from '@/components/ProjectCardFeature.vue'
-import AnimatedList from '@/components/AnimatedList.vue'
+import CardHeaderFeature from '@/components/Features/CardHeaderFeature.vue'
+import BaseLayout from '@/layouts/BaseLayout.vue'
+import ProjectCardFeature from '@/components/Features/ProjectCardFeature.vue'
+import AnimatedList from '@/components/Shell/AnimatedList.vue'
 
 const projects = Projects
 

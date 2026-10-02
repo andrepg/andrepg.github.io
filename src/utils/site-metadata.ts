@@ -1,5 +1,5 @@
 import { IBaseOgParams, IHtmlMetaTag, ITwitterOgParams } from "@/interfaces";
-import { UserConfig } from "@data/website";
+import { UserConfig } from "../../data/website";
 
 const defaultUrl = UserConfig.website.url;
 

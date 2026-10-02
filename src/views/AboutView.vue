@@ -2,16 +2,16 @@
 import { Icon } from '@iconify/vue'
 
 import APP_CONFIG from '@config/app'
-import { Tecnologias } from '@data/experience'
-import { UserConfig } from '@data/website'
+import { Tecnologias } from '../../data/experience'
+import { UserConfig } from '../../data/website'
 
 import { useHead } from '@unhead/vue'
 
-import BaseLayout from '@/components/Layout/BaseLayout.vue'
-import CardHeaderFeature from '@/components/CardHeaderFeature.vue'
+import BaseLayout from '@/layouts/BaseLayout.vue'
+import CardHeaderFeature from '@/components/Features/CardHeaderFeature.vue'
 import TechnologyCardFeature from '@/components/Features/TechnologyCardFeature.vue'
 import SectionHeader from '@/components/SectionHeader.vue'
-import { timeline } from '@data/curriculum.ts'
+import { timeline } from '../../data/curriculum.ts'
 
 const tecnologias = Tecnologias
 

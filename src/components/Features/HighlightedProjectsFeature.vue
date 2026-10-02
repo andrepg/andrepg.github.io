@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { Projects } from '@data/projects'
+import { Projects } from '../../../data/projects'
 import AnimatedListFeature from '@/components/Features/AnimatedListFeature.vue'
-import AnimatedList from '@/components/AnimatedList.vue'
-import ProjectCardFeature from '@/components/ProjectCardFeature.vue'
+import AnimatedList from '@/components/Shell/AnimatedList.vue'
+import ProjectCardFeature from '@/components/Features/ProjectCardFeature.vue'
 
 const projects = Projects.filter((project) => project.highlight)
 </script>

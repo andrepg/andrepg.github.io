@@ -2,8 +2,8 @@
 import { Icon } from '@iconify/vue'
 import { ref } from 'vue'
 import { useIntersectionObserver } from '@vueuse/core'
-import MainMenu from '@/components/Layout/MainMenu.vue'
-import ThemeSwitcher from '@/components/Layout/ThemeSwitcher.vue'
+import MainMenu from '@/components/Shell/MainMenu.vue'
+import ThemeSwitcher from '@/components/Shell/ThemeSwitcher.vue'
 
 const hasScrolled = ref(false)
 const scrollReference = ref<HTMLElement | null>(null)

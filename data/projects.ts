@@ -24,7 +24,7 @@ export const Projects: Array<Project> = [
   {
     label: 'GTK C Renderer',
     target: 'https://github.com/andrepg/gtk-headless-renderer',
-    icon: 'hugeicons:puzzle',
+    icon: 'hugeicons:clapperboard',
     highlight: true,
     description: 'Um renderizador GTK para o plugin Flatpak DevTools'
   },
@@ -59,7 +59,7 @@ export const Projects: Array<Project> = [
   {
     label: 'Laravel Sail Podman',
     target: 'https://github.com/Startap/sail-podman',
-    icon: 'hugeicons:archive-03',
+    icon: 'hugeicons:3-d-view',
     highlight: false,
     description: 'Uma biblioteca PHP de compatibilidade entre o Laravel Sail e o Podman'
   }
