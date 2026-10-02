@@ -1,4 +1,18 @@
 /**
+ * Shared object shapes, one `interface` per concept, prefixed with `I`.
+ *
+ * Unions, derived aliases and function types live in `src/types.ts`, which
+ * must stay type-only — see the note at the top of that file.
+ *
+ * The two modules import each other by type (a page shape references `OgType`,
+ * an override alias references `IPageSeo`), which is fine because neither
+ * import reaches the runtime. Import with `import type` to keep it that way.
+ */
+import type { RoutePath } from '@config/routes';
+import type { TechnologyId } from '@data/experience';
+import type { JsonLdInput, OgType, ThemeScheme, TwitterCard } from './types';
+
+/**
  * Application
  */
 export interface IUserConfig {
@@ -18,14 +32,6 @@ export interface IUserConfig {
   }
 }
 
-export interface INavigationMenu {
-  name: string;
-  menu: boolean;
-  icon: string;
-  path: string;
-  component: () => Promise<unknown>;
-}
-
 /**
  * Blog entities
  */
@@ -39,6 +45,8 @@ export interface IPost {
   serie?: string;
   serie_part?: number;
   cover?: string;
+  /** Front-matter flag. Present on every post and read by `getPublished`. */
+  published?: boolean;
 }
 
 export interface IPostMarkdown {
@@ -47,13 +55,22 @@ export interface IPostMarkdown {
 }
 
 /**
+ * A post after `blog-reader` derives the fields that come from its file path
+ * rather than from the front-matter.
+ */
+export type IIndexedPost = IPost & {
+  year: string;
+  slug: string;
+};
+
+/**
  * Sitemap and HTML entities
  */
 export interface ISitemapDto {
   path: string;
   title: string;
   description: string;
-  type: string;
+  type: OgType;
   keywords?: string[];
   publishedTime?: string;
   modifiedTime?: string;
@@ -68,30 +85,6 @@ export interface IHtmlMetaTag {
 
 /**
  * SEO / head management
- */
-export type OgType = 'website' | 'article' | 'profile';
-
-export type TwitterCard = 'summary' | 'summary_large_image';
-
-/** A schema.org document factory. Must return a plain serializable object. */
-export type IJsonLdBuilder = () => Record<string, unknown>;
-
-/** Identifiers of the schemas bundled in `@/utils/structured-data`. */
-export type JsonLdKey = 'person' | 'profile' | 'collection';
-
-/**
- * A schema reference: either a bundled schema key (used by the route
- * declaration, which cannot import runtime code) or a custom builder
- * (used by views that need per-page data, e.g. a blog post).
- */
-export type IJsonLdInput =
-  | JsonLdKey
-  | IJsonLdBuilder
-  | Array<JsonLdKey | IJsonLdBuilder>;
-
-/**
- * Page level metadata declared in `@config/routes` and consumed by
- * `usePageHead`.
  */
 export interface IPageSeo {
   /**
@@ -111,7 +104,7 @@ export interface IPageSeo {
   canonicalUrl?: string;
   /** Emits the `article:*` tags. */
   publishedTime?: string;
-  jsonLd?: IJsonLdInput;
+  jsonLd?: JsonLdInput;
 }
 
 export interface IBaseOgParams {
@@ -127,4 +120,64 @@ export interface ITwitterOgParams {
   title: string;
   description: string;
   image: string;
+}
+
+/**
+ * Routing
+ */
+export interface INavigationMenuItem {
+  name: string;
+  menu: boolean;
+  icon: string;
+  path: RoutePath;
+  seo: IPageSeo;
+}
+
+/**
+ * Catalog data
+ */
+export interface ISiteTheme<TId extends string = string> {
+  /** daisyUI theme name, written to the `data-theme` attribute. */
+  id: TId
+  /** Name shown in the theme selector. */
+  label: string
+  scheme: ThemeScheme
+}
+
+export interface ITechnology {
+  id: TechnologyId
+  label: string
+  target: string;
+  icon: string;
+  /** Highlighted ones are surfaced in the profile card. */
+  recommended: boolean;
+}
+
+export interface IProject {
+  label: string
+  target: string;
+  icon: string;
+  highlight: boolean;
+  description: string;
+}
+
+export interface ITimelineItem {
+  title: string
+  company: string
+  date: string;
+  description: string;
+  /** Ids from `Technologies`, resolved to full definitions by `getTecnologias`. */
+  stack: TechnologyId[];
+}
+
+/** A timeline entry with its technology ids already resolved for display. */
+export type IResolvedTimelineItem = Omit<ITimelineItem, 'stack'> & {
+  stack: ITechnology[];
+};
+
+export interface ISocialMediaLink {
+  label: string;
+  icon: string;
+  target: string;
+  blank: '_blank' | '';
 }
