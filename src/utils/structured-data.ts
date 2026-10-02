@@ -7,6 +7,7 @@ import {
 import { UserConfig } from '../../data/website';
 import { SocialMediaLinks } from '../../data/social-media';
 import { timeline } from '../../data/curriculum';
+import { getTecnologias } from '../../data/experience';
 import { Projects } from '../../data/projects';
 
 const SCHEMA = 'https://schema.org';
@@ -84,7 +85,7 @@ export const profileLd: IJsonLdBuilder = () => ({
           position: index + 1,
           name: item.title,
           description: item.description,
-          skills: item.tags,
+          skills: getTecnologias(item.stack).map((tecnologia) => tecnologia.label),
           worksFor: { '@type': 'Organization', name: item.company }
         }))
       }
