@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 
-import type { Technology } from '../../data/experience'
+import type { ITechnology } from '@/interfaces'
 
 defineProps<{
-  tecnologia: Technology
+  tecnologia: ITechnology
 }>()
 </script>
 

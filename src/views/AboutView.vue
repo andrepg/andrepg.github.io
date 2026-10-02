@@ -4,8 +4,11 @@ import { Icon } from '@iconify/vue'
 import { RoutePath } from '@config/routes'
 import { usePageHead } from '@/composables/usePageHead'
 
-import { getTecnologias, Technologies } from '../../data/experience'
-import { timeline } from '../../data/curriculum.ts'
+import type { IResolvedTimelineItem } from '@/interfaces'
+import type { TimelinePosition } from '@/types'
+
+import { getTecnologias, Technologies } from '@data/experience'
+import { timeline } from '@data/curriculum'
 
 import BaseLayout from '@/layouts/BaseLayout.vue'
 import CardHeaderFeature from '@/components/Features/CardHeaderFeature.vue'
@@ -16,14 +19,15 @@ import SectionHeader from '@/components/SectionHeader.vue'
 const tecnologias = Technologies
 
 /** Timeline entries reference technologies by id, resolved here for display. */
-const timelineComTecnologias = timeline.map((item) => ({
+const timelineComTecnologias: IResolvedTimelineItem[] = timeline.map((item) => ({
   ...item,
   stack: getTecnologias(item.stack)
 }))
 
 usePageHead(RoutePath.CURRICULUM)
 
-const calculatePosition = (index: number) => (index % 2 > 0) ? 'timeline-end' : 'timeline-start';
+const calculatePosition = (index: number): TimelinePosition =>
+  (index % 2 > 0) ? 'timeline-end' : 'timeline-start'
 </script>
 
 <template>

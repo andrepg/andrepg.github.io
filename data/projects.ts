@@ -1,12 +1,6 @@
-export type Project = {
-  label: string
-  target: string
-  icon: string
-  highlight: boolean
-  description: string
-}
+import type { IProject } from '@/interfaces';
 
-export const Projects: Array<Project> = [
+export const Projects: IProject[] = [
   {
     label: 'SuperCow Scripts',
     target: 'https://andrepg.github.io/supercow',

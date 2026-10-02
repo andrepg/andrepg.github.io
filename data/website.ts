@@ -1,4 +1,4 @@
-import { IUserConfig } from "@/interfaces.ts";
+import type { IUserConfig } from '@/interfaces';
 
 export const UserConfig: IUserConfig = Object.freeze({
     website: {

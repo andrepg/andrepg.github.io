@@ -6,16 +6,8 @@
  * theme is the one applied when the system prefers dark, so new themes should
  * be appended to the end of their group.
  */
-
-export type ThemeScheme = 'light' | 'dark'
-
-export interface ISiteTheme {
-  /** daisyUI theme name, written to the `data-theme` attribute. */
-  id: string
-  /** Name shown in the theme selector. */
-  label: string
-  scheme: ThemeScheme
-}
+import type { ISiteTheme } from '@/interfaces';
+import type { ThemeScheme } from '@/types';
 
 export const SITE_THEMES = [
   { id: 'iced-penguin', label: 'Iced Penguin', scheme: 'light' },
@@ -26,6 +18,12 @@ export const SITE_THEMES = [
 
 /** Identifier of one of the themes of the catalog. */
 export type SiteThemeId = (typeof SITE_THEMES)[number]['id']
+
+/**
+ * A catalog entry narrowed to the ids the catalog actually declares, so a
+ * theme coming from `SITE_THEMES` is not typed as any string.
+ */
+export type SiteTheme = ISiteTheme<SiteThemeId>
 
 export const isSiteThemeId = (value: unknown): value is SiteThemeId =>
   SITE_THEMES.some((theme) => theme.id === value)

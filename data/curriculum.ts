@@ -1,15 +1,8 @@
+import type { ITimelineItem } from '@/interfaces';
+
 import { TechnologyId } from './experience'
 
-type TimelineItem = {
-  title: string
-  company: string
-  date: string | 'timeline-middle' | 'timeline-end'
-  description: string
-  /** Ids from `Technologies`, resolved to full definitions by `getTecnologias`. */
-  stack: TechnologyId[]
-}
-
-export const timeline: Array<TimelineItem> = [
+export const timeline: ITimelineItem[] = [
   {
     date: '2019 - atualmente',
     title: 'Founder (Freelancer/Part-Time)',

@@ -3,10 +3,10 @@ import { Icon } from "@iconify/vue";
 import GlassCard from "@/components/GlassCard.vue";
 import AnimatedList from "@/components/Shell/AnimatedList.vue";
 import SectionHeader from "@/components/SectionHeader.vue";
-import type { Technology } from "../../../data/experience";
+import type { ITechnology } from "@/interfaces";
 
 defineProps<{
-	items: Technology[];
+	items: ITechnology[];
 }>()
 </script>
 

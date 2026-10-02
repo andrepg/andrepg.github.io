@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-import { Project } from '../../../data/projects.ts'
+import type { IProject } from '@/interfaces'
 
 defineProps<{
-  project: Project
+  project: IProject
 }>()
 </script>
 

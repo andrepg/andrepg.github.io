@@ -1,3 +1,5 @@
+import type { ITechnology } from '@/interfaces';
+
 /**
  * Every valid technology identifier.
  *
@@ -26,16 +28,7 @@ export enum TechnologyId {
   nuxt = 'nuxt'
 }
 
-export type Technology = {
-  id: TechnologyId
-  label: string
-  target: string
-  icon: string
-  /** Highlighted ones are surfaced in the profile card. */
-  recommended: boolean
-}
-
-export const Technologies: Technology[] = [
+export const Technologies: ITechnology[] = [
   {
     id: TechnologyId.laravel,
     label: 'Laravel',
@@ -177,7 +170,7 @@ const tecnologiasById = new Map(Technologies.map((tecnologia) => [tecnologia.id,
  * Resolves technology ids into their full definitions, so consumers get the
  * icon and label straight from `Technologies` instead of hardcoding strings.
  */
-export const getTecnologias = (ids: TechnologyId[]): Technology[] =>
+export const getTecnologias = (ids: TechnologyId[]): ITechnology[] =>
   ids.map((id) => {
     const tecnologia = tecnologiasById.get(id)
 
@@ -189,5 +182,5 @@ export const getTecnologias = (ids: TechnologyId[]): Technology[] =>
   })
 
 /** The subset flagged as `recommended`, rendered in the profile card. */
-export const getRecommendedTecnologias = (): Technology[] =>
+export const getRecommendedTecnologias = (): ITechnology[] =>
   Technologies.filter((tecnologia) => tecnologia.recommended)

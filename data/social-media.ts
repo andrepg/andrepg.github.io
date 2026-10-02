@@ -1,4 +1,6 @@
-export const SocialMediaLinks = [
+import type { ISocialMediaLink } from '@/interfaces';
+
+export const SocialMediaLinks: ISocialMediaLink[] = [
   {
     label: 'Twitch',
     icon: 'hugeicons:twitch',
