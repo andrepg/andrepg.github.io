@@ -4,7 +4,6 @@ import { ref } from 'vue'
 import { useIntersectionObserver } from '@vueuse/core'
 import MainMenu from '@/components/Layout/MainMenu.vue'
 import ThemeSwitcher from '@/components/Layout/ThemeSwitcher.vue'
-import { UserConfig } from '@data/website.ts'
 
 const hasScrolled = ref(false)
 const scrollReference = ref<HTMLElement | null>(null)
@@ -31,7 +30,7 @@ useIntersectionObserver(
   >
     <div class="navbar-start px-2">
       <span class="font-bold font-serif">
-        {{ UserConfig.author.name }}
+        APG
       </span>
     </div>
     <div class="navbar-center">
