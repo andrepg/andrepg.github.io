@@ -1,42 +1,47 @@
-import { INavigationMenu } from '@/interfaces';
+import { INavigationMenu } from '@/interfaces.ts';
 
-export const getMenuItems = (): INavigationMenu[] =>
+export enum RoutePath {
+  HOME = '/',
+  CURRICULUM = '/curriculo',
+  PROJECTS = '/projetos',
+  BLOG = '/blog',
+  BLOG_ARTICLE = '/blog/:year/:article',
+}
+
+export type RouteMeta = Omit<INavigationMenu, 'component'> & { path: RoutePath };
+
+export const getMenuItems = (): RouteMeta[] =>
   ApplicationRouter.filter(link => link.menu);
 
-export const ApplicationRouter: INavigationMenu[] = [
+export const ApplicationRouter: RouteMeta[] = [
   {
     name: 'Homepage',
     menu: true,
-    path: '/',
+    path: RoutePath.HOME,
     icon: 'hugeicons:home-01',
-    component: () => import('@/views/HomeView.vue')
   },
   {
     name: 'Curriculum',
     menu: true,
     icon: 'hugeicons:profile-02',
-    path: '/curriculo',
-    component: () => import('@/views/AboutView.vue')
+    path: RoutePath.CURRICULUM,
   },
   {
     name: 'Projetos',
     menu: true,
     icon: 'hugeicons:computer-video-call',
-    path: '/projetos',
-    component: () => import('@/views/ProjectsView.vue')
+    path: RoutePath.PROJECTS,
   },
   {
     name: 'Blog',
     menu: true,
     icon: 'hugeicons:quill-write-02',
-    path: '/blog',
-    component: () => import('@/views/BlogListView.vue')
+    path: RoutePath.BLOG,
   },
   {
     menu: false,
     name: 'Posts - Single',
     icon: '',
-    path: '/blog/:year/:article',
-    component: () => import('@/views/BlogArticleView.vue')
+    path: RoutePath.BLOG_ARTICLE,
   },
 ];
