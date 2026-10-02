@@ -1,6 +1,6 @@
 import path from "node:path";
 
-import { getFileTree } from "src/sitemap/sitemap.generator";
+import { getFileTree } from "./sitemap/sitemap.generator.ts";
 import { generateJsonSitemap } from "./sitemap/sitemap.json.ts";
 import { generateXmlSitemap } from "./sitemap/sitemap.xml.ts";
 
