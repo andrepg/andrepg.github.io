@@ -22,7 +22,7 @@ defineProps<{
     <h3 class="flex flex-col m-0">
       {{ post.title }}
 
-      <small class="text-light text-sm font-sans font-ligh">
+      <small class="font-light text-sm font-sans">
         {{ post.excerpt }}
       </small>
     </h3>
