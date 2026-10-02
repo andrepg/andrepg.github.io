@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { useHead } from '@unhead/vue'
+import { RoutePath, getRouteSeo } from '@config/routes'
+import { usePageHead } from '@/composables/usePageHead'
 import { Projects } from '../../data/projects'
-import APP_CONFIG from '@config/app'
-import { UserConfig } from '../../data/website'
 
 import CardHeaderFeature from '@/components/Features/CardHeaderFeature.vue'
 import BaseLayout from '@/layouts/BaseLayout.vue'
@@ -11,32 +10,10 @@ import AnimatedList from '@/components/Shell/AnimatedList.vue'
 
 const projects = Projects
 
-const title = ['Projetos', UserConfig.author.name].join(' | ')
-const description = 'Meus projetos publicados mais relevantes.'
+/** Single source of truth: the same copy is used for SEO and for the subtitle. */
+const description = getRouteSeo(RoutePath.PROJECTS).description ?? ''
 
-const twitterOg = [
-  { name: 'twitter:card', content: 'summary' },
-  { name: 'twitter:title', content: title },
-  { name: 'twitter:description', content: description },
-  { name: 'twitter:image', content: UserConfig.website.image }
-]
-
-const generalOg = [
-  { property: 'og:type', content: 'website' },
-  { property: 'og:title', content: title },
-  { property: 'og:description', content: description },
-  { property: 'og:image', content: UserConfig.website.image }
-]
-
-useHead({
-  title,
-  meta: [
-    { name: 'description', content: description },
-    ...generalOg,
-    ...twitterOg
-  ],
-  link: [{ rel: 'canonical', href: `${APP_CONFIG.BASE_URL}/projetos` }]
-})
+usePageHead(RoutePath.PROJECTS)
 </script>
 
 <template>

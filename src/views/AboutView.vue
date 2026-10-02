@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 
-import APP_CONFIG from '@config/app'
-import { Tecnologias } from '../../data/experience'
-import { UserConfig } from '../../data/website'
+import { RoutePath } from '@config/routes'
+import { usePageHead } from '@/composables/usePageHead'
 
-import { useHead } from '@unhead/vue'
+import { Tecnologias } from '../../data/experience'
 
 import BaseLayout from '@/layouts/BaseLayout.vue'
 import CardHeaderFeature from '@/components/Features/CardHeaderFeature.vue'
@@ -15,28 +14,7 @@ import { timeline } from '../../data/curriculum.ts'
 
 const tecnologias = Tecnologias
 
-const title = ['Experiência e Projetos', UserConfig.author.name].join(' | ')
-const description = 'Minha trajetória, experiência e ferramentas'
-
-const generalOg = [
-  { property: 'og:type', content: 'website' },
-  { property: 'og:title', content: title },
-  { property: 'og:description', content: description },
-  { property: 'og:image', content: UserConfig.website.image }
-]
-
-const twitterOg = [
-  { name: 'twitter:card', content: 'summary' },
-  { name: 'twitter:title', content: title },
-  { name: 'twitter:description', content: description },
-  { name: 'twitter:image', content: UserConfig.website.image }
-]
-
-useHead({
-  title,
-  meta: [{ name: 'description', content: description }, ...generalOg, ...twitterOg],
-  link: [{ rel: 'canonical', href: `${APP_CONFIG.BASE_URL}/curriculo` }]
-})
+usePageHead(RoutePath.CURRICULUM)
 </script>
 
 <template>
@@ -44,7 +22,7 @@ useHead({
     <template #header>
       <CardHeaderFeature>
         <h1 class="text-2xl font-semibold flex flex-col md:w-3/4">
-          Experiência & Projetos
+          Experiência & Tecnologias
 
           <small class="opacity-70 font-normal font-md w-full leading-snug flex-1">
             Minha trajetória e carreira resumida, projetos publicados e experiência de mercado real.

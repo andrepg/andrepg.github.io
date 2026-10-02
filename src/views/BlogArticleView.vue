@@ -3,16 +3,17 @@ import '@/assets/blog.css'
 
 import { onMounted, nextTick, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { useHead } from '@unhead/vue'
 import { transformContent } from '@plugins/transformers'
 import Prism from 'prismjs'
 import { blogModules, getPostsBySerie } from '@/utils/blog-reader'
-import { getSinglePostTags } from '@/utils/blog-metadata'
 import { Icon } from '@iconify/vue'
 import { slugify } from '@/utils/slugify'
 import CardHeaderFeature from '@/components/Features/CardHeaderFeature.vue'
 import ContentLayout from '@/layouts/ContentLayout.vue'
-import APP_CONFIG from '@config/app'
+import { RoutePath } from '@config/routes'
+import { usePageHead } from '@/composables/usePageHead'
+import { canonicalUrl } from '@/utils/site-metadata'
+import { blogPostingLd } from '@/utils/structured-data'
 import SectionHeader from '@/components/SectionHeader.vue'
 import GlassCard from '@/components/GlassCard.vue'
 
@@ -31,14 +32,22 @@ const metadata = post.attributes
 
 const sanitizedContent = transformContent(post.html)
 
-const canonicalUrl = `${APP_CONFIG.BASE_URL}${route.path}`
+const articleUrl = canonicalUrl(route.path)
 
-const postsRelatedBySeries = getPostsBySerie(metadata.serie, canonicalUrl)
+const postsRelatedBySeries = getPostsBySerie(metadata.serie, articleUrl)
 
 /**
  * Head tags — executa durante SSG
  */
-useHead(getSinglePostTags(metadata, canonicalUrl))
+usePageHead(RoutePath.BLOG_ARTICLE, () => ({
+  title: metadata.title,
+  description: metadata.excerpt,
+  type: 'article',
+  canonicalUrl: articleUrl,
+  publishedTime: metadata.published_at,
+  keywords: [metadata.category, ...metadata.tags].filter(Boolean),
+  jsonLd: blogPostingLd(metadata, articleUrl)
+}))
 
 /**
  * Highlight code blocks after the article renders.

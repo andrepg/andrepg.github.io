@@ -1,56 +1,45 @@
 <script lang="ts" setup>
-import ContentLayout from '@/layouts/ContentLayout.vue';
+import ContentLayout from '@/layouts/ContentLayout.vue'
 
+import PostTimelineFeature from '@/components/Blog/PostTimelineFeature.vue'
 
-import PostTimelineFeature from '@/components/Blog/PostTimelineFeature.vue';
+import { getPublished } from '@/utils/blog-reader'
+import CardHeaderFeature from '@/components/Features/CardHeaderFeature.vue'
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { slugify } from '@/utils/slugify'
+import { RoutePath } from '@config/routes'
+import { usePageHead } from '@/composables/usePageHead'
+import { blogLd } from '@/utils/structured-data'
 
-import { getPublished } from '@/utils/blog-reader';
-import { useHead } from '@unhead/vue';
-import CardHeaderFeature from '@/components/Features/CardHeaderFeature.vue';
-import { Icon } from '@iconify/vue';
-import { computed, ref } from 'vue';
-import { getBlogIndexTags } from '@/utils/blog-metadata';
-import { useRoute } from 'vue-router';
-import { slugify } from '@/utils/slugify';
+const route = useRoute()
 
-const route = useRoute();
-
-const posts = getPublished();
+const posts = getPublished()
 
 const filteredPosts = computed(() => {
-  const { series, category, tag } = route.query;
+  const { series, category, tag } = route.query
 
   if (!series && !category && !tag) {
-    return posts;
+    return posts
   }
 
-  return posts.filter(post => {
-    const matchesSeries = !series || slugify(post.serie || '') === series;
-    const matchesCategory = !category || slugify(post.category || '') === category;
-    const matchesTag = !tag || (post.tags && post.tags.some(t => slugify(t) === tag));
+  return posts.filter((post) => {
+    const matchesSeries = !series || slugify(post.serie || '') === series
+    const matchesCategory = !category || slugify(post.category || '') === category
+    const matchesTag = !tag || (post.tags && post.tags.some((t) => slugify(t) === tag))
 
-    return matchesSeries && matchesCategory && matchesTag;
-  });
-});
+    return matchesSeries && matchesCategory && matchesTag
+  })
+})
 
-const displayMode = ref<'grid' | 'list'>('list');
-
-const toggleDisplayMode = () => {
-  displayMode.value = displayMode.value === 'grid' ? 'list' : 'grid';
-};
-
-const isCompactMode = computed(() => displayMode.value === 'list');
-
-useHead(getBlogIndexTags(posts));
+usePageHead(RoutePath.BLOG, { jsonLd: blogLd(posts) })
 </script>
 
 <template>
   <ContentLayout>
     <template #header>
       <CardHeaderFeature tag="h1">
-        <template #default>
-          Todas as minhas publicações
-        </template>
+        <template #default> Todas as minhas publicações </template>
         <template #subtitle>
           Os registros do meu trabalho, notas relevantes e devaneios sobre a tecnologia.
         </template>
@@ -58,31 +47,7 @@ useHead(getBlogIndexTags(posts));
     </template>
 
     <div class="flex flex-col gap-4">
-      <div class="flex flex-row flex-wrap gap-3 justify-end items-center">
-        <button
-          class="btn btn-soft btn-primary not-md:btn-block transition-all duration-300 min-w-40"
-          @click="toggleDisplayMode"
-        >
-          <Transition name="fade" mode="out-in">
-            <div :key="displayMode" class="flex items-center justify-center gap-2 whitespace-nowrap w-full">
-              <Icon
-                :icon="isCompactMode ? 'hugeicons:grid-view' : 'hugeicons:list-view'"
-                class="text-lg"
-              />
-              <span>
-                {{ isCompactMode ? 'Ver completo' : 'Ver simplificado' }}
-              </span>
-            </div>
-          </Transition>
-        </button>
-      </div>
-
-      <PostTimelineFeature
-        :posts="filteredPosts"
-        :compact-mode="displayMode === 'list'" />
+      <PostTimelineFeature :posts="filteredPosts" />
     </div>
   </ContentLayout>
 </template>
-
-
-
