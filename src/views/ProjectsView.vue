@@ -1,74 +1,59 @@
 <script setup lang="ts">
-import { useHead } from '@unhead/vue';
-import { Projects } from '@data/projects';
-import APP_CONFIG from '@config/app';
-import { UserConfig } from "@data/website";
- 
-import CardHeaderFeature from '@/components/CardHeaderFeature.vue';
-import PageLayout from '@/components/Layout/PageLayout.vue';
-import ProjectCardFeature from '@/components/ProjectCardFeature.vue';
-import AnimatedList from '@/components/AnimatedList.vue';
+import { useHead } from '@unhead/vue'
+import { Projects } from '@data/projects'
+import APP_CONFIG from '@config/app'
+import { UserConfig } from '@data/website'
 
-const projects = Projects;
+import CardHeaderFeature from '@/components/CardHeaderFeature.vue'
+import BaseLayout from '@/components/Layout/BaseLayout.vue'
+import ProjectCardFeature from '@/components/ProjectCardFeature.vue'
+import AnimatedList from '@/components/AnimatedList.vue'
 
+const projects = Projects
+
+const title = ['Projetos', UserConfig.author.name].join(' | ')
+const description = 'Meus projetos publicados mais relevantes.'
+
+const twitterOg = [
+  { name: 'twitter:card', content: 'summary' },
+  { name: 'twitter:title', content: title },
+  { name: 'twitter:description', content: description },
+  { name: 'twitter:image', content: UserConfig.website.image }
+]
+
+const generalOg = [
+  { property: 'og:type', content: 'website' },
+  { property: 'og:title', content: title },
+  { property: 'og:description', content: description },
+  { property: 'og:image', content: UserConfig.website.image }
+]
 
 useHead({
-  title: "Projetos | André Paul Grandsire",
+  title,
   meta: [
-  { name: 'description', content: 'Lista de projetos e portfólio de André Paul Grandsire' },
-  { property: 'og:type', content: 'website' },
-  { property: 'og:title', content: "Projetos | André Paul Grandsire" },
-  { property: 'og:description', content: 'Lista de projetos e portfólio de André Paul Grandsire' },
-  { property: 'og:image', content: UserConfig.website.image },
-  { name: 'twitter:card', content: 'summary' },
-  { name: 'twitter:title', content: "Projetos | André Paul Grandsire" },
-  { name: 'twitter:description', content: 'Lista de projetos e portfólio de André Paul Grandsire' },
-  { name: 'twitter:image', content: UserConfig.website.image },
+    { name: 'description', content: description },
+    ...generalOg,
+    ...twitterOg
   ],
-  link: [
-  { rel: 'canonical', href: `${APP_CONFIG.BASE_URL}/projetos` }
-  ],
-});
-
+  link: [{ rel: 'canonical', href: `${APP_CONFIG.BASE_URL}/projetos` }]
+})
 </script>
 
 <template>
-  <PageLayout>
+  <BaseLayout>
     <template #header>
       <CardHeaderFeature tag="h1">
-        <template #default>
-          Projetos
-        </template>
+        <template #default>Projetos</template>
         <template #subtitle>
-          Lista de projetos e portfólio. Aqui listo aqueles que considero mais ativos ou relevantes.
+          {{ description }}
         </template>
       </CardHeaderFeature>
     </template>
 
-    <div class="flex flex-col gap-4">
-      <AnimatedList
-        :items="projects"
-        list-class="mx-auto w-full columns-1 md:columns-2 gap-4"
-        item-class="break-inside-avoid-column mb-4"
-        :delay="150"
-      >
-        <template #default="{ item }">
-          <ProjectCardFeature :project="item" />
-        </template>
-      </AnimatedList>
-
-
-
-      <p class="text-sm mt-4 mx-auto text-center max-w-prose">
-        A lista mais extensa de projetos pode ser encontrada no meu <a
-          href="https://github.com/andrepg"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="link link-primary"
-        >GitHub</a>.
-        Aqui listo aqueles que considero mais ativos ou relevantes para meu portefólio.
-      </p>
-    </div>
-  </PageLayout>
+    <AnimatedList :items="projects" list-class="list" item-class="break-inside-avoid-column">
+      <template #default="{ item }">
+        <ProjectCardFeature :project="item" class="list-row" />
+      </template>
+    </AnimatedList>
+  </BaseLayout>
 </template>
-

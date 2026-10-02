@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import PageLayout from '@/components/Layout/PageLayout.vue';
-import { PageLayoutType } from '@/enumerators';
+import ContentLayout from '@/components/Layout/ContentLayout.vue';
 
 
 import PostTimelineFeature from '@/components/Blog/PostTimelineFeature.vue';
@@ -46,7 +45,7 @@ useHead(getBlogIndexTags(posts));
 </script>
 
 <template>
-  <PageLayout :type="PageLayoutType.BLOG">
+  <ContentLayout>
     <template #header>
       <CardHeaderFeature tag="h1">
         <template #default>
@@ -82,7 +81,7 @@ useHead(getBlogIndexTags(posts));
         :posts="filteredPosts"
         :compact-mode="displayMode === 'list'" />
     </div>
-  </PageLayout>
+  </ContentLayout>
 </template>
 
 

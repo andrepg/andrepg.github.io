@@ -11,8 +11,7 @@ import { getSinglePostTags } from '@/utils/blog-metadata'
 import { Icon } from '@iconify/vue'
 import { slugify } from '@/utils/slugify'
 import CardHeaderFeature from '@/components/CardHeaderFeature.vue'
-import PageLayout from '@/components/Layout/PageLayout.vue'
-import { PageLayoutType } from '@/enumerators'
+import ContentLayout from '@/components/Layout/ContentLayout.vue'
 import APP_CONFIG from '@config/app'
 import SectionHeader from '@/components/SectionHeader.vue'
 import GlassCard from '@/components/GlassCard.vue'
@@ -61,7 +60,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <PageLayout :type="PageLayoutType.BLOG">
+  <ContentLayout>
     <template #header>
       <CardHeaderFeature tag="div">
         <template #default>
@@ -139,5 +138,5 @@ onMounted(async () => {
         </ul>
       </GlassCard>
     </template>
-  </PageLayout>
+  </ContentLayout>
 </template>

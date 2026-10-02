@@ -9,7 +9,7 @@ import Navbar from '@/components/Layout/NavbarFeature.vue';
     :class="[
       'relative',
       'min-h-screen',
-      'overflow-x-hidden',
+      'overflow-x-clip',
       'bg-base-100',
     ]"
   >
@@ -21,7 +21,7 @@ import Navbar from '@/components/Layout/NavbarFeature.vue';
 
     <main class="flex flex-col w-full min-h-screen justify-start relative z-10">
         <RouterView v-slot="{ Component, route }">
-          <transition name="page" mode="default">
+          <transition name="page" mode="in-out">
             <div :key="route.path" class="grow pb-10 transition-all min-h-screen">
               <component :is="Component" />
             </div>
