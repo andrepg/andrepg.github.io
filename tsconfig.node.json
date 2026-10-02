@@ -11,6 +11,10 @@
     "postcss.config.js",
     "plugins/**/*.ts",
     "config/**/*.ts",
-    "data/**/*.ts"
+    "data/**/*.ts",
+    "src/env.d.ts",
+    "src/interfaces.ts",
+    "src/types.ts",
+    "src/utils/slugify.ts"
   ]
 }
