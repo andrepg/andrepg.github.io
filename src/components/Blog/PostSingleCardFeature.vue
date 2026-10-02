@@ -9,7 +9,6 @@ defineProps<{
 
 <template>
   <a
-    target="blank"
     rel="noopener noreferrer"
     :href="post.path"
     :class="['group/project-item', 'items-start']"
