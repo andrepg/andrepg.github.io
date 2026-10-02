@@ -1,7 +1,6 @@
-import globals from 'globals';
-import tseslint from 'typescript-eslint';
-import pluginVue from 'eslint-plugin-vue';
-import prettierConfig from 'eslint-config-prettier';
+import tseslint from 'typescript-eslint'
+import pluginVue from 'eslint-plugin-vue'
+import prettierConfig from 'eslint-config-prettier'
 
 export default tseslint.config(
   {
@@ -10,15 +9,15 @@ export default tseslint.config(
       '**/.vite-ssg-temp/**',
       '**/node_modules/**',
       '**/public/**',
-      'src/env.d.ts',
-    ],
+      'src/env.d.ts'
+    ]
   },
 
   tseslint.configs.base,
 
-  ...tseslint.configs.recommended.map(config => ({
+  ...tseslint.configs.recommended.map((config) => ({
     ...config,
-    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx']
   })),
 
   {
@@ -27,9 +26,9 @@ export default tseslint.config(
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-unused-vars': [
         'warn',
-        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
-      ],
-    },
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }
+      ]
+    }
   },
 
   ...pluginVue.configs['flat/recommended'],
@@ -40,18 +39,9 @@ export default tseslint.config(
       parserOptions: {
         parser: tseslint.parser,
         extraFileExtensions: ['.vue'],
-        sourceType: 'module',
-      },
-    },
-  },
-
-  {
-    languageOptions: {
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      },
-    },
+        sourceType: 'module'
+      }
+    }
   },
 
   {
@@ -59,11 +49,11 @@ export default tseslint.config(
       'vue/no-v-html': [
         'error',
         {
-          ignorePattern: '^sanitized',
-        },
-      ],
-    },
+          ignorePattern: '^sanitized'
+        }
+      ]
+    }
   },
 
-  prettierConfig,
-);
+  prettierConfig
+)
