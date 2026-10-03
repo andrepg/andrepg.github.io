@@ -24,7 +24,7 @@ const chooseTheme = (theme: SiteThemeId) => {
       role="button"
       :aria-label="$t('general.nav.selectTheme')"
       :data-tip="$t('general.nav.theme')"
-      class="btn btn-sm btn-square tooltip tooltip-left"
+      class="btn btn-sm btn-square btn-ghost tooltip tooltip-left"
     >
       <Icon :icon="APP_ICONS.themeSwitcher.button" class="text-base" />
     </button>
@@ -39,7 +39,7 @@ const chooseTheme = (theme: SiteThemeId) => {
           :aria-current="isCurrentTheme(theme.id)"
           :class="[
             'flex items-center gap-3 text-base-content',
-            isCurrentTheme(theme.id) && 'bg-primary text-primary-content'
+            isCurrentTheme(theme.id) && 'bg-neutral text-neutral-content'
           ]"
           @click="chooseTheme(theme.id)"
         >

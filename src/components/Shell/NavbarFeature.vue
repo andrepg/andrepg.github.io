@@ -5,6 +5,7 @@ import { useIntersectionObserver } from '@vueuse/core'
 import MainMenu from '@/components/Shell/MainMenu.vue'
 import ThemeSelector from '@/components/Shell/ThemeSelector.vue'
 import { APP_ICONS } from '@config/icons.ts'
+import LanguageSelector from '@/components/Shell/LanguageSelector.vue'
 
 const hasScrolled = ref(false)
 const scrollReference = ref<HTMLElement | null>(null)
@@ -52,6 +53,8 @@ useIntersectionObserver(
       </div>
 
       <ThemeSelector />
+
+      <LanguageSelector />
     </div>
   </nav>
 </template>
