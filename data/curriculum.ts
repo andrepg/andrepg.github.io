@@ -59,12 +59,12 @@ export const timeline: ITimelineEntry[] = [
   {
     id: TimelineId.siagri,
     company: 'SIAGRI',
-    stack: []
+    stack: [TechnologyId.git, TechnologyId.windows]
   },
   {
     id: TimelineId.abilityNegocios,
     company: 'ABILITY Centro de Negócios',
-    stack: []
+    stack: [TechnologyId.windows, TechnologyId.linux]
   },
   {
     id: TimelineId.santri,
@@ -74,17 +74,17 @@ export const timeline: ITimelineEntry[] = [
   {
     id: TimelineId.infoMais,
     company: 'InfoMais Sistemas',
-    stack: []
+    stack: [TechnologyId.windows, TechnologyId.linux]
   },
   {
     id: TimelineId.artLens,
     company: 'ART LENS Laboratório',
-    stack: []
+    stack: [TechnologyId.windows, TechnologyId.linux]
   },
   {
     id: TimelineId.abilityContabil,
     company: 'ABILITY Gestão Contábil',
-    stack: []
+    stack: [TechnologyId.windows, TechnologyId.linux]
   }
 ]
 

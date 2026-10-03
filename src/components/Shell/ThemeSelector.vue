@@ -8,13 +8,6 @@ import { APP_ICONS } from '@config/icons.ts'
 const { themes, currentTheme, selectTheme } = useTheme()
 
 const isCurrentTheme = (theme: SiteThemeId) => theme === currentTheme.value
-
-const chooseTheme = (theme: SiteThemeId) => {
-  selectTheme(theme)
-
-  // Focus dropdowns stay open while focused, so the selection is closed by hand.
-  // ;(document.activeElement as HTMLElement | null)?.blur()
-}
 </script>
 
 <template>
@@ -41,7 +34,7 @@ const chooseTheme = (theme: SiteThemeId) => {
             'flex items-center gap-3 text-base-content',
             isCurrentTheme(theme.id) && 'bg-neutral text-neutral-content'
           ]"
-          @click="chooseTheme(theme.id)"
+          @click="() => selectTheme(theme.id)"
         >
           <span :data-theme="theme.id" class="flex items-center gap-0.5 p-1 rounded-box">
             <span class="size-2.5 rounded-full bg-primary" />

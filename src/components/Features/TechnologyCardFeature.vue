@@ -19,7 +19,7 @@ defineProps<{
 
     <AnimatedList
       :items="items"
-      list-class="mx-auto w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 max-w-5xl"
+      list-class="mx-auto w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4"
     >
       <template #default="{ item }">
         <GlassCard tag="div" solid :data-tip="item.label" class="group/tech-item tech-item">

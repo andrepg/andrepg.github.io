@@ -99,6 +99,7 @@ export const Technologies: ITechnology[] = [
     icon: 'simple-icons:nestjs',
     recommended: false
   },
+
   {
     id: TechnologyId.typescript,
     label: 'TypeScript',
