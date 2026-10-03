@@ -1,7 +1,7 @@
 export const APP_ICONS = {
   menu: 'hugeicons:menu-01',
   themeSwitcher: {
-    button: 'hugeicons:pallete',
+    button: 'hugeicons:palette',
     selected: 'hugeicons:tick-01'
   },
 
