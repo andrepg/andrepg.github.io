@@ -3,8 +3,11 @@ import { Icon } from '@iconify/vue'
 
 import { getRecommendedTecnologias } from '@data/experience'
 import { RoutePath } from '@config/routes.ts'
+import { useLocaleRouting } from '@/composables/useLocaleRouting'
 
 const tecnologias = getRecommendedTecnologias()
+
+const { localize } = useLocaleRouting()
 </script>
 
 <template>
@@ -21,7 +24,7 @@ const tecnologias = getRecommendedTecnologias()
         <Icon class="text-xl" :icon="tecnologia.icon" />
       </span>
 
-      <a class="btn btn-sm btn-soft" :href="RoutePath.CURRICULUM">
+      <a class="btn btn-sm btn-soft" :href="localize(RoutePath.CURRICULUM)">
         <Icon icon="hugeicons:add-01" class="text-base" />
         {{ $t('profile.seeMore') }}
       </a>

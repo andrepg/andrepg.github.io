@@ -1,22 +1,26 @@
 <script setup lang="ts">
 import AnalyticsScripts from '@/components/Shell/AnalyticsScripts.vue'
 import SocialMediaShortcuts from '@/components/SocialMediaShortcuts.vue'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import { useIntersectionObserver } from '@vueuse/core'
 import { UserConfig } from '@data/website'
 import { APP_ICONS } from '@config/icons.ts'
+import { useLocaleRouting } from '@/composables/useLocaleRouting'
+import { formatDate } from '@/utils/date'
 
 const showFooter = ref(false)
 const footerRef = ref<HTMLElement | null>(null)
 
 // Informações de build (em um projeto real poderiam vir de variáveis de ambiente do Vite)
 const appVersion = '0.0.3'
-const buildDate = new Date().toLocaleDateString('pt-BR', {
-  day: '2-digit',
-  month: '2-digit',
-  year: 'numeric'
-})
+
+const { locale } = useLocaleRouting()
+
+/** Spelled in the language of the page, so the footer reads as part of it. */
+const buildDate = computed(() =>
+  formatDate(new Date(), { day: '2-digit', month: '2-digit', year: 'numeric' }, locale.value)
+)
 
 useIntersectionObserver(
   footerRef,

@@ -21,4 +21,11 @@ export function saveFile(content: string, path: string) {
   fs.writeFileSync(path, content)
 }
 
-export const parseHtmlHeader = (file: string) => parse(readFile(file)).querySelector('head')
+/**
+ * A generated page, parsed.
+ *
+ * The wrapper is synthetic and the `<html>` element is its only child, which is
+ * why the document language — written on that element by the build — is read
+ * through `querySelector('html')` and not off the root.
+ */
+export const parseHtmlDocument = (file: string) => parse(readFile(file))

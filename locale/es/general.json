@@ -6,7 +6,8 @@
     "blog": "Blog",
     "menu": "Menú",
     "theme": "Tema",
-    "selectTheme": "Seleccionar tema"
+    "selectTheme": "Seleccionar tema",
+    "selectLanguage": "Seleccionar idioma"
   },
   "footer": {
     "connect": "Conéctate",

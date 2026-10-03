@@ -14,7 +14,8 @@
  * below erased at compile time, and import across the two type modules with
  * `import type` so the cycle between them never reaches the runtime.
  */
-import type { IPageSeo } from '@/interfaces'
+import type { IAlternateLink, IPageSeo } from '@/interfaces'
+import type { AppLocale } from '@config/locales'
 
 /* SEO / head */
 
@@ -65,10 +66,19 @@ export interface PageMessages {
  * antes, porque a rota é quem declara a chave; já as descrições de um projeto ou
  * de uma entrada da timeline só podem ser lidas por quem itera o catálogo, já que
  * a rota não sabe quantos existem.
+ *
+ * `path`, `locale` e `alternates` são a página em si: onde ela está e em que
+ * idioma. Um schema que descreve a página precisa das três coisas, porque um
+ * `url` absoluto tem que apontar para a versão que o crawler está lendo — a
+ * mesma que o `canonical` anuncia.
  */
 export interface PageContext {
   seo: PageMessages
   t: MessageResolver
+  /** Concrete path of the page, language prefix included. */
+  path: string
+  locale: AppLocale
+  alternates: IAlternateLink[]
 }
 
 /* JSON-LD */

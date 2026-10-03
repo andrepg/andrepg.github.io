@@ -1,5 +1,7 @@
 import type { INavigationMenuItem, IPageSeo, IRouteMessages } from '@/interfaces'
 
+import { CONTENT_LOCALE, DEFAULT_LOCALE, LOCALES, switchPath, type AppLocale } from './locales'
+
 export enum RoutePath {
   HOME = '/',
   CURRICULUM = '/curriculo',
@@ -109,12 +111,73 @@ export const ApplicationRouter: INavigationMenuItem[] = [
     // Never rendered in the menu, but declared so that every route carries a
     // complete set: a menu label is what a `menu: false` entry would show if it
     // were ever promoted, and an article belongs to the blog either way.
+    //
+    // The one route that is not translated: the posts are markdown written in a
+    // single language, so there is nothing for a translated interface to sit on
+    // top of. Declaring it here is what keeps the router from generating
+    // `/en/blog/2024/post`, the alternate links from advertising it, and the
+    // indexes of the other languages from listing a page in them.
     label: 'general.nav.blog',
     icon: '',
     path: RoutePath.BLOG_ARTICLE,
+    locales: [CONTENT_LOCALE],
     seo: {},
     i18n: {
       seo: 'general.routes.article'
     }
   }
 ]
+
+/**
+ * Whether a route exists in a language, defaulting to every language.
+ *
+ * @param route - Route declaration to read.
+ */
+export const getRouteLocales = (route: INavigationMenuItem): readonly AppLocale[] =>
+  route.locales ?? LOCALES
+
+/**
+ * Matches a declared pattern against a concrete path, `:param` standing for any
+ * single segment.
+ *
+ * Both sides keep the empty first segment `/x` splits into, so the counts line
+ * up without any special case for the root.
+ */
+const matchesPath = (pattern: string, path: string): boolean => {
+  const segments = pattern.split('/')
+  const parts = path.split('/')
+
+  return (
+    segments.length === parts.length &&
+    segments.every((segment, index) => segment.startsWith(':') || segment === parts[index])
+  )
+}
+
+/**
+ * The route a concrete path was served by, so that a URL is enough to know
+ * which route it belongs to — and, through it, in which languages it exists.
+ *
+ * The path is read without its language prefix: a declaration describes a page,
+ * not a page in one language of it, so `/blog/2024/post`, `/pt/blog/2024/post`
+ * and `/es/blog/2024/post` are all the same route answering `['pt']`. Matching
+ * the prefix instead would make every prefixed dynamic path look undeclared, and
+ * a page would advertise every language as its own.
+ *
+ * @param path - Concrete path, as the browser or the static build has it.
+ */
+export const findRoute = (path: string): INavigationMenuItem | undefined => {
+  const unprefixed = switchPath(path, DEFAULT_LOCALE)
+
+  return ApplicationRouter.find((route) => matchesPath(route.path, unprefixed))
+}
+
+/**
+ * The languages a page at this path is published in.
+ *
+ * @param path - Concrete path, as the browser or the static build has it.
+ */
+export const availableLocales = (path: string): AppLocale[] => {
+  const route = findRoute(path)
+
+  return [...(route ? getRouteLocales(route) : LOCALES)]
+}

@@ -1,6 +1,7 @@
-import { ApplicationRouter } from '../config/routes.ts';
 import { readdirSync } from 'node:fs'
 import path from 'node:path'
+
+import { CONTENT_LOCALE, localizePath } from '../config/locales.ts'
 
 /**
  * Recursively searches for all markdown files in a directory and returns them as formatted route paths.
@@ -38,34 +39,42 @@ export const getMarkdownBlogRoutes = ({ searchPath, rootPath = searchPath, fileL
 
     return fileList;
 }
-/**
- * Filters the application routes to return only static paths (those without parameters).
- * Useful for determining which top-level pages should be pre-rendered.
- *
- * @returns An array of static route paths (e.g., ['/', '/about']).
- */
-export const getWebsiteRoutes = () => ApplicationRouter.filter(
-    route => !route.path.includes(':')
-).map(o => o.path)
 
 /**
- * Orchestrates the collection of all routes for Static Site Generation (SSG).
- * It combines static website routes with dynamically discovered blog post routes.
+ * The pages of the blog, at the URL they are served at.
  *
- * @returns A unique array of all strings representing the routes to be pre-rendered.
+ * A post is content the author wrote in one language, so it exists once: an
+ * interface translated into another language has nothing to render it with, and
+ * an article served under three URLs is the same text three times.
  */
-export const getRouteConfig = () => {
-    console.log(`[ssg] Preparing static routes`);
-
-    const blogRoutes = getMarkdownBlogRoutes({
+export const getBlogRoutes = (): string[] => {
+    const routes = getMarkdownBlogRoutes({
         searchPath: path.resolve(process.cwd(), 'blog'),
     });
 
-    console.log(`[ssg] Found ${blogRoutes.length} blog routes`);
+    return routes.map((route) => localizePath(route, CONTENT_LOCALE));
+};
 
-    const staticRoutes = getWebsiteRoutes()
+/**
+ * Orchestrates the collection of all routes for Static Site Generation (SSG).
+ *
+ * The site pages come from the route table `vite-ssg` hands over, already
+ * expanded into one path per language, and only the posts — which no table can
+ * know about — are discovered on disk.
+ *
+ * @param paths - Every path in the route table, as the router would match it.
+ * @returns A unique array of all strings representing the routes to be pre-rendered.
+ */
+export const getRouteConfig = (paths: string[]) => {
+    console.log(`[ssg] Preparing static routes`);
+
+    const staticRoutes = paths.filter((route) => !route.includes(':') && !route.includes('*'));
 
     console.log(`[ssg] Found ${staticRoutes.length} static routes`);
+
+    const blogRoutes = getBlogRoutes();
+
+    console.log(`[ssg] Found ${blogRoutes.length} blog routes`);
 
     return Array.from(new Set([...staticRoutes, ...blogRoutes]));
 }

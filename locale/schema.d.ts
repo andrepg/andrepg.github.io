@@ -1,12 +1,12 @@
 /**
  * Declara o formato das mensagens do site para o vue-i18n.
  *
- * A forma vem de `pt`, o que faz `createI18n` recusar qualquer idioma que não a
- * cubra inteira. Isso é verificado: remover `nav.selectTheme` de
- * `locale/es/general.json` faz `yarn typecheck` falhar, nomeando a chave. É o
- * que impede um idioma de ficar com um buraco — que é a falha que o runtime
- * esconde melhor, já que `DEFAULT_LOCALE` é o fallback e a chave esquecida
- * simplesmente responde em português, sem aviso e sem erro.
+ * A forma vem de `en`, o idioma padrão do site, o que faz `createI18n` recusar
+ * qualquer idioma que não a cubra inteira. Isso é verificado: remover
+ * `nav.selectTheme` de `locale/es/general.json` faz `yarn typecheck` falhar,
+ * nomeando a chave. É o que impede um idioma de ficar com um buraco — que é a
+ * falha que o runtime esconde melhor, já que `DEFAULT_LOCALE` é o fallback e a
+ * chave esquecida simplesmente responde em inglês, sem aviso e sem erro.
  *
  * ## O que esta augmentação NÃO garante
  *
@@ -27,15 +27,15 @@
  *
  * ## Domínio novo
  *
- * É uma pasta de idioma, uma linha em `locale/pt/index.ts`, e a entrada
- * aqui. O `locale/<idioma>/` correspondente não é preciso travar contra este
- * arquivo: o próprio `createI18n` cobra.
+ * É uma pasta de idioma, uma linha em `locale/en/index.ts`, e a entrada aqui. O
+ * `locale/<idioma>/` correspondente não é preciso travar contra este arquivo: o
+ * próprio `createI18n` cobra.
  */
-import type blog from './pt/blog.json'
-import type curriculum from './pt/curriculum.json'
-import type general from './pt/general.json'
-import type profile from './pt/profile.json'
-import type projects from './pt/projects.json'
+import type blog from './en/blog.json'
+import type curriculum from './en/curriculum.json'
+import type general from './en/general.json'
+import type profile from './en/profile.json'
+import type projects from './en/projects.json'
 
 declare module 'vue-i18n' {
   export interface DefineLocaleMessage {

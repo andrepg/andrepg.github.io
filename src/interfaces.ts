@@ -9,6 +9,7 @@
  * import reaches the runtime. Import with `import type` to keep it that way.
  */
 import type { RoutePath } from '@config/routes'
+import type { AppLocale } from '@config/locales'
 import type { TimelineId } from '@data/curriculum'
 import type { TechnologyId } from '@data/experience'
 import type { ProjectId } from '@data/projects'
@@ -79,6 +80,10 @@ export interface ISitemapDto {
   keywords?: string[]
   publishedTime?: string
   modifiedTime?: string
+  /** `lang` of the document the page was pre-rendered into. */
+  locale?: string
+  /** The page in the other languages it is published in. */
+  alternates?: IAlternateLink[]
 }
 
 export interface IHtmlMetaTag {
@@ -118,6 +123,10 @@ export interface IBaseOgParams {
   canonicalUrl: string
   image: string
   type: OgType
+  /** Language the page is written in, for `og:locale` and its alternates. */
+  locale: AppLocale
+  /** The same page in the other languages, minus `x-default`. */
+  alternates: IAlternateLink[]
 }
 
 export interface ITwitterOgParams {
@@ -125,6 +134,18 @@ export interface ITwitterOgParams {
   title: string
   description: string
   image: string
+}
+
+/**
+ * One page as another language publishes it, as emitted in the head and read
+ * back by the sitemap.
+ *
+ * `hreflang` is the BCP 47 tag of the target language, `x-default` for the one a
+ * search engine should fall back to.
+ */
+export interface IAlternateLink {
+  hreflang: string
+  href: string
 }
 
 /**
@@ -154,6 +175,12 @@ export interface INavigationMenuItem {
   menu: boolean
   icon: string
   path: RoutePath
+  /**
+   * Idiomas em que a rota existe. Ausente significa todos, que é o caso de tudo
+   * que é traduzível; declarar é o que reserva uma rota para o idioma em que o
+   * conteúdo foi escrito.
+   */
+  locales?: readonly AppLocale[]
   /** Metadados que não dependem de idioma. Os textos vêm de `i18n`. */
   seo: IPageSeo
   i18n: IRouteMessages

@@ -7,7 +7,8 @@ import {
   type RouterScrollBehavior
 } from 'vue-router'
 
-import { ApplicationRouter, RoutePath } from '@config/routes'
+import { ApplicationRouter, RoutePath, getRouteLocales } from '@config/routes'
+import { localizePath } from '@config/locales'
 import { APP_CONFIG } from '@config/app'
 
 /** A view as `createRouter` accepts one in a route record. */
@@ -44,12 +45,28 @@ const routeComponents: Record<RoutePath, ViewComponent> = {
 
 /**
  * Route table: the navigation and SEO declaration of `@config/routes`, joined to
- * the lazy view each entry renders.
+ * the lazy view each entry renders, and expanded into one record per language.
+ *
+ * The expansion is what makes `/curriculo` and `/pt/curriculo` the same page in
+ * two languages instead of two pages: the record carries the language in its
+ * `meta`, and everything downstream — the i18n instance, the head, the
+ * alternate links — reads it from there.
+ *
+ * The record name is suffixed with the language because `vue-router` drops a
+ * record whose name it already has, and these share everything but their path.
+ * Only the fields the router reads are copied over: the navigation and the SEO
+ * declaration are consumed by `@config/routes` and by the components, not by
+ * the router, and carrying them into a route record is what made the record look
+ * like a page definition.
  */
-export const routes: RouteRecordSingleView[] = ApplicationRouter.map((route) => ({
-  ...route,
-  component: routeComponents[route.path]
-}))
+export const routes: RouteRecordSingleView[] = ApplicationRouter.flatMap((route) =>
+  getRouteLocales(route).map((locale) => ({
+    path: localizePath(route.path, locale),
+    name: `${route.name}-${locale}`,
+    component: routeComponents[route.path],
+    meta: { locale }
+  }))
+)
 
 /**
  * Path the app is served from, read from the same `APP_CONFIG.BASE_PATH` the

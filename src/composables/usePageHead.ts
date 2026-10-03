@@ -9,8 +9,10 @@ import type { PageContext, PageMessages, PageSeoOverrides } from '@/types'
 import { resolveJsonLd } from '@/utils/structured-data'
 import { UserConfig } from '@data/website'
 import {
+  alternateLinks,
   buildPageTitle,
   canonicalUrl,
+  dtoAlternates,
   dtoArticle,
   dtoJsonLd,
   dtoKeywords,
@@ -30,6 +32,10 @@ const resolveOverrides = (overrides?: PageSeoOverrides): Partial<IPageSeo> =>
  * same head. `context.seo` carries the route's own text already translated, and
  * `context.t` is what the schemas read for content only they enumerate — a
  * timeline entry, a project — which the route declaration cannot know about.
+ *
+ * The language comes from the same context rather than from a constant: the head
+ * describes the page as it is being served, and the page is served in the
+ * language its path carries.
  */
 export const buildPageHead = (
   seo: IPageSeo,
@@ -49,10 +55,18 @@ export const buildPageHead = (
       ...dtoKeywords(seo.keywords),
       ...dtoRobots(seo.noIndex),
       ...dtoArticle(seo.publishedTime),
-      ...dtoPlainOg({ title, description, image, type, canonicalUrl: canonical }),
+      ...dtoPlainOg({
+        title,
+        description,
+        image,
+        type,
+        canonicalUrl: canonical,
+        locale: context.locale,
+        alternates: context.alternates
+      }),
       ...dtoTwitterOg({ card, title, description, image })
     ],
-    link: [{ rel: 'canonical', href: canonical }],
+    link: [{ rel: 'canonical', href: canonical }, ...dtoAlternates(context.alternates)],
     script: dtoJsonLd(resolveJsonLd(seo.jsonLd, context))
   }
 }
@@ -125,13 +139,32 @@ export const usePageHead = (
     ...resolveOverrides(overrides)
   }))
 
-  // The concrete path is required for dynamic routes such as
-  // `/blog/:year/:article`, where the declared path is only a pattern.
+  /**
+   * The language this page is served in, taken from the route record it matched
+   * — the same declaration that decided whether the record exists at all.
+   */
+  const locale = computed(() => route.meta.locale)
+
+  /**
+   * The concrete path is required for dynamic routes such as
+   * `/blog/:year/:article`, where the declared path is only a pattern. The
+   * prefix is part of it: the canonical of the Portuguese page is the Portuguese
+   * URL, not the English one.
+   */
   const canonical = computed(() => seo.value.canonicalUrl ?? canonicalUrl(route.path))
+
+  /** Where the same page lives in the other languages it is published in. */
+  const alternates = computed(() => alternateLinks(route.path))
 
   // Handed to the schemas rather than read from the i18n instance directly, so
   // that `structured-data` keeps no dependency on the plugin.
-  const context = computed<PageContext>(() => ({ seo: routeMessages.value, t }))
+  const context = computed<PageContext>(() => ({
+    seo: routeMessages.value,
+    t,
+    path: route.path,
+    locale: locale.value,
+    alternates: alternates.value
+  }))
 
   useHead(computed<ReactiveHead>(() => buildPageHead(seo.value, canonical.value, context.value)))
 

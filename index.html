@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en-US">
 
 <head>
   <meta charset="UTF-8">
@@ -8,22 +8,58 @@
 
   <meta name="google-site-verification" content="9ohRRNaoFMcCz6ru0CCyRYJku-JQVrjAZ_x4PxbIGA8" />
 
-  <meta name="description" content="Website pessoal de André Paul Grandsire, desenvolvedor de software focado em Vue.js e PHP." />
+  <meta name="description" content="Personal website of André Paul Grandsire, software developer focused on Vue.js and PHP." />
 
   <meta property="og:title" content="André Paul Grandsire" />
-  <meta property="og:description" content="Website pessoal de André Paul Grandsire, desenvolvedor de software focado em Vue.js e PHP." />
+  <meta property="og:description" content="Personal website of André Paul Grandsire, software developer focused on Vue.js and PHP." />
   <meta property="og:image" content="https://andrepg.github.io/android-chrome-512x512.png" />
-  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:locale" content="en_US" />
   <meta property="og:url" content="https://andrepg.github.io/" />
   <meta property="og:site_name" content="André Paul Grandsire" />
   <meta property="twitter:title" content="André Paul Grandsire" />
-  <meta name="twitter:description" content="Website pessoal de André Paul Grandsire, desenvolvedor de software focado em Vue.js e PHP." />
+  <meta name="twitter:description" content="Personal website of André Paul Grandsire, software developer focused on Vue.js and PHP." />
   <meta name="twitter:image" content="https://andrepg.github.io/android-chrome-512x512.png" />
   <meta name="twitter:card" content="summary" />
 
   <link rel="canonical" href="https://andrepg.github.io/" />
   <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
   <meta name="theme-color" content="#570df8" />
+
+  <script>
+    // Opens the page in the language the visitor chose, when the URL does not
+    // name one.
+    //
+    // Every language has its own URL, so the stored choice is only needed here: an
+    // unprefixed path is the default language, which is what a shared link, a
+    // bookmark or the bare domain gives someone who has already said which
+    // language they read. A path that already carries a prefix is left alone, and
+    // so is the default one, whose own prefix is the absence of one.
+    //
+    // Running before the app boots is what keeps the visitor from being shown the
+    // default language first and then moved off it. A crawler carries no cookie,
+    // so what it reads is always the language the URL announces.
+    //
+    // Assumes the site is served from the root, which it is: `base` is not set in
+    // the Vite config. Were it ever set, the base would have to be split off
+    // `path` here too. Trailing slashes are dropped on the way, since the pages
+    // are generated as `curriculo.html` and `pt/curriculo.html` rather than as
+    // indexes in a directory.
+    const DEFAULT_LOCALE = 'en';
+    const PREFIXED_LOCALES = ['pt', 'es'];
+
+    const preferredLocale = document.cookie.match(/(?:^|;\s*)locale=([^;]+)/)?.[1];
+    const [rootSegment, ...restSegments] = window.location.pathname.replace(/^\/+|\/+$/g, '').split('/');
+    const rest = restSegments.length ? `/${restSegments.join('/')}` : '';
+
+    if (
+      preferredLocale &&
+      preferredLocale !== DEFAULT_LOCALE &&
+      PREFIXED_LOCALES.includes(preferredLocale) &&
+      !PREFIXED_LOCALES.includes(rootSegment)
+    ) {
+      window.location.replace(`/${preferredLocale}${rest}`);
+    }
+  </script>
 
   <script>
     // Applies the theme saved by the theme selector (see `config/themes.ts` and
@@ -57,7 +93,7 @@
     <div class="relative z-10 flex flex-col items-center gap-8">
       <span class="loading loading-spinner loading-lg text-primary scale-125"></span>
       <div class="text-xs font-bold uppercase text-base-content animate-pulse">
-        Carregando
+        Loading
       </div>
     </div>
 

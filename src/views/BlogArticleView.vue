@@ -11,6 +11,7 @@ import { slugify } from '@/utils/slugify'
 import CardHeaderFeature from '@/components/Features/CardHeaderFeature.vue'
 import ContentLayout from '@/layouts/ContentLayout.vue'
 import { RoutePath } from '@config/routes'
+import { CONTENT_LOCALE, localizePath } from '@config/locales'
 import { usePageHead } from '@/composables/usePageHead'
 import { canonicalUrl } from '@/utils/site-metadata'
 import { blogPostingLd } from '@/utils/structured-data'
@@ -35,6 +36,16 @@ const sanitizedContent = transformContent(post.html)
 const articleUrl = canonicalUrl(route.path)
 
 const postsRelatedBySeries = getPostsBySerie(metadata.serie, articleUrl)
+
+/**
+ * Where the article and its neighbours live.
+ *
+ * An article is written in one language and served from one URL, so everything
+ * this page links to inside the blog is spelled in that language — including the
+ * breadcrumb, which is a link back to the index that lists this article.
+ */
+const blogUrl = localizePath(RoutePath.BLOG, CONTENT_LOCALE)
+const postUrl = (path: string): string => localizePath(path, CONTENT_LOCALE)
 
 /**
  * Head tags — executa durante SSG
@@ -75,9 +86,9 @@ onMounted(async () => {
         <template #default>
           <div class="breadcrumbs text-sm font-normal">
             <ul>
-              <li><a href="/blog">Blog</a></li>
+              <li><a :href="blogUrl">Blog</a></li>
               <li v-if="metadata.category">
-                <a :href="`/blog?category=${slugify(metadata.category)}`">{{
+                <a :href="`${blogUrl}?category=${slugify(metadata.category)}`">{{
                   metadata.category
                 }}</a>
               </li>
@@ -135,7 +146,9 @@ onMounted(async () => {
           >
             <a
               class="list-col-grow"
-              :href="(postFromSerie.path !== route.path && postFromSerie.path) || undefined"
+              :href="
+                (postFromSerie.path !== route.path && postUrl(postFromSerie.path)) || undefined
+              "
             >
               <span class="text-2xl font-thin opacity-30 tabular-nums me-3">{{ index + 1 }}</span>
               {{ postFromSerie.title }}

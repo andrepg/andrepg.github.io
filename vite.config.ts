@@ -42,8 +42,6 @@ export default defineConfig({
 
   ssgOptions: {
     concurrency: 2,
-    includedRoutes() {
-      return getRouteConfig()
-    }
+    includedRoutes: getRouteConfig
   }
 } as UserConfig)
