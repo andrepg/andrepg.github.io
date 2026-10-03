@@ -11,11 +11,14 @@ import TechnologyShortcuts from '@/components/TechnologyShortcuts.vue'
         {{ UserConfig.author.name }}
       </h1>
 
-      <small class="prose max-w-4xl mb-10">{{ UserConfig.author.biography }}</small>
+      <small class="prose max-w-4xl mb-10">{{ $t('profile.biography') }}</small>
 
-      <div class="flex flex-col">
-        <SocialMediaShortcuts />
-        <span class="divider" />
+      <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-2">
+          <span class="uppercase text-xs">Redes sociais</span>
+          <SocialMediaShortcuts />
+        </div>
+
         <TechnologyShortcuts />
       </div>
     </div>

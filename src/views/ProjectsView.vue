@@ -1,28 +1,30 @@
 <script setup lang="ts">
-import { RoutePath, getRouteSeo } from '@config/routes'
+import { useI18n } from 'vue-i18n'
+
+import { RoutePath } from '@config/routes'
 import { usePageHead } from '@/composables/usePageHead'
-import { Projects } from '@data/projects'
+import { getProjects } from '@data/projects'
 
 import CardHeaderFeature from '@/components/Features/CardHeaderFeature.vue'
 import BaseLayout from '@/layouts/BaseLayout.vue'
 import ProjectCardFeature from '@/components/Features/ProjectCardFeature.vue'
 import AnimatedList from '@/components/Shell/AnimatedList.vue'
 
-const projects = Projects
+const { t } = useI18n()
+
+const projects = getProjects(t)
 
 /** Single source of truth: the same copy is used for SEO and for the subtitle. */
-const description = getRouteSeo(RoutePath.PROJECTS).description ?? ''
-
-usePageHead(RoutePath.PROJECTS)
+const seo = usePageHead(RoutePath.PROJECTS)
 </script>
 
 <template>
   <BaseLayout>
     <template #header>
       <CardHeaderFeature tag="h1">
-        <template #default>Projetos</template>
+        <template #default>{{ $t('projects.title') }}</template>
         <template #subtitle>
-          {{ description }}
+          {{ seo.description }}
         </template>
       </CardHeaderFeature>
     </template>

@@ -1,16 +1,42 @@
-import type { ITimelineItem } from '@/interfaces';
+import type { ITimelineEntry, ITimelineItem } from '@/interfaces'
+import type { MessageResolver } from '@/types'
 
 import { TechnologyId } from './experience'
 
-export const timeline: ITimelineItem[] = [
+/**
+ * Every valid timeline identifier.
+ *
+ * Adding a member here without adding the matching entry to `timeline`
+ * (or vice-versa) is a type error, so the two stay in sync by construction.
+ *
+ * The id doubles as the key under which the entry's texts live, under `items`,
+ * in `locale/<locale>/curriculum.json`. A closed union is also what lets
+ * `getTimeline` build its message key as a template literal instead of a
+ * concatenation done by hand.
+ */
+export enum TimelineId {
+  startap = 'startap',
+  xtreed = 'xtreed',
+  siagri = 'siagri',
+  abilityNegocios = 'abilityNegocios',
+  santri = 'santri',
+  infoMais = 'infoMais',
+  artLens = 'artLens',
+  abilityContabil = 'abilityContabil'
+}
+
+/**
+ * Career entries, as the catalog: who worked where, and with what.
+ *
+ * `date`, `title` and `description` are translated text and live in
+ * `locale/<locale>/curriculum.json` — see `getTimeline`. Two entries have no
+ * description at all, which is why the message for those is an empty string
+ * rather than a missing key.
+ */
+export const timeline: ITimelineEntry[] = [
   {
-    date: '2019 - atualmente',
-    title: 'Founder (Freelancer/Part-Time)',
+    id: TimelineId.startap,
     company: 'Startap Desenvolvimento Digital',
-    description:
-      'Engenharia de uma plataforma SaaS de e-commerce educacional com mais de 5 mil vendas ' +
-      'e uma receita global de seis dígitos, com foco em evolução da aplicação, modernização ' +
-      'arquitetural e implantação de infraestrutura.',
     stack: [
       TechnologyId.laravel,
       TechnologyId.wordpress,
@@ -20,13 +46,8 @@ export const timeline: ITimelineItem[] = [
     ]
   },
   {
-    date: '2023-2026',
-    title: 'Software Engineer',
+    id: TimelineId.xtreed,
     company: 'Xtreed',
-    description:
-      'Construção de aplicações open & closed source, sob medida, otimização de páginas de ' +
-      'captura digital com tratamento de milhares de leads e consultoria técnica estratégica na ' +
-      'implementação de ERP para empresas com centenas de transações mensais.',
     stack: [
       TechnologyId.laravel,
       TechnologyId.react,
@@ -36,57 +57,55 @@ export const timeline: ITimelineItem[] = [
     ]
   },
   {
-    date: '2020-2021',
-    title: 'Software Developer',
-    description:
-      'Manutenção e expansão de um ERP corporativo do setor agrícola desenvolvido em Delphi 7 ' +
-      'e Microsoft SQL Server, atendendo a centenas de clientes corporativos de agronegócio em ' +
-      'todo o país',
+    id: TimelineId.siagri,
     company: 'SIAGRI',
     stack: []
   },
   {
-    date: '2017-2019',
-    title: 'Gestor Financeiro',
-    description:
-      'Gestão da administração financeira de um escritório de contabilidade e de clientes ' +
-      'externos, conectando controles financeiros a processos fiscais para uma carteira de 80 ' +
-      'clientes corporativos.',
+    id: TimelineId.abilityNegocios,
     company: 'ABILITY Centro de Negócios',
     stack: []
   },
   {
-    date: '2017',
-    title: 'Software Developer',
-    description:
-      'Desenvolvimento de uma aplicação ERP corporativa desktop utilizada por centenas de ' +
-      'negócios varejistas, com gestão de catálogos de estoque superiores a 1.500 itens ' +
-      'cadastrados.',
+    id: TimelineId.santri,
     company: 'Santri Sistemas',
     stack: []
   },
   {
-    date: '2017',
-    title: 'Software Developer / P & D / Automação',
-    description:
-      'Construção de ferramentas de software internas e externas, com assistência técnica ' +
-      'avançada a mais de 40 contas corporativas que gerenciam centenas de transações ' +
-      'semanais de venda.',
+    id: TimelineId.infoMais,
     company: 'InfoMais Sistemas',
     stack: []
   },
   {
-    date: '2009-2010',
-    title: 'Administrador de Sistemas e Redes',
-    description: '',
+    id: TimelineId.artLens,
     company: 'ART LENS Laboratório',
     stack: []
   },
   {
-    date: '2007-2009',
-    title: 'Administrador de Sistemas e Redes',
-    description: '',
+    id: TimelineId.abilityContabil,
     company: 'ABILITY Gestão Contábil',
     stack: []
   }
 ]
+
+/**
+ * Career entries with their translated text, ready to display.
+ *
+ * The message key is assembled here and nowhere else: the catalog is the only
+ * place that knows how many entries exist and what each one is called. Callers
+ * receive plain strings, which is why no view and no JSON-LD builder has to know
+ * that a timeline entry is translated at all.
+ *
+ * `current` is interpolated into whichever date mentions it — only the entry
+ * still running does — and ignored by the ones that are plain year ranges.
+ *
+ * @param t - Resolver of the active locale, handed over instead of imported so
+ *   this module keeps no dependency on Vue and stays loadable by Node.
+ */
+export const getTimeline = (t: MessageResolver): ITimelineItem[] =>
+  timeline.map((entry) => ({
+    ...entry,
+    date: t(`curriculum.items.${entry.id}.date`, { current: t('general.time.current') }),
+    title: t(`curriculum.items.${entry.id}.title`),
+    description: t(`curriculum.items.${entry.id}.description`)
+  }))

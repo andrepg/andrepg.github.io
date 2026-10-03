@@ -2,13 +2,14 @@
 import { Icon } from '@iconify/vue'
 
 import { getRecommendedTecnologias } from '@data/experience'
+import { RoutePath } from '@config/routes.ts'
 
 const tecnologias = getRecommendedTecnologias()
 </script>
 
 <template>
   <div>
-    <span v-if="tecnologias.length" class="uppercase text-xs">Experiência</span>
+    <span v-if="tecnologias.length" class="uppercase text-xs">{{ $t('profile.experience') }}</span>
 
     <div class="flex flex-row gap-5 items-center flex-wrap">
       <span
@@ -20,10 +21,10 @@ const tecnologias = getRecommendedTecnologias()
         <Icon class="text-xl" :icon="tecnologia.icon" />
       </span>
 
-      <button class="btn btn-sm btn-soft">
+      <a class="btn btn-sm btn-soft" :href="RoutePath.CURRICULUM">
         <Icon icon="hugeicons:add-01" class="text-base" />
-        Ver mais
-      </button>
+        {{ $t('profile.seeMore') }}
+      </a>
     </div>
   </div>
 </template>

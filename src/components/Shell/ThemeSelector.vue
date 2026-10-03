@@ -22,8 +22,8 @@ const chooseTheme = (theme: SiteThemeId) => {
     <button
       tabindex="0"
       role="button"
-      aria-label="Selecionar tema"
-      data-tip="Tema"
+      :aria-label="$t('general.nav.selectTheme')"
+      :data-tip="$t('general.nav.theme')"
       class="btn btn-sm btn-square tooltip tooltip-left"
     >
       <Icon :icon="APP_ICONS.themeSwitcher.button" class="text-base" />

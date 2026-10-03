@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
+import { useI18n } from 'vue-i18n'
 
 import { RoutePath } from '@config/routes'
 import { usePageHead } from '@/composables/usePageHead'
@@ -8,7 +9,7 @@ import type { IResolvedTimelineItem } from '@/interfaces'
 import type { TimelinePosition } from '@/types'
 
 import { getTecnologias, Technologies } from '@data/experience'
-import { timeline } from '@data/curriculum'
+import { getTimeline } from '@data/curriculum'
 
 import BaseLayout from '@/layouts/BaseLayout.vue'
 import CardHeaderFeature from '@/components/Features/CardHeaderFeature.vue'
@@ -16,10 +17,12 @@ import TechnologyBadge from '@/components/TechnologyBadge.vue'
 import TechnologyCardFeature from '@/components/Features/TechnologyCardFeature.vue'
 import SectionHeader from '@/components/SectionHeader.vue'
 
+const { t } = useI18n()
+
 const tecnologias = Technologies
 
 /** Timeline entries reference technologies by id, resolved here for display. */
-const timelineComTecnologias: IResolvedTimelineItem[] = timeline.map((item) => ({
+const timelineComTecnologias: IResolvedTimelineItem[] = getTimeline(t).map((item) => ({
   ...item,
   stack: getTecnologias(item.stack)
 }))
@@ -35,10 +38,10 @@ const calculatePosition = (index: number): TimelinePosition =>
     <template #header>
       <CardHeaderFeature>
         <h1 class="text-2xl font-semibold flex flex-col md:w-3/4">
-          Experiência & Tecnologias
+          {{ $t('curriculum.title') }}
 
           <small class="opacity-70 font-normal font-md w-full leading-snug flex-1">
-            Minha trajetória e carreira resumida, projetos publicados e experiência de mercado real.
+            {{ $t('curriculum.subtitle') }}
           </small>
         </h1>
       </CardHeaderFeature>
@@ -47,8 +50,8 @@ const calculatePosition = (index: number): TimelinePosition =>
     <TechnologyCardFeature :items="tecnologias" />
 
     <SectionHeader>
-      <template #title>Trajetória</template>
-      <template #subtitle>Por onde passei, o que fiz e com o que trabalhei</template>
+      <template #title>{{ $t('curriculum.timeline.title') }}</template>
+      <template #subtitle>{{ $t('curriculum.timeline.subtitle') }}</template>
     </SectionHeader>
 
     <ul class="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">

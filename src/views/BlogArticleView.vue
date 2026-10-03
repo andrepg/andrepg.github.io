@@ -109,12 +109,15 @@ onMounted(async () => {
         <SectionHeader>
           <template #title>
             <Icon icon="hugeicons:book-open-02" class="size-7 inline-block" />
-            Mais postagens desta série
+            {{ $t('blog.article.serie.title') }}
           </template>
 
           <template #subtitle>
-            Esta postagem faz parte da série <a class="link">{{ metadata.serie }}</a
-            >. Veja a série completa abaixo
+            <i18n-t keypath="blog.article.serie.subtitle" tag="span">
+              <template #serie>
+                <a class="link">{{ metadata.serie }}</a>
+              </template>
+            </i18n-t>
           </template>
         </SectionHeader>
 
@@ -122,7 +125,7 @@ onMounted(async () => {
           <li
             v-for="(postFromSerie, index) in postsRelatedBySeries"
             :key="postFromSerie.path"
-            data-tip="Este post"
+            :data-tip="$t('blog.article.thisPost')"
             :class="[
               'transition-all duration-500',
               'list-row rounded-none',
@@ -141,7 +144,7 @@ onMounted(async () => {
             <span
               v-if="postFromSerie.path === route.path"
               class="badge badge-soft badge-sm self-center badge-neutral"
-              >Este post</span
+              >{{ $t('blog.article.thisPost') }}</span
             >
           </li>
         </ul>

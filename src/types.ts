@@ -30,13 +30,61 @@ export type TwitterCard = 'summary' | 'summary_large_image'
  */
 export type PageSeoOverrides = Partial<IPageSeo> | (() => Partial<IPageSeo>)
 
+/* i18n */
+
+/**
+ * Resolve uma chave pontilhada de mensagem, com os mesmos parâmetros de `t`.
+ *
+ * Existe para que os catálogos de `data/` e a camada de JSON-LD leiam texto
+ * traduzido sem importarem o vue-i18n: quem sabe o que é uma mensagem é
+ * `usePageHead`, que recebe o `t` da instância ativa e o repassa. O bom efeito
+ * colateral é o fallback — chave ausente avisa no console em vez de virar
+ * `undefined` dentro de um `<script type="application/ld+json">`, que ninguém
+ * enxerga.
+ */
+export type MessageResolver = (key: string, named?: Record<string, unknown>) => string
+
+/**
+ * Textos de uma página já resolvidos, no formato que o head e os schemas
+ * JSON-LD esperam.
+ *
+ * Tudo opcional de propósito: uma rota pode declarar só `title`, e o que faltar
+ * continua caindo no fallback site-wide (a biografia curta, o nome do site).
+ */
+export interface PageMessages {
+  title?: string
+  description?: string
+  keywords?: string[]
+}
+
+/**
+ * O que a camada de head entrega para quem monta uma página: os textos da rota,
+ * já traduzidos, e o resolvedor para o conteúdo que a própria página enumera.
+ *
+ * Separar os dois não é preciosismo — os textos da rota podem ser resolvidos
+ * antes, porque a rota é quem declara a chave; já as descrições de um projeto ou
+ * de uma entrada da timeline só podem ser lidas por quem itera o catálogo, já que
+ * a rota não sabe quantos existem.
+ */
+export interface PageContext {
+  seo: PageMessages
+  t: MessageResolver
+}
+
 /* JSON-LD */
 
 /** A schema.org document. Plain and serializable, so it can be stringified. */
 export type JsonLdDocument = Record<string, unknown>
 
-/** A schema.org document factory. Must return a plain serializable object. */
-export type JsonLdBuilder = () => JsonLdDocument
+/**
+ * A schema.org document factory. Must return a plain serializable object.
+ *
+ * Takes the page's resolved text and its translator, because a schema describes
+ * the page in the page's language: what the visitor reads is also what the
+ * crawler should read. The dependency arrives as a parameter so this module
+ * keeps no import of the plugin.
+ */
+export type JsonLdBuilder = (context: PageContext) => JsonLdDocument
 
 /** Identifiers of the schemas bundled in `@/utils/structured-data`. */
 export type JsonLdKey = 'person' | 'profile' | 'collection'

@@ -9,7 +9,9 @@
  * import reaches the runtime. Import with `import type` to keep it that way.
  */
 import type { RoutePath } from '@config/routes'
+import type { TimelineId } from '@data/curriculum'
 import type { TechnologyId } from '@data/experience'
+import type { ProjectId } from '@data/projects'
 import type { JsonLdInput, OgType, ThemeScheme, TwitterCard } from './types'
 
 /**
@@ -22,13 +24,16 @@ export interface IUserConfig {
     description: string
     image: string
   }
+  /**
+   * Identidade do autor.
+   *
+   * Cargo e biografias são texto traduzível e foram para
+   * `locale/<idioma>/profile.json`; o que fica aqui é o que não se traduz — o
+   * nome é usado como nome do site nos metadados e nos schemas.
+   */
   author: {
     name: string
     avatar: string
-    role: string
-
-    biography: string
-    shortBiography: string
   }
 }
 
@@ -125,12 +130,33 @@ export interface ITwitterOgParams {
 /**
  * Routing
  */
+/**
+ * Onde uma rota busca seus textos traduzidos.
+ *
+ * `seo` é um prefixo, não três chaves: `usePageHead` lê `{prefixo}.title`,
+ * `{prefixo}.description` e `{prefixo}.keywords`. Um prefixo por rota é mais curto
+ * de declarar e deixa visível, no mesmo lugar, que a página inteira se resolve a
+ * partir de um único bloco do arquivo de mensagens.
+ */
+export interface IRouteMessages {
+  seo: string
+}
+
 export interface INavigationMenuItem {
+  /**
+   * Identificador estável da rota: nome do registro no `vue-router` e chave do
+   * `v-for`. Não é traduzido de propósito — trocar de idioma não pode renomear a
+   * rota.
+   */
   name: string
+  /** Chave i18n do rótulo exibido no menu. */
+  label: string
   menu: boolean
   icon: string
   path: RoutePath
+  /** Metadados que não dependem de idioma. Os textos vêm de `i18n`. */
   seo: IPageSeo
+  i18n: IRouteMessages
 }
 
 /**
@@ -153,21 +179,45 @@ export interface ITechnology {
   recommended: boolean
 }
 
-export interface IProject {
+/**
+ * Projeto como vive no catálogo: só o que não se traduz.
+ *
+ * `description` saiu daqui para `locale/<idioma>/projects.json` — veja
+ * `getProjects`. `label` continua aqui porque nome de projeto é nome próprio.
+ */
+export interface IProjectMeta {
+  id: ProjectId
   label: string
   target: string
   icon: string
+  /** Destaques aparecem na home. */
   highlight: boolean
+}
+
+/** Projeto com o texto traduzido, como `getProjects` o devolve. */
+export type IProject = IProjectMeta & {
   description: string
 }
 
-export interface ITimelineItem {
-  title: string
+/**
+ * Entrada da timeline como vive no catálogo: só o que não se traduz.
+ *
+ * `date`, `title` e `description` saíram daqui para
+ * `locale/<idioma>/curriculum.json`; `company` continua aqui porque é nome
+ * próprio.
+ */
+export interface ITimelineEntry {
+  id: TimelineId
   company: string
-  date: string
-  description: string
   /** Ids from `Technologies`, resolved to full definitions by `getTecnologias`. */
   stack: TechnologyId[]
+}
+
+/** Entrada da timeline com os textos traduzidos, como `getTimeline` a devolve. */
+export type ITimelineItem = ITimelineEntry & {
+  date: string
+  title: string
+  description: string
 }
 
 /** A timeline entry with its technology ids already resolved for display. */

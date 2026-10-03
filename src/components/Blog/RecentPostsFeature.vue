@@ -8,9 +8,9 @@ const posts = getRecentPosts(5)
 
 <template>
   <AnimatedListFeature
-    title="Postagens Recentes"
+    :title="$t('blog.recentPosts.title')"
     see-more-target="/blog"
-    see-more-text="Ver postagens mais antigas"
+    :see-more-text="$t('blog.recentPosts.seeMore')"
   >
     <PostTimelineFeature v-if="posts.length" :posts="posts" />
   </AnimatedListFeature>

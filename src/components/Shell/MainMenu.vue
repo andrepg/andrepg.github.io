@@ -18,7 +18,7 @@ const menuOrientation = computed(() => `menu-${props.orientation}`)
 
 <template>
   <ul tabindex="-1" :class="['menu menu-sm', menuOrientation]">
-    <li v-for="link in menuItems" :key="link.name">
+    <li v-for="link in menuItems" :key="link.path">
       <a
         :href="link.path"
         :class="[
@@ -29,7 +29,7 @@ const menuOrientation = computed(() => `menu-${props.orientation}`)
         ]"
       >
         <Icon :icon="link.icon" class="text-base" />
-        {{ link.name }}
+        {{ $t(link.label) }}
       </a>
     </li>
   </ul>

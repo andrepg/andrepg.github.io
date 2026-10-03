@@ -45,7 +45,7 @@ useIntersectionObserver(
               <h5 class="text-xl font-light tracking-tight">{{ UserConfig.author.name }}</h5>
 
               <p class="max-w-xs opacity-70 leading-relaxed text-sm">
-                {{ UserConfig.author.shortBiography }}
+                {{ $t('profile.shortBiography') }}
               </p>
             </div>
           </div>
@@ -53,7 +53,7 @@ useIntersectionObserver(
 
         <Transition name="fade">
           <nav v-if="showFooter" style="transition-delay: 500ms">
-            <h6 class="footer-title opacity-100 mb-4">Conecte-se</h6>
+            <h6 class="footer-title opacity-100 mb-4">{{ $t('general.footer.connect') }}</h6>
             <SocialMediaShortcuts />
           </nav>
         </Transition>
@@ -67,19 +67,19 @@ useIntersectionObserver(
         >
           <div class="flex items-center gap-2">
             <Icon :icon="APP_ICONS.footer.gitBranch" class="size-3.5" />
-            <span>Versão {{ appVersion }}</span>
+            <span>{{ $t('general.footer.version', { version: appVersion }) }}</span>
           </div>
           <div class="flex items-center gap-2">
             <Icon :icon="APP_ICONS.footer.buildDate" class="size-3.5" />
-            <span>Atualizado em {{ buildDate }}</span>
+            <span>{{ $t('general.footer.updatedAt', { date: buildDate }) }}</span>
           </div>
           <div class="flex items-center gap-2">
             <Icon :icon="APP_ICONS.footer.hosting" class="size-3.5" />
-            <span>Hospedado no GitHub Pages</span>
+            <span>{{ $t('general.footer.hostedOn') }}</span>
           </div>
           <div class="flex items-center gap-2">
             <Icon :icon="APP_ICONS.footer.madeWith" class="size-3.5" />
-            <span>Feito com VueJS</span>
+            <span>{{ $t('general.footer.madeWith') }}</span>
           </div>
         </div>
       </Transition>

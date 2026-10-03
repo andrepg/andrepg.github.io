@@ -10,12 +10,6 @@ export const UserConfig: IUserConfig = Object.freeze({
   },
   author: {
     name: 'André Paul Grandsire',
-    avatar: 'https://github.com/andrepg.png',
-    role: 'Programador Full Stack',
-    biography:
-      'Mais de 15 anos trabalhando com tecnologia. Programador Full Stack e desenvolvedor Open Source. ' +
-      '\nDou consultorias, crio sites, estratégias digitais e serviços particulares. Especialista em processos ERP.',
-    shortBiography:
-      'Programador desde 2014, criando soluções mobile, web e desktop. Apaixonado por novas tecnologias.'
+    avatar: 'https://github.com/andrepg.png'
   }
 })

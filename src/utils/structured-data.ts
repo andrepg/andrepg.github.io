@@ -1,11 +1,18 @@
 import type { IPost } from '@/interfaces'
-import type { JsonLdBuilder, JsonLdDocument, JsonLdInput, JsonLdKey } from '@/types'
+import type {
+  JsonLdBuilder,
+  JsonLdDocument,
+  JsonLdInput,
+  JsonLdKey,
+  MessageResolver,
+  PageContext
+} from '@/types'
 
 import { UserConfig } from '@data/website'
 import { SocialMediaLinks } from '@data/social-media'
-import { timeline } from '@data/curriculum'
+import { getTimeline } from '@data/curriculum'
 import { getTecnologias } from '@data/experience'
-import { Projects } from '@data/projects'
+import { getProjects } from '@data/projects'
 import { canonicalUrl } from '@/utils/site-metadata'
 
 const SCHEMA = 'https://schema.org'
@@ -26,12 +33,12 @@ const absoluteUrl = canonicalUrl
 const sameAs = (): string[] =>
   SocialMediaLinks.filter((link) => link.target.startsWith('http')).map((link) => link.target)
 
-const personNode = () => ({
+const personNode = (t: MessageResolver) => ({
   '@type': 'Person',
   '@id': `${SITE_URL}/#person`,
   name: SITE_NAME,
-  jobTitle: UserConfig.author.role,
-  description: UserConfig.author.biography,
+  jobTitle: t('profile.role'),
+  description: t('profile.biography'),
   url: SITE_URL,
   image: UserConfig.author.avatar,
   sameAs: sameAs()
@@ -52,33 +59,44 @@ const webSiteNode = () => ({
   '@id': `${SITE_URL}/#website`,
   name: SITE_NAME,
   url: `${SITE_URL}/`,
-  inLanguage: 'pt-BR',
+  inLanguage: SITE_LANGUAGE,
   publisher: { '@id': `${SITE_URL}/#person` }
 })
 
+/**
+ * Site language, declared literally.
+ *
+ * A schema advertises the language its content is written in, not the one the
+ * visitor is browsing in, so this is a property of the site rather than of the
+ * page. It is correct while Portuguese is the only locale shipped — adding a
+ * second one means deciding whether the site becomes multilingual, and only then
+ * does this stop being a constant.
+ */
+const SITE_LANGUAGE = 'pt-BR'
+
 /** Homepage: who the author is, plus the site wrapper. */
-export const personLd: JsonLdBuilder = () => ({
+export const personLd: JsonLdBuilder = ({ t }) => ({
   '@context': SCHEMA,
-  '@graph': [personNode(), webSiteNode()]
+  '@graph': [personNode(t), webSiteNode()]
 })
 
 /** Curriculum: the profile page and the roles behind it. */
-export const profileLd: JsonLdBuilder = () => ({
+export const profileLd: JsonLdBuilder = ({ seo, t }) => ({
   '@context': SCHEMA,
   '@graph': [
     {
       '@type': 'ProfilePage',
       '@id': `${absoluteUrl('/curriculo')}#webpage`,
       url: absoluteUrl('/curriculo'),
-      name: 'Currículo',
+      name: seo.title ?? '',
       isPartOf: { '@id': `${SITE_URL}/#website` },
       about: { '@id': `${SITE_URL}/#person` },
       mainEntity: {
         '@type': 'Person',
         '@id': `${SITE_URL}/#person`,
         name: SITE_NAME,
-        jobTitle: UserConfig.author.role,
-        hasOccupation: timeline.map((item, index) => ({
+        jobTitle: t('profile.role'),
+        hasOccupation: getTimeline(t).map((item, index) => ({
           '@type': 'Occupation',
           position: index + 1,
           name: item.title,
@@ -91,18 +109,25 @@ export const profileLd: JsonLdBuilder = () => ({
   ]
 })
 
-/** Projects index: the published projects as an ordered list. */
-export const collectionLd: JsonLdBuilder = () => ({
+/**
+ * Projects index: the published projects as an ordered list.
+ *
+ * The page's own name and description come from the route's resolved text, so
+ * the schema and the `<title>` can no longer say different things. The project
+ * descriptions come from the same resolver the page renders them with, for the
+ * same reason.
+ */
+export const collectionLd: JsonLdBuilder = ({ seo, t }) => ({
   '@context': SCHEMA,
   '@type': 'CollectionPage',
   '@id': `${absoluteUrl('/projetos')}#webpage`,
   url: absoluteUrl('/projetos'),
-  name: 'Projetos',
-  description: 'Meus projetos publicados mais relevantes.',
+  name: seo.title ?? '',
+  description: seo.description ?? '',
   isPartOf: { '@id': `${SITE_URL}/#website` },
   mainEntity: {
     '@type': 'ItemList',
-    itemListElement: Projects.map((project, index) => ({
+    itemListElement: getProjects(t).map((project, index) => ({
       '@type': 'ListItem',
       position: index + 1,
       name: project.label,
@@ -115,17 +140,21 @@ export const collectionLd: JsonLdBuilder = () => ({
 /**
  * Blog index. Depends on the published posts, so it is built by the view and
  * handed over to `usePageHead` as a custom schema.
+ *
+ * Only the surrounding text is translated. The posts keep whatever language they
+ * were written in, which is what makes them indistinguishable from the rest of
+ * the page to a crawler that reads both.
  */
 export const blogLd =
   (posts: IPost[]): JsonLdBuilder =>
-  () => ({
+  ({ t }) => ({
     '@context': SCHEMA,
     '@type': 'Blog',
     '@id': `${absoluteUrl('/blog')}#blog`,
-    name: `Blog de ${SITE_NAME}`,
-    description: `Publicações e notas de ${SITE_NAME}.`,
+    name: t('blog.ld.name', { site: SITE_NAME }),
+    description: t('blog.ld.description', { site: SITE_NAME }),
     url: absoluteUrl('/blog'),
-    inLanguage: 'pt-BR',
+    inLanguage: SITE_LANGUAGE,
     isPartOf: { '@id': `${SITE_URL}/#website` },
     publisher: publisherNode(),
     blogPost: posts.map((post) => ({
@@ -150,7 +179,7 @@ export const blogPostingLd =
     description: post.excerpt,
     datePublished: post.published_at,
     dateModified: post.published_at,
-    inLanguage: 'pt-BR',
+    inLanguage: SITE_LANGUAGE,
     image: post.cover ?? SITE_IMAGE,
     url: canonicalUrl,
     author: { '@id': `${SITE_URL}/#person` },
@@ -168,8 +197,14 @@ const JSON_LD_BUILDERS: Record<JsonLdKey, JsonLdBuilder> = {
 /**
  * Normalizes the `jsonLd` page metadata into schema documents, expanding the
  * bundled schema keys used by the route declaration.
+ *
+ * `context` is the page's resolved text plus its translator, so every schema
+ * describes the page in the language the page is being rendered in.
  */
-export const resolveJsonLd = (input?: JsonLdInput): JsonLdDocument[] => {
+export const resolveJsonLd = (
+  input: JsonLdInput | undefined,
+  context: PageContext
+): JsonLdDocument[] => {
   if (!input) return []
 
   const items = Array.isArray(input) ? input : [input]
@@ -181,6 +216,6 @@ export const resolveJsonLd = (input?: JsonLdInput): JsonLdDocument[] => {
       throw new Error(`[structured-data] Unknown JSON-LD key: ${item}`)
     }
 
-    return builder()
+    return builder(context)
   })
 }

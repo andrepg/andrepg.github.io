@@ -39,9 +39,9 @@ usePageHead(RoutePath.BLOG, { jsonLd: blogLd(posts) })
   <ContentLayout>
     <template #header>
       <CardHeaderFeature tag="h1">
-        <template #default> Todas as minhas publicações </template>
+        <template #default>{{ $t('blog.list.title') }}</template>
         <template #subtitle>
-          Os registros do meu trabalho, notas relevantes e devaneios sobre a tecnologia.
+          {{ $t('blog.list.subtitle') }}
         </template>
       </CardHeaderFeature>
     </template>

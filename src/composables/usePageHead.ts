@@ -1,11 +1,13 @@
-import { computed } from 'vue'
+import { computed, type ComputedRef } from 'vue'
 import { useRoute } from 'vue-router'
 import { useHead, type ReactiveHead } from '@unhead/vue'
+import { useI18n } from 'vue-i18n'
 
-import { getRouteSeo, type RoutePath } from '@config/routes'
+import { getRouteMessages, getRouteSeo, type RoutePath } from '@config/routes'
 import type { IPageSeo } from '@/interfaces'
-import type { PageSeoOverrides } from '@/types'
+import type { PageContext, PageMessages, PageSeoOverrides } from '@/types'
 import { resolveJsonLd } from '@/utils/structured-data'
+import { UserConfig } from '@data/website'
 import {
   buildPageTitle,
   canonicalUrl,
@@ -16,7 +18,6 @@ import {
   dtoRobots,
   dtoTwitterOg
 } from '@/utils/site-metadata'
-import { UserConfig } from '@data/website'
 
 const resolveOverrides = (overrides?: PageSeoOverrides): Partial<IPageSeo> =>
   typeof overrides === 'function' ? overrides() : (overrides ?? {})
@@ -25,11 +26,18 @@ const resolveOverrides = (overrides?: PageSeoOverrides): Partial<IPageSeo> =>
  * Assembles the whole document head of a page: title, description, keywords,
  * canonical link, Open Graph, Twitter cards, robots and JSON-LD schemas.
  *
- * Pure: given the same metadata it always returns the same head.
+ * Pure: given the same metadata and the same translator it always returns the
+ * same head. `context.seo` carries the route's own text already translated, and
+ * `context.t` is what the schemas read for content only they enumerate — a
+ * timeline entry, a project — which the route declaration cannot know about.
  */
-export const buildPageHead = (seo: IPageSeo, canonical: string): ReactiveHead => {
+export const buildPageHead = (
+  seo: IPageSeo,
+  canonical: string,
+  context: PageContext
+): ReactiveHead => {
   const title = buildPageTitle(seo.title)
-  const description = seo.description ?? UserConfig.author.shortBiography
+  const description = seo.description ?? context.t('profile.shortBiography')
   const image = seo.image ?? UserConfig.website.image
   const type = seo.type ?? 'website'
   const card = seo.card ?? 'summary'
@@ -45,7 +53,7 @@ export const buildPageHead = (seo: IPageSeo, canonical: string): ReactiveHead =>
       ...dtoTwitterOg({ card, title, description, image })
     ],
     link: [{ rel: 'canonical', href: canonical }],
-    script: dtoJsonLd(resolveJsonLd(seo.jsonLd))
+    script: dtoJsonLd(resolveJsonLd(seo.jsonLd, context))
   }
 }
 
@@ -55,7 +63,7 @@ export const buildPageHead = (seo: IPageSeo, canonical: string): ReactiveHead =>
  * them.
  *
  * @example
- * usePageHead(RoutePath.PROJECTS)
+ * const seo = usePageHead(RoutePath.PROJECTS)
  *
  * @example
  * usePageHead(RoutePath.BLOG_ARTICLE, () => ({
@@ -67,12 +75,53 @@ export const buildPageHead = (seo: IPageSeo, canonical: string): ReactiveHead =>
  *
  * @param path - Route whose declared metadata should be used.
  * @param overrides - Fields to replace, or a getter for dynamic pages.
+ * @returns The resolved metadata, for views that show part of it on the page —
+ *   reading the copy from here is what keeps what the visitor reads and what
+ *   the search engine reads from being the same string written twice.
  */
-export const usePageHead = (path: RoutePath, overrides?: PageSeoOverrides): void => {
+export const usePageHead = (
+  path: RoutePath,
+  overrides?: PageSeoOverrides
+): ComputedRef<IPageSeo> => {
   const route = useRoute()
+  const { t, tm, te } = useI18n()
+
+  /**
+   * The page's own text, read from the key prefix the route declares.
+   *
+   * `te` guards the two string fields: the homepage declares no title and no
+   * description — it falls back to the biography — and asking for a key that
+   * does not exist makes vue-i18n warn on every route of the static build, for a
+   * field that is absent by design.
+   *
+   * Keywords cannot be guarded the same way, and the reason is worth knowing:
+   * `te` does not resolve a leaf whose message is an array, so it reports `false`
+   * for a `keywords` that exists and reads perfectly well through `tm`. The
+   * absence is detected by value instead — `tm` echoes the key back when there
+   * is nothing there.
+   */
+  const routeMessages = computed<PageMessages>(() => {
+    const prefix = getRouteMessages(path).seo
+
+    const read = (field: string): string | undefined => {
+      const key = `${prefix}.${field}`
+      return te(key) ? t(key) : undefined
+    }
+
+    const keywordsKey = `${prefix}.keywords`
+    const rawKeywords = tm(keywordsKey)
+    const keywords = Array.isArray(rawKeywords) ? rawKeywords.map(String) : []
+
+    return {
+      title: read('title'),
+      description: read('description'),
+      keywords: keywords.includes(keywordsKey) ? undefined : keywords
+    }
+  })
 
   const seo = computed<IPageSeo>(() => ({
     ...getRouteSeo(path),
+    ...routeMessages.value,
     ...resolveOverrides(overrides)
   }))
 
@@ -80,5 +129,11 @@ export const usePageHead = (path: RoutePath, overrides?: PageSeoOverrides): void
   // `/blog/:year/:article`, where the declared path is only a pattern.
   const canonical = computed(() => seo.value.canonicalUrl ?? canonicalUrl(route.path))
 
-  useHead(computed<ReactiveHead>(() => buildPageHead(seo.value, canonical.value)))
+  // Handed to the schemas rather than read from the i18n instance directly, so
+  // that `structured-data` keeps no dependency on the plugin.
+  const context = computed<PageContext>(() => ({ seo: routeMessages.value, t }))
+
+  useHead(computed<ReactiveHead>(() => buildPageHead(seo.value, canonical.value, context.value)))
+
+  return seo
 }

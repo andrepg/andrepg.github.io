@@ -13,11 +13,8 @@ defineProps<{
 <template>
   <section class="flex flex-col gap-4">
     <SectionHeader>
-      <template #title> Tecnologias trabalhadas </template>
-      <template #subtitle>
-        Bibliotecas, ferramentas, linguagens e frameworks com os quais já trabalhei
-        <i class="opacity-70">- algumas delas, claro</i>.
-      </template>
+      <template #title>{{ $t('curriculum.technologies.title') }}</template>
+      <template #subtitle>{{ $t('curriculum.technologies.subtitle') }}</template>
     </SectionHeader>
 
     <AnimatedList

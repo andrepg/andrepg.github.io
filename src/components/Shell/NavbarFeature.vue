@@ -46,7 +46,7 @@ useIntersectionObserver(
       <div class="lg:hidden dropdown dropdown-bottom dropdown-end">
         <button tabIndex="{0}" class="btn btn-neutral text-neutral-content btn-soft btn-sm">
           <Icon :icon="APP_ICONS.menu" class="text-base" />
-          Menu
+          {{ $t('general.nav.menu') }}
         </button>
         <MainMenu orientation="vertical" class="dropdown-content z-50 bg-base-100 rounded-box" />
       </div>
