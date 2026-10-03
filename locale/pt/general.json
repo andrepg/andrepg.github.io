@@ -1,0 +1,45 @@
+{
+  "nav": {
+    "home": "Início",
+    "curriculum": "Currículo",
+    "projects": "Projetos",
+    "blog": "Blog",
+    "menu": "Menu",
+    "theme": "Tema",
+    "selectTheme": "Selecionar tema"
+  },
+  "footer": {
+    "connect": "Conecte-se",
+    "version": "Versão {version}",
+    "updatedAt": "Atualizado em {date}",
+    "hostedOn": "Hospedado no GitHub Pages",
+    "madeWith": "Feito com VueJS"
+  },
+  "time": {
+    "current": "atualmente"
+  },
+  "routes": {
+    "home": {
+      "keywords": ["programador full stack", "desenvolvedor web", "freelancer", "vue", "php"]
+    },
+    "curriculum": {
+      "title": "Experiência e Projetos",
+      "description": "Minha trajetória, experiência e ferramentas.",
+      "keywords": ["currículo", "experiência", "carreira", "curriculo"]
+    },
+    "projects": {
+      "title": "Projetos",
+      "description": "Meus projetos publicados mais relevantes.",
+      "keywords": ["projetos", "portfólio", "open source"]
+    },
+    "blog": {
+      "title": "Blog",
+      "description": "Os registros do meu trabalho, notas relevantes e devaneios sobre a tecnologia.",
+      "keywords": ["blog", "artigos", "posts", "desenvolvimento"]
+    },
+    "article": {
+      "title": "Blog",
+      "keywords": ["blog", "artigos", "posts"]
+    }
+  }
+}

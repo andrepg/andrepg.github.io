@@ -7,13 +7,13 @@
       "@blog/*": ["./blog/*"],
       "@public/*": ["./public/*"],
       "@plugins/*": ["./plugins/*"],
-      "@config/*": ["./config/*"]
+      "@config/*": ["./config/*"],
+      "@locale/*": ["./locale/*"]
     }
   },
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" },
-    { "path": "./tsconfig.vitest.json" }
   ]
 }

@@ -7,7 +7,8 @@
       "@blog/*": ["./blog/*"],
       "@public/*": ["./public/*"],
       "@plugins/*": ["./plugins/*"],
-      "@config/*": ["./config/*"]
+      "@config/*": ["./config/*"],
+      "@locale/*": ["./locale/*"]
     },
     "target": "ESNext",
     "useDefineForClassFields": true,

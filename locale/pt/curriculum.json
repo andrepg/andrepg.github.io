@@ -1,0 +1,54 @@
+{
+  "title": "Experiência & Tecnologias",
+  "subtitle": "Minha trajetória e carreira resumida, projetos publicados e experiência de mercado real.",
+  "timeline": {
+    "title": "Trajetória",
+    "subtitle": "Por onde passei, o que fiz e com o que trabalhei"
+  },
+  "technologies": {
+    "title": "Tecnologias trabalhadas",
+    "subtitle": "Bibliotecas, ferramentas, linguagens e frameworks com os quais já trabalhei - algumas delas, claro."
+  },
+  "items": {
+    "startap": {
+      "date": "2019 - {current}",
+      "title": "Founder (Freelancer/Part-Time)",
+      "description": "Engenharia de uma plataforma SaaS de e-commerce educacional com mais de 5 mil vendas e uma receita global de seis dígitos, com foco em evolução da aplicação, modernização arquitetural e implantação de infraestrutura."
+    },
+    "xtreed": {
+      "date": "2023-2026",
+      "title": "Software Engineer",
+      "description": "Construção de aplicações open & closed source, sob medida, otimização de páginas de captura digital com tratamento de milhares de leads e consultoria técnica estratégica na implementação de ERP para empresas com centenas de transações mensais."
+    },
+    "siagri": {
+      "date": "2020-2021",
+      "title": "Software Developer",
+      "description": "Manutenção e expansão de um ERP corporativo do setor agrícola desenvolvido em Delphi 7 e Microsoft SQL Server, atendendo a centenas de clientes corporativos de agronegócio em todo o país"
+    },
+    "abilityNegocios": {
+      "date": "2017-2019",
+      "title": "Gestor Financeiro",
+      "description": "Gestão da administração financeira de um escritório de contabilidade e de clientes externos, conectando controles financeiros a processos fiscais para uma carteira de 80 clientes corporativos."
+    },
+    "santri": {
+      "date": "2017",
+      "title": "Software Developer",
+      "description": "Desenvolvimento de uma aplicação ERP corporativa desktop utilizada por centenas de negócios varejistas, com gestão de catálogos de estoque superiores a 1.500 itens cadastrados."
+    },
+    "infoMais": {
+      "date": "2017",
+      "title": "Software Developer / P & D / Automação",
+      "description": "Construção de ferramentas de software internas e externas, com assistência técnica avançada a mais de 40 contas corporativas que gerenciam centenas de transações semanais de venda."
+    },
+    "artLens": {
+      "date": "2009-2010",
+      "title": "Administrador de Sistemas e Redes",
+      "description": ""
+    },
+    "abilityContabil": {
+      "date": "2007-2009",
+      "title": "Administrador de Sistemas e Redes",
+      "description": ""
+    }
+  }
+}

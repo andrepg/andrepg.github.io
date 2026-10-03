@@ -13,6 +13,7 @@
     "src/**/*.d.ts",
     "plugins/**/*.ts",
     "data/**/*.ts",
-    "config/**/*.ts"
+    "config/**/*.ts",
+    "locale/**/*.ts"
   ]
 }

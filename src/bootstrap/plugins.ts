@@ -1,14 +1,7 @@
 import type { App } from 'vue'
 import { createI18n } from 'vue-i18n'
 
-/**
- * First locale shipped with the site, and the one every untranslated string
- * falls back to.
- *
- * Nothing is bundled yet: messages are empty on purpose, so the plugin shows up
- * in the tree-shaken output only for as long as it is registered here.
- */
-const DEFAULT_LOCALE = 'pt'
+import { DEFAULT_LOCALE, messages } from '@/utils/locale'
 
 /**
  * Builds the i18n plugin instance.
@@ -23,6 +16,9 @@ const DEFAULT_LOCALE = 'pt'
  * do. `allowComposition: true` lets `useI18n()` outside a component fall back to
  * that global instance, which is what SSR setup code needs.
  *
+ * The schema is deliberately not passed as a type parameter to `createI18n`: it
+ * narrows nothing. See the note in `locale/schema.d.ts`.
+ *
  * @see https://vue-i18n.intlify.dev/guide/essentials/optimization#bundle-size
  */
 const createI18nPlugin = () =>
@@ -31,9 +27,7 @@ const createI18nPlugin = () =>
     allowComposition: true,
     fallbackLocale: DEFAULT_LOCALE,
     locale: DEFAULT_LOCALE,
-    messages: {
-      pt: {}
-    }
+    messages
   })
 
 /**
@@ -43,8 +37,8 @@ const createI18nPlugin = () =>
  * `ViteSSG` path go through it — a plugin added here reaches development, the
  * static generation and the hydration alike.
  *
- * The head is deliberately absent: `ViteSSG` installs the server-side variant
- * of the unhead plugin itself while it pre-renders, and installing a second one
+ * The head is deliberately absent: `ViteSSG` installs the server-side variant of
+ * the unhead plugin itself while it pre-renders, and installing a second one
  * would leave the generated HTML with a duplicated `<head>`.
  */
 export const installAppPlugins = (app: App): void => {

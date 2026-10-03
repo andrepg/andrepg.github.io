@@ -35,7 +35,8 @@ export default defineConfig({
       '@blog': fileURLToPath(new URL('./blog', import.meta.url)),
       '@public': fileURLToPath(new URL('./public', import.meta.url)),
       '@config': fileURLToPath(new URL('./config', import.meta.url)),
-      '@plugins': fileURLToPath(new URL('./plugins', import.meta.url))
+      '@plugins': fileURLToPath(new URL('./plugins', import.meta.url)),
+      '@locale': fileURLToPath(new URL('./locale', import.meta.url))
     }
   },
 
