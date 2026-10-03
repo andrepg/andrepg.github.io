@@ -11,7 +11,7 @@ const showFooter = ref(false)
 const footerRef = ref<HTMLElement | null>(null)
 
 // Informações de build (em um projeto real poderiam vir de variáveis de ambiente do Vite)
-const appVersion = '0.0.2'
+const appVersion = '0.0.3'
 const buildDate = new Date().toLocaleDateString('pt-BR', {
   day: '2-digit',
   month: '2-digit',
