@@ -10,8 +10,20 @@ const formatMetaTag = (item: HTMLElement): IHtmlMetaTag => ({
   content: item.getAttribute('content') ?? ''
 })
 
+/**
+ * The content of a tag, or `undefined` when the page does not carry it.
+ *
+ * A tag that is absent and a tag whose `content` is empty are the same thing to
+ * every consumer: the page said nothing. Collapsing them here is what lets the
+ * optional fields of `ISitemapDto` mean what their `?` promises, and what lets
+ * the XML writer leave `<lastmod>` out instead of writing it empty.
+ */
+const findMetaTagContent = (tags: IHtmlMetaTag[], name: string): string | undefined =>
+  tags.find((tag) => tag.name === name)?.content || undefined
+
+/** The content of a tag every page carries, empty when it does not. */
 const getMetaTagContent = (tags: IHtmlMetaTag[], name: string) =>
-  tags.find((tag) => tag.name === name)?.content ?? ''
+  findMetaTagContent(tags, name) ?? ''
 
 /**
  * The scraped `og:type` is whatever the prerendered HTML happened to contain, so
@@ -49,8 +61,7 @@ const sitemapDto = (
   description: getMetaTagContent(tags, 'description'),
   type: parseOgType(getMetaTagContent(tags, 'og:type')),
   keywords: getMetaTagContent(tags, 'keywords').split(','),
-  publishedTime: getMetaTagContent(tags, 'article:published_time'),
-  modifiedTime: '',
+  publishedTime: findMetaTagContent(tags, 'article:published_time'),
   alternates
   // TODO Add more tags to HTML and here. We can feed from JSON ld as well
 })

@@ -79,7 +79,6 @@ export interface ISitemapDto {
   type: OgType
   keywords?: string[]
   publishedTime?: string
-  modifiedTime?: string
   /** `lang` of the document the page was pre-rendered into. */
   locale?: string
   /** The page in the other languages it is published in. */
