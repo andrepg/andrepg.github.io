@@ -1,0 +1,54 @@
+{
+  "title": "Experiencia y Tecnologías",
+  "subtitle": "Mi trayectoria y carrera resumidas, proyectos publicados y experiencia real en el mercado.",
+  "timeline": {
+    "title": "Trayectoria",
+    "subtitle": "Dónde he estado, qué he hecho y con qué he trabajado"
+  },
+  "technologies": {
+    "title": "Tecnologías utilizadas",
+    "subtitle": "Bibliotecas, herramientas, lenguajes y frameworks con los que he trabajado - algunas de ellas, por supuesto."
+  },
+  "items": {
+    "startap": {
+      "date": "2019 - {current}",
+      "title": "Fundador (Freelance/Part-Time)",
+      "description": "Ingeniería de una plataforma SaaS de comercio electrónico educativo con más de 5 mil ventas e ingresos globales de seis cifras, con foco en evolución de la aplicación, modernización arquitectónica e implantación de infraestructura."
+    },
+    "xtreed": {
+      "date": "2023-2026",
+      "title": "Software Engineer",
+      "description": "Construcción de aplicaciones open & closed source a medida, optimización de páginas de captura digital con tratamiento de miles de leads y consultoría técnica estratégica en la implementación de ERP para empresas con cientos de transacciones mensuales."
+    },
+    "siagri": {
+      "date": "2020-2021",
+      "title": "Software Developer",
+      "description": "Mantenimiento y ampliación de un ERP corporativo del sector agrícola desarrollado en Delphi 7 y Microsoft SQL Server, atendiendo a cientos de clientes corporativos del agronegocio en todo el país"
+    },
+    "abilityNegocios": {
+      "date": "2017-2019",
+      "title": "Gerente Financiero",
+      "description": "Gestión de la administración financiera de un despacho contable y de clientes externos, conectando controles financieros con procesos fiscales para una cartera de 80 clientes corporativos."
+    },
+    "santri": {
+      "date": "2017",
+      "title": "Software Developer",
+      "description": "Desarrollo de una aplicación ERP corporativa de escritorio utilizada por cientos de negocios minoristas, con gestión de catálogos de inventario superiores a 1.500 ítems registrados."
+    },
+    "infoMais": {
+      "date": "2017",
+      "title": "Software Developer / I + D / Automatización",
+      "description": "Construcción de herramientas de software internas y externas, con asistencia técnica avanzada a más de 40 cuentas corporativas que gestionan cientos de transacciones semanales de venta."
+    },
+    "artLens": {
+      "date": "2009-2010",
+      "title": "Administrador de Sistemas y Redes",
+      "description": ""
+    },
+    "abilityContabil": {
+      "date": "2007-2009",
+      "title": "Administrador de Sistemas y Redes",
+      "description": ""
+    }
+  }
+}

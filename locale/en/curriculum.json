@@ -1,0 +1,54 @@
+{
+  "title": "Experience & Technologies",
+  "subtitle": "My career summarised, published projects and real market experience.",
+  "timeline": {
+    "title": "Career path",
+    "subtitle": "Where I have been, what I did and what I worked with"
+  },
+  "technologies": {
+    "title": "Technologies worked with",
+    "subtitle": "Libraries, tools, languages and frameworks I have worked with - some of them, of course."
+  },
+  "items": {
+    "startap": {
+      "date": "2019 - {current}",
+      "title": "Founder (Freelance/Part-Time)",
+      "description": "Engineering of an educational e-commerce SaaS platform with more than 5,000 sales and six-figure revenue worldwide, focused on application evolution, architectural modernisation and infrastructure deployment."
+    },
+    "xtreed": {
+      "date": "2023-2026",
+      "title": "Software Engineer",
+      "description": "Building custom open & closed source applications, optimising digital landing pages that handle thousands of leads, and providing strategic technical consulting on ERP implementation for companies with hundreds of monthly transactions."
+    },
+    "siagri": {
+      "date": "2020-2021",
+      "title": "Software Developer",
+      "description": "Maintenance and expansion of a corporate ERP for the agricultural sector, built on Delphi 7 and Microsoft SQL Server, serving hundreds of agribusiness corporate clients nationwide"
+    },
+    "abilityNegocios": {
+      "date": "2017-2019",
+      "title": "Finance Manager",
+      "description": "Managing the financial administration of an accounting firm and its external clients, connecting financial controls to tax processes for a portfolio of 80 corporate clients."
+    },
+    "santri": {
+      "date": "2017",
+      "title": "Software Developer",
+      "description": "Development of a corporate desktop ERP application used by hundreds of retail businesses, managing stock catalogues of over 1,500 registered items."
+    },
+    "infoMais": {
+      "date": "2017",
+      "title": "Software Developer / R&D / Automation",
+      "description": "Building internal and external software tools, with advanced technical support for more than 40 corporate accounts that handle hundreds of weekly sales transactions."
+    },
+    "artLens": {
+      "date": "2009-2010",
+      "title": "Systems and Network Administrator",
+      "description": ""
+    },
+    "abilityContabil": {
+      "date": "2007-2009",
+      "title": "Systems and Network Administrator",
+      "description": ""
+    }
+  }
+}

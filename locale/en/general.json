@@ -1,0 +1,45 @@
+{
+  "nav": {
+    "home": "Home",
+    "curriculum": "Résumé",
+    "projects": "Projects",
+    "blog": "Blog",
+    "menu": "Menu",
+    "theme": "Theme",
+    "selectTheme": "Select theme"
+  },
+  "footer": {
+    "connect": "Connect",
+    "version": "Version {version}",
+    "updatedAt": "Updated on {date}",
+    "hostedOn": "Hosted on GitHub Pages",
+    "madeWith": "Made with VueJS"
+  },
+  "time": {
+    "current": "present"
+  },
+  "routes": {
+    "home": {
+      "keywords": ["full stack developer", "web developer", "freelancer", "vue", "php"]
+    },
+    "curriculum": {
+      "title": "Experience & Projects",
+      "description": "My background, experience and tools.",
+      "keywords": ["resume", "experience", "career", "curriculum vitae"]
+    },
+    "projects": {
+      "title": "Projects",
+      "description": "My most relevant published projects.",
+      "keywords": ["projects", "portfolio", "open source"]
+    },
+    "blog": {
+      "title": "Blog",
+      "description": "Records of my work, relevant notes and musings about technology.",
+      "keywords": ["blog", "articles", "posts", "development"]
+    },
+    "article": {
+      "title": "Blog",
+      "keywords": ["blog", "articles", "posts"]
+    }
+  }
+}

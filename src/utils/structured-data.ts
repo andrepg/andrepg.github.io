@@ -66,11 +66,16 @@ const webSiteNode = () => ({
 /**
  * Site language, declared literally.
  *
- * A schema advertises the language its content is written in, not the one the
- * visitor is browsing in, so this is a property of the site rather than of the
- * page. It is correct while Portuguese is the only locale shipped — adding a
- * second one means deciding whether the site becomes multilingual, and only then
- * does this stop being a constant.
+ * `en` and `es` are shipped and registered, but nothing selects them yet — the
+ * site renders in Portuguese on every route — so `pt-BR` is still the whole
+ * truth and this stays a constant.
+ *
+ * The moment a language selector exists, this stops being a property of the
+ * site and becomes a property of the render: a `WebSite` node with a single
+ * `inLanguage` would be claiming the whole site is Portuguese while the visitor
+ * is reading Spanish. That is when it moves into `PageContext`, alongside the
+ * translator, and the post-level `BlogPosting` nodes keep `pt-BR` — those
+ * describe an article written in Portuguese whatever chrome it is rendered in.
  */
 const SITE_LANGUAGE = 'pt-BR'
 

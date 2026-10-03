@@ -1,0 +1,21 @@
+{
+  "list": {
+    "title": "Todas mis publicaciones",
+    "subtitle": "Los registros de mi trabajo, notas relevantes y divagaciones sobre la tecnología."
+  },
+  "recentPosts": {
+    "title": "Publicaciones recientes",
+    "seeMore": "Ver publicaciones anteriores"
+  },
+  "article": {
+    "thisPost": "Esta publicación",
+    "serie": {
+      "title": "Más publicaciones de esta serie",
+      "subtitle": "Esta publicación forma parte de la serie {serie}. Vea la serie completa a continuación"
+    }
+  },
+  "ld": {
+    "name": "Blog de {site}",
+    "description": "Publicaciones y notas de {site}."
+  }
+}

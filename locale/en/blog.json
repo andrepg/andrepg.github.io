@@ -1,0 +1,21 @@
+{
+  "list": {
+    "title": "Everything I have published",
+    "subtitle": "Records of my work, relevant notes and musings about technology."
+  },
+  "recentPosts": {
+    "title": "Recent posts",
+    "seeMore": "See older posts"
+  },
+  "article": {
+    "thisPost": "This post",
+    "serie": {
+      "title": "More posts from this series",
+      "subtitle": "This post is part of the {serie} series. See the whole series below"
+    }
+  },
+  "ld": {
+    "name": "{site}'s blog",
+    "description": "Posts and notes by {site}."
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "title": "Proyectos",
+  "description": "Mis proyectos publicados más relevantes.",
+  "highlighted": {
+    "title": "Proyectos destacados",
+    "seeMore": "Ver todos los proyectos"
+  },
+  "items": {
+    "superCowScripts": {
+      "description": "Una colección de scripts para el desarrollador y administrador de sistemas"
+    },
+    "jetbrainsFlatpakPlugin": {
+      "description": "Un plugin para integrar el SDK de Flatpak y GNOME en los IDE de JetBrains"
+    },
+    "gtkCRenderer": {
+      "description": "Un renderizador GTK para el plugin Flatpak DevTools"
+    },
+    "doIt": {
+      "description": "Una lista de tareas extremadamente sencilla para GNOME/Adwaita"
+    },
+    "httpCodes": {
+      "description": "App Flatpak con códigos HTTP, sus descripciones y usos"
+    },
+    "dotfiles": {
+      "description": "Mis archivos de configuración personales y personalizaciones del sistema"
+    },
+    "githubActions": {
+      "description": "Repositorio con actions y workflows para GitHub Actions"
+    },
+    "laravelSailPodman": {
+      "description": "Una biblioteca PHP de compatibilidad entre Laravel Sail y Podman"
+    }
+  }
+}
